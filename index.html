@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#087A55">
+  <meta name="description" content="HalalCheck — Know What You Eat.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>HalalCheck | Know What You Eat</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <a class="brand" href="#home" data-route="home">
+        <span class="brand-mark" aria-hidden="true">✓</span>
+        <span><strong>HalalCheck</strong><small>Know What You Eat.</small></span>
+      </a>
+      <nav class="side-nav">
+        <a href="#home" data-route="home" class="nav-link active"><span aria-hidden="true">⌂</span> Overview</a>
+        <a href="#history" data-route="history" class="nav-link"><span aria-hidden="true">◷</span> Scan history</a>
+        <a href="#about" data-route="about" class="nav-link"><span aria-hidden="true">ⓘ</span> How it works</a>
+        <a href="#guide" data-route="guide" class="nav-link"><span aria-hidden="true">✦</span> Ingredient guide</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <label class="language-control" for="language-select">Language<select id="language-select"><option value="en">English</option><option value="it">Italiano</option><option value="ar">العربية</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="es">Español</option><option value="tr">Türkçe</option><option value="ms">Melayu</option><option value="id">Indonesia</option></select></label>
+        <button class="nav-link" id="install-app" type="button" hidden><span aria-hidden="true">↓</span> Install app</button>
+        <button class="nav-link" id="theme-toggle" type="button"><span aria-hidden="true">◐</span> <span>Dark mode</span></button>
+        <p class="sidebar-note">Independent information to help you make informed choices.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="mobile-header">
+        <a class="brand" href="#home"><span class="brand-mark">✓</span><strong>HalalCheck</strong></a>
+        <button class="icon-button" id="mobile-theme-toggle" type="button" aria-label="Toggle theme">◐</button>
+      </header>
+
+      <section id="home-view" class="view active-view" data-view="home">
+        <div class="welcome-row">
+          <div><p class="eyebrow">YOUR FOOD COMPANION</p><h1>Know what you eat.</h1><p class="lede">Check ingredients and discover more about the products you bring home.</p></div>
+          <div class="status-chip"><span class="status-dot"></span> Ready to scan</div>
+        </div>
+
+        <section class="scan-hero card">
+          <div class="scan-copy">
+            <span class="hero-icon" aria-hidden="true">▣</span>
+            <p class="eyebrow">QUICK CHECK</p>
+            <h2>Scan a product</h2>
+            <p>Use your camera to read a barcode, or enter it manually for a quick lookup.</p>
+            <div class="button-row">
+              <button class="button button-primary" type="button" data-action="open-scanner"><span aria-hidden="true">⌁</span> Scan barcode</button>
+              <button class="button button-secondary" type="button" data-action="manual-entry">Enter barcode</button>
+            </div>
+          </div>
+          <div class="scan-art" aria-hidden="true"><div class="scan-art-frame"><span></span><i></i><b></b><em></em></div><div class="scan-art-line"></div></div>
+        </section>
+
+        <div class="section-heading"><div><p class="eyebrow">AT A GLANCE</p><h2>Your scan overview</h2></div><a href="#history" data-route="history" class="text-link">View history <span>→</span></a></div>
+        <div class="stats-grid">
+          <article class="stat-card card"><span class="stat-icon green">✓</span><div><strong id="verified-count">0</strong><span>Verified scans</span></div></article>
+          <article class="stat-card card"><span class="stat-icon amber">!</span><div><strong id="review-count">0</strong><span>Need review</span></div></article>
+          <article class="stat-card card"><span class="stat-icon slate">◷</span><div><strong id="total-count">0</strong><span>Total scans</span></div></article>
+        </div>
+        <div class="section-heading recent-heading"><div><p class="eyebrow">YOUR ACTIVITY</p><h2>Recent scans</h2></div></div>
+        <div id="recent-scans" class="scan-list"></div>
+      </section>
+
+      <section id="scanner-view" class="view" data-view="scanner">
+        <button class="back-link" type="button" data-action="close-scanner">← Back to overview</button>
+        <div class="scanner-header"><div><p class="eyebrow">PRODUCT SCANNER</p><h1>Scan a barcode</h1><p class="lede">Place the barcode inside the frame. Your camera stays on this device.</p></div></div>
+        <div class="scanner-layout">
+          <div class="camera-card card">
+            <video id="camera-preview" autoplay playsinline muted></video>
+            <div class="camera-placeholder" id="camera-placeholder"><span class="camera-glyph">⌾</span><strong>Camera preview</strong><small>Allow camera access to scan a product</small></div>
+            <div class="scan-frame"><span></span><span></span><span></span><span></span><i></i></div>
+            <p class="camera-message" id="camera-message">Camera permission is needed to begin.</p>
+          </div>
+          <div class="scanner-controls card">
+            <button class="button button-primary wide" id="start-camera" type="button">Start camera</button>
+            <div class="control-row"><button class="button button-secondary" id="flash-toggle" type="button" disabled>☼ Flashlight</button><button class="button button-secondary" id="switch-camera" type="button" disabled>↻ Switch camera</button></div>
+            <div class="divider"><span>or</span></div>
+            <form id="barcode-form"><label for="barcode-input">Enter barcode manually</label><div class="input-row"><input id="barcode-input" inputmode="numeric" pattern="[0-9]{8,14}" placeholder="e.g. 012345678901" maxlength="14"><button class="button button-primary" type="submit">Check</button></div><label for="ingredients-input" class="ingredient-label">Or paste ingredients for an assessment</label><textarea id="ingredients-input" rows="3" placeholder="milk, sugar, gelatin"></textarea><small class="form-hint">Ingredient analysis is separate from certification verification.</small></form>
+            <p class="privacy-note">Your camera feed is processed locally. We do not record or upload video.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="result-view" class="view" data-view="result"></section>
+      <section id="history-view" class="view" data-view="history">
+        <div class="welcome-row"><div><p class="eyebrow">YOUR ACTIVITY</p><h1>Scan history</h1><p class="lede">Products you have checked on this device.</p></div><button class="button button-secondary" id="clear-history" type="button">Clear history</button></div>
+        <div id="history-list" class="scan-list card-list"></div>
+      </section>
+      <section id="about-view" class="view" data-view="about">
+        <p class="eyebrow">TRANSPARENCY FIRST</p><h1>How HalalCheck works</h1><div class="about-grid"><article class="card info-card"><span class="hero-icon">01</span><h2>Scan</h2><p>We use your device camera to read a product barcode. Nothing is uploaded while scanning.</p></article><article class="card info-card"><span class="hero-icon">02</span><h2>Verify</h2><p>Results are only marked certified when a trusted certification source can be verified. Unknown products are never presented as halal.</p></article><article class="card info-card"><span class="hero-icon">03</span><h2>Understand</h2><p>Ingredient concerns are explained clearly so you can make your own informed decision.</p></article></div><div class="notice"><strong>Important</strong><p>HalalCheck is an information aid, not a religious authority. Always check the latest packaging and certification mark.</p></div></section>
+        <section id="guide-view" class="view" data-view="guide">
+          <div class="welcome-row"><div><p class="eyebrow">KNOW YOUR INGREDIENTS</p><h1>Halal Ingredient Guide</h1><p class="lede">Search common English, Italian, Arabic and E-number references.</p></div></div>
+          <div class="guide-search card"><label for="guide-search-input">Search the ingredient database</label><input id="guide-search-input" type="search" placeholder="Try E471, Strutto, gelatin or sorbitol"></div>
+          <div id="guide-results" class="guide-grid"></div>
+        </section>
+    </main>
+  </div>
+  <nav class="bottom-nav" aria-label="Mobile navigation"><a href="#home" data-route="home" class="active">⌂<span>Home</span></a><a href="#history" data-route="history">◷<span>History</span></a><button type="button" data-action="open-scanner" class="scan-tab">＋<span>Scan</span></button><a href="#guide" data-route="guide">✦<span>Guide</span></a></nav>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <aside id="privacy-notice" class="privacy-notice" hidden><strong>Privacy choices</strong><p>HalalCheck uses optional, privacy-conscious analytics only with your permission. Your scanner and scan history remain on this device.</p><div><button class="button button-primary" id="accept-analytics" type="button">Allow analytics</button><button class="button button-secondary" id="decline-analytics" type="button">Decline</button></div></aside>
+  <script src="src/data/ingredientDatabase.js"></script>
+  <script src="analytics.js"></script>
+  <script src="src/i18n/index.js"></script>
+  <script src="src/data/universalHalalPolicy.js"></script>
+  <script src="src/utils/halalAnalyzer.js"></script>
+  <script src="src/models/productModel.js"></script>
+  <script src="src/data/productCatalog.js"></script>
+  <script src="src/utils/productRepository.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

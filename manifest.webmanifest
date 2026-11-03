@@ -1,0 +1,12 @@
+{
+  "name": "HalalCheck — Know What You Eat",
+  "short_name": "HalalCheck",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F7FAF8",
+  "theme_color": "#087A55",
+  "description": "Check ingredients and product certification information.",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
