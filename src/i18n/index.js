@@ -65,5 +65,6 @@ window.halalI18n = (() => {
     document.querySelectorAll('select').forEach((element) => { element.dir = rtlText ? 'rtl' : 'ltr'; });
     return dictionary;
   }
-  return { supported, rtl, dictionaries, get, apply };
+  const coverage = Object.fromEntries(supported.map((language) => [language, { total: Object.keys(en).length, missing: language === 'en' ? [] : Object.keys(en).filter((key) => !(key in (translations[language] || {}))) }]));
+  return { supported, rtl, dictionaries, coverage, get, apply };
 })();

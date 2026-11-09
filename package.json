@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.15",
+    "@playwright/test": "^1.65.0",
+    "supabase": "^3.0.0"
+  },
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/qa/*.test.cjs",
+    "qa:100": "node scripts/qa.cjs",
+    "test:browser": "playwright test",
+    "build": "node scripts/build.cjs",
+    "serve": "node scripts/serve.cjs"
+  }
+}

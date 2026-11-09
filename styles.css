@@ -5,3 +5,9 @@
 .language-control{display:grid;gap:6px;color:var(--muted);font-size:11px;font-weight:700;padding:12px 14px}.language-control select{border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--bg);color:var(--text)}
 .privacy-notice{position:fixed;left:20px;bottom:20px;z-index:20;width:min(390px,calc(100vw - 40px));padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.privacy-notice strong{display:block;margin-bottom:5px}.privacy-notice p{color:var(--muted);font-size:12px;margin:0 0 12px}.privacy-notice div{display:flex;gap:8px}.privacy-notice .button{font-size:12px;padding:8px 11px}
 html,body,.app-shell{direction:ltr}.localized-text[dir=rtl],main h1[dir=rtl],main h2[dir=rtl],main h3[dir=rtl],main p[dir=rtl],main label[dir=rtl],main button[dir=rtl],main a[dir=rtl],main small[dir=rtl],main strong[dir=rtl],main summary[dir=rtl],.sidebar label[dir=rtl],.sidebar button[dir=rtl],.sidebar a[dir=rtl],.sidebar small[dir=rtl]{direction:rtl;text-align:right}.brand,.side-nav,.bottom-nav,.button-row,.control-row,.stats-grid,.scanner-layout,.result-layout,.about-grid{direction:ltr}
+
+.app-tools{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:20px}.app-tools .language-control{padding:0}.app-tools .nav-link{font-size:12px;padding:8px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #168B57;outline-offset:3px}.result-content,.scan-item-main{min-width:0;overflow-wrap:anywhere}@media(max-width:800px){.app-tools{justify-content:space-between}.privacy-notice{bottom:85px}}
+
+[hidden]{display:none!important}
+
+.toast{opacity:0;pointer-events:none}.toast.show{opacity:1}

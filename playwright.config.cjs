@@ -1,0 +1,2 @@
+const {defineConfig}=require('@playwright/test');
+module.exports=defineConfig({globalTeardown:require.resolve('./tests/browser/teardown.cjs'),testDir:'tests/browser',timeout:20000,retries:0,workers:1,reporter:[['list'],['json',{outputFile:'reports/browser.json'}]],use:{baseURL:'http://127.0.0.1:4173',trace:'retain-on-failure'},webServer:{command:'node scripts/serve.cjs',url:'http://127.0.0.1:4173',reuseExistingServer:false},projects:[{name:'desktop',use:{viewport:{width:1440,height:900}}},{name:'mobile',use:{viewport:{width:390,height:844},isMobile:true,hasTouch:true}}]});

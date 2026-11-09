@@ -1,6 +1,7 @@
 window.productModel = (() => {
   const CACHE_VERSION = 2;
-  const normalizeBarcode = (value) => String(value || '').replace(/\D/g, '');
+  const normalizeBarcode = (value) => /^\d+$/.test(String(value || '').trim()) ? String(value).trim() : '';
+  const isValidBarcode = (value) => /^(?:\d{8}|\d{12,14})$/.test(normalizeBarcode(value));
   const canonicalBarcode = (value) => normalizeBarcode(value).replace(/^0+(?=\d)/, '');
   const createIngredient = (originalText, source, confidence = 1) => ({
     id: `${source}:${originalText.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
@@ -28,5 +29,5 @@ window.productModel = (() => {
     const ocr = ocrIngredients.map((item) => item.originalText || item).join('|');
     return { conflict: api !== ocr, apiIngredients, ocrIngredients, mergedIngredients: null };
   };
-  return { CACHE_VERSION, normalizeBarcode, canonicalBarcode, createIngredient, createProduct, compareSources };
+  return { CACHE_VERSION, normalizeBarcode, isValidBarcode, canonicalBarcode, createIngredient, createProduct, compareSources };
 })();

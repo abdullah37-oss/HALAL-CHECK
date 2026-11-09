@@ -1,0 +1,42 @@
+const {test}=require('node:test'); const assert=require('node:assert/strict');const fs=require('node:fs');
+const {PGlite}=require('@electric-sql/pglite');
+test('isolated PostgreSQL migrations and 100 events through actual ingestion handler',async()=>{
+ const db=new PGlite();
+ try {
+ await db.exec(`create role anon; create role authenticated; create role service_role; create schema auth; create table auth.users(id uuid primary key); create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$; grant usage on schema auth to authenticated; grant execute on function auth.uid() to authenticated;`);
+ for(const migration of fs.readdirSync('supabase/migrations').filter(x=>x.endsWith('.sql')).sort()) await db.exec(fs.readFileSync('supabase/migrations/'+migration,'utf8'));
+ const {createAnalyticsHandler}=await import('../../supabase/functions/_shared/analytics-handler.ts');
+ const origin='https://qa.halalcheck.invalid';
+ const handler=createAnalyticsHandler({origin,insert:async(p)=>{try { await db.exec('set role service_role'); await db.query('select public.insert_analytics_event($1,$2,$3,$4,$5,$6,$7,$8)',Object.values(p));return {error:null};}catch(e){return {error:{code:e.code}};}finally{await db.exec('reset role');}}});
+ const events=['page_opened','scan_started','manual_lookup','lookup_failed','analysis_completed'];
+ const base={sessionHash:'syntheticQA0000000001',pagePath:'/',language:'en',deviceCategory:'mobile',metadata:{}};
+ const send=(body,requestOrigin=origin)=>handler(new Request(origin,{method:'POST',headers:{Origin:requestOrigin},body:JSON.stringify(body)}));
+ for(let i=0;i<100;i++) assert.equal((await send({...base,eventName:events[i%5],sessionHash:'syntheticQA'+String(i).padStart(16,'0')})).status,200);
+ const rows=(await db.query('select event_name,count(*)::integer n from analytics_events group by event_name')).rows;
+ for(const row of rows) assert.equal(row.n,20);
+ assert.equal((await send({...base,eventName:'page_opened',metadata:{barcode:'private'}})).status,400);
+ assert.equal((await send({...base,eventName:'unsupported'})).status,400);
+ assert.equal((await send({...base,eventName:'page_opened'},'https://attacker.invalid')).status,403);
+ assert.equal((await handler(new Request(origin,{method:'POST',headers:{Origin:origin},body:'x'.repeat(5000)}))).status,413);
+ for(let i=0;i<60;i++) assert.equal((await send({...base,eventName:'page_opened'})).status,200);
+ assert.equal((await send({...base,eventName:'page_opened'})).status,429);
+ await db.exec('set role anon');
+ await assert.rejects(db.query('select public.get_admin_analytics(30)'));
+ await assert.rejects(db.query("select public.insert_analytics_event('page_opened','syntheticQA0000000','/','en','mobile')"));
+ await assert.rejects(db.query('select * from analytics_events'));
+ await db.exec('reset role; set role authenticated');
+ await assert.rejects(db.query('select public.get_admin_analytics(30)'));
+ await assert.rejects(db.query('insert into admin_users(user_id) values(gen_random_uuid())'));
+ await db.exec(`reset role; insert into auth.users values('11111111-1111-1111-1111-111111111111'); insert into admin_users(user_id) values('11111111-1111-1111-1111-111111111111'); set request.jwt.claim.sub='11111111-1111-1111-1111-111111111111'; set role authenticated;`);
+ const stats=(await db.query('select get_admin_analytics(30) stats')).rows[0].stats;
+ assert.equal(stats.totalEvents,160);assert.equal(stats.eventCounts.analysis_completed,20);assert.equal(stats.sessions,101);assert.equal(stats.languages.en,160);
+ await assert.rejects(db.query('select get_admin_analytics(null)'));
+ await db.exec('reset role; update public.admin_users set is_active=false; set role authenticated');
+ await assert.rejects(db.query('select get_admin_analytics(30)'));
+ await db.exec('reset role; update public.admin_users set is_active=true; set role authenticated');
+ await assert.rejects(db.query('select purge_old_analytics_events()'));
+ await db.exec(`reset role; insert into analytics_events(event_name,session_hash,occurred_at) values('page_opened','expiredSynthetic001',now()-interval '31 days'); select purge_old_analytics_events();`);
+ assert.equal((await db.query('select count(*)::integer n from analytics_events')).rows[0].n,160);
+ fs.mkdirSync('reports',{recursive:true});fs.writeFileSync('reports/synthetic-analytics.json',JSON.stringify({environment:'isolated in-memory PostgreSQL (PGlite)',syntheticEvents:100,expectedPerEvent:20,aggregateVerified:true,additionalRateLimitEvents:60,invalidEventsRejected:true,adminRestrictionsVerified:true,retentionVerified:true,deduplication:'Client debounce only; transport is not idempotent',productionWrites:0},null,2));
+ } finally {await db.close();}
+});

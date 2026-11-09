@@ -8,7 +8,7 @@ window.universalHalalPolicy = (() => {
   });
   const LANGUAGES = Object.freeze(['en', 'it', 'ar', 'ur', 'hi', 'bn', 'fr', 'de', 'es', 'tr', 'ms', 'id']);
   const labels = {
-    en: { 'certified-halal': 'Certified halal', 'likely-halal': 'Likely halal', 'not-halal': 'Not halal', 'needs-checking': 'Needs checking', 'not-enough-information': 'Not enough information' },
+    en: { 'certified-halal': 'Certified halal', 'likely-halal': 'HALAL', 'not-halal': 'HARAM', 'needs-checking': 'NEEDS VERIFICATION', 'not-enough-information': 'Not enough information' },
     it: { 'certified-halal': 'Halal certificato', 'likely-halal': 'Probabilmente halal', 'not-halal': 'Non halal', 'needs-checking': 'Da verificare', 'not-enough-information': 'Informazioni insufficienti' },
     ar: { 'certified-halal': 'حلال معتمد', 'likely-halal': 'مرجح أنه حلال', 'not-halal': 'غير حلال', 'needs-checking': 'يحتاج إلى تحقق', 'not-enough-information': 'معلومات غير كافية' },
     ur: { 'certified-halal': 'مصدقہ حلال', 'likely-halal': 'غالباً حلال', 'not-halal': 'حلال نہیں', 'needs-checking': 'مزید جانچ ضروری', 'not-enough-information': 'ناکافی معلومات' },

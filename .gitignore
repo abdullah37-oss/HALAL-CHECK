@@ -1,0 +1,17 @@
+﻿# Dependencies
+node_modules/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Vercel local files
+.vercel/
+
+# Logs
+npm-debug.log*
+
+dist/
+test-results/
+playwright-report/

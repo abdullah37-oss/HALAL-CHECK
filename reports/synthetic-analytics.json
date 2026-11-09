@@ -1,0 +1,12 @@
+{
+  "environment": "isolated in-memory PostgreSQL (PGlite)",
+  "syntheticEvents": 100,
+  "expectedPerEvent": 20,
+  "aggregateVerified": true,
+  "additionalRateLimitEvents": 60,
+  "invalidEventsRejected": true,
+  "adminRestrictionsVerified": true,
+  "retentionVerified": true,
+  "deduplication": "Client debounce only; transport is not idempotent",
+  "productionWrites": 0
+}

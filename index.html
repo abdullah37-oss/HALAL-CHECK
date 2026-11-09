@@ -24,14 +24,15 @@
         <a href="#guide" data-route="guide" class="nav-link"><span aria-hidden="true">✦</span> Ingredient guide</a>
       </nav>
       <div class="sidebar-bottom">
-        <label class="language-control" for="language-select">Language<select id="language-select"><option value="en">English</option><option value="it">Italiano</option><option value="ar">العربية</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="es">Español</option><option value="tr">Türkçe</option><option value="ms">Melayu</option><option value="id">Indonesia</option></select></label>
-        <button class="nav-link" id="install-app" type="button" hidden><span aria-hidden="true">↓</span> Install app</button>
+
+
         <button class="nav-link" id="theme-toggle" type="button"><span aria-hidden="true">◐</span> <span>Dark mode</span></button>
         <p class="sidebar-note">Independent information to help you make informed choices.</p>
       </div>
     </aside>
 
     <main class="main-content">
+<div class="app-tools"><label class="language-control" for="language-select">Language<select id="language-select"><option value="en">English</option><option value="it">Italiano</option><option value="ar">العربية</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="es">Español</option><option value="tr">Türkçe</option><option value="ms">Melayu</option><option value="id">Indonesia</option></select></label><button class="nav-link" id="install-app" type="button" hidden><span aria-hidden="true">↓</span> Install app</button><button class="nav-link" id="privacy-settings" type="button">Privacy choices</button></div>
       <header class="mobile-header">
         <a class="brand" href="#home"><span class="brand-mark">✓</span><strong>HalalCheck</strong></a>
         <button class="icon-button" id="mobile-theme-toggle" type="button" aria-label="Toggle theme">◐</button>
@@ -82,7 +83,7 @@
             <div class="control-row"><button class="button button-secondary" id="flash-toggle" type="button" disabled>☼ Flashlight</button><button class="button button-secondary" id="switch-camera" type="button" disabled>↻ Switch camera</button></div>
             <div class="divider"><span>or</span></div>
             <form id="barcode-form"><label for="barcode-input">Enter barcode manually</label><div class="input-row"><input id="barcode-input" inputmode="numeric" pattern="[0-9]{8,14}" placeholder="e.g. 012345678901" maxlength="14"><button class="button button-primary" type="submit">Check</button></div><label for="ingredients-input" class="ingredient-label">Or paste ingredients for an assessment</label><textarea id="ingredients-input" rows="3" placeholder="milk, sugar, gelatin"></textarea><small class="form-hint">Ingredient analysis is separate from certification verification.</small></form>
-            <p class="privacy-note">Your camera feed is processed locally. We do not record or upload video.</p>
+            <p class="privacy-note">Your camera feed is processed locally. We do not record or upload video. Barcode lookups send the barcode to Open Food Facts; ingredient lists are not sent to analytics.</p>
           </div>
         </div>
       </section>
@@ -105,6 +106,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <aside id="privacy-notice" class="privacy-notice" hidden><strong>Privacy choices</strong><p>HalalCheck uses optional, privacy-conscious analytics only with your permission. Your scanner and scan history remain on this device.</p><div><button class="button button-primary" id="accept-analytics" type="button">Allow analytics</button><button class="button button-secondary" id="decline-analytics" type="button">Decline</button></div></aside>
   <script src="src/data/ingredientDatabase.js"></script>
+  <script src="config.js"></script>
   <script src="analytics.js"></script>
   <script src="src/i18n/index.js"></script>
   <script src="src/data/universalHalalPolicy.js"></script>

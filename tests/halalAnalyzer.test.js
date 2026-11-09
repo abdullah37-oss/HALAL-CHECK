@@ -10,7 +10,7 @@ const halalAnalyzerTestCases = [
   [['flour', 'water', 'lard'], 'not-halal'],
   [[], 'not-enough-information'],
   [['flour', 'water', 'salt', 'E471'], 'needs-checking'],
-  [['flour', 'water', 'salt', 'E471 (plant-derived)'], 'needs-checking'],
+  [['flour', 'water', 'salt', 'E471 (plant-derived)'], 'likely-halal'],
   [['flour', 'water', 'sorbitol'], 'likely-halal']
 ];
 
@@ -25,7 +25,7 @@ function runHalalAnalyzerTests(analyzer = window.halalAnalyzer) {
 function runProductIntegrityTests() {
   const yogurt = window.productRepository.getByBarcode('80771548').product;
   const yogurtResult = window.halalAnalyzer.analyze(yogurt.ingredients);
-  if (yogurtResult.classification !== 'likely-halal') throw new Error('Physical yogurt fixture must be likely halal');
+  if (yogurtResult.classification !== 'needs-checking') throw new Error('Yogurt flavouring must require source verification');
   if (yogurt.ingredients.some((item) => /pork|gelatin|lard/i.test(item.originalText))) throw new Error('Fixture contains an invented prohibited ingredient');
   if (window.halalAnalyzer.analyze(['milk', 'pork gelatin']).classification !== 'not-halal') throw new Error('Pork gelatin evidence was not detected');
   if (window.halalAnalyzer.analyze(['milk', 'gelatin']).classification !== 'needs-checking') throw new Error('Unknown gelatin source was not doubtful');

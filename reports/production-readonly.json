@@ -1,0 +1,17 @@
+[
+  {
+    "url": "https://halal-check-sigma.vercel.app/",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "url": "https://anvswymarultvsbszjte.supabase.co/functions/v1/admin-stats",
+    "status": 404,
+    "contentType": "application/json"
+  },
+  {
+    "url": "https://anvswymarultvsbszjte.supabase.co/functions/v1/analytics-event",
+    "status": 404,
+    "contentType": "application/json"
+  }
+]
