@@ -15,6 +15,7 @@ function sanitizeFile(file,buffer){
  if(/\.json$/.test(file)){try{const value=JSON.parse(text.replace(/^\uFEFF/,''));const clean=sanitizeValue(value);if(JSON.stringify(clean)!==JSON.stringify(value))text=JSON.stringify(clean,null,2)+'\n';}catch{text=sanitizeString(text);}}
  else if(file==='reports/release-deno-check.txt')text=text.split(/\r?\n/).map(line=>line.replace(/^node\.exe\s*:\s*/, '')).filter(line=>/^(deno |v8 |typescript |Check |exitCode:)/.test(line)).join('\n')+'\n';
  else text=sanitizeString(text,{generic:! /\.(?:js|cjs|ts|css)$/.test(file)});
+ if(/\.md$/.test(file))text=text.replace(/workspace `[^`]+`/g,'verified hosting workspace');
  return text===original?buffer:Buffer.from(text);
 }
 function containsMachinePath(text){return /\b[A-Za-z]:[\\/](?:[\\/]*Users|[\\/]*Program Files|[\\/]*Windows)[\\/ ]|file:\/\/\/[A-Za-z]:|\/(?:home|Users)\/[A-Za-z0-9_-]+/i.test(text);}

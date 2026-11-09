@@ -1,15 +1,26 @@
 {
-  "checkedAt": "2026-11-09T17:54:31.631Z",
+  "checkedAt": "2026-11-09T17:59:10.455Z",
   "scope": "Only newly outgoing history; already-published history is unchanged",
   "commits": [
+    "752f4b74f8200f13174df5ce0dbe51c7d354dd82",
     "39c5a768a407b7fa028bc9d63895625d4f1dc416",
     "b9d8dc446adbc5dd140db3bd0824b92ef3c5c8dc",
     "79d69818a23aa636fc6387146aada1ebd1c74570",
     "4723e7706dff4795cee33a551c98294431b8e7a0"
   ],
-  "filesChecked": 278,
+  "filesChecked": 363,
   "findings": [],
   "syntheticFixtures": [
+    {
+      "commit": "752f4b74f8200f13174df5ce0dbe51c7d354dd82",
+      "file": "scripts/audit-public-push.cjs",
+      "kind": "Scanner reference to the same known invalid test fixture"
+    },
+    {
+      "commit": "752f4b74f8200f13174df5ce0dbe51c7d354dd82",
+      "file": "tests/qa/admin-config.test.cjs",
+      "kind": "Explicit invalid test fixture, not a credential"
+    },
     {
       "commit": "39c5a768a407b7fa028bc9d63895625d4f1dc416",
       "file": "scripts/audit-public-push.cjs",

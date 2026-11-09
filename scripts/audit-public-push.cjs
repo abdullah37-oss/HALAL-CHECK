@@ -13,6 +13,7 @@ for(const commit of commits){
   if(/(^|\/)(\.env(?:\.|$)|\.release-private\/|\.vercel\/)/.test(file))findings.push({commit,file,kind:'private file tracked'});
   if(!/\.(?:js|cjs|ts|html|css|md|json|toml|sql|tap|txt|webmanifest|lock)$/.test(file))continue;
   const text=git(['show',commit+':'+file]);filesChecked++;
+  if(/\.md$/.test(file)&&/workspace `[^`]+`/.test(text))findings.push({commit,file,kind:'unnecessary hosting account annotation'});
   if(containsMachinePath(text))findings.push({commit,file,kind:'absolute machine/profile path'});
   if(privateIdentities.some(value=>text.toLowerCase().includes(value.toLowerCase())))findings.push({commit,file,kind:'private owner identifier'});
   let scan=text;if(['tests/qa/admin-config.test.cjs','scripts/audit-public-push.cjs'].includes(file)&&scan.includes('sb_secret_syntheticinvalidkey0000000000')){scan=scan.replaceAll('sb_secret_syntheticinvalidkey0000000000','');syntheticFixtures.push({commit,file,kind:file.startsWith('tests/')?'Explicit invalid test fixture, not a credential':'Scanner reference to the same known invalid test fixture'});}
@@ -21,4 +22,4 @@ for(const commit of commits){
  }
 }
 const report={checkedAt:new Date().toISOString(),scope:'Only newly outgoing history; already-published history is unchanged',commits,filesChecked,findings,syntheticFixtures,decision:findings.length?'BLOCK':'PASS',privateFilesInOutgoingHistory:findings.some(item=>item.kind==='private file tracked'),productionDeploymentAuthorized:false};
-fs.writeFileSync('reports/github-publish-audit.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));if(findings.length)process.exitCode=1;
+if(!process.argv.includes('--check-only'))fs.writeFileSync('reports/github-publish-audit.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));if(findings.length)process.exitCode=1;

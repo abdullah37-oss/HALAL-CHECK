@@ -30,9 +30,9 @@ The corrected admin validates public configuration and script load order at runt
 
 ## QA evidence
 
-Latest full suite: **397 executions, 397 passed, 0 failed, 0 skipped** (335 Node cases and 62 desktop/mobile Chromium cases) against the built artifact on Node 24.22.2 with Vercel security headers.
+Latest full suite: **398 executions, 398 passed, 0 failed, 0 skipped** (336 Node cases and 62 desktop/mobile Chromium cases) against the built artifact on Node 24.22.2 with Vercel security headers.
 
-This includes real pinned-SDK login request simulations, database/handler authorization and 100 synthetic events in isolated PostgreSQL, configuration regressions, plus seven privacy-redaction regressions. All Auth/reporting requests in browser simulations are intercepted; no fake users/events are created in production by QA. Deno validation previously passed for the deployed functions. No dashboard PASS is inferred from mocks.
+This includes real pinned-SDK login request simulations, database/handler authorization and 100 synthetic events in isolated PostgreSQL, configuration regressions, plus eight privacy-redaction regressions. All Auth/reporting requests in browser simulations are intercepted; no fake users/events are created in production by QA. Deno validation previously passed for the deployed functions. No dashboard PASS is inferred from mocks.
 
 Evidence: `reports/qa-summary.json`, `reports/unit.tap`, `reports/browser.json`, `reports/synthetic-analytics.json`, `reports/release-deno-check.txt`.
 
