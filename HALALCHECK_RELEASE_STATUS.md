@@ -51,3 +51,13 @@ The existing feature branch is `codex/halalcheck-completion-20261109`. Vercel's 
 - First scheduled cron execution, physical Android camera/install behavior and outstanding translation review.
 
 The decision remains NO-GO for full completion until the required live outcomes are actually verified. See the latest follow-up entry if these statuses change.
+
+## Publication and delivery follow-up
+
+The privacy-reviewed feature branch was successfully pushed with a normal push. Publication checkpoint: `6d96d9c86af64c7030832ee727df229096ed8f27`. Remote SHA matched local HEAD; `main` was unchanged; the existing production deployment was unchanged. Only the explicitly requested feature branch was published. Follow-up status commits are ordinary fast-forwards; no already-published history is rewritten.
+
+Evidence: `reports/publication-verification.json`, `reports/github-publish-audit.json`.
+
+The owner reports that the invitation has not arrived. Read-only Auth state confirms invited=true, confirmation_sent=true, email_confirmed=false and has_signed_in=false. This establishes an accepted send request, not recipient delivery. No second invitation, recovery message or SMTP change has been performed. The actual mail-delivery cause remains UNVERIFIED; see [Supabase's delivery troubleshooting](https://supabase.com/kb/troubleshooting/not-receiving-auth-emails-from-the-supabase-project-OFSNzw) for Auth/provider logs and mailbox spam/quarantine checks.
+
+**Operational decision remains NO-GO** until the owner can complete secure setup and the live dashboard retrieves real authorized aggregates. Public publication and its privacy checks are complete; recipient delivery and owner login are separate unresolved checks.

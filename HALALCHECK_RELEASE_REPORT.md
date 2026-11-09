@@ -104,3 +104,7 @@ See `HALALCHECK_RELEASE_STATUS.md` for the latest live outcome. Since this repor
 The explicitly approved Auth URL correction and one-user invitation are complete. The separately approved sole-owner enrollment is verified with exactly one active administrator and RLS enabled. Owner identifiers and setup records remain local/private. Actual owner login/reporting is still pending independent observation.
 
 Unpublished release commits were sanitized for publication without rewriting published history. Generated report machine paths and private commit contact metadata were removed; a local-only backup preserves the originals. Public project references/keys and application behavior are unchanged. Latest full QA passes 398/398; the feature-branch push is limited to the existing HalalCheck branch. Vercel production remains `main` and no new production release is authorized here. `HALALCHECK_RELEASE_STATUS.md` is the current concise source of release status.
+
+## Final publication checkpoint
+
+The sanitized feature branch was published normally and independently verified. Main and the existing production deployment were unchanged. The owner subsequently reported missing invitation delivery; Auth records the invitation as sent but unconfirmed with no owner sign-in. No additional messages were sent. `HALALCHECK_RELEASE_STATUS.md` records this unresolved operational gate; publication success is not a dashboard authentication PASS.
