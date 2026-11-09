@@ -1,38 +1,49 @@
 {
-  "checkedAt": "2026-11-09T17:59:10.455Z",
+  "checkedAt": "2026-11-09T18:08:11.827Z",
   "scope": "Only newly outgoing history; already-published history is unchanged",
   "commits": [
-    "752f4b74f8200f13174df5ce0dbe51c7d354dd82",
-    "39c5a768a407b7fa028bc9d63895625d4f1dc416",
-    "b9d8dc446adbc5dd140db3bd0824b92ef3c5c8dc",
+    "6f2e7658c0bbd8d1ad253097836b0b25efa9fd47",
+    "40133dac7a041375d482a3c719e485fe063f5495",
+    "6f82d62228d817e414cb3c87a17386f17a985249",
+    "0bf6dde037c9739ca2b239d9d907b22aa0ce1aed",
     "79d69818a23aa636fc6387146aada1ebd1c74570",
     "4723e7706dff4795cee33a551c98294431b8e7a0"
   ],
-  "filesChecked": 363,
+  "filesChecked": 448,
   "findings": [],
   "syntheticFixtures": [
     {
-      "commit": "752f4b74f8200f13174df5ce0dbe51c7d354dd82",
+      "commit": "6f2e7658c0bbd8d1ad253097836b0b25efa9fd47",
       "file": "scripts/audit-public-push.cjs",
       "kind": "Scanner reference to the same known invalid test fixture"
     },
     {
-      "commit": "752f4b74f8200f13174df5ce0dbe51c7d354dd82",
+      "commit": "6f2e7658c0bbd8d1ad253097836b0b25efa9fd47",
       "file": "tests/qa/admin-config.test.cjs",
       "kind": "Explicit invalid test fixture, not a credential"
     },
     {
-      "commit": "39c5a768a407b7fa028bc9d63895625d4f1dc416",
+      "commit": "40133dac7a041375d482a3c719e485fe063f5495",
       "file": "scripts/audit-public-push.cjs",
       "kind": "Scanner reference to the same known invalid test fixture"
     },
     {
-      "commit": "39c5a768a407b7fa028bc9d63895625d4f1dc416",
+      "commit": "40133dac7a041375d482a3c719e485fe063f5495",
       "file": "tests/qa/admin-config.test.cjs",
       "kind": "Explicit invalid test fixture, not a credential"
     },
     {
-      "commit": "b9d8dc446adbc5dd140db3bd0824b92ef3c5c8dc",
+      "commit": "6f82d62228d817e414cb3c87a17386f17a985249",
+      "file": "scripts/audit-public-push.cjs",
+      "kind": "Scanner reference to the same known invalid test fixture"
+    },
+    {
+      "commit": "6f82d62228d817e414cb3c87a17386f17a985249",
+      "file": "tests/qa/admin-config.test.cjs",
+      "kind": "Explicit invalid test fixture, not a credential"
+    },
+    {
+      "commit": "0bf6dde037c9739ca2b239d9d907b22aa0ce1aed",
       "file": "tests/qa/admin-config.test.cjs",
       "kind": "Explicit invalid test fixture, not a credential"
     }
