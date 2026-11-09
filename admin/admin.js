@@ -1,4 +1,4 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.119.0';
 
 const configured = window.HALALCHECK_SUPABASE_URL && window.HALALCHECK_SUPABASE_ANON_KEY;
 const client = configured ? createClient(window.HALALCHECK_SUPABASE_URL, window.HALALCHECK_SUPABASE_ANON_KEY) : null;

@@ -1,0 +1,116 @@
+{
+  "createdAt": "2026-11-09T16:53:12.383Z",
+  "buildRuntime": "v24.22.2",
+  "files": [
+    {
+      "path": "admin/admin.css",
+      "bytes": 1091,
+      "sha256": "0ae6ad4e7d898f0d75902630b090ed9d2933cda4861614a86e14a9568fad36d7"
+    },
+    {
+      "path": "admin/admin.js",
+      "bytes": 4611,
+      "sha256": "fe005542774e14e8c9286fd069e183e555a5d43445867d70662bb9ad4b07ff8e"
+    },
+    {
+      "path": "admin/config.js",
+      "bytes": 354,
+      "sha256": "25c2d1aeebceaca06ebdd41e4a394271c77f948639fd7155c81c895d191e64e1"
+    },
+    {
+      "path": "admin/index.html",
+      "bytes": 1767,
+      "sha256": "bb83f3e0e519bcf01fb2b5b272a0fe6cd9501991452c6a9de83d32a5e8388e1c"
+    },
+    {
+      "path": "analytics.js",
+      "bytes": 2094,
+      "sha256": "3fc363a444d0db8c03b16ba9b0330ac8daae92f241d653dc2a980b45c77eaa9b"
+    },
+    {
+      "path": "app.js",
+      "bytes": 16670,
+      "sha256": "95f91733772cf575f07b8dcc33f999c0b773cc60dda8a5d402a07935f4d9e142"
+    },
+    {
+      "path": "config.js",
+      "bytes": 202,
+      "sha256": "6e470e10679d7e2e7aaf4d487431325d6a9c7e5f5fd289bfc3cfbacd23333160"
+    },
+    {
+      "path": "icons/icon-192.png",
+      "bytes": 3668,
+      "sha256": "f59fd6a1fafc902ef2241fd1af39410e6ab1438c50e8174db1559084029e93f2"
+    },
+    {
+      "path": "icons/icon-512.png",
+      "bytes": 11475,
+      "sha256": "9fc28d25f37f9086bc17988d1f14aeb230906c68fc3a8b70e5de18a3b803ebd5"
+    },
+    {
+      "path": "icons/icon.svg",
+      "bytes": 246,
+      "sha256": "c6668ee1f421983d92c2f68e2058837f03203e91d2deb63b324d293064fa8645"
+    },
+    {
+      "path": "index.html",
+      "bytes": 10576,
+      "sha256": "4c2f5ee39f78b3aa3e185f8a44bf0af64dc09ccefadf4f67addc1116c4e07494"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "bytes": 709,
+      "sha256": "6148f150e125cc3e0a0dcccdd301562f9d4a6da86faac6d160cf200b96ed2e8b"
+    },
+    {
+      "path": "offline.html",
+      "bytes": 774,
+      "sha256": "916da56675be27cfcaa7128391db1057f397bfa6762d0fa39c5bd779462080e1"
+    },
+    {
+      "path": "src/data/ingredientDatabase.js",
+      "bytes": 9573,
+      "sha256": "1bad8783de88c9a7dbedd673d7ee180845aae2e114ed79fcbca402dc663dd7fc"
+    },
+    {
+      "path": "src/data/productCatalog.js",
+      "bytes": 895,
+      "sha256": "730c3fb3c57db5f107bb1051bbdad79ad49b480269089dc32d134f0c07da93ca"
+    },
+    {
+      "path": "src/data/universalHalalPolicy.js",
+      "bytes": 5894,
+      "sha256": "3d544b9c493a8a80304671dbd0f6c073b474219e94a67263529a7ab8a53017b5"
+    },
+    {
+      "path": "src/i18n/index.js",
+      "bytes": 14853,
+      "sha256": "0a8651338151525ac7aba8329cc6e8f21caa024102df1e4f226904ad9129ed04"
+    },
+    {
+      "path": "src/models/productModel.js",
+      "bytes": 1740,
+      "sha256": "32373cc57e65fb96551b9deb772f77f645073b6347657a4fb10e45dc987ba8dd"
+    },
+    {
+      "path": "src/utils/halalAnalyzer.js",
+      "bytes": 4642,
+      "sha256": "326bb4cbcf73ea27b0a944002028a5672b609329f9290963704eb2307ce9b87b"
+    },
+    {
+      "path": "src/utils/productRepository.js",
+      "bytes": 4781,
+      "sha256": "085e94462be4898be8b1420b6c3b2fd1f11e54cf15a8735aab81e1c1068ba946"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 14804,
+      "sha256": "3817fc9efe4dae413079c63d357db1b47d6ec82f77734567dd1737db58a7d34f"
+    },
+    {
+      "path": "sw.js",
+      "bytes": 1553,
+      "sha256": "21b74c4e7ca543185317d03681d6f0b9d43700686c22315f4593242dd576887a"
+    }
+  ]
+}

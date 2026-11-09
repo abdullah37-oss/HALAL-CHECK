@@ -1,0 +1,54 @@
+﻿{
+    "checkedAt":  "2026-11-09T16:48:55.8626058Z",
+    "projectRef":  "anvswymarultvsbszjte",
+    "migrations":  [
+                       {
+                           "local":  "20261031235000",
+                           "remote":  "20261031235000",
+                           "time":  "2026-10-31 23:50:00"
+                       },
+                       {
+                           "local":  "20261104000000",
+                           "remote":  "20261104000000",
+                           "time":  "2026-11-04 00:00:00"
+                       },
+                       {
+                           "local":  "20261109000000",
+                           "remote":  "",
+                           "time":  "2026-11-09 00:00:00"
+                       }
+                   ],
+    "pendingDryRun":  [
+                          "20261109000000_analytics_boundary.sql"
+                      ],
+    "deployedFunctions":  [
+
+                          ],
+    "database":  {
+                     "activeAdminCount":  0,
+                     "anonymousIngestionAllowed":  true,
+                     "anonymousReportingAllowed":  false,
+                     "appliedMigrations":  [
+                                               "20261031235000",
+                                               "20261104000000"
+                                           ],
+                     "authenticatedIngestionAllowed":  true,
+                     "pgCronInstalled":  false,
+                     "rlsEnabled":  {
+                                        "admin_users":  true,
+                                        "analytics_events":  true
+                                    },
+                     "serviceRoleIngestionAllowed":  true
+                 },
+    "functionSecretNames":  [
+                                "SUPABASE_ANON_KEY",
+                                "SUPABASE_DB_URL",
+                                "SUPABASE_JWKS",
+                                "SUPABASE_PUBLISHABLE_KEYS",
+                                "SUPABASE_SECRET_KEYS",
+                                "SUPABASE_SERVICE_ROLE_KEY",
+                                "SUPABASE_URL"
+                            ],
+    "boundaryMigrationSha256":  "8a5bbbef165a40b899bcde7b35df5ab852579f58b8309fe87f56dbff4e4e75d7",
+    "productionWrites":  0
+}

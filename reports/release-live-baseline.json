@@ -1,0 +1,130 @@
+{
+  "checkedAt": "2026-11-09T16:48:56.481Z",
+  "productionWrites": 0,
+  "checks": [
+    {
+      "url": "https://halal-check-sigma.vercel.app/",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "access-control-allow-origin": "*"
+      }
+    },
+    {
+      "url": "https://halal-check-sigma.vercel.app/app.js",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "access-control-allow-origin": "*"
+      },
+      "liveSha256": "eb7a938e984549a289bc836a78283d8dcde1fe786dff890b2a3a6a678118bd96",
+      "localSha256": "95f91733772cf575f07b8dcc33f999c0b773cc60dda8a5d402a07935f4d9e142",
+      "matchesLocal": false
+    },
+    {
+      "url": "https://halal-check-sigma.vercel.app/sw.js",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "access-control-allow-origin": "*"
+      },
+      "liveSha256": "cb16c6e927ca45a532b8532be93abeeb3b1ae25bdea49b49dab46d9b8904fd08",
+      "localSha256": "21b74c4e7ca543185317d03681d6f0b9d43700686c22315f4593242dd576887a",
+      "matchesLocal": false,
+      "liveCacheVersion": "halalcheck-v4"
+    },
+    {
+      "url": "https://halal-check-sigma.vercel.app/config.js",
+      "method": "GET",
+      "status": 404,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "access-control-allow-origin": null
+      },
+      "liveSha256": "aae7d30be245c21a84949902e52997353a8c53f03f54a568f96f730467198562",
+      "localSha256": "6e470e10679d7e2e7aaf4d487431325d6a9c7e5f5fd289bfc3cfbacd23333160",
+      "matchesLocal": false
+    },
+    {
+      "url": "https://halal-check-sigma.vercel.app/admin/",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "access-control-allow-origin": "*"
+      }
+    },
+    {
+      "url": "https://halal-check-sigma.vercel.app/manifest.webmanifest",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "access-control-allow-origin": "*"
+      },
+      "liveSha256": "4f2b54d509a98dfec7464854e52411daa01316215afd8009ac76af79ebafce25",
+      "localSha256": "6148f150e125cc3e0a0dcccdd301562f9d4a6da86faac6d160cf200b96ed2e8b",
+      "matchesLocal": false
+    },
+    {
+      "url": "https://anvswymarultvsbszjte.supabase.co/functions/v1/analytics-event",
+      "method": "GET",
+      "status": 404,
+      "headers": {
+        "cache-control": null,
+        "content-security-policy": null,
+        "access-control-allow-origin": "*"
+      }
+    },
+    {
+      "url": "https://anvswymarultvsbszjte.supabase.co/functions/v1/analytics-event",
+      "method": "OPTIONS",
+      "status": 404,
+      "headers": {
+        "cache-control": null,
+        "content-security-policy": null,
+        "access-control-allow-origin": "*"
+      }
+    },
+    {
+      "url": "https://anvswymarultvsbszjte.supabase.co/functions/v1/admin-stats",
+      "method": "GET",
+      "status": 404,
+      "headers": {
+        "cache-control": null,
+        "content-security-policy": null,
+        "access-control-allow-origin": "*"
+      }
+    },
+    {
+      "url": "https://anvswymarultvsbszjte.supabase.co/functions/v1/admin-stats",
+      "method": "OPTIONS",
+      "status": 404,
+      "headers": {
+        "cache-control": null,
+        "content-security-policy": null,
+        "access-control-allow-origin": "*"
+      }
+    },
+    {
+      "url": "https://anvswymarultvsbszjte.supabase.co/auth/v1/settings",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": null,
+        "content-security-policy": null,
+        "access-control-allow-origin": null
+      },
+      "signupDisabled": false
+    }
+  ]
+}

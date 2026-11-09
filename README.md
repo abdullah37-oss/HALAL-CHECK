@@ -4,7 +4,7 @@ HalalCheck is a static, multilingual ingredient screening PWA. Results describe 
 
 ## Development and QA
 
-Use Node.js 26 or later (the QA runner imports TypeScript with native type stripping).
+Use Node.js 24 LTS (Vercel-compatible; the QA runner imports TypeScript with native type stripping).
 
 ```sh
 npm ci
@@ -15,7 +15,7 @@ npm run qa:100
 npm run build
 ```
 
-The local server listens on `http://127.0.0.1:4173`. `npm test` runs deterministic analyzer, product lookup and isolated database tests. `npm run qa:100` enforces at least 100 unit/integration executions, then runs desktop and mobile Chromium tests. It writes `reports/unit.tap`, `reports/browser.json`, `reports/qa-summary.json`, `reports/i18n-coverage.json` and `reports/synthetic-analytics.json`. Browser tests use mocked external services; they never send analytics to production. Camera and install-prompt tests are simulations, not physical Android certification.
+The local server listens on `http://127.0.0.1:4173`. `npm test` runs deterministic analyzer, product lookup and isolated database tests. `npm run qa:100` enforces at least 100 unit/integration executions, builds the deployment artifact, then runs desktop and mobile Chromium tests against `dist/` with the configured Vercel security headers. It writes `reports/unit.tap`, `reports/browser.json`, `reports/qa-summary.json`, `reports/i18n-coverage.json` and `reports/synthetic-analytics.json`. Browser tests use mocked external services; they never send analytics to production. Camera and install-prompt tests are simulations, not physical Android certification.
 
 The database test uses in-memory PostgreSQL through PGlite with minimal Supabase Auth roles/schema fixtures. It executes every migration, sends 100 synthetic events through the actual Edge ingestion handler into PostgreSQL, checks aggregates, then checks additional rate-limit traffic, privileges and retention. It does not emulate the hosted Edge gateway, Supabase Auth service or pg_cron scheduling. No production credentials are needed.
 
@@ -60,3 +60,13 @@ Run QA and build, review the branch, then request owner approval before a produc
 After an approved release, verify the public page, both function URLs, owner sign-in, unauthorized rejection, real consented analytics and Android installation. Do not inject synthetic traffic into production. Confirm the new service worker activates and old `halalcheck-*` caches disappear. Admin pages and external services are not service-worker cached.
 
 Maintain ingredient aliases with evidence and regression tests. Keep legitimate uncertainty visible and certification separate. `reports/i18n-coverage.json` lists untranslated English keys for each language; fallback coverage is not proof of complete localization. Arabic and Urdu use RTL text within a stable LTR application shell. Review translations with native speakers before claiming complete multilingual support.
+
+## Current production release gate
+
+See `HALALCHECK_RELEASE_REPORT.md` and `HALALCHECK_DEPLOYMENT_PLAN.md` for the latest release decision and exact approval scope. Read-only inspection is automated by `powershell -NoProfile -File scripts/release-evidence.ps1` and `node scripts/release-probe.cjs`. These require existing CLI authentication/network access but make no production data changes. `node scripts/release-verify.cjs` is the read-only **post-deployment** check; it does not submit valid analytics traffic.
+
+The current release uses the tested Supabase SDK `2.119.0`, Node `24.x` and a clean allowlisted static build. Deno validation: `npx deno check --frozen supabase/functions/analytics-event/index.ts supabase/functions/admin-stats/index.ts`. QA exercises the actual admin Edge handler with mocked backend responses, plus the SQL boundary with real isolated PostgreSQL.
+
+Production inspection found no Auth users, no active admin and no pg_cron installation. `supabase/maintenance/enable-retention.sql` prepares extension activation and the daily purge schedule; running it is a separate production change requiring approval. Owner creation/enrollment also requires an identified owner and separate explicit approval. Vercel secure login and project identity must be verified before frontend publication. Never use an unauthenticated temporary replacement deployment for this release.
+
+The deployment plan supersedes the older example deployment order above: close the anonymous RPC boundary first, because neither function is deployed, then set origins and deploy the two functions. Do not enable a public ingestion grant as a rollback.

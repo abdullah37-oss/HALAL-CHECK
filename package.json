@@ -11,5 +11,8 @@
     "test:browser": "playwright test",
     "build": "node scripts/build.cjs",
     "serve": "node scripts/serve.cjs"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }

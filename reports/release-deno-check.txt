@@ -1,0 +1,6 @@
+deno 2.9.6 (stable, release, x86_64-pc-windows-msvc)
+v8 15.0.245.2-rusty
+typescript 6.0.3
+Check supabase/functions/analytics-event/index.ts
+Check supabase/functions/admin-stats/index.ts
+exitCode: 0
