@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-11-09T16:56:21.196Z",
+  "productionWrites": 0,
+  "assets": [
+    {
+      "path": "/admin/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "sha256": "3cf51250634cf23b8cff90e46ac1463e0d90466bc821665577e8c304ffa78777",
+      "scripts": [
+        {
+          "src": "config.js",
+          "resolved": "https://halal-check-sigma.vercel.app/admin/config.js"
+        },
+        {
+          "src": "admin.js",
+          "resolved": "https://halal-check-sigma.vercel.app/admin/admin.js"
+        }
+      ]
+    },
+    {
+      "path": "/admin/config.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=utf-8",
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "sha256": "3ca3b2dd050fb6dd17d98426a01d3e287090f287ee33fb039edf16d0e77d7a52",
+      "publicConfiguration": {
+        "HALALCHECK_SUPABASE_URL": {
+          "present": true,
+          "nonempty": false
+        },
+        "HALALCHECK_SUPABASE_ANON_KEY": {
+          "present": true,
+          "nonempty": false
+        },
+        "HALALCHECK_ADMIN_STATS_ENDPOINT": {
+          "present": true,
+          "nonempty": false
+        }
+      }
+    },
+    {
+      "path": "/admin/admin.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=utf-8",
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "sha256": "4ab0a94a8005afa7071b81a145aab02748901340d9dbacc2bf0bdb076ece1845",
+      "configurationErrorMarker": true,
+      "sdkImport": "https://esm.sh/@supabase/supabase-js@2"
+    },
+    {
+      "path": "/config.js",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "sha256": "210de084e467c6d2e83f48abff6cc18c1d9955d297f54740a01bb77cb5691671"
+    }
+  ]
+}

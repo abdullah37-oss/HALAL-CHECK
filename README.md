@@ -70,3 +70,9 @@ The current release uses the tested Supabase SDK `2.119.0`, Node `24.x` and a cl
 Production inspection found no Auth users, no active admin and no pg_cron installation. `supabase/maintenance/enable-retention.sql` prepares extension activation and the daily purge schedule; running it is a separate production change requiring approval. Owner creation/enrollment also requires an identified owner and separate explicit approval. Vercel secure login and project identity must be verified before frontend publication. Never use an unauthenticated temporary replacement deployment for this release.
 
 The deployment plan supersedes the older example deployment order above: close the anonymous RPC boundary first, because neither function is deployed, then set origins and deploy the two functions. Do not enable a public ingestion grant as a rollback.
+
+## Admin authentication release gate
+
+`npm run build` now validates `admin/config.js`, `admin/runtime-config.js`, root analytics configuration and their HTML load order. It refuses blank, inconsistent or non-public credentials. `admin/admin.js` loads the pinned SDK with error handling, uses Supabase Auth sessions and only reveals reporting after the protected Edge Function authorizes the request. Secure invitation/recovery links offer password setup for the authenticated account, without public signup or membership writes.
+
+The additional browser auth suite runs the actual pinned SDK from its test-only npm dependency, with all Auth endpoints intercepted. No real credentials or production users are used in QA. See `HALALCHECK_RELEASE_STATUS.md` for the current live outcome. An operational dashboard requires a real enrolled owner plus successful hosted reporting, not merely an HTTP 200 login page.

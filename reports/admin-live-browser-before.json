@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-11-09T17:28:30.327Z",
+  "configuration": {
+    "urlPresent": false,
+    "keyPresent": false,
+    "endpointPresent": false
+  },
+  "errorMessage": "Supabase is not configured yet.",
+  "submitEnabled": true,
+  "pageErrors": [],
+  "requestFailures": [],
+  "interceptedAuthAttempts": [],
+  "ownerAuthentication": "NOT TESTED: no owner account or password was supplied",
+  "analyticsWrites": 0
+}

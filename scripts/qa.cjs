@@ -1,5 +1,5 @@
 const fs=require('fs');const {spawnSync}=require('child_process');fs.mkdirSync('reports',{recursive:true});fs.writeFileSync('reports/i18n-coverage.json',JSON.stringify(require('../tests/qa/helpers.cjs').load().window.halalI18n.coverage,null,2));
-const unit=spawnSync(process.execPath,['--test','--test-reporter=tap','tests/qa/analyzer.test.cjs','tests/qa/database.test.cjs','tests/qa/lookup.test.cjs','tests/qa/edge.test.cjs'],{encoding:'utf8'});fs.writeFileSync('reports/unit.tap',unit.stdout+unit.stderr);
+const unit=spawnSync(process.execPath,['--test','--test-reporter=tap','tests/qa/analyzer.test.cjs','tests/qa/database.test.cjs','tests/qa/lookup.test.cjs','tests/qa/edge.test.cjs','tests/qa/admin-config.test.cjs'],{encoding:'utf8'});fs.writeFileSync('reports/unit.tap',unit.stdout+unit.stderr);
 const count=(label)=>Number(unit.stdout.match(new RegExp('^# '+label+' (\\d+)','m'))?.[1]||0);
 const report={executions:count('tests'),passed:count('pass'),failed:count('fail'),skipped:count('skipped'),minimum:100};fs.writeFileSync('reports/qa-summary.json',JSON.stringify(report,null,2));console.log(report);if(unit.status!==0||report.executions<100)process.exit(1);
 const build=spawnSync(process.execPath,['scripts/build.cjs'],{stdio:'inherit'});if(build.status!==0)process.exit(1);if(fs.existsSync('reports/browser.json'))fs.unlinkSync('reports/browser.json');

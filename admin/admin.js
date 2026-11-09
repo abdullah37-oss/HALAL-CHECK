@@ -1,16 +1,40 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.119.0';
-
-const configured = window.HALALCHECK_SUPABASE_URL && window.HALALCHECK_SUPABASE_ANON_KEY;
-const client = configured ? createClient(window.HALALCHECK_SUPABASE_URL, window.HALALCHECK_SUPABASE_ANON_KEY) : null;
 const $ = (selector) => document.querySelector(selector);
+let client = null;
+let activeToken = null;
+let revision = 0;
+let controller = null;
+let inFlightKey = null;
+let authorized = false;
+let passwordSetup = ['invite', 'recovery'].includes(new URLSearchParams(location.hash.slice(1)).get('type'));
+const config = window.halalAdminConfig;
+const emptyMessage = $('#empty').textContent;
 
+function clearReports() {
+  $('#cards').replaceChildren();
+  $('#data').textContent = '';
+  $('#data').hidden = true;
+  $('#empty').hidden = true;
+  $('#empty').textContent = emptyMessage;
+}
 function showSignedOut(message = '') {
+  revision++;
+  controller?.abort();
+  activeToken = null;
+  inFlightKey = null;
+  authorized = false;
+  clearReports();
   $('#auth-panel').hidden = false;
+  $('#password-panel').hidden = true;
   $('#dashboard').hidden = true;
   $('#sign-out').hidden = true;
   $('#auth-error').textContent = message;
+  $('#auth-status').textContent = '';
+  $('#password').value = '';
+  $('#new-password').value = '';
+  $('#confirm-password').value = '';
+  $('#password-error').textContent = '';
+  $('#auth-submit').disabled = !client;
 }
-
 function render(stats) {
   const counts = stats.eventCounts || {};
   $('#cards').innerHTML = [
@@ -32,57 +56,129 @@ function render(stats) {
   $('#dashboard-status').textContent = stats.totalEvents ? 'Statistics loaded.' : 'No recorded events in this period.';
 }
 
-async function loadStats() {
-  $('#dashboard-status').textContent = 'Loading statistics...';
-  if (!client || !window.HALALCHECK_ADMIN_STATS_ENDPOINT) {
-    $('#empty').hidden = false;
-    $('#empty').textContent = 'Admin backend is not configured. Set the public Supabase configuration and statistics endpoint before use.';
+async function loadStats(session, force = false) {
+  const token = session?.access_token;
+  if (!token) return showSignedOut($('#auth-error').textContent);
+  if (passwordSetup) {
+    activeToken = token;
+    $('#auth-panel').hidden = true;
+    $('#dashboard').hidden = true;
+    $('#password-panel').hidden = false;
+    $('#sign-out').hidden = false;
     return;
   }
-  const { data: { session } } = await client.auth.getSession();
-  if (!session?.access_token) return showSignedOut();
-  const response = await fetch(`${window.HALALCHECK_ADMIN_STATS_ENDPOINT}?days=${encodeURIComponent($('#range').value)}`, {
-    headers: { Authorization: `Bearer ${session.access_token}` }, signal: AbortSignal.timeout(10000), cache: 'no-store'
-  });
-  if (response.status === 401 || response.status === 403) {
-    await client.auth.signOut();
-    return showSignedOut('This account is not authorized to view the owner dashboard.');
+  const key = `${token}:${$('#range').value}`;
+  if (!force && (inFlightKey === key || (activeToken === token && authorized))) return;
+  controller?.abort();
+  controller = new AbortController();
+  const requestController = controller;
+  const version = ++revision;
+  const sameOwner = authorized && activeToken === token;
+  activeToken = token;
+  inFlightKey = key;
+  clearReports();
+  $('#auth-submit').disabled = true;
+  $('#auth-error').textContent = '';
+  $('#auth-status').textContent = 'Checking dashboard access...';
+  $('#dashboard-status').textContent = 'Loading statistics...';
+  $('#sign-out').hidden = false;
+  if (!sameOwner) { $('#auth-panel').hidden = false; $('#dashboard').hidden = true; }
+  const timeout = setTimeout(() => requestController.abort(), 10000);
+  try {
+    const response = await fetch(`${config.value.statsEndpoint}?days=${encodeURIComponent($('#range').value)}`, { headers: { Authorization: `Bearer ${token}` }, signal: requestController.signal, cache: 'no-store' });
+    if (version !== revision) return;
+    if (response.status === 401 || response.status === 403) {
+      showSignedOut(response.status === 401 ? 'Your session has expired. Sign in again.' : 'This account is not authorized to view the owner dashboard.');
+      try { await client.auth.signOut({ scope: 'local' }); } catch { /* Private UI is already cleared. */ }
+      return;
+    }
+    if (!response.ok) throw new Error('Reporting unavailable');
+    const stats = await response.json();
+    if (version !== revision) return;
+    if (!stats || !Number.isFinite(stats.totalEvents) || stats.totalEvents < 0 || typeof stats.eventCounts !== 'object' || stats.eventCounts === null || Array.isArray(stats.eventCounts)) throw new Error('Invalid statistics');
+    render(stats);
+    authorized = true;
+    $('#auth-panel').hidden = true;
+    $('#password-panel').hidden = true;
+    $('#dashboard').hidden = false;
+  } catch {
+    if (version !== revision) return;
+    const message = 'Statistics could not be loaded. Check your connection and try again.';
+    if (sameOwner) $('#dashboard-status').textContent = message;
+    else { $('#auth-error').textContent = message; $('#auth-status').textContent = ''; }
+  } finally {
+    clearTimeout(timeout);
+    if (version === revision) { inFlightKey = null; $('#auth-submit').disabled = false; }
   }
-  if (!response.ok) throw new Error('Admin statistics request failed');
-  render(await response.json());
 }
 
 $('#auth-form').addEventListener('submit', async (event) => {
   event.preventDefault();
-  if (!client) { $('#auth-error').textContent = 'Supabase is not configured yet.'; return; }
-  const { error } = await client.auth.signInWithPassword({ email: $('#email').value, password: $('#password').value });
-  if (error) { $('#auth-error').textContent = 'Sign-in failed. Check the account details or contact the owner.'; return; }
+  if (!client || $('#auth-submit').disabled) return;
+  $('#auth-submit').disabled = true;
   $('#auth-error').textContent = '';
-  $('#auth-panel').hidden = true;
-  $('#dashboard').hidden = false;
-  $('#sign-out').hidden = false;
-  loadStats().catch(() => { $('#dashboard-status').textContent = 'Statistics could not be loaded. Try another period or sign in again.'; });
+  $('#auth-status').textContent = 'Signing in...';
+  try {
+    const { data, error } = await client.auth.signInWithPassword({ email: $('#email').value.trim(), password: $('#password').value });
+    $('#password').value = '';
+    if (error || !data?.session?.access_token) {
+      showSignedOut('Sign-in failed. Check your email and password and try again.');
+      return;
+    }
+    await loadStats(data.session);
+  } catch { showSignedOut('Unable to sign in. Check your connection and try again.'); }
+  finally { if (!inFlightKey) $('#auth-submit').disabled = !client; }
 });
 
-$('#sign-out').addEventListener('click', () => client?.auth.signOut().then(() => location.reload()));
+$('#sign-out').addEventListener('click', async () => {
+  const authClient = client;
+  passwordSetup = false;
+  showSignedOut();
+  try {
+    const { error } = await authClient.auth.signOut({ scope: 'local' });
+    if (error) $('#auth-error').textContent = 'Signed out on this device. Server session revocation could not be confirmed.';
+  } catch { $('#auth-error').textContent = 'Signed out on this device. Server session revocation could not be confirmed.'; }
+});
 
-if (client) {
-  client.auth.onAuthStateChange((_event, session) => {
-    if (session?.access_token) {
-      $('#auth-panel').hidden = true;
-      $('#dashboard').hidden = false;
-      $('#sign-out').hidden = false;
-      loadStats().catch(() => { $('#dashboard-status').textContent = 'Statistics could not be loaded. Try another period or sign in again.'; });
-    } else showSignedOut();
-  });
-  client.auth.getSession().then(({ data: { session } }) => {
-    if (session?.access_token) {
-      $('#auth-panel').hidden = true;
-      $('#dashboard').hidden = false;
-      $('#sign-out').hidden = false;
-      loadStats().catch(() => { $('#dashboard-status').textContent = 'Statistics could not be loaded. Try another period or sign in again.'; });
-    }
-  });
+$('#password-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const password = $('#new-password').value;
+  if (password.length < 12 || password !== $('#confirm-password').value) { $('#password-error').textContent = 'Use at least 12 characters and enter the same password twice.'; return; }
+  const button = $('#password-form button');
+  button.disabled = true;
+  try {
+    const { error } = await client.auth.updateUser({ password });
+    if (error) { $('#password-error').textContent = 'Unable to save your password. Use a fresh secure link or try again.'; return; }
+    $('#new-password').value = '';
+    $('#confirm-password').value = '';
+    passwordSetup = false;
+    const { data: { session } } = await client.auth.getSession();
+    await loadStats(session, true);
+  } catch { $('#password-error').textContent = 'Unable to save your password. Check your connection and try again.'; }
+  finally { button.disabled = false; }
+});
+
+$('#range').addEventListener('change', async () => {
+  if (!client || !activeToken) return;
+  try { const { data: { session } } = await client.auth.getSession(); await loadStats(session, true); }
+  catch { showSignedOut('Your session could not be restored. Sign in again.'); }
+});
+
+async function initialize() {
+  if (!config?.ready) { showSignedOut('Admin sign-in is unavailable because this deployment is not configured.'); return; }
+  try {
+    const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2.119.0');
+    client = createClient(config.value.url, config.value.key, { auth: { persistSession: true, autoRefreshToken: true } });
+    $('#auth-submit').disabled = false;
+    $('#auth-status').textContent = '';
+    client.auth.onAuthStateChange((event, session) => {
+      if (event === 'PASSWORD_RECOVERY') passwordSetup = true;
+      // Run outside the SDK's Auth lock; never await SDK calls inside its callback.
+      setTimeout(() => loadStats(session).catch(() => showSignedOut('Your session could not be restored. Sign in again.')), 0);
+    });
+    const { data: { session }, error } = await client.auth.getSession();
+    if (error) return showSignedOut('Your session could not be restored. Sign in again.');
+    await loadStats(session);
+  } catch { client = null; showSignedOut('Unable to load secure sign-in. Check your connection and reload.'); }
 }
-
-$('#range').addEventListener('change', () => loadStats().catch(() => { $('#dashboard-status').textContent = 'Statistics could not be loaded. Try another period or sign in again.'; }));
+initialize();

@@ -1,1852 +1,1984 @@
 TAP version 13
-# Subtest: ingredient: MILK
-ok 1 - ingredient: MILK
+# Subtest: checked-in admin/public config is coherent and loads before login
+ok 1 - checked-in admin/public config is coherent and loads before login
   ---
-  duration_ms: 8.5628
+  duration_ms: 14.4304
+  type: 'test'
+  ...
+# Subtest: public publishable configuration accepted
+ok 2 - public publishable configuration accepted
+  ---
+  duration_ms: 2.7396
+  type: 'test'
+  ...
+# Subtest: admin rejects HALALCHECK_SUPABASE_URL=
+ok 3 - admin rejects HALALCHECK_SUPABASE_URL=
+  ---
+  duration_ms: 3.3235
+  type: 'test'
+  ...
+# Subtest: admin rejects HALALCHECK_SUPABASE_URL=undefined
+ok 4 - admin rejects HALALCHECK_SUPABASE_URL=undefined
+  ---
+  duration_ms: 1.3683
+  type: 'test'
+  ...
+# Subtest: admin rejects HALALCHECK_SUPABASE_URL=invalid
+ok 5 - admin rejects HALALCHECK_SUPABASE_URL=invalid
+  ---
+  duration_ms: 1.2316
+  type: 'test'
+  ...
+# Subtest: admin rejects HALALCHECK_SUPABASE_ANON_KEY=
+ok 6 - admin rejects HALALCHECK_SUPABASE_ANON_KEY=
+  ---
+  duration_ms: 1.1661
+  type: 'test'
+  ...
+# Subtest: admin rejects HALALCHECK_SUPABASE_ANON_KEY=undefined
+ok 7 - admin rejects HALALCHECK_SUPABASE_ANON_KEY=undefined
+  ---
+  duration_ms: 1.1413
+  type: 'test'
+  ...
+# Subtest: admin rejects HALALCHECK_SUPABASE_ANON_KEY=invalid
+ok 8 - admin rejects HALALCHECK_SUPABASE_ANON_KEY=invalid
+  ---
+  duration_ms: 1.1112
+  type: 'test'
+  ...
+# Subtest: admin rejects HALALCHECK_ADMIN_STATS_ENDPOINT=
+ok 9 - admin rejects HALALCHECK_ADMIN_STATS_ENDPOINT=
+  ---
+  duration_ms: 3.0083
+  type: 'test'
+  ...
+# Subtest: admin rejects HALALCHECK_ADMIN_STATS_ENDPOINT=undefined
+ok 10 - admin rejects HALALCHECK_ADMIN_STATS_ENDPOINT=undefined
+  ---
+  duration_ms: 1.6303
+  type: 'test'
+  ...
+# Subtest: admin rejects HALALCHECK_ADMIN_STATS_ENDPOINT=invalid
+ok 11 - admin rejects HALALCHECK_ADMIN_STATS_ENDPOINT=invalid
+  ---
+  duration_ms: 1.2905
+  type: 'test'
+  ...
+# Subtest: admin rejects project URL http://anvswymarultvsbszjte.supabase.co
+ok 12 - admin rejects project URL http://anvswymarultvsbszjte.supabase.co
+  ---
+  duration_ms: 1.3956
+  type: 'test'
+  ...
+# Subtest: admin rejects project URL https://example.com
+ok 13 - admin rejects project URL https://example.com
+  ---
+  duration_ms: 1.8756
+  type: 'test'
+  ...
+# Subtest: admin rejects project URL https://anvswymarultvsbszjte.supabase.co/path
+ok 14 - admin rejects project URL https://anvswymarultvsbszjte.supabase.co/path
+  ---
+  duration_ms: 1.5558
+  type: 'test'
+  ...
+# Subtest: admin rejects project URL https://user:password@anvswymarultvsbszjte.supabase.co
+ok 15 - admin rejects project URL https://user:password@anvswymarultvsbszjte.supabase.co
+  ---
+  duration_ms: 1.273
+  type: 'test'
+  ...
+# Subtest: admin rejects reporting endpoint https://different.supabase.co/functions/v1/admin-stats
+ok 16 - admin rejects reporting endpoint https://different.supabase.co/functions/v1/admin-stats
+  ---
+  duration_ms: 1.2694
+  type: 'test'
+  ...
+# Subtest: admin rejects reporting endpoint https://anvswymarultvsbszjte.supabase.co/functions/v1/analytics-event
+ok 17 - admin rejects reporting endpoint https://anvswymarultvsbszjte.supabase.co/functions/v1/analytics-event
+  ---
+  duration_ms: 1.1186
+  type: 'test'
+  ...
+# Subtest: admin rejects reporting endpoint https://anvswymarultvsbszjte.supabase.co/functions/v1/admin-stats?token=invalid
+ok 18 - admin rejects reporting endpoint https://anvswymarultvsbszjte.supabase.co/functions/v1/admin-stats?token=invalid
+  ---
+  duration_ms: 1.1473
+  type: 'test'
+  ...
+# Subtest: legacy JWT requires anon role anon
+ok 19 - legacy JWT requires anon role anon
+  ---
+  duration_ms: 4.0505
+  type: 'test'
+  ...
+# Subtest: legacy JWT requires anon role service_role
+ok 20 - legacy JWT requires anon role service_role
+  ---
+  duration_ms: 2.2266
+  type: 'test'
+  ...
+# Subtest: legacy JWT requires anon role authenticated
+ok 21 - legacy JWT requires anon role authenticated
+  ---
+  duration_ms: 2.2976
+  type: 'test'
+  ...
+# Subtest: secret-shaped key rejected
+ok 22 - secret-shaped key rejected
+  ---
+  duration_ms: 1.9527
+  type: 'test'
+  ...
+# Subtest: ingredient: MILK
+ok 23 - ingredient: MILK
+  ---
+  duration_ms: 15.1065
   type: 'test'
   ...
 # Subtest: alias: MILK: milk
-ok 2 - alias: MILK: milk
+ok 24 - alias: MILK: milk
   ---
-  duration_ms: 2.0418
+  duration_ms: 1.9452
   type: 'test'
   ...
 # Subtest: alias: MILK: latte
-ok 3 - alias: MILK: latte
+ok 25 - alias: MILK: latte
   ---
-  duration_ms: 1.4707
+  duration_ms: 3.3076
   type: 'test'
   ...
 # Subtest: alias: MILK: latte intero
-ok 4 - alias: MILK: latte intero
+ok 26 - alias: MILK: latte intero
   ---
-  duration_ms: 0.7476
+  duration_ms: 2.799
   type: 'test'
   ...
 # Subtest: alias: MILK: latte scremato
-ok 5 - alias: MILK: latte scremato
+ok 27 - alias: MILK: latte scremato
   ---
-  duration_ms: 0.9134
+  duration_ms: 1.3807
   type: 'test'
   ...
 # Subtest: alias: MILK: whole milk
-ok 6 - alias: MILK: whole milk
+ok 28 - alias: MILK: whole milk
   ---
-  duration_ms: 1.5213
+  duration_ms: 7.381
   type: 'test'
   ...
 # Subtest: alias: MILK: skimmed milk
-ok 7 - alias: MILK: skimmed milk
+ok 29 - alias: MILK: skimmed milk
   ---
-  duration_ms: 1.7586
+  duration_ms: 5.7905
   type: 'test'
   ...
 # Subtest: alias: MILK: uht milk
-ok 8 - alias: MILK: uht milk
+ok 30 - alias: MILK: uht milk
   ---
-  duration_ms: 1.1906
+  duration_ms: 2.6668
   type: 'test'
   ...
 # Subtest: alias: MILK: pasteurised milk
-ok 9 - alias: MILK: pasteurised milk
+ok 31 - alias: MILK: pasteurised milk
   ---
-  duration_ms: 0.9646
+  duration_ms: 3.3773
   type: 'test'
   ...
 # Subtest: alias: MILK: حليب
-ok 10 - alias: MILK: حليب
+ok 32 - alias: MILK: حليب
   ---
-  duration_ms: 0.8126
+  duration_ms: 6.3282
   type: 'test'
   ...
 # Subtest: ingredient: MILK_CULTURES
-ok 11 - ingredient: MILK_CULTURES
+ok 33 - ingredient: MILK_CULTURES
   ---
-  duration_ms: 1.1455
+  duration_ms: 9.7974
   type: 'test'
   ...
 # Subtest: alias: MILK_CULTURES: milk cultures
-ok 12 - alias: MILK_CULTURES: milk cultures
+ok 34 - alias: MILK_CULTURES: milk cultures
   ---
-  duration_ms: 0.6661
+  duration_ms: 2.4782
   type: 'test'
   ...
 # Subtest: alias: MILK_CULTURES: bacterial cultures
-ok 13 - alias: MILK_CULTURES: bacterial cultures
+ok 35 - alias: MILK_CULTURES: bacterial cultures
   ---
-  duration_ms: 0.6325
+  duration_ms: 1.7427
   type: 'test'
   ...
 # Subtest: alias: MILK_CULTURES: cultures
-ok 14 - alias: MILK_CULTURES: cultures
-  ---
-  duration_ms: 1.0444
-  type: 'test'
-  ...
-# Subtest: alias: MILK_CULTURES: fermenti lattici
-ok 15 - alias: MILK_CULTURES: fermenti lattici
-  ---
-  duration_ms: 1.3401
-  type: 'test'
-  ...
-# Subtest: alias: MILK_CULTURES: starter culture
-ok 16 - alias: MILK_CULTURES: starter culture
-  ---
-  duration_ms: 0.9637
-  type: 'test'
-  ...
-# Subtest: ingredient: BUTTER
-ok 17 - ingredient: BUTTER
-  ---
-  duration_ms: 1.3032
-  type: 'test'
-  ...
-# Subtest: alias: BUTTER: butter
-ok 18 - alias: BUTTER: butter
-  ---
-  duration_ms: 1.4636
-  type: 'test'
-  ...
-# Subtest: alias: BUTTER: burro
-ok 19 - alias: BUTTER: burro
-  ---
-  duration_ms: 1.1689
-  type: 'test'
-  ...
-# Subtest: ingredient: CREAM
-ok 20 - ingredient: CREAM
-  ---
-  duration_ms: 1.2116
-  type: 'test'
-  ...
-# Subtest: alias: CREAM: cream
-ok 21 - alias: CREAM: cream
-  ---
-  duration_ms: 0.6748
-  type: 'test'
-  ...
-# Subtest: alias: CREAM: panna
-ok 22 - alias: CREAM: panna
-  ---
-  duration_ms: 0.6655
-  type: 'test'
-  ...
-# Subtest: ingredient: YOGURT
-ok 23 - ingredient: YOGURT
-  ---
-  duration_ms: 0.6276
-  type: 'test'
-  ...
-# Subtest: alias: YOGURT: yogurt
-ok 24 - alias: YOGURT: yogurt
-  ---
-  duration_ms: 0.8674
-  type: 'test'
-  ...
-# Subtest: alias: YOGURT: plain yogurt
-ok 25 - alias: YOGURT: plain yogurt
-  ---
-  duration_ms: 0.6998
-  type: 'test'
-  ...
-# Subtest: alias: YOGURT: natural yogurt
-ok 26 - alias: YOGURT: natural yogurt
-  ---
-  duration_ms: 0.6646
-  type: 'test'
-  ...
-# Subtest: alias: YOGURT: yoghurt
-ok 27 - alias: YOGURT: yoghurt
-  ---
-  duration_ms: 0.6218
-  type: 'test'
-  ...
-# Subtest: ingredient: WHEY
-ok 28 - ingredient: WHEY
-  ---
-  duration_ms: 1.4225
-  type: 'test'
-  ...
-# Subtest: alias: WHEY: whey
-ok 29 - alias: WHEY: whey
-  ---
-  duration_ms: 1.1981
-  type: 'test'
-  ...
-# Subtest: alias: WHEY: milk powder
-ok 30 - alias: WHEY: milk powder
-  ---
-  duration_ms: 1.18
-  type: 'test'
-  ...
-# Subtest: alias: WHEY: lactose
-ok 31 - alias: WHEY: lactose
-  ---
-  duration_ms: 0.8707
-  type: 'test'
-  ...
-# Subtest: alias: WHEY: milk proteins
-ok 32 - alias: WHEY: milk proteins
-  ---
-  duration_ms: 1.0059
-  type: 'test'
-  ...
-# Subtest: alias: WHEY: casein
-ok 33 - alias: WHEY: casein
-  ---
-  duration_ms: 0.5699
-  type: 'test'
-  ...
-# Subtest: alias: WHEY: caseinates
-ok 34 - alias: WHEY: caseinates
-  ---
-  duration_ms: 0.6249
-  type: 'test'
-  ...
-# Subtest: ingredient: WHEAT_FLOUR
-ok 35 - ingredient: WHEAT_FLOUR
-  ---
-  duration_ms: 0.5928
-  type: 'test'
-  ...
-# Subtest: alias: WHEAT_FLOUR: wheat
-ok 36 - alias: WHEAT_FLOUR: wheat
-  ---
-  duration_ms: 1.0038
-  type: 'test'
-  ...
-# Subtest: alias: WHEAT_FLOUR: wheat flour
-ok 37 - alias: WHEAT_FLOUR: wheat flour
-  ---
-  duration_ms: 1.165
-  type: 'test'
-  ...
-# Subtest: alias: WHEAT_FLOUR: flour
-ok 38 - alias: WHEAT_FLOUR: flour
-  ---
-  duration_ms: 1.1927
-  type: 'test'
-  ...
-# Subtest: alias: WHEAT_FLOUR: wholemeal flour
-ok 39 - alias: WHEAT_FLOUR: wholemeal flour
-  ---
-  duration_ms: 1.1721
-  type: 'test'
-  ...
-# Subtest: alias: WHEAT_FLOUR: farina
-ok 40 - alias: WHEAT_FLOUR: farina
-  ---
-  duration_ms: 1.2744
-  type: 'test'
-  ...
-# Subtest: alias: WHEAT_FLOUR: farina di grano
-ok 41 - alias: WHEAT_FLOUR: farina di grano
-  ---
-  duration_ms: 1.2356
-  type: 'test'
-  ...
-# Subtest: alias: WHEAT_FLOUR: farina integrale
-ok 42 - alias: WHEAT_FLOUR: farina integrale
-  ---
-  duration_ms: 1.1952
-  type: 'test'
-  ...
-# Subtest: ingredient: RICE
-ok 43 - ingredient: RICE
-  ---
-  duration_ms: 1.1896
-  type: 'test'
-  ...
-# Subtest: alias: RICE: rice
-ok 44 - alias: RICE: rice
-  ---
-  duration_ms: 1.0855
-  type: 'test'
-  ...
-# Subtest: alias: RICE: riso
-ok 45 - alias: RICE: riso
-  ---
-  duration_ms: 1.7353
-  type: 'test'
-  ...
-# Subtest: ingredient: CORNSTARCH
-ok 46 - ingredient: CORNSTARCH
-  ---
-  duration_ms: 1.4325
-  type: 'test'
-  ...
-# Subtest: alias: CORNSTARCH: corn
-ok 47 - alias: CORNSTARCH: corn
-  ---
-  duration_ms: 1.7456
-  type: 'test'
-  ...
-# Subtest: alias: CORNSTARCH: maize
-ok 48 - alias: CORNSTARCH: maize
-  ---
-  duration_ms: 1.0414
-  type: 'test'
-  ...
-# Subtest: alias: CORNSTARCH: cornstarch
-ok 49 - alias: CORNSTARCH: cornstarch
-  ---
-  duration_ms: 1.1633
-  type: 'test'
-  ...
-# Subtest: alias: CORNSTARCH: starch
-ok 50 - alias: CORNSTARCH: starch
-  ---
-  duration_ms: 1.0817
-  type: 'test'
-  ...
-# Subtest: alias: CORNSTARCH: amido di mais
-ok 51 - alias: CORNSTARCH: amido di mais
-  ---
-  duration_ms: 1.1801
-  type: 'test'
-  ...
-# Subtest: alias: CORNSTARCH: amido
-ok 52 - alias: CORNSTARCH: amido
-  ---
-  duration_ms: 1.1667
-  type: 'test'
-  ...
-# Subtest: ingredient: OATS
-ok 53 - ingredient: OATS
-  ---
-  duration_ms: 1.7076
-  type: 'test'
-  ...
-# Subtest: alias: OATS: oats
-ok 54 - alias: OATS: oats
-  ---
-  duration_ms: 1.1696
-  type: 'test'
-  ...
-# Subtest: alias: OATS: avena
-ok 55 - alias: OATS: avena
-  ---
-  duration_ms: 1.3304
-  type: 'test'
-  ...
-# Subtest: ingredient: SUGAR
-ok 56 - ingredient: SUGAR
-  ---
-  duration_ms: 1.2462
-  type: 'test'
-  ...
-# Subtest: alias: SUGAR: sugar
-ok 57 - alias: SUGAR: sugar
-  ---
-  duration_ms: 1.2061
-  type: 'test'
-  ...
-# Subtest: alias: SUGAR: zucchero
-ok 58 - alias: SUGAR: zucchero
-  ---
-  duration_ms: 1.4728
-  type: 'test'
-  ...
-# Subtest: alias: SUGAR: سكر
-ok 59 - alias: SUGAR: سكر
-  ---
-  duration_ms: 1.5502
-  type: 'test'
-  ...
-# Subtest: ingredient: SALT
-ok 60 - ingredient: SALT
-  ---
-  duration_ms: 1.0875
-  type: 'test'
-  ...
-# Subtest: alias: SALT: salt
-ok 61 - alias: SALT: salt
-  ---
-  duration_ms: 1.14
-  type: 'test'
-  ...
-# Subtest: alias: SALT: sale
-ok 62 - alias: SALT: sale
-  ---
-  duration_ms: 1.9369
-  type: 'test'
-  ...
-# Subtest: ingredient: WATER
-ok 63 - ingredient: WATER
-  ---
-  duration_ms: 1.1899
-  type: 'test'
-  ...
-# Subtest: alias: WATER: water
-ok 64 - alias: WATER: water
-  ---
-  duration_ms: 1.1117
-  type: 'test'
-  ...
-# Subtest: alias: WATER: acqua
-ok 65 - alias: WATER: acqua
-  ---
-  duration_ms: 1.0129
-  type: 'test'
-  ...
-# Subtest: ingredient: VEGETABLE_OIL
-ok 66 - ingredient: VEGETABLE_OIL
-  ---
-  duration_ms: 0.6162
-  type: 'test'
-  ...
-# Subtest: alias: VEGETABLE_OIL: olive oil
-ok 67 - alias: VEGETABLE_OIL: olive oil
-  ---
-  duration_ms: 0.5717
-  type: 'test'
-  ...
-# Subtest: alias: VEGETABLE_OIL: sunflower oil
-ok 68 - alias: VEGETABLE_OIL: sunflower oil
-  ---
-  duration_ms: 0.792
-  type: 'test'
-  ...
-# Subtest: alias: VEGETABLE_OIL: rapeseed oil
-ok 69 - alias: VEGETABLE_OIL: rapeseed oil
-  ---
-  duration_ms: 0.7427
-  type: 'test'
-  ...
-# Subtest: alias: VEGETABLE_OIL: vegetable oils
-ok 70 - alias: VEGETABLE_OIL: vegetable oils
-  ---
-  duration_ms: 0.939
-  type: 'test'
-  ...
-# Subtest: alias: VEGETABLE_OIL: olio di oliva
-ok 71 - alias: VEGETABLE_OIL: olio di oliva
-  ---
-  duration_ms: 0.657
-  type: 'test'
-  ...
-# Subtest: alias: VEGETABLE_OIL: olio di girasole
-ok 72 - alias: VEGETABLE_OIL: olio di girasole
-  ---
-  duration_ms: 0.6819
-  type: 'test'
-  ...
-# Subtest: alias: VEGETABLE_OIL: olio vegetale
-ok 73 - alias: VEGETABLE_OIL: olio vegetale
+ok 36 - alias: MILK_CULTURES: cultures
   ---
   duration_ms: 1.2387
   type: 'test'
   ...
-# Subtest: ingredient: HONEY
-ok 74 - ingredient: HONEY
+# Subtest: alias: MILK_CULTURES: fermenti lattici
+ok 37 - alias: MILK_CULTURES: fermenti lattici
   ---
-  duration_ms: 1.572
+  duration_ms: 2.2639
+  type: 'test'
+  ...
+# Subtest: alias: MILK_CULTURES: starter culture
+ok 38 - alias: MILK_CULTURES: starter culture
+  ---
+  duration_ms: 2.899
+  type: 'test'
+  ...
+# Subtest: ingredient: BUTTER
+ok 39 - ingredient: BUTTER
+  ---
+  duration_ms: 2.9487
+  type: 'test'
+  ...
+# Subtest: alias: BUTTER: butter
+ok 40 - alias: BUTTER: butter
+  ---
+  duration_ms: 1.721
+  type: 'test'
+  ...
+# Subtest: alias: BUTTER: burro
+ok 41 - alias: BUTTER: burro
+  ---
+  duration_ms: 1.9804
+  type: 'test'
+  ...
+# Subtest: ingredient: CREAM
+ok 42 - ingredient: CREAM
+  ---
+  duration_ms: 1.8369
+  type: 'test'
+  ...
+# Subtest: alias: CREAM: cream
+ok 43 - alias: CREAM: cream
+  ---
+  duration_ms: 1.2299
+  type: 'test'
+  ...
+# Subtest: alias: CREAM: panna
+ok 44 - alias: CREAM: panna
+  ---
+  duration_ms: 1.3629
+  type: 'test'
+  ...
+# Subtest: ingredient: YOGURT
+ok 45 - ingredient: YOGURT
+  ---
+  duration_ms: 1.423
+  type: 'test'
+  ...
+# Subtest: alias: YOGURT: yogurt
+ok 46 - alias: YOGURT: yogurt
+  ---
+  duration_ms: 4.3741
+  type: 'test'
+  ...
+# Subtest: alias: YOGURT: plain yogurt
+ok 47 - alias: YOGURT: plain yogurt
+  ---
+  duration_ms: 2.2331
+  type: 'test'
+  ...
+# Subtest: alias: YOGURT: natural yogurt
+ok 48 - alias: YOGURT: natural yogurt
+  ---
+  duration_ms: 1.0466
+  type: 'test'
+  ...
+# Subtest: alias: YOGURT: yoghurt
+ok 49 - alias: YOGURT: yoghurt
+  ---
+  duration_ms: 1.32
+  type: 'test'
+  ...
+# Subtest: ingredient: WHEY
+ok 50 - ingredient: WHEY
+  ---
+  duration_ms: 1.178
+  type: 'test'
+  ...
+# Subtest: alias: WHEY: whey
+ok 51 - alias: WHEY: whey
+  ---
+  duration_ms: 1.0738
+  type: 'test'
+  ...
+# Subtest: alias: WHEY: milk powder
+ok 52 - alias: WHEY: milk powder
+  ---
+  duration_ms: 1.2417
+  type: 'test'
+  ...
+# Subtest: alias: WHEY: lactose
+ok 53 - alias: WHEY: lactose
+  ---
+  duration_ms: 1.1678
+  type: 'test'
+  ...
+# Subtest: alias: WHEY: milk proteins
+ok 54 - alias: WHEY: milk proteins
+  ---
+  duration_ms: 1.4769
+  type: 'test'
+  ...
+# Subtest: alias: WHEY: casein
+ok 55 - alias: WHEY: casein
+  ---
+  duration_ms: 1.7527
+  type: 'test'
+  ...
+# Subtest: alias: WHEY: caseinates
+ok 56 - alias: WHEY: caseinates
+  ---
+  duration_ms: 2.0231
+  type: 'test'
+  ...
+# Subtest: ingredient: WHEAT_FLOUR
+ok 57 - ingredient: WHEAT_FLOUR
+  ---
+  duration_ms: 2.5158
+  type: 'test'
+  ...
+# Subtest: alias: WHEAT_FLOUR: wheat
+ok 58 - alias: WHEAT_FLOUR: wheat
+  ---
+  duration_ms: 2.1077
+  type: 'test'
+  ...
+# Subtest: alias: WHEAT_FLOUR: wheat flour
+ok 59 - alias: WHEAT_FLOUR: wheat flour
+  ---
+  duration_ms: 1.6421
+  type: 'test'
+  ...
+# Subtest: alias: WHEAT_FLOUR: flour
+ok 60 - alias: WHEAT_FLOUR: flour
+  ---
+  duration_ms: 1.1093
+  type: 'test'
+  ...
+# Subtest: alias: WHEAT_FLOUR: wholemeal flour
+ok 61 - alias: WHEAT_FLOUR: wholemeal flour
+  ---
+  duration_ms: 0.9862
+  type: 'test'
+  ...
+# Subtest: alias: WHEAT_FLOUR: farina
+ok 62 - alias: WHEAT_FLOUR: farina
+  ---
+  duration_ms: 1.502
+  type: 'test'
+  ...
+# Subtest: alias: WHEAT_FLOUR: farina di grano
+ok 63 - alias: WHEAT_FLOUR: farina di grano
+  ---
+  duration_ms: 0.96
+  type: 'test'
+  ...
+# Subtest: alias: WHEAT_FLOUR: farina integrale
+ok 64 - alias: WHEAT_FLOUR: farina integrale
+  ---
+  duration_ms: 0.9394
+  type: 'test'
+  ...
+# Subtest: ingredient: RICE
+ok 65 - ingredient: RICE
+  ---
+  duration_ms: 1.2127
+  type: 'test'
+  ...
+# Subtest: alias: RICE: rice
+ok 66 - alias: RICE: rice
+  ---
+  duration_ms: 0.9652
+  type: 'test'
+  ...
+# Subtest: alias: RICE: riso
+ok 67 - alias: RICE: riso
+  ---
+  duration_ms: 0.8595
+  type: 'test'
+  ...
+# Subtest: ingredient: CORNSTARCH
+ok 68 - ingredient: CORNSTARCH
+  ---
+  duration_ms: 0.8806
+  type: 'test'
+  ...
+# Subtest: alias: CORNSTARCH: corn
+ok 69 - alias: CORNSTARCH: corn
+  ---
+  duration_ms: 0.8582
+  type: 'test'
+  ...
+# Subtest: alias: CORNSTARCH: maize
+ok 70 - alias: CORNSTARCH: maize
+  ---
+  duration_ms: 0.8669
+  type: 'test'
+  ...
+# Subtest: alias: CORNSTARCH: cornstarch
+ok 71 - alias: CORNSTARCH: cornstarch
+  ---
+  duration_ms: 1.7667
+  type: 'test'
+  ...
+# Subtest: alias: CORNSTARCH: starch
+ok 72 - alias: CORNSTARCH: starch
+  ---
+  duration_ms: 1.0189
+  type: 'test'
+  ...
+# Subtest: alias: CORNSTARCH: amido di mais
+ok 73 - alias: CORNSTARCH: amido di mais
+  ---
+  duration_ms: 1.7533
+  type: 'test'
+  ...
+# Subtest: alias: CORNSTARCH: amido
+ok 74 - alias: CORNSTARCH: amido
+  ---
+  duration_ms: 1.6671
+  type: 'test'
+  ...
+# Subtest: ingredient: OATS
+ok 75 - ingredient: OATS
+  ---
+  duration_ms: 1.7345
+  type: 'test'
+  ...
+# Subtest: alias: OATS: oats
+ok 76 - alias: OATS: oats
+  ---
+  duration_ms: 1.6837
+  type: 'test'
+  ...
+# Subtest: alias: OATS: avena
+ok 77 - alias: OATS: avena
+  ---
+  duration_ms: 1.9778
+  type: 'test'
+  ...
+# Subtest: ingredient: SUGAR
+ok 78 - ingredient: SUGAR
+  ---
+  duration_ms: 1.362
+  type: 'test'
+  ...
+# Subtest: alias: SUGAR: sugar
+ok 79 - alias: SUGAR: sugar
+  ---
+  duration_ms: 1.3181
+  type: 'test'
+  ...
+# Subtest: alias: SUGAR: zucchero
+ok 80 - alias: SUGAR: zucchero
+  ---
+  duration_ms: 1.4391
+  type: 'test'
+  ...
+# Subtest: alias: SUGAR: سكر
+ok 81 - alias: SUGAR: سكر
+  ---
+  duration_ms: 2.6872
+  type: 'test'
+  ...
+# Subtest: ingredient: SALT
+ok 82 - ingredient: SALT
+  ---
+  duration_ms: 1.7032
+  type: 'test'
+  ...
+# Subtest: alias: SALT: salt
+ok 83 - alias: SALT: salt
+  ---
+  duration_ms: 1.392
+  type: 'test'
+  ...
+# Subtest: alias: SALT: sale
+ok 84 - alias: SALT: sale
+  ---
+  duration_ms: 1.8431
+  type: 'test'
+  ...
+# Subtest: ingredient: WATER
+ok 85 - ingredient: WATER
+  ---
+  duration_ms: 1.3062
+  type: 'test'
+  ...
+# Subtest: alias: WATER: water
+ok 86 - alias: WATER: water
+  ---
+  duration_ms: 1.7182
+  type: 'test'
+  ...
+# Subtest: alias: WATER: acqua
+ok 87 - alias: WATER: acqua
+  ---
+  duration_ms: 1.1663
+  type: 'test'
+  ...
+# Subtest: ingredient: VEGETABLE_OIL
+ok 88 - ingredient: VEGETABLE_OIL
+  ---
+  duration_ms: 2.4821
+  type: 'test'
+  ...
+# Subtest: alias: VEGETABLE_OIL: olive oil
+ok 89 - alias: VEGETABLE_OIL: olive oil
+  ---
+  duration_ms: 2.367
+  type: 'test'
+  ...
+# Subtest: alias: VEGETABLE_OIL: sunflower oil
+ok 90 - alias: VEGETABLE_OIL: sunflower oil
+  ---
+  duration_ms: 2.086
+  type: 'test'
+  ...
+# Subtest: alias: VEGETABLE_OIL: rapeseed oil
+ok 91 - alias: VEGETABLE_OIL: rapeseed oil
+  ---
+  duration_ms: 2.2045
+  type: 'test'
+  ...
+# Subtest: alias: VEGETABLE_OIL: vegetable oils
+ok 92 - alias: VEGETABLE_OIL: vegetable oils
+  ---
+  duration_ms: 1.966
+  type: 'test'
+  ...
+# Subtest: alias: VEGETABLE_OIL: olio di oliva
+ok 93 - alias: VEGETABLE_OIL: olio di oliva
+  ---
+  duration_ms: 2.2066
+  type: 'test'
+  ...
+# Subtest: alias: VEGETABLE_OIL: olio di girasole
+ok 94 - alias: VEGETABLE_OIL: olio di girasole
+  ---
+  duration_ms: 2.3425
+  type: 'test'
+  ...
+# Subtest: alias: VEGETABLE_OIL: olio vegetale
+ok 95 - alias: VEGETABLE_OIL: olio vegetale
+  ---
+  duration_ms: 1.9308
+  type: 'test'
+  ...
+# Subtest: ingredient: HONEY
+ok 96 - ingredient: HONEY
+  ---
+  duration_ms: 2.4288
   type: 'test'
   ...
 # Subtest: alias: HONEY: honey
-ok 75 - alias: HONEY: honey
+ok 97 - alias: HONEY: honey
   ---
-  duration_ms: 1.8183
+  duration_ms: 2.4372
   type: 'test'
   ...
 # Subtest: alias: HONEY: miele
-ok 76 - alias: HONEY: miele
+ok 98 - alias: HONEY: miele
   ---
-  duration_ms: 1.2116
+  duration_ms: 2.2521
   type: 'test'
   ...
 # Subtest: ingredient: YEAST
-ok 77 - ingredient: YEAST
+ok 99 - ingredient: YEAST
   ---
-  duration_ms: 1.1856
+  duration_ms: 2.1597
   type: 'test'
   ...
 # Subtest: alias: YEAST: yeast
-ok 78 - alias: YEAST: yeast
+ok 100 - alias: YEAST: yeast
   ---
-  duration_ms: 1.1229
+  duration_ms: 2.2068
   type: 'test'
   ...
 # Subtest: alias: YEAST: lievito
-ok 79 - alias: YEAST: lievito
+ok 101 - alias: YEAST: lievito
   ---
-  duration_ms: 1.303
+  duration_ms: 1.6615
   type: 'test'
   ...
 # Subtest: ingredient: VINEGAR
-ok 80 - ingredient: VINEGAR
+ok 102 - ingredient: VINEGAR
   ---
-  duration_ms: 0.6361
+  duration_ms: 0.9233
   type: 'test'
   ...
 # Subtest: alias: VINEGAR: vinegar
-ok 81 - alias: VINEGAR: vinegar
+ok 103 - alias: VINEGAR: vinegar
   ---
-  duration_ms: 0.6749
+  duration_ms: 0.9561
   type: 'test'
   ...
 # Subtest: alias: VINEGAR: aceto
-ok 82 - alias: VINEGAR: aceto
+ok 104 - alias: VINEGAR: aceto
   ---
-  duration_ms: 0.5633
+  duration_ms: 0.8583
   type: 'test'
   ...
 # Subtest: ingredient: PECTIN
-ok 83 - ingredient: PECTIN
+ok 105 - ingredient: PECTIN
   ---
-  duration_ms: 0.5677
+  duration_ms: 1.3092
   type: 'test'
   ...
 # Subtest: alias: PECTIN: pectin
-ok 84 - alias: PECTIN: pectin
+ok 106 - alias: PECTIN: pectin
   ---
-  duration_ms: 0.5769
+  duration_ms: 0.8813
   type: 'test'
   ...
 # Subtest: alias: PECTIN: pectina
-ok 85 - alias: PECTIN: pectina
+ok 107 - alias: PECTIN: pectina
   ---
-  duration_ms: 1.4519
+  duration_ms: 1.4844
   type: 'test'
   ...
 # Subtest: ingredient: CITRIC_ACID
-ok 86 - ingredient: CITRIC_ACID
+ok 108 - ingredient: CITRIC_ACID
   ---
-  duration_ms: 0.8266
+  duration_ms: 2.2011
   type: 'test'
   ...
 # Subtest: alias: CITRIC_ACID: citric acid
-ok 87 - alias: CITRIC_ACID: citric acid
+ok 109 - alias: CITRIC_ACID: citric acid
   ---
-  duration_ms: 0.6733
+  duration_ms: 1.8058
   type: 'test'
   ...
 # Subtest: alias: CITRIC_ACID: acido citrico
-ok 88 - alias: CITRIC_ACID: acido citrico
+ok 110 - alias: CITRIC_ACID: acido citrico
   ---
-  duration_ms: 1.2859
+  duration_ms: 1.8286
   type: 'test'
   ...
 # Subtest: alias: CITRIC_ACID: e330
-ok 89 - alias: CITRIC_ACID: e330
+ok 111 - alias: CITRIC_ACID: e330
   ---
-  duration_ms: 1.1519
+  duration_ms: 1.7117
   type: 'test'
   ...
 # Subtest: ingredient: FLAVOURING
-ok 90 - ingredient: FLAVOURING
+ok 112 - ingredient: FLAVOURING
   ---
-  duration_ms: 0.6766
+  duration_ms: 1.1779
   type: 'test'
   ...
 # Subtest: alias: FLAVOURING: flavouring
-ok 91 - alias: FLAVOURING: flavouring
+ok 113 - alias: FLAVOURING: flavouring
   ---
-  duration_ms: 0.6471
+  duration_ms: 0.9441
   type: 'test'
   ...
 # Subtest: alias: FLAVOURING: flavourings
-ok 92 - alias: FLAVOURING: flavourings
+ok 114 - alias: FLAVOURING: flavourings
   ---
-  duration_ms: 0.5539
+  duration_ms: 0.8
   type: 'test'
   ...
 # Subtest: alias: FLAVOURING: aroma
-ok 93 - alias: FLAVOURING: aroma
+ok 115 - alias: FLAVOURING: aroma
   ---
-  duration_ms: 0.539
+  duration_ms: 0.7423
   type: 'test'
   ...
 # Subtest: alias: FLAVOURING: aromi
-ok 94 - alias: FLAVOURING: aromi
+ok 116 - alias: FLAVOURING: aromi
   ---
-  duration_ms: 0.4894
+  duration_ms: 1.224
   type: 'test'
   ...
 # Subtest: ingredient: FRUIT_AND_VEGETABLES
-ok 95 - ingredient: FRUIT_AND_VEGETABLES
+ok 117 - ingredient: FRUIT_AND_VEGETABLES
   ---
-  duration_ms: 1.2948
+  duration_ms: 3.395
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: fruit
-ok 96 - alias: FRUIT_AND_VEGETABLES: fruit
+ok 118 - alias: FRUIT_AND_VEGETABLES: fruit
   ---
-  duration_ms: 1.2859
+  duration_ms: 2.6827
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: fruits
-ok 97 - alias: FRUIT_AND_VEGETABLES: fruits
+ok 119 - alias: FRUIT_AND_VEGETABLES: fruits
   ---
-  duration_ms: 1.3836
+  duration_ms: 2.5058
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: vegetables
-ok 98 - alias: FRUIT_AND_VEGETABLES: vegetables
+ok 120 - alias: FRUIT_AND_VEGETABLES: vegetables
   ---
-  duration_ms: 1.303
+  duration_ms: 2.5663
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: strawberries
-ok 99 - alias: FRUIT_AND_VEGETABLES: strawberries
+ok 121 - alias: FRUIT_AND_VEGETABLES: strawberries
   ---
-  duration_ms: 1.9477
+  duration_ms: 2.7397
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: strawberries and raspberries
-ok 100 - alias: FRUIT_AND_VEGETABLES: strawberries and raspberries
+ok 122 - alias: FRUIT_AND_VEGETABLES: strawberries and raspberries
   ---
-  duration_ms: 1.1916
+  duration_ms: 2.4594
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: blueberries
-ok 101 - alias: FRUIT_AND_VEGETABLES: blueberries
+ok 123 - alias: FRUIT_AND_VEGETABLES: blueberries
   ---
-  duration_ms: 0.7879
+  duration_ms: 3.6506
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: blackberries
-ok 102 - alias: FRUIT_AND_VEGETABLES: blackberries
+ok 124 - alias: FRUIT_AND_VEGETABLES: blackberries
   ---
-  duration_ms: 0.6395
+  duration_ms: 1.9776
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: raspberries
-ok 103 - alias: FRUIT_AND_VEGETABLES: raspberries
+ok 125 - alias: FRUIT_AND_VEGETABLES: raspberries
   ---
-  duration_ms: 0.8235
+  duration_ms: 1.7706
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: fragole
-ok 104 - alias: FRUIT_AND_VEGETABLES: fragole
+ok 126 - alias: FRUIT_AND_VEGETABLES: fragole
   ---
-  duration_ms: 1.6002
+  duration_ms: 0.9584
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: mirtilli
-ok 105 - alias: FRUIT_AND_VEGETABLES: mirtilli
+ok 127 - alias: FRUIT_AND_VEGETABLES: mirtilli
   ---
-  duration_ms: 2.0208
+  duration_ms: 1.0494
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: more
-ok 106 - alias: FRUIT_AND_VEGETABLES: more
+ok 128 - alias: FRUIT_AND_VEGETABLES: more
   ---
-  duration_ms: 1.4333
+  duration_ms: 1.5452
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: lamponi
-ok 107 - alias: FRUIT_AND_VEGETABLES: lamponi
+ok 129 - alias: FRUIT_AND_VEGETABLES: lamponi
   ---
-  duration_ms: 0.6697
+  duration_ms: 2.3883
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: dates
-ok 108 - alias: FRUIT_AND_VEGETABLES: dates
+ok 130 - alias: FRUIT_AND_VEGETABLES: dates
   ---
-  duration_ms: 1.2655
+  duration_ms: 2.2574
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: dried fruits
-ok 109 - alias: FRUIT_AND_VEGETABLES: dried fruits
+ok 131 - alias: FRUIT_AND_VEGETABLES: dried fruits
   ---
-  duration_ms: 1.2868
+  duration_ms: 1.0296
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: nuts
-ok 110 - alias: FRUIT_AND_VEGETABLES: nuts
+ok 132 - alias: FRUIT_AND_VEGETABLES: nuts
   ---
-  duration_ms: 0.8581
+  duration_ms: 1.8264
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: seeds
-ok 111 - alias: FRUIT_AND_VEGETABLES: seeds
+ok 133 - alias: FRUIT_AND_VEGETABLES: seeds
   ---
-  duration_ms: 0.6059
+  duration_ms: 2.2053
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: frutta
-ok 112 - alias: FRUIT_AND_VEGETABLES: frutta
+ok 134 - alias: FRUIT_AND_VEGETABLES: frutta
   ---
-  duration_ms: 0.5875
+  duration_ms: 1.1694
   type: 'test'
   ...
 # Subtest: alias: FRUIT_AND_VEGETABLES: verdure
-ok 113 - alias: FRUIT_AND_VEGETABLES: verdure
+ok 135 - alias: FRUIT_AND_VEGETABLES: verdure
   ---
-  duration_ms: 0.632
+  duration_ms: 1.6554
   type: 'test'
   ...
 # Subtest: ingredient: PORK
-ok 114 - ingredient: PORK
+ok 136 - ingredient: PORK
   ---
-  duration_ms: 0.2333
+  duration_ms: 0.3872
   type: 'test'
   ...
 # Subtest: alias: PORK: pork
-ok 115 - alias: PORK: pork
+ok 137 - alias: PORK: pork
   ---
-  duration_ms: 0.2207
+  duration_ms: 0.3316
   type: 'test'
   ...
 # Subtest: alias: PORK: pork meat
-ok 116 - alias: PORK: pork meat
+ok 138 - alias: PORK: pork meat
   ---
-  duration_ms: 0.2282
+  duration_ms: 0.3703
   type: 'test'
   ...
 # Subtest: alias: PORK: maiale
-ok 117 - alias: PORK: maiale
+ok 139 - alias: PORK: maiale
   ---
-  duration_ms: 0.2349
+  duration_ms: 0.3336
   type: 'test'
   ...
 # Subtest: alias: PORK: carne di maiale
-ok 118 - alias: PORK: carne di maiale
+ok 140 - alias: PORK: carne di maiale
   ---
-  duration_ms: 0.7575
+  duration_ms: 0.382
   type: 'test'
   ...
 # Subtest: alias: PORK: bacon
-ok 119 - alias: PORK: bacon
+ok 141 - alias: PORK: bacon
   ---
-  duration_ms: 0.6554
+  duration_ms: 0.3301
   type: 'test'
   ...
 # Subtest: alias: PORK: pancetta
-ok 120 - alias: PORK: pancetta
+ok 142 - alias: PORK: pancetta
   ---
-  duration_ms: 0.6529
+  duration_ms: 1.4007
   type: 'test'
   ...
 # Subtest: alias: PORK: ham
-ok 121 - alias: PORK: ham
+ok 143 - alias: PORK: ham
   ---
-  duration_ms: 0.5342
+  duration_ms: 1.0349
   type: 'test'
   ...
 # Subtest: alias: PORK: prosciutto
-ok 122 - alias: PORK: prosciutto
+ok 144 - alias: PORK: prosciutto
   ---
-  duration_ms: 0.5332
+  duration_ms: 0.9169
   type: 'test'
   ...
 # Subtest: alias: PORK: lard
-ok 123 - alias: PORK: lard
+ok 145 - alias: PORK: lard
   ---
-  duration_ms: 1.4471
+  duration_ms: 0.9114
   type: 'test'
   ...
 # Subtest: alias: PORK: lardo
-ok 124 - alias: PORK: lardo
+ok 146 - alias: PORK: lardo
   ---
-  duration_ms: 0.9646
+  duration_ms: 0.8082
   type: 'test'
   ...
 # Subtest: alias: PORK: lard fat
-ok 125 - alias: PORK: lard fat
+ok 147 - alias: PORK: lard fat
   ---
-  duration_ms: 0.8916
+  duration_ms: 0.7035
   type: 'test'
   ...
 # Subtest: alias: PORK: pork fat
-ok 126 - alias: PORK: pork fat
+ok 148 - alias: PORK: pork fat
   ---
-  duration_ms: 0.6818
+  duration_ms: 0.3863
   type: 'test'
   ...
 # Subtest: alias: PORK: grasso suino
-ok 127 - alias: PORK: grasso suino
+ok 149 - alias: PORK: grasso suino
   ---
-  duration_ms: 0.5616
+  duration_ms: 0.3678
   type: 'test'
   ...
 # Subtest: alias: PORK: strutto
-ok 128 - alias: PORK: strutto
+ok 150 - alias: PORK: strutto
   ---
-  duration_ms: 0.3034
+  duration_ms: 0.352
   type: 'test'
   ...
 # Subtest: alias: PORK: pork gelatin
-ok 129 - alias: PORK: pork gelatin
+ok 151 - alias: PORK: pork gelatin
   ---
-  duration_ms: 0.2478
+  duration_ms: 0.6912
   type: 'test'
   ...
 # Subtest: alias: PORK: gelatina suina
-ok 130 - alias: PORK: gelatina suina
+ok 152 - alias: PORK: gelatina suina
   ---
-  duration_ms: 0.5115
+  duration_ms: 1.0755
   type: 'test'
   ...
 # Subtest: alias: PORK: لحم الخنزير
-ok 131 - alias: PORK: لحم الخنزير
+ok 153 - alias: PORK: لحم الخنزير
   ---
-  duration_ms: 0.5704
+  duration_ms: 0.4307
   type: 'test'
   ...
 # Subtest: ingredient: BLOOD
-ok 132 - ingredient: BLOOD
+ok 154 - ingredient: BLOOD
   ---
-  duration_ms: 0.5028
+  duration_ms: 0.3593
   type: 'test'
   ...
 # Subtest: alias: BLOOD: blood
-ok 133 - alias: BLOOD: blood
+ok 155 - alias: BLOOD: blood
   ---
-  duration_ms: 0.5156
+  duration_ms: 0.3497
   type: 'test'
   ...
 # Subtest: alias: BLOOD: blood plasma
-ok 134 - alias: BLOOD: blood plasma
+ok 156 - alias: BLOOD: blood plasma
   ---
-  duration_ms: 0.5508
+  duration_ms: 1.5256
   type: 'test'
   ...
 # Subtest: alias: BLOOD: sangue
-ok 135 - alias: BLOOD: sangue
+ok 157 - alias: BLOOD: sangue
   ---
-  duration_ms: 0.3709
+  duration_ms: 0.8628
   type: 'test'
   ...
 # Subtest: alias: BLOOD: plasma sanguigno
-ok 136 - alias: BLOOD: plasma sanguigno
+ok 158 - alias: BLOOD: plasma sanguigno
   ---
-  duration_ms: 0.2929
+  duration_ms: 0.9599
   type: 'test'
   ...
 # Subtest: ingredient: ALCOHOLIC_BEVERAGE
-ok 137 - ingredient: ALCOHOLIC_BEVERAGE
+ok 159 - ingredient: ALCOHOLIC_BEVERAGE
   ---
-  duration_ms: 0.2717
+  duration_ms: 0.9769
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: alcoholic beverage
-ok 138 - alias: ALCOHOLIC_BEVERAGE: alcoholic beverage
+ok 160 - alias: ALCOHOLIC_BEVERAGE: alcoholic beverage
   ---
-  duration_ms: 0.2734
+  duration_ms: 0.4364
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: wine
-ok 139 - alias: ALCOHOLIC_BEVERAGE: wine
+ok 161 - alias: ALCOHOLIC_BEVERAGE: wine
   ---
-  duration_ms: 0.2702
+  duration_ms: 0.3347
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: vino
-ok 140 - alias: ALCOHOLIC_BEVERAGE: vino
+ok 162 - alias: ALCOHOLIC_BEVERAGE: vino
   ---
-  duration_ms: 0.3008
+  duration_ms: 0.3226
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: beer
-ok 141 - alias: ALCOHOLIC_BEVERAGE: beer
+ok 163 - alias: ALCOHOLIC_BEVERAGE: beer
   ---
-  duration_ms: 0.2557
+  duration_ms: 0.3177
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: birra
-ok 142 - alias: ALCOHOLIC_BEVERAGE: birra
+ok 164 - alias: ALCOHOLIC_BEVERAGE: birra
   ---
-  duration_ms: 0.2609
+  duration_ms: 0.4014
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: spirits
-ok 143 - alias: ALCOHOLIC_BEVERAGE: spirits
+ok 165 - alias: ALCOHOLIC_BEVERAGE: spirits
   ---
-  duration_ms: 0.2352
+  duration_ms: 0.3489
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: liquor
-ok 144 - alias: ALCOHOLIC_BEVERAGE: liquor
+ok 166 - alias: ALCOHOLIC_BEVERAGE: liquor
   ---
-  duration_ms: 0.2277
+  duration_ms: 0.3354
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: superalcolici
-ok 145 - alias: ALCOHOLIC_BEVERAGE: superalcolici
+ok 167 - alias: ALCOHOLIC_BEVERAGE: superalcolici
   ---
-  duration_ms: 0.688
+  duration_ms: 0.362
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: ethanol
-ok 146 - alias: ALCOHOLIC_BEVERAGE: ethanol
+ok 168 - alias: ALCOHOLIC_BEVERAGE: ethanol
   ---
-  duration_ms: 0.2417
+  duration_ms: 0.3402
   type: 'test'
   ...
 # Subtest: alias: ALCOHOLIC_BEVERAGE: etanolo
-ok 147 - alias: ALCOHOLIC_BEVERAGE: etanolo
+ok 169 - alias: ALCOHOLIC_BEVERAGE: etanolo
   ---
-  duration_ms: 0.2634
+  duration_ms: 0.351
   type: 'test'
   ...
 # Subtest: ingredient: GELATIN
-ok 148 - ingredient: GELATIN
+ok 170 - ingredient: GELATIN
   ---
-  duration_ms: 0.4783
+  duration_ms: 0.3278
   type: 'test'
   ...
 # Subtest: alias: GELATIN: gelatin
-ok 149 - alias: GELATIN: gelatin
+ok 171 - alias: GELATIN: gelatin
   ---
-  duration_ms: 0.3931
+  duration_ms: 0.322
   type: 'test'
   ...
 # Subtest: alias: GELATIN: gelatine
-ok 150 - alias: GELATIN: gelatine
+ok 172 - alias: GELATIN: gelatine
   ---
-  duration_ms: 1.1629
+  duration_ms: 0.3271
   type: 'test'
   ...
 # Subtest: alias: GELATIN: gelatina
-ok 151 - alias: GELATIN: gelatina
+ok 173 - alias: GELATIN: gelatina
   ---
-  duration_ms: 0.6195
+  duration_ms: 0.3408
   type: 'test'
   ...
 # Subtest: alias: GELATIN: gelatina alimentare
-ok 152 - alias: GELATIN: gelatina alimentare
+ok 174 - alias: GELATIN: gelatina alimentare
   ---
-  duration_ms: 0.8417
+  duration_ms: 0.3948
   type: 'test'
   ...
 # Subtest: alias: GELATIN: e441
-ok 153 - alias: GELATIN: e441
+ok 175 - alias: GELATIN: e441
   ---
-  duration_ms: 0.5781
+  duration_ms: 0.3361
   type: 'test'
   ...
 # Subtest: ingredient: MONO_AND_DIGLYCERIDES
-ok 154 - ingredient: MONO_AND_DIGLYCERIDES
+ok 176 - ingredient: MONO_AND_DIGLYCERIDES
   ---
-  duration_ms: 0.8344
+  duration_ms: 0.4112
   type: 'test'
   ...
 # Subtest: alias: MONO_AND_DIGLYCERIDES: e471
-ok 155 - alias: MONO_AND_DIGLYCERIDES: e471
+ok 177 - alias: MONO_AND_DIGLYCERIDES: e471
   ---
-  duration_ms: 0.6103
+  duration_ms: 0.827
   type: 'test'
   ...
 # Subtest: alias: MONO_AND_DIGLYCERIDES: mono and diglycerides
-ok 156 - alias: MONO_AND_DIGLYCERIDES: mono and diglycerides
+ok 178 - alias: MONO_AND_DIGLYCERIDES: mono and diglycerides
   ---
-  duration_ms: 0.8156
+  duration_ms: 0.4195
   type: 'test'
   ...
 # Subtest: alias: MONO_AND_DIGLYCERIDES: mono- and diglycerides
-ok 157 - alias: MONO_AND_DIGLYCERIDES: mono- and diglycerides
+ok 179 - alias: MONO_AND_DIGLYCERIDES: mono- and diglycerides
   ---
-  duration_ms: 1.4946
+  duration_ms: 0.399
   type: 'test'
   ...
 # Subtest: alias: MONO_AND_DIGLYCERIDES: mono e digliceridi
-ok 158 - alias: MONO_AND_DIGLYCERIDES: mono e digliceridi
+ok 180 - alias: MONO_AND_DIGLYCERIDES: mono e digliceridi
   ---
-  duration_ms: 1.128
+  duration_ms: 0.3876
   type: 'test'
   ...
 # Subtest: ingredient: EMULSIFIER_E472
-ok 159 - ingredient: EMULSIFIER_E472
+ok 181 - ingredient: EMULSIFIER_E472
   ---
-  duration_ms: 0.6239
+  duration_ms: 0.3932
   type: 'test'
   ...
 # Subtest: alias: EMULSIFIER_E472: e472a
-ok 160 - alias: EMULSIFIER_E472: e472a
+ok 182 - alias: EMULSIFIER_E472: e472a
   ---
-  duration_ms: 0.5061
+  duration_ms: 0.32
   type: 'test'
   ...
 # Subtest: alias: EMULSIFIER_E472: e472b
-ok 161 - alias: EMULSIFIER_E472: e472b
+ok 183 - alias: EMULSIFIER_E472: e472b
   ---
-  duration_ms: 0.5053
+  duration_ms: 0.3187
   type: 'test'
   ...
 # Subtest: alias: EMULSIFIER_E472: e472c
-ok 162 - alias: EMULSIFIER_E472: e472c
+ok 184 - alias: EMULSIFIER_E472: e472c
   ---
-  duration_ms: 0.5487
+  duration_ms: 0.393
   type: 'test'
   ...
 # Subtest: alias: EMULSIFIER_E472: e472e
-ok 163 - alias: EMULSIFIER_E472: e472e
+ok 185 - alias: EMULSIFIER_E472: e472e
   ---
-  duration_ms: 0.5029
+  duration_ms: 0.6824
   type: 'test'
   ...
 # Subtest: alias: EMULSIFIER_E472: e472f
-ok 164 - alias: EMULSIFIER_E472: e472f
+ok 186 - alias: EMULSIFIER_E472: e472f
   ---
-  duration_ms: 0.4406
+  duration_ms: 0.4014
   type: 'test'
   ...
 # Subtest: ingredient: OTHER_SOURCE_DEPENDENT_ADDITIVE
-ok 165 - ingredient: OTHER_SOURCE_DEPENDENT_ADDITIVE
+ok 187 - ingredient: OTHER_SOURCE_DEPENDENT_ADDITIVE
   ---
-  duration_ms: 0.5986
+  duration_ms: 0.4513
   type: 'test'
   ...
 # Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470a
-ok 166 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470a
+ok 188 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470a
   ---
-  duration_ms: 1.0321
+  duration_ms: 0.3296
   type: 'test'
   ...
 # Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470b
-ok 167 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470b
+ok 189 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470b
   ---
-  duration_ms: 0.4149
+  duration_ms: 0.3163
   type: 'test'
   ...
 # Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470i
-ok 168 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470i
+ok 190 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470i
   ---
-  duration_ms: 0.4253
+  duration_ms: 0.3162
   type: 'test'
   ...
 # Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470ii
-ok 169 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470ii
+ok 191 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e470ii
   ---
-  duration_ms: 0.4582
+  duration_ms: 0.3361
   type: 'test'
   ...
 # Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e422
-ok 170 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e422
+ok 192 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e422
+  ---
+  duration_ms: 0.3835
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e631
+ok 193 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e631
+  ---
+  duration_ms: 0.4013
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e627
+ok 194 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e627
+  ---
+  duration_ms: 0.3793
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e904
+ok 195 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e904
+  ---
+  duration_ms: 0.3136
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e920
+ok 196 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e920
+  ---
+  duration_ms: 0.3244
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: animal rennet
+ok 197 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: animal rennet
+  ---
+  duration_ms: 0.3489
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: caglio animale
+ok 198 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: caglio animale
+  ---
+  duration_ms: 0.8698
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: enzymes
+ok 199 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: enzymes
+  ---
+  duration_ms: 0.3525
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: enzimi
+ok 200 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: enzimi
+  ---
+  duration_ms: 0.3437
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: animal fat
+ok 201 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: animal fat
+  ---
+  duration_ms: 0.3287
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: grasso animale
+ok 202 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: grasso animale
+  ---
+  duration_ms: 0.3664
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: glycerol
+ok 203 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: glycerol
+  ---
+  duration_ms: 0.3699
+  type: 'test'
+  ...
+# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: glicerolo
+ok 204 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: glicerolo
+  ---
+  duration_ms: 0.3244
+  type: 'test'
+  ...
+# Subtest: ingredient: SORBITOL
+ok 205 - ingredient: SORBITOL
+  ---
+  duration_ms: 1.3468
+  type: 'test'
+  ...
+# Subtest: alias: SORBITOL: sorbitol
+ok 206 - alias: SORBITOL: sorbitol
+  ---
+  duration_ms: 1.6417
+  type: 'test'
+  ...
+# Subtest: alias: SORBITOL: sorbitolo
+ok 207 - alias: SORBITOL: sorbitolo
+  ---
+  duration_ms: 0.933
+  type: 'test'
+  ...
+# Subtest: alias: SORBITOL: xylitol
+ok 208 - alias: SORBITOL: xylitol
+  ---
+  duration_ms: 0.8849
+  type: 'test'
+  ...
+# Subtest: alias: SORBITOL: mannitol
+ok 209 - alias: SORBITOL: mannitol
+  ---
+  duration_ms: 0.8494
+  type: 'test'
+  ...
+# Subtest: alias: SORBITOL: cetyl alcohol
+ok 210 - alias: SORBITOL: cetyl alcohol
+  ---
+  duration_ms: 0.8445
+  type: 'test'
+  ...
+# Subtest: translated evidence en/PORK
+ok 211 - translated evidence en/PORK
+  ---
+  duration_ms: 1.0878
+  type: 'test'
+  ...
+# Subtest: translated evidence en/GELATIN
+ok 212 - translated evidence en/GELATIN
   ---
   duration_ms: 0.5215
   type: 'test'
   ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e631
-ok 171 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e631
-  ---
-  duration_ms: 0.5527
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e627
-ok 172 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e627
-  ---
-  duration_ms: 0.4752
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e904
-ok 173 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e904
-  ---
-  duration_ms: 0.3545
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e920
-ok 174 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: e920
-  ---
-  duration_ms: 0.2404
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: animal rennet
-ok 175 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: animal rennet
-  ---
-  duration_ms: 0.2413
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: caglio animale
-ok 176 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: caglio animale
-  ---
-  duration_ms: 0.2471
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: enzymes
-ok 177 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: enzymes
-  ---
-  duration_ms: 0.2272
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: enzimi
-ok 178 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: enzimi
-  ---
-  duration_ms: 0.2204
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: animal fat
-ok 179 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: animal fat
-  ---
-  duration_ms: 0.2419
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: grasso animale
-ok 180 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: grasso animale
-  ---
-  duration_ms: 0.2492
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: glycerol
-ok 181 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: glycerol
-  ---
-  duration_ms: 0.2373
-  type: 'test'
-  ...
-# Subtest: alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: glicerolo
-ok 182 - alias: OTHER_SOURCE_DEPENDENT_ADDITIVE: glicerolo
-  ---
-  duration_ms: 0.2576
-  type: 'test'
-  ...
-# Subtest: ingredient: SORBITOL
-ok 183 - ingredient: SORBITOL
-  ---
-  duration_ms: 1.284
-  type: 'test'
-  ...
-# Subtest: alias: SORBITOL: sorbitol
-ok 184 - alias: SORBITOL: sorbitol
-  ---
-  duration_ms: 0.9856
-  type: 'test'
-  ...
-# Subtest: alias: SORBITOL: sorbitolo
-ok 185 - alias: SORBITOL: sorbitolo
-  ---
-  duration_ms: 1.4923
-  type: 'test'
-  ...
-# Subtest: alias: SORBITOL: xylitol
-ok 186 - alias: SORBITOL: xylitol
-  ---
-  duration_ms: 1.301
-  type: 'test'
-  ...
-# Subtest: alias: SORBITOL: mannitol
-ok 187 - alias: SORBITOL: mannitol
-  ---
-  duration_ms: 1.14
-  type: 'test'
-  ...
-# Subtest: alias: SORBITOL: cetyl alcohol
-ok 188 - alias: SORBITOL: cetyl alcohol
-  ---
-  duration_ms: 1.2238
-  type: 'test'
-  ...
-# Subtest: translated evidence en/PORK
-ok 189 - translated evidence en/PORK
-  ---
-  duration_ms: 0.6434
-  type: 'test'
-  ...
-# Subtest: translated evidence en/GELATIN
-ok 190 - translated evidence en/GELATIN
-  ---
-  duration_ms: 0.5029
-  type: 'test'
-  ...
 # Subtest: translated evidence en/PECTIN
-ok 191 - translated evidence en/PECTIN
+ok 213 - translated evidence en/PECTIN
   ---
-  duration_ms: 1.1647
+  duration_ms: 1.9047
   type: 'test'
   ...
 # Subtest: translated evidence en/MILK
-ok 192 - translated evidence en/MILK
+ok 214 - translated evidence en/MILK
   ---
-  duration_ms: 1.0609
+  duration_ms: 1.6678
   type: 'test'
   ...
 # Subtest: translated evidence it/PORK
-ok 193 - translated evidence it/PORK
+ok 215 - translated evidence it/PORK
   ---
-  duration_ms: 0.4391
+  duration_ms: 0.7078
   type: 'test'
   ...
 # Subtest: translated evidence it/GELATIN
-ok 194 - translated evidence it/GELATIN
+ok 216 - translated evidence it/GELATIN
   ---
-  duration_ms: 0.2979
+  duration_ms: 0.8496
   type: 'test'
   ...
 # Subtest: translated evidence it/PECTIN
-ok 195 - translated evidence it/PECTIN
+ok 217 - translated evidence it/PECTIN
   ---
-  duration_ms: 0.573
+  duration_ms: 1.655
   type: 'test'
   ...
 # Subtest: translated evidence it/MILK
-ok 196 - translated evidence it/MILK
+ok 218 - translated evidence it/MILK
   ---
-  duration_ms: 1.0653
+  duration_ms: 0.891
   type: 'test'
   ...
 # Subtest: translated evidence ar/PORK
-ok 197 - translated evidence ar/PORK
+ok 219 - translated evidence ar/PORK
   ---
-  duration_ms: 0.2598
+  duration_ms: 0.5446
   type: 'test'
   ...
 # Subtest: translated evidence ar/GELATIN
-ok 198 - translated evidence ar/GELATIN
+ok 220 - translated evidence ar/GELATIN
   ---
-  duration_ms: 0.2448
+  duration_ms: 0.7697
   type: 'test'
   ...
 # Subtest: translated evidence ar/PECTIN
-ok 199 - translated evidence ar/PECTIN
+ok 221 - translated evidence ar/PECTIN
   ---
-  duration_ms: 0.5816
+  duration_ms: 0.932
   type: 'test'
   ...
 # Subtest: translated evidence ar/MILK
-ok 200 - translated evidence ar/MILK
+ok 222 - translated evidence ar/MILK
   ---
-  duration_ms: 0.5901
+  duration_ms: 0.8597
   type: 'test'
   ...
 # Subtest: translated evidence ur/PORK
-ok 201 - translated evidence ur/PORK
+ok 223 - translated evidence ur/PORK
   ---
-  duration_ms: 0.2455
+  duration_ms: 0.3508
   type: 'test'
   ...
 # Subtest: translated evidence ur/GELATIN
-ok 202 - translated evidence ur/GELATIN
+ok 224 - translated evidence ur/GELATIN
   ---
-  duration_ms: 0.2394
+  duration_ms: 0.3372
   type: 'test'
   ...
 # Subtest: translated evidence ur/PECTIN
-ok 203 - translated evidence ur/PECTIN
+ok 225 - translated evidence ur/PECTIN
   ---
-  duration_ms: 0.7961
+  duration_ms: 2.6458
   type: 'test'
   ...
 # Subtest: translated evidence ur/MILK
-ok 204 - translated evidence ur/MILK
+ok 226 - translated evidence ur/MILK
   ---
-  duration_ms: 0.6212
+  duration_ms: 2.0394
   type: 'test'
   ...
 # Subtest: translated evidence hi/PORK
-ok 205 - translated evidence hi/PORK
+ok 227 - translated evidence hi/PORK
   ---
-  duration_ms: 0.2869
+  duration_ms: 1.0654
   type: 'test'
   ...
 # Subtest: translated evidence hi/GELATIN
-ok 206 - translated evidence hi/GELATIN
+ok 228 - translated evidence hi/GELATIN
   ---
-  duration_ms: 0.4475
+  duration_ms: 1.2317
   type: 'test'
   ...
 # Subtest: translated evidence hi/PECTIN
-ok 207 - translated evidence hi/PECTIN
+ok 229 - translated evidence hi/PECTIN
   ---
-  duration_ms: 0.7232
+  duration_ms: 1.2653
   type: 'test'
   ...
 # Subtest: translated evidence hi/MILK
-ok 208 - translated evidence hi/MILK
+ok 230 - translated evidence hi/MILK
   ---
-  duration_ms: 2.2624
+  duration_ms: 0.9112
   type: 'test'
   ...
 # Subtest: translated evidence bn/PORK
-ok 209 - translated evidence bn/PORK
+ok 231 - translated evidence bn/PORK
   ---
-  duration_ms: 0.3146
+  duration_ms: 0.3818
   type: 'test'
   ...
 # Subtest: translated evidence bn/GELATIN
-ok 210 - translated evidence bn/GELATIN
+ok 232 - translated evidence bn/GELATIN
   ---
-  duration_ms: 0.2467
+  duration_ms: 0.3586
   type: 'test'
   ...
 # Subtest: translated evidence bn/PECTIN
-ok 211 - translated evidence bn/PECTIN
+ok 233 - translated evidence bn/PECTIN
   ---
-  duration_ms: 1.0306
+  duration_ms: 0.8278
   type: 'test'
   ...
 # Subtest: translated evidence bn/MILK
-ok 212 - translated evidence bn/MILK
+ok 234 - translated evidence bn/MILK
   ---
-  duration_ms: 1.1494
+  duration_ms: 0.8215
   type: 'test'
   ...
 # Subtest: translated evidence fr/PORK
-ok 213 - translated evidence fr/PORK
+ok 235 - translated evidence fr/PORK
   ---
-  duration_ms: 0.3522
+  duration_ms: 0.4537
   type: 'test'
   ...
 # Subtest: translated evidence fr/GELATIN
-ok 214 - translated evidence fr/GELATIN
+ok 236 - translated evidence fr/GELATIN
   ---
-  duration_ms: 0.2629
+  duration_ms: 0.6108
   type: 'test'
   ...
 # Subtest: translated evidence fr/PECTIN
-ok 215 - translated evidence fr/PECTIN
+ok 237 - translated evidence fr/PECTIN
   ---
-  duration_ms: 0.5727
+  duration_ms: 1.4848
   type: 'test'
   ...
 # Subtest: translated evidence fr/MILK
-ok 216 - translated evidence fr/MILK
+ok 238 - translated evidence fr/MILK
   ---
-  duration_ms: 0.5769
+  duration_ms: 0.8416
   type: 'test'
   ...
 # Subtest: translated evidence de/PORK
-ok 217 - translated evidence de/PORK
+ok 239 - translated evidence de/PORK
   ---
-  duration_ms: 0.263
+  duration_ms: 0.4126
   type: 'test'
   ...
 # Subtest: translated evidence de/GELATIN
-ok 218 - translated evidence de/GELATIN
+ok 240 - translated evidence de/GELATIN
   ---
-  duration_ms: 0.2248
+  duration_ms: 0.3373
   type: 'test'
   ...
 # Subtest: translated evidence de/PECTIN
-ok 219 - translated evidence de/PECTIN
+ok 241 - translated evidence de/PECTIN
   ---
-  duration_ms: 0.8599
+  duration_ms: 0.8723
   type: 'test'
   ...
 # Subtest: translated evidence de/MILK
-ok 220 - translated evidence de/MILK
+ok 242 - translated evidence de/MILK
   ---
-  duration_ms: 0.6371
+  duration_ms: 0.8778
   type: 'test'
   ...
 # Subtest: translated evidence es/PORK
-ok 221 - translated evidence es/PORK
+ok 243 - translated evidence es/PORK
   ---
-  duration_ms: 0.7924
+  duration_ms: 0.3381
   type: 'test'
   ...
 # Subtest: translated evidence es/GELATIN
-ok 222 - translated evidence es/GELATIN
+ok 244 - translated evidence es/GELATIN
   ---
-  duration_ms: 0.2715
+  duration_ms: 0.3318
   type: 'test'
   ...
 # Subtest: translated evidence es/PECTIN
-ok 223 - translated evidence es/PECTIN
+ok 245 - translated evidence es/PECTIN
   ---
-  duration_ms: 0.6278
+  duration_ms: 0.8052
   type: 'test'
   ...
 # Subtest: translated evidence es/MILK
-ok 224 - translated evidence es/MILK
+ok 246 - translated evidence es/MILK
   ---
-  duration_ms: 0.6774
+  duration_ms: 0.8079
   type: 'test'
   ...
 # Subtest: translated evidence tr/PORK
-ok 225 - translated evidence tr/PORK
+ok 247 - translated evidence tr/PORK
   ---
-  duration_ms: 0.2527
+  duration_ms: 0.3514
   type: 'test'
   ...
 # Subtest: translated evidence tr/GELATIN
-ok 226 - translated evidence tr/GELATIN
+ok 248 - translated evidence tr/GELATIN
   ---
-  duration_ms: 0.2326
+  duration_ms: 0.3417
   type: 'test'
   ...
 # Subtest: translated evidence tr/PECTIN
-ok 227 - translated evidence tr/PECTIN
+ok 249 - translated evidence tr/PECTIN
   ---
-  duration_ms: 0.546
+  duration_ms: 0.9008
   type: 'test'
   ...
 # Subtest: translated evidence tr/MILK
-ok 228 - translated evidence tr/MILK
+ok 250 - translated evidence tr/MILK
   ---
-  duration_ms: 0.5371
+  duration_ms: 1.2545
   type: 'test'
   ...
 # Subtest: translated evidence ms/PORK
-ok 229 - translated evidence ms/PORK
+ok 251 - translated evidence ms/PORK
   ---
-  duration_ms: 0.262
+  duration_ms: 0.3777
   type: 'test'
   ...
 # Subtest: translated evidence ms/GELATIN
-ok 230 - translated evidence ms/GELATIN
+ok 252 - translated evidence ms/GELATIN
   ---
-  duration_ms: 0.221
+  duration_ms: 0.354
   type: 'test'
   ...
 # Subtest: translated evidence ms/PECTIN
-ok 231 - translated evidence ms/PECTIN
+ok 253 - translated evidence ms/PECTIN
   ---
-  duration_ms: 0.7933
+  duration_ms: 0.8148
   type: 'test'
   ...
 # Subtest: translated evidence ms/MILK
-ok 232 - translated evidence ms/MILK
+ok 254 - translated evidence ms/MILK
   ---
-  duration_ms: 1.2892
+  duration_ms: 0.7956
   type: 'test'
   ...
 # Subtest: translated evidence id/PORK
-ok 233 - translated evidence id/PORK
+ok 255 - translated evidence id/PORK
   ---
-  duration_ms: 0.6053
+  duration_ms: 0.3624
   type: 'test'
   ...
 # Subtest: translated evidence id/GELATIN
-ok 234 - translated evidence id/GELATIN
+ok 256 - translated evidence id/GELATIN
   ---
-  duration_ms: 0.7231
+  duration_ms: 0.3285
   type: 'test'
   ...
 # Subtest: translated evidence id/PECTIN
-ok 235 - translated evidence id/PECTIN
+ok 257 - translated evidence id/PECTIN
   ---
-  duration_ms: 0.9598
+  duration_ms: 0.7909
   type: 'test'
   ...
 # Subtest: translated evidence id/MILK
-ok 236 - translated evidence id/MILK
+ok 258 - translated evidence id/MILK
   ---
-  duration_ms: 0.6347
+  duration_ms: 0.8057
   type: 'test'
   ...
 # Subtest: regression ["milk with pork gelatin"]
-ok 237 - regression ["milk with pork gelatin"]
+ok 259 - regression ["milk with pork gelatin"]
   ---
-  duration_ms: 0.4124
+  duration_ms: 0.9569
   type: 'test'
   ...
 # Subtest: regression ["sugar and lard"]
-ok 238 - regression ["sugar and lard"]
+ok 260 - regression ["sugar and lard"]
   ---
-  duration_ms: 0.2928
+  duration_ms: 0.8016
   type: 'test'
   ...
 # Subtest: regression ["milk with gelatin"]
-ok 239 - regression ["milk with gelatin"]
+ok 261 - regression ["milk with gelatin"]
   ---
-  duration_ms: 0.2591
+  duration_ms: 0.4462
   type: 'test'
   ...
 # Subtest: regression ["not plant-derived gelatin"]
-ok 240 - regression ["not plant-derived gelatin"]
+ok 262 - regression ["not plant-derived gelatin"]
   ---
-  duration_ms: 0.2776
+  duration_ms: 0.4442
   type: 'test'
   ...
 # Subtest: regression ["E471 (plant-derived)"]
-ok 241 - regression ["E471 (plant-derived)"]
+ok 263 - regression ["E471 (plant-derived)"]
   ---
-  duration_ms: 0.4336
+  duration_ms: 0.6518
   type: 'test'
   ...
 # Subtest: regression ["E471 (possibly plant-derived)"]
-ok 242 - regression ["E471 (possibly plant-derived)"]
+ok 264 - regression ["E471 (possibly plant-derived)"]
   ---
-  duration_ms: 0.3826
+  duration_ms: 0.9649
   type: 'test'
   ...
 # Subtest: regression ["vegetable oil with animal fat"]
-ok 243 - regression ["vegetable oil with animal fat"]
+ok 265 - regression ["vegetable oil with animal fat"]
   ---
-  duration_ms: 0.2885
+  duration_ms: 0.456
   type: 'test'
   ...
 # Subtest: regression ["unknown compound"]
-ok 244 - regression ["unknown compound"]
+ok 266 - regression ["unknown compound"]
   ---
-  duration_ms: 0.3116
+  duration_ms: 0.4495
   type: 'test'
   ...
 # Subtest: regression []
-ok 245 - regression []
+ok 267 - regression []
   ---
-  duration_ms: 0.0397
+  duration_ms: 0.0476
   type: 'test'
   ...
 # Subtest: regression ["",null,{},"  "]
-ok 246 - regression ["",null,{},"  "]
+ok 268 - regression ["",null,{},"  "]
   ---
-  duration_ms: 0.0277
+  duration_ms: 0.0346
   type: 'test'
   ...
 # Subtest: regression ["sorbitol","cetyl alcohol"]
-ok 247 - regression ["sorbitol","cetyl alcohol"]
+ok 269 - regression ["sorbitol","cetyl alcohol"]
   ---
-  duration_ms: 1.3171
+  duration_ms: 1.7663
   type: 'test'
   ...
 # Subtest: regression ["milk","strawberries","sugar","cultures"]
-ok 248 - regression ["milk","strawberries","sugar","cultures"]
+ok 270 - regression ["milk","strawberries","sugar","cultures"]
   ---
-  duration_ms: 2.5297
+  duration_ms: 5.0925
   type: 'test'
   ...
 # Subtest: regression ["milk","gelatin"]
-ok 249 - regression ["milk","gelatin"]
+ok 271 - regression ["milk","gelatin"]
   ---
-  duration_ms: 0.9074
+  duration_ms: 2.3538
   type: 'test'
   ...
 # Subtest: regression ["milk","pork gelatin"]
-ok 250 - regression ["milk","pork gelatin"]
+ok 272 - regression ["milk","pork gelatin"]
   ---
-  duration_ms: 0.7961
+  duration_ms: 3.5548
   type: 'test'
   ...
 # Subtest: regression ["milk","pectin"]
-ok 251 - regression ["milk","pectin"]
+ok 273 - regression ["milk","pectin"]
   ---
-  duration_ms: 1.1171
+  duration_ms: 2.0751
   type: 'test'
   ...
 # Subtest: yogurt evidence remains isolated from subsequent pork analysis
-ok 252 - yogurt evidence remains isolated from subsequent pork analysis
+ok 274 - yogurt evidence remains isolated from subsequent pork analysis
   ---
-  duration_ms: 7.2371
+  duration_ms: 13.9063
   type: 'test'
   ...
 # Subtest: unknown barcode never fabricates a product
-ok 253 - unknown barcode never fabricates a product
+ok 275 - unknown barcode never fabricates a product
   ---
-  duration_ms: 0.2952
+  duration_ms: 0.3977
   type: 'test'
   ...
 # Subtest: mismatched product is rejected
-ok 254 - mismatched product is rejected
+ok 276 - mismatched product is rejected
   ---
-  duration_ms: 0.1056
+  duration_ms: 0.1666
   type: 'test'
   ...
 # Subtest: source conflicts remain explicit
-ok 255 - source conflicts remain explicit
+ok 277 - source conflicts remain explicit
   ---
-  duration_ms: 0.1186
+  duration_ms: 0.1742
   type: 'test'
   ...
 # Subtest: translation fallback keys en
-ok 256 - translation fallback keys en
+ok 278 - translation fallback keys en
   ---
-  duration_ms: 0.2464
+  duration_ms: 0.4678
   type: 'test'
   ...
 # Subtest: translation fallback keys it
-ok 257 - translation fallback keys it
+ok 279 - translation fallback keys it
   ---
-  duration_ms: 0.0835
+  duration_ms: 0.1401
   type: 'test'
   ...
 # Subtest: translation fallback keys ar
-ok 258 - translation fallback keys ar
+ok 280 - translation fallback keys ar
   ---
-  duration_ms: 0.0345
+  duration_ms: 0.0911
   type: 'test'
   ...
 # Subtest: translation fallback keys ur
-ok 259 - translation fallback keys ur
+ok 281 - translation fallback keys ur
   ---
-  duration_ms: 0.0314
+  duration_ms: 0.0924
   type: 'test'
   ...
 # Subtest: translation fallback keys hi
-ok 260 - translation fallback keys hi
+ok 282 - translation fallback keys hi
   ---
-  duration_ms: 0.0292
+  duration_ms: 0.1151
   type: 'test'
   ...
 # Subtest: translation fallback keys bn
-ok 261 - translation fallback keys bn
+ok 283 - translation fallback keys bn
   ---
-  duration_ms: 0.0526
+  duration_ms: 0.1296
   type: 'test'
   ...
 # Subtest: translation fallback keys fr
-ok 262 - translation fallback keys fr
+ok 284 - translation fallback keys fr
   ---
-  duration_ms: 0.0425
+  duration_ms: 0.0792
   type: 'test'
   ...
 # Subtest: translation fallback keys de
-ok 263 - translation fallback keys de
+ok 285 - translation fallback keys de
   ---
-  duration_ms: 0.0543
+  duration_ms: 0.0538
   type: 'test'
   ...
 # Subtest: translation fallback keys es
-ok 264 - translation fallback keys es
-  ---
-  duration_ms: 0.0291
-  type: 'test'
-  ...
-# Subtest: translation fallback keys tr
-ok 265 - translation fallback keys tr
+ok 286 - translation fallback keys es
   ---
   duration_ms: 0.0429
   type: 'test'
   ...
-# Subtest: translation fallback keys ms
-ok 266 - translation fallback keys ms
+# Subtest: translation fallback keys tr
+ok 287 - translation fallback keys tr
   ---
-  duration_ms: 0.0377
+  duration_ms: 0.0426
+  type: 'test'
+  ...
+# Subtest: translation fallback keys ms
+ok 288 - translation fallback keys ms
+  ---
+  duration_ms: 0.0547
   type: 'test'
   ...
 # Subtest: translation fallback keys id
-ok 267 - translation fallback keys id
+ok 289 - translation fallback keys id
   ---
-  duration_ms: 0.0348
+  duration_ms: 0.0407
   type: 'test'
   ...
 # Subtest: unknown content within a known ingredient phrase remains uncertain
-ok 268 - unknown content within a known ingredient phrase remains uncertain
+ok 290 - unknown content within a known ingredient phrase remains uncertain
   ---
-  duration_ms: 0.7065
+  duration_ms: 1.1258
   type: 'test'
   ...
 # Subtest: unspecified flavouring is uncertain without inventing pork
-ok 269 - unspecified flavouring is uncertain without inventing pork
+ok 291 - unspecified flavouring is uncertain without inventing pork
   ---
-  duration_ms: 1.268
+  duration_ms: 2.1527
   type: 'test'
   ...
-# (node:25788) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///<workspace>/supabase/functions/_shared/analytics-handler.ts is not specified and it doesn't parse as CommonJS.
+# (node:23424) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///<workspace>/supabase/functions/_shared/analytics-handler.ts is not specified and it doesn't parse as CommonJS.
 # Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
 # To eliminate this warning, add "type": "module" to \\\\?\\<workspace>\\package.json.
 # (Use `node --trace-warnings ...` to show where the warning was created)
 # Subtest: isolated PostgreSQL migrations and 100 events through actual ingestion handler
-ok 270 - isolated PostgreSQL migrations and 100 events through actual ingestion handler
+ok 292 - isolated PostgreSQL migrations and 100 events through actual ingestion handler
   ---
-  duration_ms: 2426.0064
+  duration_ms: 5487.7079
   type: 'test'
   ...
-# (node:5096) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+# (node:14408) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
 # (Use `node --trace-warnings ...` to show where the warning was created)
 # Subtest: admin CORS preflight permits configured site without authentication
-ok 271 - admin CORS preflight permits configured site without authentication
+ok 293 - admin CORS preflight permits configured site without authentication
   ---
-  duration_ms: 70.2235
+  duration_ms: 299.8124
   type: 'test'
   ...
 # Subtest: admin rejects origin https://attacker.invalid
-ok 272 - admin rejects origin https://attacker.invalid
+ok 294 - admin rejects origin https://attacker.invalid
   ---
-  duration_ms: 1.8501
+  duration_ms: 4.6614
   type: 'test'
   ...
 # Subtest: admin rejects origin null
-ok 273 - admin rejects origin null
+ok 295 - admin rejects origin null
   ---
-  duration_ms: 3.0037
+  duration_ms: 5.9341
   type: 'test'
   ...
 # Subtest: admin rejects origin 
-ok 274 - admin rejects origin 
+ok 296 - admin rejects origin 
   ---
-  duration_ms: 3.7247
+  duration_ms: 2.5825
   type: 'test'
   ...
 # Subtest: admin rejects malformed authorization 
-ok 275 - admin rejects malformed authorization 
+ok 297 - admin rejects malformed authorization 
   ---
-  duration_ms: 2.7819
+  duration_ms: 3.8385
   type: 'test'
   ...
 # Subtest: admin rejects malformed authorization Basic credentials
-ok 276 - admin rejects malformed authorization Basic credentials
+ok 298 - admin rejects malformed authorization Basic credentials
   ---
-  duration_ms: 2.7933
+  duration_ms: 2.544
   type: 'test'
   ...
 # Subtest: admin rejects malformed authorization Bearer 
-ok 277 - admin rejects malformed authorization Bearer 
+ok 299 - admin rejects malformed authorization Bearer 
   ---
-  duration_ms: 3.3107
+  duration_ms: 2.243
   type: 'test'
   ...
 # Subtest: admin rejects malformed authorization Bearer a b
-ok 278 - admin rejects malformed authorization Bearer a b
+ok 300 - admin rejects malformed authorization Bearer a b
   ---
-  duration_ms: 4.0126
+  duration_ms: 3.9688
   type: 'test'
   ...
 # Subtest: admin rejects missing/expired/invalid authenticated user {"user":null}
-ok 279 - admin rejects missing/expired/invalid authenticated user {"user":null}
+ok 301 - admin rejects missing/expired/invalid authenticated user {"user":null}
   ---
-  duration_ms: 2.7294
+  duration_ms: 6.3321
   type: 'test'
   ...
 # Subtest: admin rejects missing/expired/invalid authenticated user {"authError":{"message":"expired"}}
-ok 280 - admin rejects missing/expired/invalid authenticated user {"authError":{"message":"expired"}}
+ok 302 - admin rejects missing/expired/invalid authenticated user {"authError":{"message":"expired"}}
   ---
-  duration_ms: 3.3029
+  duration_ms: 6.0958
   type: 'test'
   ...
 # Subtest: admin rejects missing/expired/invalid authenticated user {"user":null,"authError":{"message":"invalid signature"}}
-ok 281 - admin rejects missing/expired/invalid authenticated user {"user":null,"authError":{"message":"invalid signature"}}
+ok 303 - admin rejects missing/expired/invalid authenticated user {"user":null,"authError":{"message":"invalid signature"}}
   ---
-  duration_ms: 2.1399
+  duration_ms: 3.5953
   type: 'test'
   ...
 # Subtest: admin uses validated JWT then database authorization for aggregates
-ok 282 - admin uses validated JWT then database authorization for aggregates
+ok 304 - admin uses validated JWT then database authorization for aggregates
   ---
-  duration_ms: 6.7847
+  duration_ms: 11.6394
   type: 'test'
   ...
 # Subtest: admin rejects valid non-admin/inactive user at database boundary
-ok 283 - admin rejects valid non-admin/inactive user at database boundary
+ok 305 - admin rejects valid non-admin/inactive user at database boundary
   ---
-  duration_ms: 3.9877
+  duration_ms: 5.034
   type: 'test'
   ...
 # Subtest: admin rejects invalid reporting range 0
-ok 284 - admin rejects invalid reporting range 0
+ok 306 - admin rejects invalid reporting range 0
   ---
-  duration_ms: 3.5267
+  duration_ms: 4.6858
   type: 'test'
   ...
 # Subtest: admin rejects invalid reporting range 91
-ok 285 - admin rejects invalid reporting range 91
+ok 307 - admin rejects invalid reporting range 91
   ---
-  duration_ms: 2.3576
+  duration_ms: 3.6716
   type: 'test'
   ...
 # Subtest: admin rejects invalid reporting range 1.5
-ok 286 - admin rejects invalid reporting range 1.5
+ok 308 - admin rejects invalid reporting range 1.5
   ---
-  duration_ms: 2.1316
+  duration_ms: 3.9337
   type: 'test'
   ...
 # Subtest: admin rejects invalid reporting range nan
-ok 287 - admin rejects invalid reporting range nan
+ok 309 - admin rejects invalid reporting range nan
   ---
-  duration_ms: 3.2491
+  duration_ms: 10.2001
   type: 'test'
   ...
 # Subtest: admin masks Auth infrastructure errors
-ok 288 - admin masks Auth infrastructure errors
+ok 310 - admin masks Auth infrastructure errors
   ---
-  duration_ms: 4.3172
+  duration_ms: 7.2837
   type: 'test'
   ...
 # Subtest: admin masks reporting infrastructure errors
-ok 289 - admin masks reporting infrastructure errors
+ok 311 - admin masks reporting infrastructure errors
   ---
-  duration_ms: 3.7831
+  duration_ms: 8.5611
   type: 'test'
   ...
 # Subtest: admin refuses unsupported methods
-ok 290 - admin refuses unsupported methods
+ok 312 - admin refuses unsupported methods
   ---
-  duration_ms: 1.6649
+  duration_ms: 4.3104
   type: 'test'
   ...
 # Subtest: invalid barcode 
-ok 291 - invalid barcode 
+ok 313 - invalid barcode 
   ---
-  duration_ms: 7.266
+  duration_ms: 17.9093
   type: 'test'
   ...
 # Subtest: invalid barcode abc
-ok 292 - invalid barcode abc
+ok 314 - invalid barcode abc
   ---
-  duration_ms: 4.4542
+  duration_ms: 4.8153
   type: 'test'
   ...
 # Subtest: invalid barcode A12345678
-ok 293 - invalid barcode A12345678
+ok 315 - invalid barcode A12345678
   ---
-  duration_ms: 3.8165
+  duration_ms: 13.6322
   type: 'test'
   ...
 # Subtest: invalid barcode 1234567
-ok 294 - invalid barcode 1234567
+ok 316 - invalid barcode 1234567
   ---
-  duration_ms: 3.4513
+  duration_ms: 7.7351
   type: 'test'
   ...
 # Subtest: invalid barcode 123456789
-ok 295 - invalid barcode 123456789
+ok 317 - invalid barcode 123456789
   ---
-  duration_ms: 3.4069
+  duration_ms: 4.3145
   type: 'test'
   ...
 # Subtest: invalid barcode 12345678901
-ok 296 - invalid barcode 12345678901
+ok 318 - invalid barcode 12345678901
   ---
-  duration_ms: 2.8605
+  duration_ms: 6.032
   type: 'test'
   ...
 # Subtest: invalid barcode 123456789012345
-ok 297 - invalid barcode 123456789012345
+ok 319 - invalid barcode 123456789012345
   ---
-  duration_ms: 5.5327
+  duration_ms: 7.4653
   type: 'test'
   ...
 # Subtest: API product with matching identity is cached
-ok 298 - API product with matching identity is cached
+ok 320 - API product with matching identity is cached
   ---
-  duration_ms: 6.4316
+  duration_ms: 24.5383
   type: 'test'
   ...
 # Subtest: API mismatch never gets cached
-ok 299 - API mismatch never gets cached
+ok 321 - API mismatch never gets cached
   ---
-  duration_ms: 4.933
+  duration_ms: 5.4245
   type: 'test'
   ...
 # Subtest: API not found
-ok 300 - API not found
+ok 322 - API not found
   ---
-  duration_ms: 6.3878
+  duration_ms: 7.6777
   type: 'test'
   ...
 # Subtest: API bad request
-ok 301 - API bad request
+ok 323 - API bad request
   ---
-  duration_ms: 4.2553
+  duration_ms: 8.2879
   type: 'test'
   ...
 # Subtest: API malformed
-ok 302 - API malformed
+ok 324 - API malformed
   ---
-  duration_ms: 4.1157
+  duration_ms: 8.9762
   type: 'test'
   ...
 # Subtest: API empty
-ok 303 - API empty
+ok 325 - API empty
   ---
-  duration_ms: 5.0486
+  duration_ms: 5.9918
   type: 'test'
   ...
 # Subtest: network errors retry once then report failure
-ok 304 - network errors retry once then report failure
+ok 326 - network errors retry once then report failure
   ---
-  duration_ms: 3.7351
+  duration_ms: 4.5637
   type: 'test'
   ...
 # Subtest: timeout aborts and retries without hanging
-ok 305 - timeout aborts and retries without hanging
+ok 327 - timeout aborts and retries without hanging
   ---
-  duration_ms: 21.7411
+  duration_ms: 22.7157
   type: 'test'
   ...
 # Subtest: rapid duplicate lookup shares the pending request
-ok 306 - rapid duplicate lookup shares the pending request
+ok 328 - rapid duplicate lookup shares the pending request
   ---
-  duration_ms: 3.2039
+  duration_ms: 5.4702
   type: 'test'
   ...
-1..306
-# tests 306
+1..328
+# tests 328
 # suites 0
-# pass 306
+# pass 328
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 2618.4865
+# duration_ms 6043.5374

@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-11-09T17:05:35.337Z",
+  "checks": [
+    {
+      "name": "deployed bytes match app.js",
+      "status": 200,
+      "passed": false
+    },
+    {
+      "name": "deployed bytes match sw.js",
+      "status": 200,
+      "passed": false
+    },
+    {
+      "name": "deployed bytes match config.js",
+      "status": 404,
+      "passed": false
+    },
+    {
+      "name": "deployed bytes match admin/admin.js",
+      "status": 200,
+      "passed": false
+    },
+    {
+      "name": "deployed bytes match admin/config.js",
+      "status": 200,
+      "passed": false
+    },
+    {
+      "name": "deployed bytes match manifest.webmanifest",
+      "status": 200,
+      "passed": false
+    },
+    {
+      "name": "analytics-event CORS preflight",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "admin-stats CORS preflight",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "admin requires authentication",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "admin rejects invalid token",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "anonymous reporting RPC denied",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "analytics rejects foreign origin",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "name": "worker cache header",
+      "status": 200,
+      "passed": false
+    },
+    {
+      "name": "frontend CSP",
+      "status": 200
+    }
+  ],
+  "automatedReadOnlyChecksPassed": false,
+  "productionWrites": 0,
+  "ownerLogin": "UNVERIFIED: requires owner secure sign-in",
+  "realConsentedIngestion": "UNVERIFIED: requires a genuine consented visit; do not generate fake events",
+  "decision": "NO-GO until owner login, real pipeline and retention are independently verified"
+}

@@ -1,0 +1,44 @@
+﻿{
+    "checkedAt":  "2026-11-09T17:29:32.0037007Z",
+    "database":  {
+                     "activeAdminCount":  0,
+                     "anonymousIngestionAllowed":  false,
+                     "anonymousReportingAllowed":  false,
+                     "appliedMigrations":  [
+                                               "20261031235000",
+                                               "20261104000000",
+                                               "20261109000000"
+                                           ],
+                     "authenticatedIngestionAllowed":  false,
+                     "pgCronInstalled":  true,
+                     "rlsEnabled":  {
+                                        "admin_users":  true,
+                                        "analytics_events":  true
+                                    },
+                     "serviceRoleIngestionAllowed":  true
+                 },
+    "functions":  [
+                      {
+                          "slug":  "analytics-event",
+                          "status":  "ACTIVE",
+                          "version":  1,
+                          "verify_jwt":  false
+                      },
+                      {
+                          "slug":  "admin-stats",
+                          "status":  "ACTIVE",
+                          "version":  1,
+                          "verify_jwt":  true
+                      }
+                  ],
+    "retention":  [
+                      {
+                          "active":  true,
+                          "command":  "select public.purge_old_analytics_events()",
+                          "jobname":  "halalcheck-analytics-retention",
+                          "schedule":  "17 3 * * *"
+                      }
+                  ],
+    "ownerAccountChanged":  false,
+    "syntheticAnalyticsWrites":  0
+}

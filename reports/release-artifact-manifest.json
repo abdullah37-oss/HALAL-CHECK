@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-09T16:53:12.383Z",
+  "createdAt": "2026-11-09T17:28:35.520Z",
   "buildRuntime": "v24.22.2",
   "files": [
     {
@@ -9,8 +9,8 @@
     },
     {
       "path": "admin/admin.js",
-      "bytes": 4611,
-      "sha256": "fe005542774e14e8c9286fd069e183e555a5d43445867d70662bb9ad4b07ff8e"
+      "bytes": 8794,
+      "sha256": "10148ba9a896be023c2ec606cb6be5a8fa4389aaaaebae65d752f42619035f2c"
     },
     {
       "path": "admin/config.js",
@@ -19,8 +19,13 @@
     },
     {
       "path": "admin/index.html",
-      "bytes": 1767,
-      "sha256": "bb83f3e0e519bcf01fb2b5b272a0fe6cd9501991452c6a9de83d32a5e8388e1c"
+      "bytes": 2551,
+      "sha256": "3e4d87c38f52c211c14f2eb217c0613ef068c09c4a20ad8afe27cc9bffcf18d1"
+    },
+    {
+      "path": "admin/runtime-config.js",
+      "bytes": 1295,
+      "sha256": "b4cd9ccfe0511ce227fb292e8a773e62b312bdbcdd090a2520eef19af2a2dc97"
     },
     {
       "path": "analytics.js",

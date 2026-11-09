@@ -1,0 +1,10 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');const fs=require('node:fs');const vm=require('node:vm');const {validateAdminConfiguration}=require('../../scripts/validate-admin-config.cjs');
+const base={HALALCHECK_SUPABASE_URL:'https://anvswymarultvsbszjte.supabase.co',HALALCHECK_SUPABASE_ANON_KEY:'sb_publishable_syntheticpublickey0000000000',HALALCHECK_ADMIN_STATS_ENDPOINT:'https://anvswymarultvsbszjte.supabase.co/functions/v1/admin-stats'};
+function validate(overrides){const window={...base,...overrides};vm.runInNewContext(fs.readFileSync('admin/runtime-config.js','utf8'),{window,URL,atob});return window.halalAdminConfig.ready;}
+test('checked-in admin/public config is coherent and loads before login',()=>assert.equal(validateAdminConfiguration(),true));
+test('public publishable configuration accepted',()=>assert.equal(validate({}),true));
+for(const field of Object.keys(base))for(const value of ['',undefined,'invalid'])test(`admin rejects ${field}=${value}`,()=>assert.equal(validate({[field]:value}),false));
+for(const url of ['http://anvswymarultvsbszjte.supabase.co','https://example.com','https://anvswymarultvsbszjte.supabase.co/path','https://user:password@anvswymarultvsbszjte.supabase.co'])test('admin rejects project URL '+url,()=>assert.equal(validate({HALALCHECK_SUPABASE_URL:url}),false));
+for(const url of ['https://different.supabase.co/functions/v1/admin-stats','https://anvswymarultvsbszjte.supabase.co/functions/v1/analytics-event','https://anvswymarultvsbszjte.supabase.co/functions/v1/admin-stats?token=invalid'])test('admin rejects reporting endpoint '+url,()=>assert.equal(validate({HALALCHECK_ADMIN_STATS_ENDPOINT:url}),false));
+for(const role of ['anon','service_role','authenticated'])test('legacy JWT requires anon role '+role,()=>{const token=['header',Buffer.from(JSON.stringify({role,ref:'anvswymarultvsbszjte'})).toString('base64url'),'signature'].join('.');assert.equal(validate({HALALCHECK_SUPABASE_ANON_KEY:token}),role==='anon');});
+test('secret-shaped key rejected',()=>assert.equal(validate({HALALCHECK_SUPABASE_ANON_KEY:'sb_secret_syntheticinvalidkey0000000000'}),false));

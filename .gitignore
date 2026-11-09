@@ -15,3 +15,7 @@ npm-debug.log*
 dist/
 test-results/
 playwright-report/
+
+.release-private/
+.vercel
+.env*
