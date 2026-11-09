@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-11-09T17:35:27.445Z",
+  "configuration": {
+    "urlPresent": true,
+    "keyPresent": true,
+    "endpointPresent": true
+  },
+  "errorMessage": "",
+  "submitEnabled": true,
+  "pageErrors": [],
+  "requestFailures": [],
+  "interceptedAuthAttempts": [],
+  "ownerAuthentication": "NOT TESTED: no owner account or password was supplied",
+  "analyticsWrites": 0
+}

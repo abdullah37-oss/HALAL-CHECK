@@ -1,35 +1,35 @@
 {
-  "checkedAt": "2026-11-09T17:05:35.337Z",
+  "checkedAt": "2026-11-09T17:35:25.313Z",
   "checks": [
     {
       "name": "deployed bytes match app.js",
       "status": 200,
-      "passed": false
+      "passed": true
     },
     {
       "name": "deployed bytes match sw.js",
       "status": 200,
-      "passed": false
+      "passed": true
     },
     {
       "name": "deployed bytes match config.js",
-      "status": 404,
-      "passed": false
+      "status": 200,
+      "passed": true
     },
     {
       "name": "deployed bytes match admin/admin.js",
       "status": 200,
-      "passed": false
+      "passed": true
     },
     {
       "name": "deployed bytes match admin/config.js",
       "status": 200,
-      "passed": false
+      "passed": true
     },
     {
       "name": "deployed bytes match manifest.webmanifest",
       "status": 200,
-      "passed": false
+      "passed": true
     },
     {
       "name": "analytics-event CORS preflight",
@@ -64,14 +64,15 @@
     {
       "name": "worker cache header",
       "status": 200,
-      "passed": false
+      "passed": true
     },
     {
       "name": "frontend CSP",
-      "status": 200
+      "status": 200,
+      "passed": true
     }
   ],
-  "automatedReadOnlyChecksPassed": false,
+  "automatedReadOnlyChecksPassed": true,
   "productionWrites": 0,
   "ownerLogin": "UNVERIFIED: requires owner secure sign-in",
   "realConsentedIngestion": "UNVERIFIED: requires a genuine consented visit; do not generate fake events",

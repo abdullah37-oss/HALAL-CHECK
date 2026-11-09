@@ -58,3 +58,21 @@ Evidence: `reports/qa-summary.json`, `reports/unit.tap`, `reports/browser.json`,
 ## Deployment and post-release outcome
 
 Pending execution at this report entry. NO-GO remains until the required actual results are recorded.
+
+### Verified frontend deployment outcome
+
+Approved Vercel production deployment completed: `dpl_54qaj6aMTrP8UEB48Ey4xNxMFMht`, source commit `88fd908`; the existing `halal-check-sigma.vercel.app` alias now points to the corrected release. All 14 automated read-only live checks passed, including exact app/worker/config/admin/manifest bytes, both function CORS preflights, missing/invalid admin token denial, anonymous reporting RPC denial, foreign-origin analytics denial, worker no-store headers and frontend CSP.
+
+A fresh production Chromium session confirms all three admin configuration values are present, the login button is enabled, the configuration error is absent, and there are no page errors or failed requests. Auth API calls were blocked in the diagnostic browser; these checks are explicitly NOT a live successful owner login.
+
+Evidence: `reports/admin-live-browser-after.json`, `reports/admin-live-after.png`, `reports/release-postdeployment.json`.
+
+### Additional Auth setup blocker discovered
+
+Before sending the approved invitation, read-only configuration preview found remote Auth Site URL `http://localhost:3000` and no allowed redirects. This would send the owner to an unusable setup destination. Prepared a private, targeted two-field config: Site URL `https://halal-check-sigma.vercel.app`; allowlist contains only `https://halal-check-sigma.vercel.app/admin/`. Config diff confirmed exactly these two declared changes; all other remote settings remain undeclared/unchanged. Explicit approval of these two settings is pending. No invitation has been sent while redirects are incorrect.
+
+### GitHub save gate
+
+Local fix commit exists. The first normal push was rejected by automatic approval review because publishing history/reports might expose owner/account/deployment metadata. No alternative connector upload or force-push was attempted. The outgoing-history scan found no real credentials or actual owner email. It explicitly records local Windows workspace paths/Git author identity and public project/schema/test/deployment metadata, plus one deliberate invalid credential-shaped test string. Private owner plans and local environment files are excluded. Requested the owner's explicit approval of those disclosure categories before retrying the public push.
+
+Evidence: `reports/github-publish-audit.json`. Public publication remains BLOCKED pending approval review, not falsely reported as saved to GitHub.

@@ -1,0 +1,27 @@
+{
+  "commits": [
+    "88fd90863b0c2e424a2c99180e2305915beb0c5b",
+    "f747a0e7eeb29beb4ca26b248bfb7d34a12624ef",
+    "f339b3af75f87f1182e6c8509d445dd32c7b2b65"
+  ],
+  "filesChecked": 197,
+  "credentialFindings": [],
+  "syntheticFixtures": [
+    {
+      "commit": "88fd90863b0c2e424a2c99180e2305915beb0c5b",
+      "file": "tests/qa/admin-config.test.cjs",
+      "kind": "Deliberately invalid test-only secret-shaped string; no real credential"
+    }
+  ],
+  "actualOwnerEmailInTrackedPayload": false,
+  "localWindowsWorkspacePathsPresent": true,
+  "publicMetadata": [
+    "Git author identity",
+    "GitHub repository/owner",
+    "Supabase project reference and public publishable key",
+    "Function/migration names, grants and deployment test results",
+    "Vercel public site/workspace names"
+  ],
+  "privateSetupAndEnvironmentFilesTracked": false,
+  "decision": "No detected credentials or owner email; public metadata disclosure still requires approval review"
+}
