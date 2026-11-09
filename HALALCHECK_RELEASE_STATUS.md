@@ -1,78 +1,53 @@
 # HalalCheck release status
 
 Date: 9 November 2026 (Europe/Rome).
-Decision: **NO-GO until the actual owner is authenticated and real reporting/pipeline checks pass.**
 
-## Admin login root cause
+**Decision: NO-GO for claiming complete operational verification.** The production configuration/login initialization defect is fixed, backend and owner enrollment are deployed, and live access-denial checks pass. Successful owner sign-in with real dashboard reporting, genuine consented ingestion, and the first scheduled retention run still require independent verification.
 
-The production page loaded `/admin/config.js` successfully (HTTP 200), but all three public configuration values were empty. The production `admin/admin.js` was an older deployment. A fresh Chromium session reproduced `Supabase is not configured yet.` with no console errors, failed network requests or Auth request attempts. The form never reached Supabase Auth. Root `/config.js` also returned 404, but the admin page's relative URL correctly resolved to `/admin/config.js`; this was stale content, not a mistaken relative path.
+## Confirmed production outcomes
 
-Evidence: `reports/admin-live-assets.json`, `reports/admin-live-browser-before.json`, `reports/admin-live-before.png`.
+| Component | Actual result |
+|---|---|
+| Admin configuration defect | FIXED LIVE: project URL, public publishable key and admin endpoint load; the configuration error is absent; sign-in is enabled |
+| Browser runtime | Fresh Chromium session: no page errors or failed requests; no real credentials or analytics were submitted by the diagnostic browser |
+| Frontend release | Existing production project/alias updated by the earlier explicit approval; no additional production deployment is authorized by the privacy/publication work |
+| Boundary migration | All three migrations applied; anonymous/authenticated direct ingestion revoked; service-role ingestion retained; RLS enabled |
+| Edge Functions | Both deployed ACTIVE; CORS preflights pass; missing/invalid admin tokens and anonymous reporting are rejected; foreign-origin analytics is rejected |
+| Auth redirects | Approved two-field correction applied: production Site URL and exact admin redirect; no other Auth property changed |
+| Owner Auth account | Approved account creation completed; one approved invitation sent; actual UUID read back and kept in private setup records |
+| Admin authorization | Exact separately approved enrollment applied; read-back confirms exactly one active admin, intended owner active, RLS still enabled |
+| Retention | Approved pg_cron job active at 03:17 UTC daily for the existing 30-day purge; first actual scheduled run not yet verified |
+| Owner login/reporting | UNVERIFIED: owner has been asked to complete secure setup/sign-in; page availability alone is not a dashboard PASS |
+| Genuine usage pipeline | UNVERIFIED: no fake analytics events were injected into production |
 
-## Corrected implementation
+Independent live evidence: `reports/admin-live-assets.json`, `reports/admin-live-browser-before.json`, `reports/admin-live-browser-after.json`, `reports/release-postdeployment.json`, `reports/approved-backend-verification.json`, `reports/owner-enrollment-verification.json`. All 14 automated read-only live checks passed after deployment. Owner identity, invitation details and enrollment SQL remain in ignored `.release-private/` files, not public reports.
 
-The local admin/public configuration targets the verified production Supabase project and contains only the public project URL, publishable key and endpoint URLs. Added a runtime validator and build gate that reject missing/blank values, wrong-project endpoints, insecure URLs and non-public keys before an invalid release can be built. Configuration scripts load before the login module. SDK loading/initialization failures now display a visible error and disable login rather than leaving an inert form.
+## Root cause and implementation
 
-The form submits through the real pinned Supabase SDK. The dashboard remains hidden until an authenticated request to the server-authorized admin-stats endpoint succeeds. Login failures, session expiry/refresh rejection, logout, Auth/network failure, reporting 404 and late responses after logout are handled. Logout clears rendered private data and the SDK's local session. Secure invitation/recovery password setup is supported for an existing Auth session; it never creates a user or grants admin access.
+Production served an older `/admin/config.js` with three empty values despite HTTP 200. The old form stopped before making any Auth request. This was outdated configuration, not an incorrect relative script URL.
 
-## Approved production changes completed
+The corrected admin validates public configuration and script load order at runtime and build time, rejects secret/non-public keys and mismatched endpoints, handles SDK initialization/network failures, and submits password login through the pinned Supabase SDK. Dashboard data stays hidden until the protected server endpoint authorizes the request. Incorrect credentials, expired/rejected sessions, logout, unavailable reporting and late responses are handled. Secure invitation/recovery password setup updates only an already authenticated user and cannot grant membership or create public admin accounts.
 
-- Migration `20261109000000_analytics_boundary.sql` applied after hash verification and fresh dry run. Remote history contains all three migrations.
-- Anonymous/authenticated ingestion RPC execution revoked; service_role ingestion remains granted. RLS remains enabled for both sensitive tables.
-- Required web/admin origins configured to `https://halal-check-sigma.vercel.app`.
-- Both Edge Functions deployed and independently listed ACTIVE, version 1. analytics-event uses verify_jwt=false; admin-stats uses verify_jwt=true plus handler Auth validation and database membership checks.
-- Both CORS preflights returned 200 with the configured origin. Admin missing/invalid token requests returned 401; anonymous reporting RPC returned 401; foreign-origin analytics preflight returned 403. No valid synthetic analytics events were submitted.
-- pg_cron enabled and active job `halalcheck-analytics-retention` verified at `17 3 * * *`, running `select public.purge_old_analytics_events()`. First real scheduled execution remains UNVERIFIED; no immediate manual purge was run.
+## QA evidence
 
-Evidence: `reports/approved-backend-verification.json`, `reports/release-postdeployment.json`. The latter also records frontend checks; frontend failures before its deployment are expected and must not be presented as backend failures or overall PASS.
+Latest full suite: **397 executions, 397 passed, 0 failed, 0 skipped** (335 Node cases and 62 desktop/mobile Chromium cases) against the built artifact on Node 24.22.2 with Vercel security headers.
 
-## Owner account and authorization
+This includes real pinned-SDK login request simulations, database/handler authorization and 100 synthetic events in isolated PostgreSQL, configuration regressions, plus seven privacy-redaction regressions. All Auth/reporting requests in browser simulations are intercepted; no fake users/events are created in production by QA. Deno validation previously passed for the deployed functions. No dashboard PASS is inferred from mocks.
 
-The specified email lookup returned no Auth user in this project. No UUID can be truthfully retrieved or enrolled before an account exists. The owner approved preparing creation and subsequently approved creating one app Auth account and sending one setup invitation **after** the corrected live frontend is verified. That conditional creation has not yet been executed at the time of this entry.
+Evidence: `reports/qa-summary.json`, `reports/unit.tap`, `reports/browser.json`, `reports/synthetic-analytics.json`, `reports/release-deno-check.txt`.
 
-No admin account, password or membership was created/changed. The detailed owner proposal and enrollment placeholder are kept in ignored `.release-private/` files so the owner's email/UUID are not unnecessarily published in this public repository. After creation, retrieve the actual UUID and obtain separate approval of its exact enrollment statement. Sole-active-owner enforcement remains in the prepared transaction and database authorization; no frontend-only bypass or RLS disabling is permitted.
+## Privacy and GitHub publication
 
-## Frontend and GitHub release
+The first push was blocked by automatic approval review over metadata disclosure. The owner then explicitly requested cleanup before publication. A fresh remote fetch confirmed four release commits were unpublished. Only those local commits were sanitized: generated reports now use portable path labels; unnecessary machine paths and private author contact metadata were removed. Attribution uses the public GitHub noreply identity. Original local commits are retained under a private local backup ref; already-published history was not rewritten.
 
-Vercel CLI login is now verified as the expected account. Inspection confirmed the existing production alias belongs to project `halal-check` in verified hosting workspace. The local checkout is linked to that same project; no replacement project was created. Public runtime configuration and build compatibility are validated. Private owner setup files, environment files, reports, tests and local dependencies are excluded from Vercel uploads. Vercel-generated local environment credentials are ignored and never read, printed or committed.
+Necessary public Supabase references/publishable keys, application code, tests, deployment configuration and documentation are preserved. Private setup files, local credentials, environment files and the separately supplied untracked audit are not included. Future full QA runs sanitize generated public reports automatically. The outgoing-history audit checks both file contents and author/committer metadata, and rejects real secret-shaped values, service-role JWTs, owner identifiers and machine paths. Exact invalid test fixtures are explicitly classified, not treated as real credentials.
 
-Corrected source is prepared for a GitHub commit and the approved Vercel production release. Deployment and post-release outcome will be recorded below after execution, not assumed from local tests.
+The existing feature branch is `codex/halalcheck-completion-20261109`. Vercel's verified production branch is `main`; no merge or production release is part of this push. Publication uses a normal branch push, never force-push. The final response records the exact resulting commit SHA after remote verification.
 
-## Actual QA evidence
+## Remaining verification
 
-Full suite after authentication changes: **390 executions, 390 passed, 0 failed, 0 skipped** (328 Node cases and 62 desktop/mobile Chromium cases), against built assets on Node 24.22.2 with Vercel security headers. Includes 24 browser executions using the actual pinned Supabase SDK with Auth/reporting HTTP responses intercepted locally, not a replacement SDK. These verify password-grant request submission, incorrect credentials, authorized reporting, non-admin denial, expired access sessions, rejected refresh, logout, missing config, SDK network failure, reporting failure, pending-authorization visibility, stale-response isolation and recovery password update.
+- Actual owner setup/login, authorized live aggregate retrieval and logout; no passwords or tokens requested in chat.
+- Genuine optional consented activity reflected in storage/reporting; no synthetic production traffic.
+- First scheduled cron execution, physical Android camera/install behavior and outstanding translation review.
 
-Local tests do not establish successful live owner authentication or real dashboard reporting. The overall admin dashboard is **NOT PASS** until those two live requirements are met.
-
-Evidence: `reports/qa-summary.json`, `reports/unit.tap`, `reports/browser.json`, `reports/synthetic-analytics.json`. The isolated 100-event regression remains in the suite and does not write fake traffic to production.
-
-## Pending independent live checks
-
-1. Deploy the corrected frontend to the verified existing project and check configuration/runtime/error removal at the real `/admin/` URL.
-2. Execute the approved one-user invitation only after the corrected setup page is live; retrieve the actual UUID.
-3. Obtain explicit approval for exact UUID-specific sole-owner enrollment before any membership change.
-4. Owner completes the secure setup/login themselves; verify actual Auth success and real authorized aggregate retrieval, failed/expired credentials, logout and unauthorized denial.
-5. Observe genuine consented usage and verify its stored/reporting effect; no synthetic production traffic.
-6. Verify first cron execution, physical Android camera/PWA behavior and outstanding translation review.
-
-## Deployment and post-release outcome
-
-Pending execution at this report entry. NO-GO remains until the required actual results are recorded.
-
-### Verified frontend deployment outcome
-
-Approved Vercel production deployment completed: `dpl_54qaj6aMTrP8UEB48Ey4xNxMFMht`, source commit `88fd908`; the existing `halal-check-sigma.vercel.app` alias now points to the corrected release. All 14 automated read-only live checks passed, including exact app/worker/config/admin/manifest bytes, both function CORS preflights, missing/invalid admin token denial, anonymous reporting RPC denial, foreign-origin analytics denial, worker no-store headers and frontend CSP.
-
-A fresh production Chromium session confirms all three admin configuration values are present, the login button is enabled, the configuration error is absent, and there are no page errors or failed requests. Auth API calls were blocked in the diagnostic browser; these checks are explicitly NOT a live successful owner login.
-
-Evidence: `reports/admin-live-browser-after.json`, `reports/admin-live-after.png`, `reports/release-postdeployment.json`.
-
-### Additional Auth setup blocker discovered
-
-Before sending the approved invitation, read-only configuration preview found remote Auth Site URL `http://localhost:3000` and no allowed redirects. This would send the owner to an unusable setup destination. Prepared a private, targeted two-field config: Site URL `https://halal-check-sigma.vercel.app`; allowlist contains only `https://halal-check-sigma.vercel.app/admin/`. Config diff confirmed exactly these two declared changes; all other remote settings remain undeclared/unchanged. Explicit approval of these two settings is pending. No invitation has been sent while redirects are incorrect.
-
-### GitHub save gate
-
-Local fix commit exists. The first normal push was rejected by automatic approval review because publishing history/reports might expose owner/account/deployment metadata. No alternative connector upload or force-push was attempted. The outgoing-history scan found no real credentials or actual owner email. It explicitly records local Windows workspace paths/Git author identity and public project/schema/test/deployment metadata, plus one deliberate invalid credential-shaped test string. Private owner plans and local environment files are excluded. Requested the owner's explicit approval of those disclosure categories before retrying the public push.
-
-Evidence: `reports/github-publish-audit.json`. Public publication remains BLOCKED pending approval review, not falsely reported as saved to GitHub.
+The decision remains NO-GO for full completion until the required live outcomes are actually verified. See the latest follow-up entry if these statuses change.

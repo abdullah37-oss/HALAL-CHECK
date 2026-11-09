@@ -1,0 +1,6 @@
+﻿{
+    "projectName":  "halal-check",
+    "gitProvider":  "github",
+    "repository":  "HALAL-CHECK",
+    "productionBranch":  "main"
+}

@@ -98,3 +98,9 @@ Translation fallbacks/native-speaker review and physical Android testing remain 
 ## Superseding approved deployment update
 
 See `HALALCHECK_RELEASE_STATUS.md` for the latest live outcome. Since this report's initial preparation, the approved boundary migration, function/origin deployment, retention scheduling and corrected Vercel frontend release have completed. Live read-only checks pass and the production configuration error is gone. The overall decision remains NO-GO for operational completion until owner account setup/enrollment and actual authenticated reporting/genuine consented ingestion are verified. A newly confirmed Auth redirect misconfiguration requires its own two-field approval before the already approved invitation can be sent. GitHub publication is awaiting explicit metadata-disclosure approval after automatic review blocked the first push.
+
+## Privacy-reviewed publication update
+
+The explicitly approved Auth URL correction and one-user invitation are complete. The separately approved sole-owner enrollment is verified with exactly one active administrator and RLS enabled. Owner identifiers and setup records remain local/private. Actual owner login/reporting is still pending independent observation.
+
+Four verified unpublished commits were sanitized for publication without rewriting published history. Generated report machine paths and private commit contact metadata were removed; a local-only backup preserves the originals. Public project references/keys and application behavior are unchanged. Latest full QA passes 397/397; the feature-branch push is limited to the existing HalalCheck branch. Vercel production remains `main` and no new production release is authorized here. `HALALCHECK_RELEASE_STATUS.md` is the current concise source of release status.

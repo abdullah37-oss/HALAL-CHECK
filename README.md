@@ -76,3 +76,7 @@ The deployment plan supersedes the older example deployment order above: close t
 `npm run build` now validates `admin/config.js`, `admin/runtime-config.js`, root analytics configuration and their HTML load order. It refuses blank, inconsistent or non-public credentials. `admin/admin.js` loads the pinned SDK with error handling, uses Supabase Auth sessions and only reveals reporting after the protected Edge Function authorizes the request. Secure invitation/recovery links offer password setup for the authenticated account, without public signup or membership writes.
 
 The additional browser auth suite runs the actual pinned SDK from its test-only npm dependency, with all Auth endpoints intercepted. No real credentials or production users are used in QA. See `HALALCHECK_RELEASE_STATUS.md` for the current live outcome. An operational dashboard requires a real enrolled owner plus successful hosted reporting, not merely an HTTP 200 login page.
+
+## Privacy checks before publishing
+
+Run `npm run qa:100` before publishing generated evidence; this sanitizes machine/profile paths in public QA reports while preserving test outcomes. Then run `node scripts/audit-public-push.cjs` against the outgoing feature-branch history. It audits file contents and Git attribution, excludes already-published history from rewrite scope, and blocks private files/identifiers or actual credentials. Keep owner setup and enrollment records in ignored `.release-private/`; never force-push or publish its contents.

@@ -1,27 +1,32 @@
 {
+  "checkedAt": "2026-11-09T17:54:31.631Z",
+  "scope": "Only newly outgoing history; already-published history is unchanged",
   "commits": [
-    "88fd90863b0c2e424a2c99180e2305915beb0c5b",
-    "f747a0e7eeb29beb4ca26b248bfb7d34a12624ef",
-    "f339b3af75f87f1182e6c8509d445dd32c7b2b65"
+    "39c5a768a407b7fa028bc9d63895625d4f1dc416",
+    "b9d8dc446adbc5dd140db3bd0824b92ef3c5c8dc",
+    "79d69818a23aa636fc6387146aada1ebd1c74570",
+    "4723e7706dff4795cee33a551c98294431b8e7a0"
   ],
-  "filesChecked": 197,
-  "credentialFindings": [],
+  "filesChecked": 278,
+  "findings": [],
   "syntheticFixtures": [
     {
-      "commit": "88fd90863b0c2e424a2c99180e2305915beb0c5b",
+      "commit": "39c5a768a407b7fa028bc9d63895625d4f1dc416",
+      "file": "scripts/audit-public-push.cjs",
+      "kind": "Scanner reference to the same known invalid test fixture"
+    },
+    {
+      "commit": "39c5a768a407b7fa028bc9d63895625d4f1dc416",
       "file": "tests/qa/admin-config.test.cjs",
-      "kind": "Deliberately invalid test-only secret-shaped string; no real credential"
+      "kind": "Explicit invalid test fixture, not a credential"
+    },
+    {
+      "commit": "b9d8dc446adbc5dd140db3bd0824b92ef3c5c8dc",
+      "file": "tests/qa/admin-config.test.cjs",
+      "kind": "Explicit invalid test fixture, not a credential"
     }
   ],
-  "actualOwnerEmailInTrackedPayload": false,
-  "localWindowsWorkspacePathsPresent": true,
-  "publicMetadata": [
-    "Git author identity",
-    "GitHub repository/owner",
-    "Supabase project reference and public publishable key",
-    "Function/migration names, grants and deployment test results",
-    "Vercel public site/workspace names"
-  ],
-  "privateSetupAndEnvironmentFilesTracked": false,
-  "decision": "No detected credentials or owner email; public metadata disclosure still requires approval review"
+  "decision": "PASS",
+  "privateFilesInOutgoingHistory": false,
+  "productionDeploymentAuthorized": false
 }
