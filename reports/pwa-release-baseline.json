@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-11-10T17:42:40.777Z",
+  "productionCache": "halalcheck-v5",
+  "candidateCache": "halalcheck-v6",
+  "manifestIdentityPreserved": true,
+  "manifestIdentity": {
+    "id": "./",
+    "scope": "./",
+    "start_url": "./index.html"
+  },
+  "checks": [
+    {
+      "file": "sw.js",
+      "status": 200,
+      "sha256": "21b74c4e7ca543185317d03681d6f0b9d43700686c22315f4593242dd576887a"
+    },
+    {
+      "file": "index.html",
+      "status": 200,
+      "sha256": "4c2f5ee39f78b3aa3e185f8a44bf0af64dc09ccefadf4f67addc1116c4e07494"
+    },
+    {
+      "file": "styles.css",
+      "status": 200,
+      "sha256": "3817fc9efe4dae413079c63d357db1b47d6ec82f77734567dd1737db58a7d34f"
+    },
+    {
+      "file": "app.js",
+      "status": 200,
+      "sha256": "95f91733772cf575f07b8dcc33f999c0b773cc60dda8a5d402a07935f4d9e142"
+    },
+    {
+      "file": "config.js",
+      "status": 200,
+      "sha256": "6e470e10679d7e2e7aaf4d487431325d6a9c7e5f5fd289bfc3cfbacd23333160"
+    },
+    {
+      "file": "analytics.js",
+      "status": 200,
+      "sha256": "3fc363a444d0db8c03b16ba9b0330ac8daae92f241d653dc2a980b45c77eaa9b"
+    },
+    {
+      "file": "manifest.webmanifest",
+      "status": 200,
+      "sha256": "6148f150e125cc3e0a0dcccdd301562f9d4a6da86faac6d160cf200b96ed2e8b"
+    },
+    {
+      "file": "offline.html",
+      "status": 200,
+      "sha256": "916da56675be27cfcaa7128391db1057f397bfa6762d0fa39c5bd779462080e1"
+    },
+    {
+      "file": "icons/icon.svg",
+      "status": 200,
+      "sha256": "c6668ee1f421983d92c2f68e2058837f03203e91d2deb63b324d293064fa8645"
+    },
+    {
+      "file": "icons/icon-192.png",
+      "status": 200,
+      "sha256": "f59fd6a1fafc902ef2241fd1af39410e6ab1438c50e8174db1559084029e93f2"
+    },
+    {
+      "file": "icons/icon-512.png",
+      "status": 200,
+      "sha256": "9fc28d25f37f9086bc17988d1f14aeb230906c68fc3a8b70e5de18a3b803ebd5"
+    },
+    {
+      "file": "src/i18n/index.js",
+      "status": 200,
+      "sha256": "0a8651338151525ac7aba8329cc6e8f21caa024102df1e4f226904ad9129ed04"
+    },
+    {
+      "file": "src/data/ingredientDatabase.js",
+      "status": 200,
+      "sha256": "1bad8783de88c9a7dbedd673d7ee180845aae2e114ed79fcbca402dc663dd7fc"
+    },
+    {
+      "file": "src/data/universalHalalPolicy.js",
+      "status": 200,
+      "sha256": "3d544b9c493a8a80304671dbd0f6c073b474219e94a67263529a7ab8a53017b5"
+    },
+    {
+      "file": "src/utils/halalAnalyzer.js",
+      "status": 200,
+      "sha256": "326bb4cbcf73ea27b0a944002028a5672b609329f9290963704eb2307ce9b87b"
+    },
+    {
+      "file": "src/models/productModel.js",
+      "status": 200,
+      "sha256": "32373cc57e65fb96551b9deb772f77f645073b6347657a4fb10e45dc987ba8dd"
+    },
+    {
+      "file": "src/data/productCatalog.js",
+      "status": 200,
+      "sha256": "730c3fb3c57db5f107bb1051bbdad79ad49b480269089dc32d134f0c07da93ca"
+    },
+    {
+      "file": "src/utils/productRepository.js",
+      "status": 200,
+      "sha256": "085e94462be4898be8b1420b6c3b2fd1f11e54cf15a8735aab81e1c1068ba946"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "checkedAt": "2026-11-10T17:46:33.716Z",
+  "reviewedBranchBase": "d97b4a1946ae6adb74943cc379a28ca19249faae",
+  "reviewedRuntimeCommit": "7feb9f03ded46729e2ca37f9c78b80d0d627ffe4",
+  "artifactFiles": 45,
+  "checks": [
+    {
+      "file": "admin/admin.css",
+      "passed": true
+    },
+    {
+      "file": "admin/admin.js",
+      "passed": true
+    },
+    {
+      "file": "admin/config.js",
+      "passed": true
+    },
+    {
+      "file": "admin/index.html",
+      "passed": true
+    },
+    {
+      "file": "admin/reset-password/index.html",
+      "passed": true
+    },
+    {
+      "file": "admin/reset-password/reset-password.js",
+      "passed": true
+    },
+    {
+      "file": "admin/runtime-config.js",
+      "passed": true
+    },
+    {
+      "file": "analytics.js",
+      "passed": true
+    },
+    {
+      "file": "app.js",
+      "passed": true
+    },
+    {
+      "file": "assets/barcode-decoder.js",
+      "passed": true
+    },
+    {
+      "file": "assets/ingredient-ocr.js",
+      "passed": true
+    },
+    {
+      "file": "assets/licenses/tesseract.js-core.txt",
+      "passed": true
+    },
+    {
+      "file": "assets/licenses/tesseract.js.txt",
+      "passed": true
+    },
+    {
+      "file": "assets/licenses/zxing-wasm.txt",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-lstm.js",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-lstm.wasm",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-lstm.wasm.js",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-relaxedsimd-lstm.js",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-relaxedsimd-lstm.wasm",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-relaxedsimd-lstm.wasm.js",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-simd-lstm.js",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-simd-lstm.wasm",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-simd-lstm.wasm.js",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/lang/ara.traineddata.gz",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/lang/eng.traineddata.gz",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/lang/ita.traineddata.gz",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/lang/urd.traineddata.gz",
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/worker.min.js",
+      "passed": true
+    },
+    {
+      "file": "assets/zxing_reader.wasm",
+      "passed": true
+    },
+    {
+      "file": "config.js",
+      "passed": true
+    },
+    {
+      "file": "icons/icon-192.png",
+      "passed": true
+    },
+    {
+      "file": "icons/icon-512.png",
+      "passed": true
+    },
+    {
+      "file": "icons/icon.svg",
+      "passed": true
+    },
+    {
+      "file": "index.html",
+      "passed": true
+    },
+    {
+      "file": "manifest.webmanifest",
+      "passed": true
+    },
+    {
+      "file": "offline.html",
+      "passed": true
+    },
+    {
+      "file": "src/data/ingredientDatabase.js",
+      "passed": true
+    },
+    {
+      "file": "src/data/productCatalog.js",
+      "passed": true
+    },
+    {
+      "file": "src/data/universalHalalPolicy.js",
+      "passed": true
+    },
+    {
+      "file": "src/i18n/index.js",
+      "passed": true
+    },
+    {
+      "file": "src/models/productModel.js",
+      "passed": true
+    },
+    {
+      "file": "src/utils/halalAnalyzer.js",
+      "passed": true
+    },
+    {
+      "file": "src/utils/productRepository.js",
+      "passed": true
+    },
+    {
+      "file": "styles.css",
+      "passed": true
+    },
+    {
+      "file": "sw.js",
+      "passed": true
+    }
+  ],
+  "runtimeArtifactUnchanged": true,
+  "supabaseSourceUnchanged": true,
+  "productionDeploymentExecuted": false
+}

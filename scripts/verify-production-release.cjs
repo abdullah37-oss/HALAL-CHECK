@@ -1,0 +1,11 @@
+// Read-only post-deployment verification. Never sends Auth, analytics or database mutations.
+const fs=require('node:fs');const crypto=require('node:crypto');
+const site='https://halal-check-sigma.vercel.app';
+const manifest=JSON.parse(fs.readFileSync('reports/release-artifact-manifest.json','utf8'));
+const config=JSON.parse(fs.readFileSync('vercel.json','utf8'));
+const security=config.headers[0].headers.filter(h=>h.key!=='Cache-Control');
+const tasks=manifest.files.map(file=>({route:'/'+file.path,sha256:file.sha256}));
+for(const [route,file] of [['/','index.html'],['/admin/','admin/index.html'],['/admin/reset-password/','admin/reset-password/index.html']])tasks.push({route,sha256:manifest.files.find(f=>f.path===file).sha256});
+let next=0;const checks=[];
+async function worker(){while(next<tasks.length){const task=tasks[next++];try{const response=await fetch(new URL(task.route,site),{cache:'no-store',signal:AbortSignal.timeout(20000)});const bytes=Buffer.from(await response.arrayBuffer());const match=crypto.createHash('sha256').update(bytes).digest('hex')===task.sha256;const headers=security.every(h=>response.headers.get(h.key)===h.value);const expectedCache=task.route.startsWith('/admin/')||task.route==='/sw.js'?'no-store':'no-cache';const cachePolicy=response.headers.get('cache-control')?.includes(expectedCache)===true;checks.push({route:task.route,status:response.status,match,headers,cachePolicy,passed:response.status===200&&new URL(response.url).origin===site&&match&&headers&&cachePolicy});}catch{checks.push({route:task.route,passed:false,error:'Request did not complete'});}}}
+(async()=>{await Promise.all([worker(),worker(),worker()]);checks.sort((a,b)=>a.route.localeCompare(b.route));const report={checkedAt:new Date().toISOString(),site,checks,passed:checks.every(c=>c.passed),authRequests:0,productionWrites:0,authorizedAnalytics:'Must be verified through the owner-controlled signed-in browser after deployment',installedAndroidPwa:'Requires owner observation; browser upgrade regression is separate evidence'};fs.writeFileSync('reports/production-release-verification.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({checks:checks.length,passed:report.passed,failed:checks.filter(c=>!c.passed)},null,2));if(!report.passed)process.exitCode=1;})();

@@ -1,0 +1,11 @@
+{
+  "baselineSource": "Captured production static files",
+  "from": "halalcheck-v5",
+  "to": "halalcheck-v6",
+  "manifestIdentityPreserved": true,
+  "localStoragePreserved": true,
+  "offlineNewShell": true,
+  "adminCacheExcluded": true,
+  "physicalInstalledAndroidTest": false,
+  "productionWrites": 0
+}

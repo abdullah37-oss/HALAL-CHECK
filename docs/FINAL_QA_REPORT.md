@@ -5,8 +5,8 @@
 - Strict TypeScript browser and service-worker checks: PASS.
 - Biome correctness/security lint: PASS (18 owned TypeScript files).
 - Unit/integration: 401 passed, 0 failed, 0 skipped.
-- Desktop/mobile Chromium: 146 passed, 0 failed, 0 skipped.
-- Total QA: 547 passed, 0 failed, 0 skipped.
+- Desktop/mobile Chromium: 150 passed, 0 failed, 0 skipped.
+- Total QA: 551 passed, 0 failed, 0 skipped.
 - Production build: PASS. Compiled JS and same-origin lazy WASM/OCR assets.
 - npm audit: 0 vulnerabilities across all installed dependencies.
 - Deno Edge type check: PASS with frozen updated lockfile metadata; no Edge source deployed or modified.
@@ -33,3 +33,7 @@ Ready for protected preview review after successful hash/header checks. Producti
 ## Verified preview
 
 The final preview is https://halal-check-72vbb8uc3-abdullah-b0a5.vercel.app. Vercel reports READY, and 48 deployed asset/route/header checks passed; see PREVIEW_RELEASE.md and reports/preview-verification.json. The production-only admin CORS policy rejects the preview origin with 403, so live owner analytics on preview remains blocked pending separate origin approval. No origin policy was changed or bypassed.
+
+## Production update preparation
+
+The owner has now confirmed current production sign-in and real Supabase statistics. The candidate retains identical public Auth/analytics configuration and all 45 previously reviewed runtime artifact hashes. Four added desktop/mobile upgrade scenarios passed against captured production v5 assets, including failed-install rollback behavior, successful retry, v6 offline shell and preservation of language/theme/history/consent/synthetic Auth storage. This is browser-upgrade evidence, not a physical installed Android pass. See PRODUCTION_UPDATE_PREPARATION.md for approval scope and post-deployment checks. No production deployment has occurred.
