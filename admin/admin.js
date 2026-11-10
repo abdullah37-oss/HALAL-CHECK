@@ -144,7 +144,7 @@ $('#reset-password').addEventListener('click', async () => {
   $('#auth-error').textContent = '';
   $('#auth-status').textContent = 'Sending password setup instructions...';
   try {
-    const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: `${location.origin}${location.pathname}` });
+    const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: `${location.origin}/admin/reset-password/` });
     $('#auth-status').textContent = error
       ? 'Password setup instructions could not be sent. Check the email address and try again.'
       : 'If an account exists for this email, password setup instructions have been sent.';
