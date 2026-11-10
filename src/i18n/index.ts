@@ -1,3 +1,4 @@
+import {premiumMessages} from './premiumMessages';
 import {productMessages} from './productMessages';
 // Central interface phrase catalog. Native-speaker review remains a release gate.
 export const halalI18n = (() => {
@@ -3620,3 +3621,5 @@ halalI18n.register({
 });
 
 halalI18n.register(productMessages);
+
+halalI18n.register(premiumMessages);

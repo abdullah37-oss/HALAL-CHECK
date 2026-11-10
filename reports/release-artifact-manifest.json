@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-10T20:05:03.020Z",
+  "createdAt": "2026-11-10T23:36:05.568Z",
   "buildRuntime": "v26.13.0",
   "files": [
     {
@@ -44,18 +44,18 @@
     },
     {
       "path": "app.js",
-      "bytes": 29991,
-      "sha256": "59b043dd547c817a2cadfc02b939c380cfdd3d9fe0ee73cd540f46699b61d25e"
+      "bytes": 38175,
+      "sha256": "2488c31ed95fe98be2ec8fd6b1091a03254e74c5e4f02f302c2a0e93bbbd20d2"
     },
     {
       "path": "assets/barcode-decoder.js",
-      "bytes": 38686,
-      "sha256": "6d41bd98601cbd70252f2eff694409c6eeb2737ee4bb17b312f00e9af34cbdd1"
+      "bytes": 38707,
+      "sha256": "40e8685e583aa40f92c3da8d60c32f0cf6c5056508e88f4fb968ecde933d7f8d"
     },
     {
       "path": "assets/ingredient-ocr.js",
-      "bytes": 20543,
-      "sha256": "6099b73af96d5663aa6ec6860ed254a0789ad29481baf43cbf48c728cc7e1591"
+      "bytes": 20564,
+      "sha256": "a25157f738f8dd6708893066d7975568b89ecf4967209bc4c3705db4641a37c9"
     },
     {
       "path": "assets/licenses/tesseract.js-core.txt",
@@ -169,8 +169,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 14445,
-      "sha256": "3358715b9a8f9f2a86379040002a9d85143481dda5f54416bd748d1d5a0e37ec"
+      "bytes": 15852,
+      "sha256": "0ca83106c944b76be8e41c9e0d90445decbaa88d27e2d72c177a9d3b3b92d36b"
     },
     {
       "path": "manifest.webmanifest",
@@ -199,8 +199,8 @@
     },
     {
       "path": "src/i18n/index.js",
-      "bytes": 489993,
-      "sha256": "5d817cd2b67dae31a1c2b1a91b276f79b8cf2379c829b59e08b442492ace32ff"
+      "bytes": 503213,
+      "sha256": "2bde3ee27d44a85d282815ef34ad2b6164e643f1c6982da172145ad15d7a5868"
     },
     {
       "path": "src/models/productModel.js",
@@ -215,17 +215,17 @@
     {
       "path": "src/utils/productRepository.js",
       "bytes": 17386,
-      "sha256": "3db88328f8c6a02cdb76ad45900b6f52581f302513eff9010180f59e5de60c4d"
+      "sha256": "53bef6c8535e99154d1126394c43e081e92e09364a38f43ba3a6db2d0670c6e2"
     },
     {
       "path": "styles.css",
-      "bytes": 22800,
-      "sha256": "99e6d1c9b8001b5df01e7b33aeb880bf27605f709ce6812bee9e6336b591839b"
+      "bytes": 25911,
+      "sha256": "9fd4625da79a701105d7dccc1b769ce40f9dd394dc4a8f25691cac5431011dc0"
     },
     {
       "path": "sw.js",
       "bytes": 1698,
-      "sha256": "2ac623303e659e511b7e05070c0c60a7e361337ccdce94ed0aec8c4a9cf287e0"
+      "sha256": "1af865cff0077a09a2c9cb8fd1cfbec1df46459fe516b386eab295f8d3e35e19"
     }
   ]
 }

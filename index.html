@@ -50,10 +50,12 @@
             <p class="eyebrow">QUICK CHECK</p>
             <h2>Scan a product</h2>
             <p>Use your camera to read a barcode, or enter it manually for a quick lookup.</p>
-            <div class="button-row">
+            <div class="button-row home-actions">
               <button class="button button-primary" type="button" data-action="open-scanner"><svg class="scan-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V4h3m10 0h3v3M4 17v3h3m10 0h3v-3M8 8v8m3-8v8m3-8v8m3-8v8"/></svg> Scan barcode</button>
               <button class="button button-secondary" type="button" data-action="manual-entry">Enter barcode</button>
+              <button class="button button-secondary upload-picture-button" type="button" data-action="upload-picture"><svg class="upload-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8" cy="9" r="1.5"/><path d="m4 17 5-5 4 4 3-3 5 5M17 2v7m-3-3 3-3 3 3"/></svg><span>Upload Picture</span></button>
             </div>
+            <p id="upload-picture-status" class="form-hint" role="status" aria-live="polite"></p>
           </div>
           <div class="scan-art" aria-hidden="true"><div class="scan-art-frame"><span></span><i></i><b></b><em></em></div><div class="scan-art-line"></div></div>
         </section>
@@ -113,6 +115,17 @@
     </main>
   </div>
   <nav class="bottom-nav" aria-label="Mobile navigation"><a href="#home" data-route="home" class="active">⌂<span>Home</span></a><a href="#history" data-route="history">◷<span>History</span></a><button type="button" data-action="open-scanner" class="scan-tab">＋<span>Scan</span></button><a href="#guide" data-route="guide">✦<span>Guide</span></a></nav>
+  <input id="homepage-picture" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+  <dialog id="picture-choice" aria-labelledby="picture-choice-title" aria-describedby="picture-choice-help">
+    <h2 id="picture-choice-title" data-i18n="What is in this picture?">What is in this picture?</h2>
+    <p id="picture-choice-help" data-i18n="Choose how to read your photo. It stays on your device.">Choose how to read your photo. It stays on your device.</p>
+    <div class="picture-type-actions">
+      <button class="button button-primary" type="button" data-picture-kind="barcode" autofocus data-i18n="Barcode Photo">Barcode Photo</button>
+      <button class="button button-secondary" type="button" data-picture-kind="ingredients" data-i18n="Ingredients Photo">Ingredients Photo</button>
+    </div>
+    <button class="picture-choice-cancel" id="cancel-picture-choice" type="button" data-i18n="Cancel">Cancel</button>
+  </dialog>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <aside id="privacy-notice" class="privacy-notice" hidden><strong>Privacy choices</strong><p>Essential storage keeps your language, theme and scan history on this device. Optional analytics records anonymous activity counts only with your permission.</p><div><button class="button button-primary" id="accept-analytics" type="button">Accept optional analytics</button><button class="button button-secondary" id="decline-analytics" type="button">Accept essential only</button></div></aside>
   <script src="src/data/ingredientDatabase.js"></script>

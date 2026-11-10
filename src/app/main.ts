@@ -1,10 +1,11 @@
-import {safeProductImage} from '../services/openFoodFacts';
+import {productImages, ingredientSummary} from '../utils/productPresentation';
+import {validateImageFile} from '../features/image-recognition/image';
 type Analysis = ReturnType<typeof window.halalAnalyzer.analyze>;
 type AnalysisOptions = NonNullable<Parameters<typeof window.halalAnalyzer.analyze>[1]>;
 interface HistoryItem {modelVersion?: number; name: string; barcode: string; date: string; ingredientDataSource: string; statusClass: string; status: string; analysis?: Analysis; brand?: string}
 interface Detector { backend?: 'wasm'; detect(video: HTMLVideoElement): Promise<Array<{rawValue: string; format?: string}>> }
 interface AppState {stream: MediaStream | null; facingMode: string; detector: Detector | null; detecting: boolean; language: string; history: HistoryItem[]}
-interface Controls { '#camera-preview': HTMLVideoElement; '#barcode-input': HTMLInputElement; '#ingredients-input': HTMLTextAreaElement; '#ocr-text': HTMLTextAreaElement; '#ocr-complete': HTMLInputElement; '#ocr-language': HTMLSelectElement; '#language-select': HTMLSelectElement; '#guide-search-input': HTMLInputElement; '#barcode-image': HTMLInputElement; '#label-image': HTMLInputElement; '#start-camera': HTMLButtonElement; '#switch-camera': HTMLButtonElement; '#flash-toggle': HTMLButtonElement; '#confirm-ocr': HTMLButtonElement; '#barcode-form button[type=submit]': HTMLButtonElement }
+interface Controls { '#homepage-picture': HTMLInputElement; '#picture-choice': HTMLDialogElement; '#camera-preview': HTMLVideoElement; '#barcode-input': HTMLInputElement; '#ingredients-input': HTMLTextAreaElement; '#ocr-text': HTMLTextAreaElement; '#ocr-complete': HTMLInputElement; '#ocr-language': HTMLSelectElement; '#language-select': HTMLSelectElement; '#guide-search-input': HTMLInputElement; '#barcode-image': HTMLInputElement; '#label-image': HTMLInputElement; '#start-camera': HTMLButtonElement; '#switch-camera': HTMLButtonElement; '#flash-toggle': HTMLButtonElement; '#confirm-ocr': HTMLButtonElement; '#barcode-form button[type=submit]': HTMLButtonElement }
 const escapeHtml = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' } as Record<string, string>)[char]);
 let legacyHistory: HistoryItem[] = [];
 try { const saved = JSON.parse(localStorage.getItem('halalcheck-history') || '[]'); if (Array.isArray(saved)) legacyHistory = saved.filter((item) => item && typeof item === 'object'); } catch { /* Ignore corrupted local history. */ }
@@ -97,29 +98,41 @@ async function showResult(barcode: string, source = 'camera', ingredientOverride
 }
 function renderResult(view: ResultView) {
   const {product, analysis} = view;
-  // Full evidence stays in lastResult for the debugger, never in analytics.
   const classification = analysis?.classification || 'needs-checking';
   const statusKey = classification === 'likely-halal' ? 'HALAL' : classification === 'not-halal' ? 'HARAM' : 'NEEDS CHECKING';
+  const tone = statusKey === 'HALAL' ? 'halal' : statusKey === 'HARAM' ? 'haram' : 'needs-checking';
   let explanation = classification === 'not-halal' ? 'A prohibited ingredient was identified.' : classification === 'likely-halal' ? 'Ingredients support a Halal assessment.' : 'Some ingredients need checking.';
   if (!product) explanation = view.status === 'not-found' ? 'Try an ingredient label or enter ingredients.' : view.status === 'rate-limited' ? 'Too many requests. Please wait before trying again.' : 'Product lookup unavailable. Try again later.';
-  else if (!product.ingredients.length) explanation = 'Ingredients are unavailable.';
+  else if (!product.ingredients.length) explanation = 'Check the ingredient label to continue.';
   else if (analysis?.recognitionUncertain) explanation = 'Some ingredients need checking.';
   else if (classification !== 'not-halal' && product.ingredientEvidence?.state === 'conflicting') explanation = 'Ingredient information conflicts.';
   else if (classification !== 'not-halal' && product.ingredientEvidence?.state === 'partial') explanation = 'The ingredient list may be incomplete.';
   if (view.stale && product?.ingredients.length) explanation = 'Saved product data. Check current packaging.';
   const name = product?.productName ? (view.source === 'ocr' || product.ingredientDataSource === 'user_corrected' ? translate(product.productName) : product.productName) : translate(view.status === 'not-found' ? 'Product not found.' : product ? 'Product information' : 'Product lookup unavailable. Try again later.');
-  const image = safeProductImage(product?.imageUrl);
-  // Use the existing trusted certification flag; OFF claims never set this flag.
+  const images = productImages(product, view.barcode, window.productCatalog);
+  const summary = ingredientSummary(analysis);
   const certification = product?.certification === 'verified' ? 'Halal certification: Verified' : 'Halal certification: Not verified';
-  const sourceCredit = product?.ingredientDataSource === 'Open Food Facts' ? '<p class="source-credit"><a href="https://world.openfoodfacts.org/product/' + escapeHtml(product.returnedBarcode) + '" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open Food Facts</a> &middot; <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL</a>' + (image ? ' &middot; <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA</a>' : '') + '</p>' : '';
-  $('#result-view').innerHTML = '<article class="simple-result">' +
-    '<header class="result-heading"><div><h1 data-no-translate dir="auto">' + escapeHtml(name) + '</h1>' + (product?.brand ? '<p class="result-brand" data-no-translate dir="auto">' + escapeHtml(product.brand) + '</p>' : '') + '</div>' + (image ? '<img id="product-photo" class="result-thumbnail" src="' + escapeHtml(image) + '" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="64" height="64">' : '') + '</header>' +
-    '<section class="assessment-card" data-classification="' + escapeHtml(classification) + '"><strong>' + escapeHtml(translate(statusKey)) + '</strong><p>' + escapeHtml(translate(explanation)) + '</p></section>' +
-    '<p class="certification">' + escapeHtml(translate(certification)) + '</p>' +
-    '<div class="button-row result-primary-action"><button type="button" class="button button-primary" data-action="scan-another">' + escapeHtml(translate('Scan another product')) + '</button></div>' +
-    (!product || !product.ingredients.length || classification === 'needs-checking' || classification === 'not-enough-information' ? '<div class="button-row result-fallback-actions"><button type="button" class="button button-secondary" data-action="label-fallback">' + escapeHtml(translate('Scan ingredient label')) + '</button><button type="button" class="button button-secondary" data-action="manual-fallback">' + escapeHtml(translate('Enter ingredients')) + '</button>' + (!product ? '<button type="button" class="button button-secondary" data-action="retry-product">' + escapeHtml(translate('Retry')) + '</button>' : '') + '</div>' : '') +
-    '<details class="why-result"><summary>' + escapeHtml(translate('Why?')) + '</summary><p>' + escapeHtml(translate('Ingredient assessment is not certification. Check current packaging.')) + '</p>' + sourceCredit + '</details></article>';
-  $('#result-view').querySelector<HTMLImageElement>('#product-photo')?.addEventListener('error', event => { (event.currentTarget as HTMLImageElement).remove(); }, {once: true});
+  const offLink = 'https://world.openfoodfacts.org/product/' + escapeHtml(product?.returnedBarcode || '');
+  const sourceCredit = product?.ingredientDataSource === 'Open Food Facts' ? '<p class="source-credit"><a href="' + offLink + '" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open Food Facts</a> &middot; <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL</a></p>' : '';
+  const placeholder = '<div id="product-photo-placeholder" class="product-photo-placeholder"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="12" width="44" height="40" rx="6"/><circle cx="24" cy="26" r="5"/><path d="m12 46 13-12 9 8 8-9 10 13"/></svg><span id="product-photo-message">' + escapeHtml(translate(images.length ? 'Loading photo…' : 'Photo unavailable')) + '</span></div>';
+  const photo = '<figure class="product-visual"><div class="product-photo-frame">' + placeholder + (images.length ? '<img id="product-photo" src="' + escapeHtml(images[0]) + '" alt="' + escapeHtml(translate('Product photo') + ': ' + name) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="280" height="280" data-loaded="false">' : '') + '</div>' + (images.length ? '<figcaption id="product-photo-credit" class="photo-credit" hidden><a href="' + offLink + '" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open Food Facts</a> &middot; <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA</a></figcaption>' : '') + '</figure>';
+  const findings = summary.findings.map(f => '<li><strong data-no-translate dir="auto">' + escapeHtml(f.ingredient) + '</strong>' + (f.reason ? '<span>' + escapeHtml(translate(f.reason)) + '</span>' : '') + '</li>').join('');
+  $('#result-view').innerHTML = '<article class="simple-result premium-result" data-result="' + tone + '">' + photo + '<div class="result-content"><header class="result-heading"><div><h1 data-no-translate dir="auto">' + escapeHtml(name) + '</h1>' + (product?.brand ? '<p class="result-brand" data-no-translate dir="auto">' + escapeHtml(product.brand) + '</p>' : '') + '</div></header>' +
+    '<section class="assessment-card" data-classification="' + escapeHtml(classification) + '" role="status" aria-live="polite" aria-atomic="true"><div class="status-heading"><span class="status-icon" aria-hidden="true">' + (tone === 'halal' ? '✓' : tone === 'haram' ? '!' : '?') + '</span><strong>' + escapeHtml(translate(statusKey)) + '</strong></div><p>' + escapeHtml(translate(explanation)) + '</p></section>' +
+    '<section class="ingredient-summary" aria-labelledby="ingredient-summary-title"><h2 id="ingredient-summary-title">' + escapeHtml(translate(summary.heading)) + '</h2>' + (findings ? '<ul class="ingredient-findings">' + findings + '</ul>' : '<p>' + escapeHtml(translate(summary.message)) + '</p>') + '</section>' +
+    '<p class="certification">' + escapeHtml(translate(certification)) + '</p><div class="button-row result-primary-action"><button type="button" class="button button-primary" data-action="scan-another">' + escapeHtml(translate('Scan another product')) + '</button></div>' +
+    (tone === 'needs-checking' ? '<div class="button-row result-fallback-actions"><button type="button" class="button button-secondary" data-action="label-fallback">' + escapeHtml(translate('Scan Ingredients')) + '</button><button type="button" class="button button-secondary" data-action="manual-fallback">' + escapeHtml(translate('Enter ingredients')) + '</button>' + (!product ? '<button type="button" class="button button-secondary" data-action="retry-product">' + escapeHtml(translate('Retry')) + '</button>' : '') + '</div>' : '') +
+    '<details class="why-result"><summary>' + escapeHtml(translate('Why?')) + '</summary><p>' + escapeHtml(translate('Ingredient assessment is not certification. Check current packaging.')) + '</p>' + sourceCredit + '</details></div></article>';
+  const image = $('#result-view').querySelector<HTMLImageElement>('#product-photo');
+  if (image) {
+    let next = 1;
+    image.addEventListener('load', () => { if (!image.isConnected) return; image.dataset.loaded = 'true'; $('#product-photo-placeholder').hidden = true; $('#product-photo-credit').hidden = false; });
+    image.addEventListener('error', () => {
+      if (!image.isConnected) return;
+      if (next < images.length) { image.src = images[next++]; return; }
+      image.remove(); $('#product-photo-message').textContent = translate('Photo unavailable'); $('#product-photo-placeholder').hidden = false; $('#product-photo-credit').hidden = true;
+    });
+  }
   $('#result-view').querySelector('[data-action="scan-another"]')?.addEventListener('click', () => { $('#ingredients-input').value = ''; route('scanner'); });
   $('#result-view').querySelector('[data-action="label-fallback"]')?.addEventListener('click', () => { route('scanner'); $('#label-image').focus(); $('#label-image').scrollIntoView({block: 'center'}); });
   $('#result-view').querySelector('[data-action="manual-fallback"]')?.addEventListener('click', () => { route('scanner'); $('#ingredients-input').value = ''; $('#ingredients-input').focus(); });
@@ -249,12 +262,14 @@ async function detectBarcode() {
   if (sequence === cameraSequence) window.requestAnimationFrame(() => void detectBarcode());
 }
 
-async function readBarcodeImage(event: Event) {
+function friendlyImageMessage(error: unknown, fallback: string): string {
+  const known = ['Choose an image smaller than 12 MB.', 'Choose a JPEG, PNG or WebP image.', 'This file is not a supported image.', 'This image could not be read. Choose another image.', 'Choose an image with no more than 24 megapixels.', 'Image processing is unavailable. Try manual entry.', 'No retail barcode was found. Try a clearer photo or manual entry.', 'Choose a supported recognition language.'];
+  return error instanceof Error && known.includes(error.message) ? error.message : fallback;
+}
+
+async function readBarcodeFile(file: File, target = $('#barcode-image')) {
   ocrController?.abort();
   ocrController = null;
-  const target = event.currentTarget as HTMLInputElement;
-  const file = target.files?.[0];
-  if (!file) return;
   window.halalAnalytics.track('scan_started');
   stopCamera();
   const sequence = ++imageSequence;
@@ -270,14 +285,11 @@ async function readBarcodeImage(event: Event) {
     await showResult(barcode, 'image');
   } catch (caught) {
     const error = caught instanceof Error ? caught : new Error(String(caught));
-    if (sequence === imageSequence) status.textContent = translate(error.message || 'This image could not be read. Choose another image.');
+    if (sequence === imageSequence) status.textContent = translate(friendlyImageMessage(error, 'This image could not be read. Choose another image.'));
   } finally { target.value = ''; target.disabled = false; }
 }
 
-async function readIngredientImage(event: Event) {
-  const target = event.currentTarget as HTMLInputElement;
-  const file = target.files?.[0];
-  if (!file) return;
+async function readIngredientFile(file: File, target = $('#label-image')) {
   stopCamera();
   ocrController?.abort();
   const controller = new AbortController();
@@ -302,7 +314,7 @@ async function readIngredientImage(event: Event) {
     $('#ocr-text').focus();
   } catch (caught) {
     const error = caught instanceof Error ? caught : new Error(String(caught));
-    if (sequence === imageSequence && !controller.signal.aborted) $('#ocr-status').textContent = translate(error.message || 'Label recognition failed. Type the ingredients manually.');
+    if (sequence === imageSequence && !controller.signal.aborted) $('#ocr-status').textContent = translate(friendlyImageMessage(error, 'Label recognition failed. Type the ingredients manually.'));
   } finally { target.value = ''; target.disabled = false; }
 }
 
@@ -318,6 +330,39 @@ function cancelRecognition() {
   $('#ocr-review').hidden = true;
   $('#confirm-ocr').disabled = true;
   $('#ocr-status').textContent = translate('Recognition cancelled. You can choose another image.');
+}
+
+let selectedPicture: File | null = null;
+const pictureDialog = $('#picture-choice');
+const pictureInput = $('#homepage-picture');
+$('[data-action="upload-picture"]').addEventListener('click', () => { $('#upload-picture-status').textContent = ''; pictureInput.click(); });
+pictureInput.addEventListener('change', () => {
+  const file = pictureInput.files?.[0]; pictureInput.value = '';
+  if (!file) return;
+  try { validateImageFile(file); }
+  catch (error) { $('#upload-picture-status').textContent = translate(error instanceof Error ? error.message : 'This image could not be read. Choose another image.'); return; }
+  selectedPicture = file;
+  window.halalI18n.apply(state.language);
+  pictureDialog.showModal();
+});
+pictureInput.addEventListener('cancel', () => { selectedPicture = null; });
+pictureDialog.addEventListener('close', () => { selectedPicture = null; pictureInput.value = ''; if ($('#home-view').classList.contains('active-view')) $('[data-action="upload-picture"]').focus(); });
+pictureDialog.addEventListener('keydown', event => {
+  if (event.key !== 'Tab') return;
+  const buttons = [...pictureDialog.querySelectorAll<HTMLButtonElement>('button:not([disabled])')];
+  const first = buttons[0], last = buttons[buttons.length - 1];
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+});
+$('#cancel-picture-choice').addEventListener('click', () => pictureDialog.close());
+for (const kind of ['barcode','ingredients']) {
+  $('[data-picture-kind="'+kind+'"]').addEventListener('click', () => {
+    const file = selectedPicture; pictureDialog.close();
+    if (!file) return;
+    route('scanner');
+    if (kind === 'barcode') { $('#barcode-image').focus(); void readBarcodeFile(file); }
+    else { $('#label-image').focus(); void readIngredientFile(file); }
+  });
 }
 
 $$('[data-route]').forEach((link) => link.addEventListener('click', (event) => {
@@ -336,8 +381,8 @@ $('#flash-toggle').addEventListener('click', async () => {
   try { torchEnabled = !torchEnabled; await track.applyConstraints({ advanced: [{ torch: torchEnabled }] }); $('#flash-toggle').setAttribute('aria-pressed', String(torchEnabled)); }
   catch { torchEnabled = false; $('#flash-toggle').disabled = true; showToast('Flashlight is not available on this camera.'); }
 });
-$('#barcode-image').addEventListener('change', readBarcodeImage);
-$('#label-image').addEventListener('change', readIngredientImage);
+$('#barcode-image').addEventListener('change', event => {const target = event.currentTarget as HTMLInputElement; if (target.files?.[0]) void readBarcodeFile(target.files[0], target);});
+$('#label-image').addEventListener('change', event => {const target = event.currentTarget as HTMLInputElement; if (target.files?.[0]) void readIngredientFile(target.files[0], target);});
 $('#ocr-complete').addEventListener('change', updateOcrConfirmation);
 $('#ocr-text').addEventListener('input', updateOcrConfirmation);
 $('#cancel-ocr').addEventListener('click', cancelRecognition);

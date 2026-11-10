@@ -1,4 +1,4 @@
-const CACHE = 'halalcheck-v8';
+const CACHE = 'halalcheck-v9';
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './config.js', './analytics.js', './manifest.webmanifest', './offline.html', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './src/i18n/index.js', './src/data/ingredientDatabase.js', './src/data/universalHalalPolicy.js', './src/utils/halalAnalyzer.js', './src/models/productModel.js', './src/data/productCatalog.js', './src/utils/productRepository.js'];
 worker.addEventListener('install', (event) => event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(APP_SHELL)).then(() => worker.skipWaiting())));

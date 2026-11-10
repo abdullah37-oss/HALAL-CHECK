@@ -1,15 +1,15 @@
 {
-  "executions": 443,
-  "passed": 443,
+  "executions": 456,
+  "passed": 456,
   "failed": 0,
   "skipped": 0,
   "minimum": 100,
   "browser": {
-    "passed": 192,
+    "passed": 214,
     "failed": 0,
     "skipped": 0
   },
-  "totalExecutions": 635,
-  "totalPassed": 635,
+  "totalExecutions": 670,
+  "totalPassed": 670,
   "totalFailed": 0
 }

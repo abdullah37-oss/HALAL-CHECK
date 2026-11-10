@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-11-10T23:31:30.781Z",
+  "scope": "All installed production and development dependencies",
+  "vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "newDependencies": 0
+}

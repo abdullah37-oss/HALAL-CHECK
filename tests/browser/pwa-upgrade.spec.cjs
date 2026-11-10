@@ -51,7 +51,7 @@ async function requestUpdate(page){return page.evaluate(async()=>{
 });}
 async function verifyUpgrade(page,context,previous){
  await expect.poll(()=>page.evaluate(()=>caches.keys())).not.toContain('halalcheck-v6');
- await expect.poll(()=>page.evaluate(()=>caches.keys())).toContain('halalcheck-v8');
+ await expect.poll(()=>page.evaluate(()=>caches.keys())).toContain('halalcheck-v9');
  await page.reload();
  await expect(page.locator('#barcode-image')).toHaveCount(1);
  await expect(page.locator('#language-select')).toHaveValue('it');
@@ -59,18 +59,18 @@ async function verifyUpgrade(page,context,previous){
  await expect(page.locator('#recent-scans')).toContainText('Saved acceptance fixture');
  expect(await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage)))).toEqual(previous);
  await page.evaluate(()=>fetch('/admin/'));
- const paths=await page.evaluate(async()=>{const cache=await caches.open('halalcheck-v8');return(await cache.keys()).map(request=>new URL(request.url).pathname);});
+ const paths=await page.evaluate(async()=>{const cache=await caches.open('halalcheck-v9');return(await cache.keys()).map(request=>new URL(request.url).pathname);});
  expect(paths.some(p=>p.startsWith('/admin'))).toBe(false);
  await context.setOffline(true);await page.reload();
  await expect(page.locator('#language-select')).toHaveValue('it');await expect(page.locator('#barcode-image')).toHaveCount(1);
  await expect(page.locator('#recent-scans')).toContainText('Saved acceptance fixture');
  await context.setOffline(false);
 }
-test('production v6 upgrades to v8 without reinstalling or clearing settings, history, consent or Auth storage',async({page,context},info)=>{
+test('production v6 upgrades to v9 without reinstalling or clearing settings, history, consent or Auth storage',async({page,context},info)=>{
  test.setTimeout(45000);const previous=await installProduction(page);phase='candidate';expect(await requestUpdate(page)).toBe('activated');await verifyUpgrade(page,context,previous);
- fs.writeFileSync(`reports/${info.project.name}-pwa-upgrade.json`,JSON.stringify({baselineSource:fs.existsSync(captured)?'Captured production static files':'Pinned production Git baseline',from:'halalcheck-v6',to:'halalcheck-v8',manifestIdentityPreserved:true,localStoragePreserved:true,offlineNewShell:true,adminCacheExcluded:true,physicalInstalledAndroidTest:false,productionWrites:0},null,2));
+ fs.writeFileSync(`reports/${info.project.name}-pwa-upgrade.json`,JSON.stringify({baselineSource:fs.existsSync(captured)?'Captured production static files':'Pinned production Git baseline',from:'halalcheck-v6',to:'halalcheck-v9',manifestIdentityPreserved:true,localStoragePreserved:true,offlineNewShell:true,adminCacheExcluded:true,physicalInstalledAndroidTest:false,productionWrites:0},null,2));
 });
-test('interrupted v8 installation retains the production offline shell and succeeds on retry',async({page,context})=>{
+test('interrupted v9 installation retains the production offline shell and succeeds on retry',async({page,context})=>{
  test.setTimeout(45000);const previous=await installProduction(page);phase='broken';expect(await requestUpdate(page)).toBe('redundant');
  await expect.poll(()=>page.evaluate(()=>caches.keys())).toContain('halalcheck-v6');
  await context.setOffline(true);await page.reload();await expect(page.locator('#barcode-image')).toHaveCount(1);await expect(page.locator('#language-select')).toHaveValue('it');

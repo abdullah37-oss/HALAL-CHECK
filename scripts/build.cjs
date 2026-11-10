@@ -21,3 +21,5 @@ JSON.parse(fs.readFileSync('manifest.webmanifest','utf8'));console.log('Compiled
 esbuild.buildSync({entryPoints:['src/server/productHandler.ts'],outfile:'dist-server/product-handler.cjs',bundle:true,platform:'node',format:'cjs',target:'node24',logLevel:'silent'});
 
 esbuild.buildSync({entryPoints:['src/services/openFoodFacts.ts'],outfile:'dist-server/off-client.cjs',bundle:true,platform:'node',format:'cjs',target:'node24',logLevel:'silent'});
+
+esbuild.buildSync({entryPoints:['src/utils/productPresentation.ts'],outfile:'dist-server/presentation.cjs',bundle:true,platform:'node',format:'cjs',target:'node24',logLevel:'silent'});

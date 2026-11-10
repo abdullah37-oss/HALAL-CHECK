@@ -1,5 +1,7 @@
 # Simplified product results — preview review
 
+Follow-up: [Homepage upload and premium photo-first results](HOMEPAGE_UPLOAD_PREMIUM_RESULTS.md) documents the subsequent design. The thumbnail-only layout below describes this earlier verified baseline.
+
 Branch: `feature/simplify-scan-results`, based on verified OFF preview commit `7f3c665a87916bb2a48f22c9de8118a5fec663f8`. This includes that unreleased OFF integration; production is not changed by this work.
 
 The result now begins with the original product name and brand. Available photos are optional 64-pixel thumbnails; missing/failed photos leave no empty image panel. One green HALAL, red HARAM or amber NEEDS CHECKING card contains one short explanation. Missing ingredient data reads “Ingredients are unavailable.” beneath NEEDS CHECKING. All internal insufficient/unknown states use the same public NEEDS CHECKING label.

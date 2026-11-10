@@ -1,9 +1,12 @@
 // Inputs are decoded on-device. SVG/animated formats are deliberately excluded.
 export const MAX_IMAGE_BYTES = 12 * 1024 * 1024;
 export const MAX_IMAGE_PIXELS = 24_000_000;
-export async function loadImage(file: File): Promise<ImageBitmap> {
+export function validateImageFile(file: File): void {
   if (!file || file.size === 0 || file.size > MAX_IMAGE_BYTES) throw Error('Choose an image smaller than 12 MB.');
   if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) throw Error('Choose a JPEG, PNG or WebP image.');
+}
+export async function loadImage(file: File): Promise<ImageBitmap> {
+  validateImageFile(file);
   const header = new Uint8Array(await file.slice(0, 12).arrayBuffer());
   const signature = file.type === 'image/jpeg' ? header[0] === 255 && header[1] === 216
     : file.type === 'image/png' ? [137,80,78,71,13,10,26,10].every((v,i) => header[i] === v)

@@ -10,7 +10,7 @@ async function lookup(page,body){
  await page.locator('#barcode-input').fill(code);await page.locator('#barcode-form button[type=submit]').click();
  await expect(page.locator('#result-view')).toHaveClass(/active-view/);
 }
-for(const [ingredients,key,color] of [['milk, sugar','HALAL','rgb(8, 102, 61)'],['milk, pork gelatin','HARAM','rgb(156, 37, 37)'],['','NEEDS CHECKING','rgb(120, 81, 8)']])test('compact three-status result and translations: '+key,async({page},info)=>{
+for(const [ingredients,key,color] of [['milk, sugar','HALAL','rgb(255, 255, 255)'],['milk, pork gelatin','HARAM','rgb(255, 255, 255)'],['','NEEDS CHECKING','rgb(63, 46, 12)']])test('compact three-status result and translations: '+key,async({page},info)=>{
  await lookup(page,product(ingredients));
  const card=page.locator('.assessment-card');
  await expect(card.locator('strong')).toHaveText(key);await expect(card.locator('strong')).toHaveCSS('color',color);
@@ -26,7 +26,7 @@ for(const [ingredients,key,color] of [['milk, sugar','HALAL','rgb(8, 102, 61)'],
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  }
  await page.locator('#language-select').selectOption('en');
- if(!ingredients)await expect(card.locator('p')).toHaveText('Ingredients are unavailable.');
+ if(!ingredients)await expect(page.locator('.ingredient-summary p')).toHaveText('Ingredients are unavailable.');
  const violations=(await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze()).violations;
  expect(violations.map(v=>v.id)).toEqual([]);
 });
@@ -39,7 +39,7 @@ test('Why stays short and excludes ingredients, identities and developer diagnos
  await expect(result.locator('.source-credit')).toBeVisible();
  await expect(result.locator('details>p:not(.source-credit)')).toHaveCount(1);
  await expect(result.locator('.finding-list')).toHaveCount(0);
- expect(await result.innerText()).not.toMatch(/milk|sugar|salt|0036000291452|Ingredient label language|Last updated|Data quality/);
+ expect(await result.locator('details').innerText()).not.toMatch(/milk|sugar|salt|0036000291452|Ingredient label language|Last updated|Data quality/);await expect(result.locator('.ingredient-findings li')).toHaveCount(3);
 });
 test('OFF halal marketing claims never become verified certification',async({page})=>{
  const body=product('milk, sugar');Object.assign(body.product,{labels_tags:['en:halal','en:vegan'],nutriscore_grade:'a',certification:'verified'});
@@ -52,9 +52,9 @@ test('existing trusted certification flag renders only the compact verified line
  await page.locator('[data-action="manual-entry"]').first().click();await page.locator('#barcode-input').fill(code);await page.locator('#barcode-form button[type=submit]').click();
  await expect(page.locator('.certification')).toHaveText('Halal certification: Verified');await expect(page.locator('.certification')).toHaveCount(1);
 });
-test('primary scan action is visible above mobile navigation, including narrow screens',async({page})=>{
+test('primary scan action remains reachable without mobile navigation overlap',async({page})=>{
  await page.setViewportSize({width:320,height:740});await lookup(page,product(''));
- const action=page.locator('[data-action="scan-another"]');await expect(action).toBeInViewport();
+ const action=page.locator('[data-action="scan-another"]');await action.evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));await expect(action).toBeInViewport();
  const bottom=await action.evaluate(el=>el.getBoundingClientRect().bottom);
  const nav=await page.locator('.bottom-nav').evaluate(el=>getComputedStyle(el).display==='none'?innerHeight:el.getBoundingClientRect().top);
  expect(bottom).toBeLessThanOrEqual(nav);await action.click();await expect(page.locator('#scanner-view')).toHaveClass(/active-view/);

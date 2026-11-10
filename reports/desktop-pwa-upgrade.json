@@ -1,7 +1,7 @@
 {
   "baselineSource": "Pinned production Git baseline",
   "from": "halalcheck-v6",
-  "to": "halalcheck-v8",
+  "to": "halalcheck-v9",
   "manifestIdentityPreserved": true,
   "localStoragePreserved": true,
   "offlineNewShell": true,
