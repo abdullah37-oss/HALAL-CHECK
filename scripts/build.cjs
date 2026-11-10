@@ -17,3 +17,7 @@ fs.mkdirSync(path.join(output,'assets/licenses'),{recursive:true});for(const pkg
 require('./validate-admin-config.cjs').validateAdminConfiguration('dist');
 const html=fs.readFileSync('dist/index.html','utf8');for(const [,asset] of html.matchAll(/(?:src|href)="([^"#]+)"/g))if(!asset.startsWith('http')&&!fs.existsSync(path.join(output,asset)))throw Error('Missing built asset '+asset);
 JSON.parse(fs.readFileSync('manifest.webmanifest','utf8'));console.log('Compiled browser sources, local barcode/OCR assets and static PWA validated in dist/.');
+
+esbuild.buildSync({entryPoints:['src/server/productHandler.ts'],outfile:'dist-server/product-handler.cjs',bundle:true,platform:'node',format:'cjs',target:'node24',logLevel:'silent'});
+
+esbuild.buildSync({entryPoints:['src/services/openFoodFacts.ts'],outfile:'dist-server/off-client.cjs',bundle:true,platform:'node',format:'cjs',target:'node24',logLevel:'silent'});

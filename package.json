@@ -21,8 +21,8 @@
     "build": "node scripts/build.cjs",
     "serve": "node scripts/serve.cjs",
     "pretest": "npm run build",
-    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.worker.json",
-    "lint": "biome lint src admin"
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.worker.json && tsc -p tsconfig.api.json",
+    "lint": "biome lint src admin api"
   },
   "engines": {
     "node": "24.x"

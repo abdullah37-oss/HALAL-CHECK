@@ -1,6 +1,6 @@
 {
 	"files": {
-		"includes": ["src/**/*.ts", "admin/**/*.ts"]
+		"includes": ["src/**/*.ts", "admin/**/*.ts", "api/**/*.ts"]
 	},
 	"formatter": {
 		"enabled": false

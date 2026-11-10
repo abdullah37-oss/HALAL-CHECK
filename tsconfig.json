@@ -23,10 +23,11 @@
     }
   },
   "include": [
-    "src/**/*.ts",
-    "admin/**/*.ts"
+    "admin/**/*.ts",
+    "src/**/*.ts"
   ],
   "exclude": [
-    "src/app/service-worker.ts"
+    "src/app/service-worker.ts",
+    "src/server/**/*.ts"
   ]
 }

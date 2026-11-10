@@ -1,4 +1,5 @@
-﻿export interface Ingredient {
+import {isRetailBarcode} from '../lib/barcode';
+export interface Ingredient {
   id: string;
   originalText: string;
   normalizedName: string;
@@ -6,6 +7,11 @@
   confidence: number;
   matchedIngredientId: string | null;
   assessment: string | null;
+}
+export interface IngredientEvidenceInfo {
+  state: 'complete' | 'partial' | 'missing' | 'conflicting';
+  kind: 'label-text' | 'structured' | 'tags-only' | 'none';
+  language: string | null;
 }
 export interface Product {
   scannedBarcode: string;
@@ -18,6 +24,11 @@ export interface Product {
   dataQuality: string;
   lastUpdated: string;
   certification: string;
+  ingredientEvidence?: IngredientEvidenceInfo;
+  imageUrl?: string;
+  sourceUrl?: string;
+  sourceLabels?: string[];
+  upstreamModifiedAt?: number;
 }
 export interface ProductInput {
   scannedBarcode?: string;
@@ -34,7 +45,7 @@ export interface ProductInput {
 export const productModel = (() => {
   const CACHE_VERSION = 2;
   const normalizeBarcode = (value: unknown): string => /^\d+$/.test(String(value || '').trim()) ? String(value).trim() : '';
-  const isValidBarcode = (value: unknown): boolean => /^(?:\d{8}|\d{12,14})$/.test(normalizeBarcode(value));
+  const isValidBarcode = isRetailBarcode;
   const canonicalBarcode = (value: unknown): string => normalizeBarcode(value).replace(/^0+(?=\d)/, '');
   const createIngredient = (originalText: string, source: string, confidence = 1): Ingredient => ({
     id: `${source}:${originalText.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-')}`,

@@ -9,3 +9,5 @@ tests/
 supabase/.temp/
 supabase/.branches/
 HALALCHECK*.md
+
+dist-server/

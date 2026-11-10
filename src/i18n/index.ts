@@ -1,3 +1,4 @@
+import {productMessages} from './productMessages';
 // Central interface phrase catalog. Native-speaker review remains a release gate.
 export const halalI18n = (() => {
   const supported = ['en','it','ar','ur','hi','bn','fr','de','es','tr','ms','id'];
@@ -3617,3 +3618,5 @@ halalI18n.register({
   'A new version is available. Reload to update.': { en: 'A new version is available. Reload to update.', it: 'È disponibile una nuova versione. Ricarica per aggiornare.', ar: 'يتوفر إصدار جديد. أعد تحميل الصفحة للتحديث.', ur: 'نیا ورژن دستیاب ہے۔ اپ ڈیٹ کے لیے صفحہ دوبارہ لوڈ کریں۔', hi: 'नया संस्करण उपलब्ध है। अपडेट के लिए पृष्ठ फिर लोड करें।', bn: 'নতুন সংস্করণ উপলব্ধ। আপডেট করতে পৃষ্ঠা আবার লোড করুন।', fr: 'Une nouvelle version est disponible. Rechargez pour mettre à jour.', de: 'Eine neue Version ist verfügbar. Zum Aktualisieren neu laden.', es: 'Hay una nueva versión. Recarga para actualizar.', tr: 'Yeni sürüm mevcut. Güncellemek için yeniden yükleyin.', ms: 'Versi baharu tersedia. Muat semula untuk mengemas kini.', id: 'Versi baru tersedia. Muat ulang untuk memperbarui.' },
   'Signing in...': { en: 'Signing in...', it: 'Accesso in corso...', ar: 'جارٍ تسجيل الدخول...', ur: 'سائن اِن ہو رہا ہے...', hi: 'साइन इन हो रहा है...', bn: 'সাইন ইন হচ্ছে...', fr: 'Connexion en cours...', de: 'Anmeldung läuft...', es: 'Iniciando sesión...', tr: 'Oturum açılıyor...', ms: 'Sedang log masuk...', id: 'Sedang masuk...' }
 });
+
+halalI18n.register(productMessages);

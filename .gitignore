@@ -25,3 +25,5 @@ playwright-report/
 .biome-cache/
 debug.log
 .cache/
+
+dist-server/

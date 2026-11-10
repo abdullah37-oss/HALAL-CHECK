@@ -1,3 +1,4 @@
+import {safeProductImage} from '../services/openFoodFacts';
 type Analysis = ReturnType<typeof window.halalAnalyzer.analyze>;
 type AnalysisOptions = NonNullable<Parameters<typeof window.halalAnalyzer.analyze>[1]>;
 interface HistoryItem {modelVersion?: number; name: string; barcode: string; date: string; ingredientDataSource: string; statusClass: string; status: string; analysis?: Analysis; brand?: string}
@@ -71,64 +72,51 @@ function route(view: string) {
   if (view === 'guide') window.halalAnalytics.track('guide_opened');
 }
 
+interface ResultView { product: import('../models/productModel').Product | null; analysis: Analysis | null; status: string; barcode: string; source: string; stale?: boolean; retryAt?: number; }
+let lastResult: ResultView | null = null;
 async function showResult(barcode: string, source = 'camera', ingredientOverride: string | null = null, analysisOptions: AnalysisOptions = {}) {
   const sequence = ++lookupSequence;
   stopCamera();
   if (source === 'camera' || source === 'image') window.halalAnalytics.track('barcode_completed');
-  const manualIngredients = ingredientOverride ?? (source === 'manual' ? $('#ingredients-input')?.value.trim() || '' : '');
-  const lookupButton = $('#barcode-form button[type=submit]');
-  lookupButton.disabled = true;
-  cameraMessage('Looking up product…');
-  let lookup;
-  try { lookup = manualIngredients ? { status: 'user-provided' } : await window.productRepository.lookup(barcode); }
-  catch { lookup = { status: 'lookup-failed' }; }
-  finally { lookupButton.disabled = false; }
+  const manualIngredients = ingredientOverride ?? (source === 'manual' ? $('#ingredients-input').value.trim() : '');
+  const button = $('#barcode-form button[type=submit]'); button.disabled = true; cameraMessage('Looking up product…');
+  let lookup: import('../services/openFoodFacts').LookupResult | {status:'user-provided'};
+  try { lookup = manualIngredients ? {status:'user-provided'} : await window.productRepository.lookup(barcode,{language:state.language}); }
+  catch { lookup = {status:'lookup-failed'}; }
+  finally { button.disabled = false; }
   if (sequence !== lookupSequence) return;
-  if (['lookup-failed', 'malformed-data'].includes(lookup.status)) showToast('Product lookup failed. You can enter ingredients manually.');
-  if (lookup.status === 'identity-mismatch') { window.halalAnalytics.track('lookup_failed', { reason: 'identity-mismatch' }); return showIdentityMismatch(barcode); }
-  const product = lookup.status === 'verified' && lookup.product ? lookup.product : window.productModel.createProduct({
-    scannedBarcode: barcode,
-    returnedBarcode: barcode,
-    productName: 'Manual ingredient assessment',
-    brand: 'User supplied',
-    ingredientsRaw: manualIngredients,
-    ingredientDataSource: source === 'ocr' ? 'user_confirmed_ocr' : 'user_corrected',
-    dataQuality: manualIngredients ? 'user-provided' : 'missing'
-  });
-  if (!manualIngredients) window.halalAnalytics.track(lookup.status === 'verified' ? 'lookup_succeeded' : 'lookup_failed');
-  const analysis = window.halalAnalyzer.analyze(product.ingredients, { language: state.language, certified: product.certification === 'verified', ...analysisOptions });
-  window.halalAnalytics.track('analysis_completed');
-  const result = {
-    name: product.productName,
-    brand: `${product.brand} · Scanned ${escapeHtml(product.scannedBarcode)}`,
-    status: analysis.label,
-    statusClass: analysis.classification === 'likely-halal' ? 'verified' : analysis.classification === 'not-halal' ? 'review' : 'unknown',
-    date: new Intl.DateTimeFormat(state.language, { dateStyle: 'medium' }).format(new Date()),
-    barcode: product.scannedBarcode, analysis, ingredientDataSource: product.ingredientDataSource
-  };
-  saveHistory(result);
-  const findings = result.analysis.findings.map((finding) => `<li><strong>${escapeHtml(finding.ingredient)}</strong> — ${escapeHtml(finding.record?.name || 'Unknown ingredient')}: ${escapeHtml(finding.record?.explanation || finding.explanation)}<small>Source: ${escapeHtml(finding.source || product.ingredientDataSource)}</small></li>`).join('');
-  const certification = product.certification === 'verified' ? window.universalHalalPolicy.label(window.universalHalalPolicy.classifications.CERTIFIED_HALAL, state.language) : 'Certification not verified';
-  $('#result-view').innerHTML = `<button class="back-link" type="button" data-action="close-result">← Back to Home</button><div class="result-layout"><div class="result-product-image" aria-label="Product image unavailable">▣</div><div class="result-content"><p class="eyebrow">SCAN RESULT</p><h1>${escapeHtml(result.name)}</h1><p class="brand-line">${escapeHtml(result.brand)}</p><div class="detail-section"><h3>Product identity</h3><p>Scanned barcode: <strong>${escapeHtml(product.scannedBarcode)}</strong> · Returned barcode: <strong>${escapeHtml(product.returnedBarcode)}</strong></p><p>${lookup.status === 'verified' ? 'Catalogue barcode match' : 'Product identity not verified'} · Data source: ${escapeHtml(product.ingredientDataSource)}</p></div><div class="detail-section"><h3>Ingredient assessment</h3><div class="result-status" data-classification="${escapeHtml(analysis.classification)}">○ ${escapeHtml(result.status)}</div><p class="result-explanation">${escapeHtml(result.analysis.explanation)}</p></div><div class="detail-section"><h3>Certification status</h3><div class="result-status neutral">○ ${escapeHtml(certification)}</div><p class="result-explanation">Certification is independent from ingredient assessment and is shown only when verified evidence exists.</p></div><div class="detail-section"><h3>Actual ingredients used</h3>${findings ? `<ul class="finding-list">${findings}</ul>` : '<p>Ingredient information is missing or incomplete.</p>'}</div><div class="detail-section"><h3>Data quality</h3><p>${escapeHtml(product.dataQuality)} · ${escapeHtml(result.date)}</p></div><details class="why-result"><summary>Why this result?</summary><p>${escapeHtml(result.analysis.explanation)}</p><ul class="finding-list">${findings}</ul></details></div></div>`;
-  $('#result-view').querySelector('[data-action="close-result"]')?.addEventListener('click', () => route('home'));
-  const reportPanel = document.createElement('section');
-  reportPanel.className = 'detail-section';
-  reportPanel.innerHTML = '<h3>'+escapeHtml(translate('Report a possible error'))+'</h3><p>'+escapeHtml(translate('This report stays on your device. Share it only with someone you trust.'))+'</p><button class="button button-secondary" type="button">'+escapeHtml(translate('Download review report'))+'</button>';
-  reportPanel.querySelector('button')?.addEventListener('click', () => {
-    const report = { version: 2, createdAt: new Date().toISOString(), product, analysis, policyVersion: window.universalHalalPolicy.version, purpose: 'Owner review of a potentially incorrect assessment; unverified user report' };
-    const url = URL.createObjectURL(new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' }));
-    const link = document.createElement('a'); link.href = url; link.download = 'halalcheck-review.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
-  });
-  $('#result-view .result-content').append(reportPanel);
-  window.halalI18n.apply(state.language);
-  route('result');
+  let product = lookup.status==='verified' ? lookup.product : null;
+  if (manualIngredients) product = window.productModel.createProduct({scannedBarcode:barcode,returnedBarcode:barcode,productName:'Manual ingredient assessment',brand:'',ingredientsRaw:manualIngredients,ingredientDataSource:source==='ocr'?'user_confirmed_ocr':'user_corrected',dataQuality:'user-provided'});
+  if (!manualIngredients) window.halalAnalytics.track(lookup.status==='verified'?'lookup_succeeded':'lookup_failed');
+  const stale = lookup.status==='verified' && lookup.stale;
+  const complete = product?.ingredientEvidence ? product.ingredientEvidence.state==='complete' : !!manualIngredients;
+  const analysis = product ? window.halalAnalyzer.analyze(product.ingredients,{language:state.language,certified:product.certification==='verified',...analysisOptions,evidenceComplete:analysisOptions.evidenceComplete!==false && complete && !stale}) : null;
+  if (analysis) { window.halalAnalytics.track('analysis_completed'); saveHistory({name:product!.productName||'Product information',status:analysis.label,statusClass:analysis.classification==='likely-halal'?'verified':analysis.classification==='not-halal'?'review':'unknown',date:new Intl.DateTimeFormat(state.language,{dateStyle:'medium'}).format(new Date()),barcode,analysis,ingredientDataSource:product!.ingredientDataSource}); }
+  lastResult={product,analysis,status:lookup.status,barcode,source,stale,retryAt:'retryAt' in lookup?lookup.retryAt:undefined};
+  renderResult(lastResult);route('result');
 }
-
-function showIdentityMismatch(barcode: string) {
-  $('#result-view').innerHTML = `<button class="back-link" type="button" data-action="close-result">← Back to Home</button><div class="card" style="padding:28px"><p class="eyebrow">IDENTITY CHECK</p><h1>Product identity could not be verified</h1><p>The returned product barcode does not match scanned barcode ${escapeHtml(barcode)}. No ingredients were used and no classification was produced.</p></div>`;
-  $('#result-view').querySelector('[data-action="close-result"]')?.addEventListener('click', () => route('home'));
+function renderResult(view:ResultView) {
+  const {product,analysis}=view;
+  const classification=analysis?.classification||'needs-checking';
+  const status=window.universalHalalPolicy.label(classification,state.language);
+  let explanation = classification==='not-halal'?'A prohibited ingredient was identified.':classification==='likely-halal'?'Ingredients support a Halal assessment.':'Some ingredients need checking.';
+  if(!product)explanation=view.status==='not-found'?'Try an ingredient label or enter ingredients.':view.status==='rate-limited'?'Too many requests. Please wait before trying again.':'Product lookup unavailable. Try again later.';
+  else if(!product.ingredients.length)explanation='Ingredients unavailable.';
+  else if(product.ingredientEvidence?.state==='conflicting')explanation='Ingredient information conflicts.';
+  else if(product.ingredientEvidence?.state==='partial')explanation='The ingredient list may be incomplete.';
+  else if(analysis?.recognitionUncertain)explanation='Image recognition is uncertain. Confirm or correct the complete ingredient list before relying on this assessment.';
+  if(view.stale)explanation='Saved product data. Check current packaging.';
+  const name=product?.productName ? (view.source==='ocr'||product.ingredientDataSource==='user_corrected'?translate(product.productName):product.productName) : translate(view.status==='not-found'?'Product not found.':product?'Product information':'Product lookup unavailable. Try again later.');
+  const findings=analysis?.findings.map(f=>'<li><strong data-no-translate>'+escapeHtml(f.ingredient)+'</strong><span>'+escapeHtml(translate(f.record?.explanation||f.explanation||'Unknown ingredient'))+'</span></li>').join('')||'';
+  const image=safeProductImage(product?.imageUrl);
+  $('#result-view').innerHTML='<div class="simple-result"><div class="result-photo">'+(image?'<img id="product-photo" src="'+escapeHtml(image)+'" alt="'+escapeHtml(name)+'" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="240" height="240">':'')+'<span id="product-photo-fallback" '+(image?'hidden':'')+'>'+escapeHtml(translate('Product image unavailable'))+'</span></div><div class="result-content"><h1 data-no-translate>'+escapeHtml(name)+'</h1>'+(product?.brand?'<p class="result-brand" data-no-translate>'+escapeHtml(product.brand)+'</p>':'')+'<section class="assessment-card" data-classification="'+escapeHtml(classification)+'"><strong>'+escapeHtml(status)+'</strong><p>'+escapeHtml(translate(explanation))+'</p></section>'+(product?.certification==='verified'?'<small class="certification">'+escapeHtml(translate('Certified halal'))+'</small>':product?.sourceLabels?.includes('en:halal')?'<small class="certification">'+escapeHtml(translate('Certification not verified'))+'</small>':'')+'<div class="button-row"><button type="button" class="button button-primary" data-action="scan-another">'+escapeHtml(translate('Scan another product'))+'</button>'+(!product||!product.ingredients.length||classification==='needs-checking'||classification==='not-enough-information'?'<button type="button" class="button button-secondary" data-action="label-fallback">'+escapeHtml(translate('Scan ingredient label'))+'</button><button type="button" class="button button-secondary" data-action="manual-fallback">'+escapeHtml(translate('Enter ingredients'))+'</button>':'')+(!product?'<button type="button" class="button button-secondary" data-action="retry-product">'+escapeHtml(translate('Retry'))+'</button>':'')+'</div>'+((findings||product)?'<details class="why-result"><summary>'+escapeHtml(translate('Why?'))+'</summary><p>'+escapeHtml(translate(analysis?.explanation||'Ingredients unavailable.'))+'</p>'+(product?.ingredientEvidence?.language?'<small>'+escapeHtml(translate('Ingredient label language'))+': '+escapeHtml(product.ingredientEvidence.language)+'</small>':'')+'<ul class="finding-list">'+findings+'</ul><p>'+escapeHtml(translate('Ingredient assessment is not certification. Check current packaging.'))+'</p></details>':'')+(product?.ingredientDataSource==='Open Food Facts'?'<p class="source-credit"><a href="https://world.openfoodfacts.org/product/'+escapeHtml(product.returnedBarcode)+'" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open Food Facts</a> &middot; <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL</a>'+(image?' &middot; <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA</a>':'')+'</p>':'')+'</div></div>';
+  $('#result-view').querySelector<HTMLImageElement>('#product-photo')?.addEventListener('error',event=>{(event.currentTarget as HTMLImageElement).hidden=true;$('#product-photo-fallback').hidden=false;},{once:true});
+  $('#result-view').querySelector('[data-action="scan-another"]')?.addEventListener('click',()=>{ $('#ingredients-input').value='';route('scanner'); });
+  $('#result-view').querySelector('[data-action="label-fallback"]')?.addEventListener('click',()=>{route('scanner');$('#label-image').focus();$('#label-image').scrollIntoView({block:'center'});});
+  $('#result-view').querySelector('[data-action="manual-fallback"]')?.addEventListener('click',()=>{route('scanner');$('#ingredients-input').value='';$('#ingredients-input').focus();});
+  const retry=$('#result-view').querySelector<HTMLButtonElement>('[data-action="retry-product"]');
+  if(retry){retry.disabled=!!view.retryAt&&view.retryAt>Date.now();if(retry.disabled)setTimeout(()=>{if(retry.isConnected)retry.disabled=false;},Math.min(2147483647,view.retryAt!-Date.now()));retry.addEventListener('click',()=>{retry.disabled=true;void showResult(view.barcode,view.source);});}
   window.halalI18n.apply(state.language);
-  route('result');
 }
 
 function renderGuide(query = '') {
@@ -359,7 +347,7 @@ $('#language-select').addEventListener('change', (event) => {
   window.halalI18n.apply(state.language);
   renderGuide($('#guide-search-input').value);
   renderHistory();
-  $$('#result-view [data-classification]').forEach((element) => { element.textContent = window.universalHalalPolicy.label(element.dataset.classification || 'needs-checking', state.language); });
+  if(lastResult)renderResult(lastResult);
   showToast('Language changed. The ingredient policy is unchanged.');
 });
 window.addEventListener('beforeinstallprompt', (event) => {
