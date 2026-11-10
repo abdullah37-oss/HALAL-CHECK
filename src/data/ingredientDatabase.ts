@@ -1,6 +1,7 @@
 // Evidence-oriented ingredient records. Source-dependent ingredients are never
 // promoted to halal or haram without a confirmed origin.
-window.ingredientDatabase = [
+export interface IngredientRecord { name: string; aliases: string[]; italian: string; arabic?: string; category: string; assessment: 'permissible' | 'prohibited' | 'source-dependent'; explanation: string; source: string; conditions: string; id?: string; assessmentCode?: string; translations?: Record<string, string>; policyVersion?: string; evidence?: string; }
+export const ingredientDatabase: IngredientRecord[] = [
   { name: 'Milk', aliases: ['milk', 'latte', 'latte intero', 'latte scremato', 'whole milk', 'skimmed milk', 'uht milk', 'pasteurised milk', 'حليب'], italian: 'Latte', arabic: 'حليب', category: 'Dairy', assessment: 'permissible', explanation: 'Ordinary milk is generally permissible.', source: 'Dairy', conditions: 'Assess added flavours and processing separately.' },
   { name: 'Milk cultures', aliases: ['milk cultures', 'bacterial cultures', 'cultures', 'fermenti lattici', 'starter culture'], italian: 'Fermenti lattici', category: 'Dairy', assessment: 'permissible', explanation: 'Ordinary microbial cultures used in dairy are generally permissible.', source: 'Microbial', conditions: 'Confirm the culture medium where relevant.' },
   { name: 'Butter', aliases: ['butter', 'burro'], italian: 'Burro', category: 'Dairy', assessment: 'permissible', explanation: 'Butter is generally permissible.', source: 'Dairy', conditions: 'Check added flavourings.' },
@@ -31,3 +32,5 @@ window.ingredientDatabase = [
   { name: 'Other source-dependent additive', aliases: ['e470a', 'e470b', 'e470i', 'e470ii', 'e422', 'e631', 'e627', 'e904', 'e920', 'animal rennet', 'caglio animale', 'enzymes', 'enzimi', 'animal fat', 'grasso animale', 'glycerol', 'glicerolo'], italian: 'Additivo da verificare', category: 'Source-dependent', assessment: 'source-dependent', explanation: 'This ingredient can have more than one origin or composition. Verify the source.', source: 'Unknown until verified', conditions: 'Do not infer an animal or pork source from an ambiguous name.' },
   { name: 'Sorbitol', aliases: ['sorbitol', 'sorbitolo', 'xylitol', 'mannitol', 'cetyl alcohol'], italian: 'Sorbitolo', category: 'Other', assessment: 'permissible', explanation: 'Sugar alcohols and fatty alcohols are not alcoholic beverages by name alone.', source: 'Chemical or plant', conditions: 'Assess the stated ingredient and product use.' }
 ];
+
+window.ingredientDatabase = ingredientDatabase;

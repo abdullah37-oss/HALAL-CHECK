@@ -1,5 +1,5 @@
 const fs=require('node:fs');const vm=require('node:vm');
-function validateAdminConfiguration(root='.') {
+function validateAdminConfiguration(root='dist') {
  const context=vm.createContext({window:{},URL,atob});
  for(const file of ['admin/config.js','admin/runtime-config.js'])vm.runInContext(fs.readFileSync(root+'/'+file,'utf8'),context,{filename:file,timeout:1000});
  if(!context.window.halalAdminConfig?.ready)throw Error('Admin deployment configuration is missing, invalid, inconsistent, or contains a non-public key');

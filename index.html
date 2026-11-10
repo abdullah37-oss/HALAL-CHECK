@@ -18,12 +18,12 @@
         <span><strong>HalalCheck</strong><small>Know What You Eat.</small></span>
       </a>
       <nav class="side-nav">
-        <a href="#home" data-route="home" class="nav-link active"><span aria-hidden="true">⌂</span> Overview</a>
+        <a href="#home" data-route="home" class="nav-link active"><span aria-hidden="true">⌂</span> Home</a>
         <a href="#history" data-route="history" class="nav-link"><span aria-hidden="true">◷</span> Scan history</a>
         <a href="#about" data-route="about" class="nav-link"><span aria-hidden="true">ⓘ</span> How it works</a>
         <a href="#guide" data-route="guide" class="nav-link"><span aria-hidden="true">✦</span> Ingredient guide</a>
       </nav>
-      <div class="sidebar-bottom">
+      <div class="sidebar-bottom"><label class="language-control" for="language-select">Language<select id="language-select"><option value="en">English</option><option value="it">Italiano</option><option value="ar">العربية</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="es">Español</option><option value="tr">Türkçe</option><option value="ms">Melayu</option><option value="id">Indonesia</option></select></label>
 
 
         <button class="nav-link" id="theme-toggle" type="button"><span aria-hidden="true">◐</span> <span>Dark mode</span></button>
@@ -32,8 +32,8 @@
     </aside>
 
     <main class="main-content">
-<div class="app-tools"><label class="language-control" for="language-select">Language<select id="language-select"><option value="en">English</option><option value="it">Italiano</option><option value="ar">العربية</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="es">Español</option><option value="tr">Türkçe</option><option value="ms">Melayu</option><option value="id">Indonesia</option></select></label><button class="nav-link" id="install-app" type="button" hidden><span aria-hidden="true">↓</span> Install app</button><button class="nav-link" id="privacy-settings" type="button">Privacy choices</button></div>
-      <header class="mobile-header">
+<div class="app-tools"><button class="nav-link" id="install-app" type="button" hidden><span aria-hidden="true">↓</span> Install app</button><button class="nav-link" id="privacy-settings" type="button">Privacy choices</button></div>
+      <div class="bismillah" lang="ar" dir="rtl" aria-label="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div><header class="mobile-header">
         <a class="brand" href="#home"><span class="brand-mark">✓</span><strong>HalalCheck</strong></a>
         <button class="icon-button" id="mobile-theme-toggle" type="button" aria-label="Toggle theme">◐</button>
       </header>
@@ -46,12 +46,12 @@
 
         <section class="scan-hero card">
           <div class="scan-copy">
-            <span class="hero-icon" aria-hidden="true">▣</span>
+            <span class="hero-icon" aria-hidden="true"><svg class="scan-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V4h3m10 0h3v3M4 17v3h3m10 0h3v-3M8 8v8m3-8v8m3-8v8m3-8v8"/></svg></span>
             <p class="eyebrow">QUICK CHECK</p>
             <h2>Scan a product</h2>
             <p>Use your camera to read a barcode, or enter it manually for a quick lookup.</p>
             <div class="button-row">
-              <button class="button button-primary" type="button" data-action="open-scanner"><span aria-hidden="true">⌁</span> Scan barcode</button>
+              <button class="button button-primary" type="button" data-action="open-scanner"><svg class="scan-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V4h3m10 0h3v3M4 17v3h3m10 0h3v-3M8 8v8m3-8v8m3-8v8m3-8v8"/></svg> Scan barcode</button>
               <button class="button button-secondary" type="button" data-action="manual-entry">Enter barcode</button>
             </div>
           </div>
@@ -60,7 +60,7 @@
 
         <div class="section-heading"><div><p class="eyebrow">AT A GLANCE</p><h2>Your scan overview</h2></div><a href="#history" data-route="history" class="text-link">View history <span>→</span></a></div>
         <div class="stats-grid">
-          <article class="stat-card card"><span class="stat-icon green">✓</span><div><strong id="verified-count">0</strong><span>Verified scans</span></div></article>
+          <article class="stat-card card"><span class="stat-icon green">✓</span><div><strong id="verified-count">0</strong><span>Halal assessments</span></div></article>
           <article class="stat-card card"><span class="stat-icon amber">!</span><div><strong id="review-count">0</strong><span>Need review</span></div></article>
           <article class="stat-card card"><span class="stat-icon slate">◷</span><div><strong id="total-count">0</strong><span>Total scans</span></div></article>
         </div>
@@ -69,7 +69,7 @@
       </section>
 
       <section id="scanner-view" class="view" data-view="scanner">
-        <button class="back-link" type="button" data-action="close-scanner">← Back to overview</button>
+        <button class="back-link" type="button" data-action="close-scanner">← Back to Home</button>
         <div class="scanner-header"><div><p class="eyebrow">PRODUCT SCANNER</p><h1>Scan a barcode</h1><p class="lede">Place the barcode inside the frame. Your camera stays on this device.</p></div></div>
         <div class="scanner-layout">
           <div class="camera-card card">
@@ -86,6 +86,16 @@
             <p class="privacy-note">Your camera feed is processed locally. We do not record or upload video. Barcode lookups send the barcode to Open Food Facts; ingredient lists are not sent to analytics.</p>
           </div>
         </div>
+
+        <section class="image-methods" aria-labelledby="image-methods-title">
+          <div class="section-heading"><div><p class="eyebrow">LOCAL IMAGE PROCESSING</p><h2 id="image-methods-title">Three ways to check</h2></div></div>
+          <div class="method-grid">
+            <article class="method-card card"><span class="method-number">01</span><h2>Live barcode camera</h2><p>Place a retail barcode in the camera frame above. Use manual entry if the label cannot be read.</p><button class="button button-secondary" data-action="focus-live" type="button">Start camera</button></article>
+            <article class="method-card card"><span class="method-number">02</span><h2>Upload barcode picture</h2><p>Choose an image from your device. The barcode is decoded locally.</p><label for="barcode-image">Choose a barcode image</label><input id="barcode-image" type="file" accept="image/jpeg,image/png,image/webp"><p id="barcode-image-status" role="status" aria-live="polite"></p></article>
+            <article class="method-card card"><span class="method-number">03</span><h2>Ingredient label recognition</h2><p>Read a label on this device, then review and correct the text before analysis.</p><label for="ocr-language">Label language</label><select id="ocr-language"><option value="eng">English</option><option value="ita">Italiano</option><option value="ara">العربية</option><option value="urd">اردو</option></select><label for="label-image">Choose an ingredient label</label><input id="label-image" type="file" accept="image/jpeg,image/png,image/webp" capture="environment"><p id="ocr-status" role="status" aria-live="polite"></p><button id="cancel-ocr" class="button button-secondary" type="button">Cancel</button></article>
+          </div>
+          <section id="ocr-review" class="ocr-review card" hidden><h2>Read ingredients, then confirm</h2><p>OCR can miss words. Check the complete label and correct every error before continuing.</p><label for="ocr-text">Extracted text</label><textarea id="ocr-text" rows="7" maxlength="10000"></textarea><label class="checkbox-label"><input id="ocr-complete" type="checkbox"> I checked that the full ingredient list is readable and complete.</label><div class="button-row"><button id="confirm-ocr" class="button button-primary" type="button" disabled>Analyze confirmed ingredients</button></div></section>
+        </section>
       </section>
 
       <section id="result-view" class="view" data-view="result"></section>
@@ -104,7 +114,7 @@
   </div>
   <nav class="bottom-nav" aria-label="Mobile navigation"><a href="#home" data-route="home" class="active">⌂<span>Home</span></a><a href="#history" data-route="history">◷<span>History</span></a><button type="button" data-action="open-scanner" class="scan-tab">＋<span>Scan</span></button><a href="#guide" data-route="guide">✦<span>Guide</span></a></nav>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <aside id="privacy-notice" class="privacy-notice" hidden><strong>Privacy choices</strong><p>HalalCheck uses optional, privacy-conscious analytics only with your permission. Your scanner and scan history remain on this device.</p><div><button class="button button-primary" id="accept-analytics" type="button">Allow analytics</button><button class="button button-secondary" id="decline-analytics" type="button">Decline</button></div></aside>
+  <aside id="privacy-notice" class="privacy-notice" hidden><strong>Privacy choices</strong><p>Essential storage keeps your language, theme and scan history on this device. Optional analytics records anonymous activity counts only with your permission.</p><div><button class="button button-primary" id="accept-analytics" type="button">Accept optional analytics</button><button class="button button-secondary" id="decline-analytics" type="button">Accept essential only</button></div></aside>
   <script src="src/data/ingredientDatabase.js"></script>
   <script src="config.js"></script>
   <script src="analytics.js"></script>

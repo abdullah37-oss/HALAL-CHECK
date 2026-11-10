@@ -1,14 +1,27 @@
+export {};
 const config = window.halalAdminConfig;
-const form = document.querySelector('#password-form');
-const status = document.querySelector('#status');
-const errorMessage = document.querySelector('#error');
+let language = localStorage.getItem('halalcheck-language') || 'en';
+if (!window.halalI18n?.supported.includes(language)) language = 'en';
+const t = (key: string) => window.halalI18n?.get(key, language) || key;
+function setMessage(element: HTMLElement, key: string) { element.dataset.i18n = key; element.textContent = t(key); }
+const languageSelect = document.querySelector<HTMLSelectElement>('#recovery-language')!;
+languageSelect.value = language;
+languageSelect.addEventListener('change', event => {
+  language = (event.currentTarget as HTMLSelectElement).value;
+  localStorage.setItem('halalcheck-language', language);
+  window.halalI18n?.apply(language);
+});
+window.halalI18n?.apply(language);
+const form = document.querySelector<HTMLFormElement>('#password-form')!;
+const status = document.querySelector<HTMLElement>('#status')!;
+const errorMessage = document.querySelector<HTMLElement>('#error')!;
 
-function showError(message) {
+function showError(message: string) {
   form.reset();
   history.replaceState(null, '', location.pathname);
   form.hidden = true;
-  status.textContent = '';
-  errorMessage.textContent = message;
+  setMessage(status, '');
+  setMessage(errorMessage, message);
 }
 
 async function initialize() {
@@ -42,7 +55,7 @@ async function initialize() {
       return;
     }
     const { data, error } = await client.auth.getSession();
-    if (error || !data.session || data.session.expires_at <= Date.now() / 1000) {
+    if (error || !data.session || (data.session.expires_at ?? 0) <= Date.now() / 1000) {
       showError('This recovery link is invalid or has expired. Request a new password setup link.');
       return;
     }
@@ -52,36 +65,36 @@ async function initialize() {
       return;
     }
     form.hidden = false;
-    status.textContent = 'Recovery link verified. Choose a password of at least 12 characters.';
+    setMessage(status, 'Recovery link verified. Choose a password of at least 12 characters.');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const password = document.querySelector('#new-password').value;
-      const confirmation = document.querySelector('#confirm-password').value;
-      errorMessage.textContent = '';
+      const password = document.querySelector<HTMLInputElement>('#new-password')!.value;
+      const confirmation = document.querySelector<HTMLInputElement>('#confirm-password')!.value;
+      setMessage(errorMessage, '');
       if (password.length < 12 || password !== confirmation) {
-        errorMessage.textContent = 'Use at least 12 characters and enter the same password twice.';
+        setMessage(errorMessage, 'Use at least 12 characters and enter the same password twice.');
         return;
       }
-      const button = form.querySelector('button');
+      const button = form.querySelector<HTMLButtonElement>('button')!;
       button.disabled = true;
       try {
         const { error: updateError } = await client.auth.updateUser({ password });
         if (updateError) {
-          if ([401, 403].includes(updateError.status)) {
+          if ([401, 403].includes(updateError.status ?? 0)) {
             form.reset();
             showError('This recovery link is invalid or has expired. Request a new password setup link.');
           } else {
-            errorMessage.textContent = 'Unable to save your password. Request a fresh setup link and try again.';
+            setMessage(errorMessage, 'Unable to save your password. Request a fresh setup link and try again.');
           }
           return;
         }
         form.reset();
         form.hidden = true;
         try { await client.auth.signOut({ scope: 'local' }); } catch { /* The password was saved; keep the form closed. */ }
-        status.textContent = 'Password saved. Returning to admin sign in...';
+        setMessage(status, 'Password saved. Returning to admin sign in...');
         setTimeout(() => location.assign('/admin/'), 300);
       } catch {
-        errorMessage.textContent = 'Unable to save your password. Check your connection and try again.';
+        setMessage(errorMessage, 'Unable to save your password. Check your connection and try again.');
       } finally {
         button.disabled = false;
       }

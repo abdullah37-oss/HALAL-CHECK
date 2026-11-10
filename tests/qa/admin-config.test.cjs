@@ -1,6 +1,6 @@
 const {test}=require('node:test');const assert=require('node:assert/strict');const fs=require('node:fs');const vm=require('node:vm');const {validateAdminConfiguration}=require('../../scripts/validate-admin-config.cjs');
 const base={HALALCHECK_SUPABASE_URL:'https://anvswymarultvsbszjte.supabase.co',HALALCHECK_SUPABASE_ANON_KEY:'sb_publishable_syntheticpublickey0000000000',HALALCHECK_ADMIN_STATS_ENDPOINT:'https://anvswymarultvsbszjte.supabase.co/functions/v1/admin-stats'};
-function validate(overrides){const window={...base,...overrides};vm.runInNewContext(fs.readFileSync('admin/runtime-config.js','utf8'),{window,URL,atob});return window.halalAdminConfig.ready;}
+function validate(overrides){const window={...base,...overrides};vm.runInNewContext(fs.readFileSync('dist/admin/runtime-config.js','utf8'),{window,URL,atob});return window.halalAdminConfig.ready;}
 test('checked-in admin/public config is coherent and loads before login',()=>assert.equal(validateAdminConfiguration(),true));
 test('public publishable configuration accepted',()=>assert.equal(validate({}),true));
 for(const field of Object.keys(base))for(const value of ['',undefined,'invalid'])test(`admin rejects ${field}=${value}`,()=>assert.equal(validate({[field]:value}),false));

@@ -1,10 +1,10 @@
-window.halalAnalytics = (() => {
+export const halalAnalytics = (() => {
   const endpoint = window.HALALCHECK_ANALYTICS_ENDPOINT || '';
   const consentKey = 'halalcheck-analytics-consent';
   const sessionKey = 'halalcheck-analytics-session';
   const allowedEvents = new Set(['page_opened', 'scan_started', 'barcode_completed', 'manual_lookup', 'lookup_succeeded', 'lookup_failed', 'guide_opened', 'language_changed', 'pwa_installed', 'analysis_completed']);
   const deviceCategory = matchMedia('(max-width: 600px)').matches ? 'mobile' : matchMedia('(max-width: 1024px)').matches ? 'tablet' : 'desktop';
-  const recentEvents = new Map();
+  const recentEvents = new Map<string, number>();
   function hasConsent() { return localStorage.getItem(consentKey) === 'granted'; }
   function getSessionHash() {
     if (!hasConsent()) return null;
@@ -14,7 +14,7 @@ window.halalAnalytics = (() => {
     sessionStorage.setItem(sessionKey, sessionHash);
     return sessionHash;
   }
-  async function track(eventName, metadata = {}) {
+  async function track(eventName: string, metadata: Record<string, unknown> = {}) {
     if (!endpoint || !hasConsent() || !allowedEvents.has(eventName) || typeof metadata !== 'object' || metadata === null || Array.isArray(metadata)) return;
     const sessionHash = getSessionHash();
     if (!sessionHash) return;
@@ -27,3 +27,5 @@ window.halalAnalytics = (() => {
   }
   return { track, hasConsent, consentKey, allowedEvents };
 })();
+
+window.halalAnalytics = halalAnalytics;

@@ -19,3 +19,9 @@ playwright-report/
 .release-private/
 .vercel
 .env*
+
+# Development tool caches
+*.tsbuildinfo
+.biome-cache/
+debug.log
+.cache/

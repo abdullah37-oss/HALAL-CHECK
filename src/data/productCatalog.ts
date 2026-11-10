@@ -1,4 +1,5 @@
-window.productCatalog = [
+import type { Product } from '../models/productModel';
+export const productCatalog: Product[] = [
   window.productModel.createProduct({
     scannedBarcode: '80771548',
     returnedBarcode: '80771548',
@@ -19,3 +20,5 @@ window.productCatalog = [
     lastUpdated: '2026-10-31'
   })
 ];
+
+window.productCatalog = productCatalog;

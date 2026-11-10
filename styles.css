@@ -11,3 +11,30 @@ html,body,.app-shell{direction:ltr}.localized-text[dir=rtl],main h1[dir=rtl],mai
 [hidden]{display:none!important}
 
 .toast{opacity:0;pointer-events:none}.toast.show{opacity:1}
+
+/* HalalCheck 2.0: readable, calm surfaces with a consistent control system. */
+:root{--muted:#53665c;--shadow:0 12px 36px #17392a08}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #39a982;outline-offset:3px}
+button:disabled{cursor:not-allowed;opacity:.55;transform:none}
+.app-shell{direction:ltr}.sidebar{position:sticky;top:0;height:100dvh}.main-content{margin:0 auto;padding-top:22px}
+.bismillah{font-family:'Amiri','Noto Naskh Arabic','Traditional Arabic',serif;font-size:clamp(25px,3vw,38px);line-height:1.9;text-align:center;color:var(--primary);margin:0 0 25px;min-height:70px;letter-spacing:0}
+.sidebar .language-control{display:grid;gap:7px;padding:14px;color:var(--muted);font-size:12px;font-weight:650}.language-control select{width:100%;max-width:100%;background:var(--bg);color:var(--text);border:1px solid var(--line);padding:10px;border-radius:9px}
+.app-tools{min-height:36px;margin-bottom:12px}.side-nav{margin-top:36px}.nav-link>span[aria-hidden]{width:22px;min-width:22px;font-size:20px;line-height:1;text-align:center}
+.scan-hero{border-color:#cde3d8;background:radial-gradient(ellipse at right,#e3f4e9,transparent 65%),var(--surface)}
+.method-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.method-card{padding:25px;min-width:0}.method-card h2{font-size:19px;line-height:1.3;margin:14px 0 10px}.method-card p,.ocr-review p{font-size:13px;color:var(--muted)}.method-number{display:inline-grid;place-items:center;color:var(--primary);border:1px solid var(--line);background:var(--bg);border-radius:9px;width:34px;height:34px;font-weight:800;font-size:12px}
+.method-card label,.ocr-review label{display:block;font-size:12px;font-weight:700;margin-top:18px;margin-bottom:7px}.method-card input[type=file]{font-size:11px;width:100%;color:var(--muted)}.method-card input::file-selector-button{background:var(--bg);color:var(--text);border:1px solid var(--line);padding:9px;border-radius:7px;margin-bottom:8px;cursor:pointer}.method-card select{width:100%;padding:9px;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:8px}.method-card [role=status]{min-height:36px;overflow-wrap:anywhere}
+.ocr-review{margin-top:20px;padding:28px}.ocr-review textarea{display:block;width:100%;border:1px solid var(--line);padding:14px;border-radius:10px;resize:vertical;background:var(--bg);color:var(--text);font:inherit}.ocr-review .checkbox-label{display:flex;gap:10px;align-items:flex-start;line-height:1.6}.checkbox-label input{margin-top:4px}
+.privacy-notice{border:1px solid var(--line);box-shadow:0 12px 55px #10291d26;max-width:520px}.privacy-notice p{font-size:13px;line-height:1.65}.privacy-notice>div{display:flex;flex-wrap:wrap;gap:9px}.privacy-notice strong{font-size:16px}
+.result-status[data-classification=not-halal]{background:#fff0ed;color:#a32020}.result-status[data-classification=needs-checking],.result-status[data-classification=not-enough-information]{background:#fff5df;color:#805500}.finding-list{padding-inline-start:22px}.finding-list li{margin-bottom:14px}.finding-list small{display:block;margin-top:4px;color:var(--muted)}
+[dir=rtl] .main-content,[dir=rtl] .sidebar-bottom{direction:rtl}[dir=rtl] .side-nav{direction:rtl}[dir=rtl] .nav-link{text-align:right}[dir=rtl] .back-link{direction:rtl}[dir=rtl] input[inputmode=numeric]{direction:ltr}
+@media(max-width:1100px){.method-grid{grid-template-columns:1fr}.method-card{display:grid;grid-template-columns:38px 1fr;column-gap:16px}.method-card>:not(.method-number){grid-column:2}.method-card .method-number{grid-row:1/3}.method-card h2{margin-top:4px}.sidebar{width:220px}.main-content{padding-inline:26px}}
+@media(max-width:800px){.app-shell{display:block}.sidebar{position:relative;display:block;width:100%;height:auto;padding:6px 18px;border-right:0;border-bottom:1px solid var(--line)}.sidebar>.brand,.sidebar>.side-nav,.sidebar .sidebar-note,.sidebar #theme-toggle{display:none}.sidebar-bottom{margin:0}.sidebar .language-control{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:4px;font-size:11px}.sidebar .language-control select{width:150px;padding:7px}.main-content{padding-top:15px}.bismillah{min-height:54px;margin-bottom:12px;font-size:27px}.mobile-header{margin-bottom:24px}.method-card{padding:20px}.ocr-review{padding:20px}.scan-item{flex-wrap:wrap}.status-chip{max-width:150px;white-space:normal}.privacy-notice{left:12px;right:12px;bottom:85px;max-width:none}.privacy-notice .button{flex:1;font-size:12px}.toast{bottom:90px;left:16px;right:16px}.camera-message{padding:0 18px;text-align:center}.button{min-height:44px}.scan-hero{padding:26px}.scan-art{display:none}.app-tools{gap:4px}.app-tools .nav-link{padding:8px;font-size:12px}.scanner-layout{grid-template-columns:1fr}.camera-card{min-height:300px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.status-chip{color:#0b7042}html[data-theme=dark] .status-chip{color:#b4f0cc;background:#183c2a}
+
+.bottom-nav .scan-tab span{color:#fff}.scan-icon{width:20px;height:20px;display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}.hero-icon .scan-icon{width:24px;height:24px}
+
+html[data-theme=dark] .brand,html[data-theme=dark] .brand strong{color:#e8f6ef}html[data-theme=dark] .eyebrow,html[data-theme=dark] .text-link,html[data-theme=dark] .back-link,html[data-theme=dark] .method-number,html[data-theme=dark] .bottom-nav .active,html[data-theme=dark] .bottom-nav .active span{color:#79deb0}
+
+.nav-link>span:not([aria-hidden]){width:auto;font-size:inherit;text-align:inherit}
