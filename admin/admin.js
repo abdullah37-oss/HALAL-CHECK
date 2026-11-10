@@ -122,12 +122,37 @@ $('#auth-form').addEventListener('submit', async (event) => {
     const { data, error } = await client.auth.signInWithPassword({ email: $('#email').value.trim(), password: $('#password').value });
     $('#password').value = '';
     if (error || !data?.session?.access_token) {
-      showSignedOut('Sign-in failed. Check your email and password and try again.');
+      const message = error?.message?.toLowerCase().includes('invalid login credentials')
+        ? 'Sign-in failed. If you have not set a password from your invitation, use the password setup link below.'
+        : 'Sign-in failed. Check your email and password and try again.';
+      showSignedOut(message);
       return;
     }
     await loadStats(data.session);
   } catch { showSignedOut('Unable to sign in. Check your connection and try again.'); }
   finally { if (!inFlightKey) $('#auth-submit').disabled = !client; }
+});
+
+$('#reset-password').addEventListener('click', async () => {
+  if (!client || $('#reset-password').disabled) return;
+  const email = $('#email').value.trim();
+  if (!email) {
+    $('#auth-error').textContent = 'Enter your administrator email first.';
+    return;
+  }
+  $('#reset-password').disabled = true;
+  $('#auth-error').textContent = '';
+  $('#auth-status').textContent = 'Sending password setup instructions...';
+  try {
+    const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: `${location.origin}${location.pathname}` });
+    $('#auth-status').textContent = error
+      ? 'Password setup instructions could not be sent. Check the email address and try again.'
+      : 'If an account exists for this email, password setup instructions have been sent.';
+  } catch {
+    $('#auth-status').textContent = 'Password setup instructions could not be sent. Check your connection and try again.';
+  } finally {
+    $('#reset-password').disabled = false;
+  }
 });
 
 $('#sign-out').addEventListener('click', async () => {
@@ -170,6 +195,7 @@ async function initialize() {
     const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2.119.0');
     client = createClient(config.value.url, config.value.key, { auth: { persistSession: true, autoRefreshToken: true } });
     $('#auth-submit').disabled = false;
+    $('#reset-password').disabled = false;
     $('#auth-status').textContent = '';
     client.auth.onAuthStateChange((event, session) => {
       if (event === 'PASSWORD_RECOVERY') passwordSetup = true;
