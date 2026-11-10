@@ -5,11 +5,11 @@
   "skipped": 0,
   "minimum": 100,
   "browser": {
-    "passed": 62,
+    "passed": 88,
     "failed": 0,
     "skipped": 0
   },
-  "totalExecutions": 398,
-  "totalPassed": 398,
+  "totalExecutions": 424,
+  "totalPassed": 424,
   "totalFailed": 0
 }

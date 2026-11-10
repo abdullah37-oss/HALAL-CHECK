@@ -1,6 +1,6 @@
 {
-  "createdAt": "2026-11-09T17:28:35.520Z",
-  "buildRuntime": "v24.22.2",
+  "createdAt": "2026-11-10T13:41:23.527Z",
+  "buildRuntime": "v26.13.0",
   "files": [
     {
       "path": "admin/admin.css",
@@ -9,8 +9,8 @@
     },
     {
       "path": "admin/admin.js",
-      "bytes": 8794,
-      "sha256": "10148ba9a896be023c2ec606cb6be5a8fa4389aaaaebae65d752f42619035f2c"
+      "bytes": 10098,
+      "sha256": "3b2a91d02d2253333f345a5943f59caaa44141f1858277755464c957888a1fc1"
     },
     {
       "path": "admin/config.js",
@@ -19,8 +19,18 @@
     },
     {
       "path": "admin/index.html",
-      "bytes": 2551,
-      "sha256": "3e4d87c38f52c211c14f2eb217c0613ef068c09c4a20ad8afe27cc9bffcf18d1"
+      "bytes": 2635,
+      "sha256": "6634b9e6d58c8e1aeffeb8d0142f260ad653091e5ce81f70d0be17c11ea57bc0"
+    },
+    {
+      "path": "admin/reset-password/index.html",
+      "bytes": 1257,
+      "sha256": "7311a421c28bb365a2ed42132f3f30257d1ff058763fa4a14d54e27cf14d0174"
+    },
+    {
+      "path": "admin/reset-password/reset-password.js",
+      "bytes": 4421,
+      "sha256": "fd6039f2a0bfd851c4de18e19d47d9b35c251a6ef6f845ac154b95ab9b68e488"
     },
     {
       "path": "admin/runtime-config.js",

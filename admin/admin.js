@@ -193,7 +193,7 @@ async function initialize() {
   if (!config?.ready) { showSignedOut('Admin sign-in is unavailable because this deployment is not configured.'); return; }
   try {
     const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2.119.0');
-    client = createClient(config.value.url, config.value.key, { auth: { persistSession: true, autoRefreshToken: true } });
+    client = createClient(config.value.url, config.value.key, { auth: { flowType: 'implicit', detectSessionInUrl: true, persistSession: true, autoRefreshToken: true } });
     $('#auth-submit').disabled = false;
     $('#reset-password').disabled = false;
     $('#auth-status').textContent = '';
