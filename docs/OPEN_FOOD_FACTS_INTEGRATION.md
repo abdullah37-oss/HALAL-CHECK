@@ -47,6 +47,8 @@ The first preview exposed a real hosting defect that local esbuild bundles did n
 
 Hosted dynamic routes also bind `barcode` into the request query. The proxy accepts one validated binding, requiring an exact match when the public numeric path is present. For the fixed internal function-template path it validates that single bound code. It rejects duplicate/conflicting bindings and every arbitrary URL parameter. Regressions cover public and encoded/unencoded function-template request forms. This platform adapter preserves the same barcode identity checks, upstream host restriction and request budgets.
 
+Actual protected-preview browser testing also caught `credentials: omit` preventing Vercel's existing first-party access cookie from reaching the same-origin product endpoint (HTTP 401). Browser proxy requests now use `same-origin`; upstream OFF requests continue to use `omit`, with no cookie or Authorization forwarding. A browser regression uses a synthetic first-party access cookie. Deployment protection, Supabase authentication and CORS remain enabled and unchanged.
+
 Production recommendation: **NO-GO until owner accepts preview results, remaining device/translation limitations and rate-limit capacity, and explicitly approves an exact release commit**. Preview deployment and verification do not authorize production promotion. Keep the existing production release available for rollback; do not run unrelated Supabase deployment instructions from older documents.
 
 Official references reviewed:

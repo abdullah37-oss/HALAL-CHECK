@@ -11,6 +11,7 @@ async function open(page,body=fixture(),status=200,headers={}){
  await page.locator('#barcode-input').fill(code);await page.locator('#barcode-form button[type=submit]').click();
  await expect(page.locator('#result-view')).toHaveClass(/active-view/);
 }
+test('same-origin deployment access cookie reaches the product proxy',async({page,context})=>{await context.addCookies([{name:'preview-access',value:'synthetic-test-only',url:'http://127.0.0.1:4173'}]);let accepted=false;await page.route('**/api/products/*',route=>{accepted=!!route.request().headers().cookie?.includes('preview-access=synthetic-test-only');return route.fulfill({status:accepted?200:401,contentType:'application/json',body:JSON.stringify(fixture())});});await page.goto('/');await page.locator('#decline-analytics').click();await page.locator('[data-action="manual-entry"]').first().click();await page.locator('#barcode-input').fill(code);await page.locator('#barcode-form button[type=submit]').click();await expect(page.locator('.assessment-card')).toContainText('HALAL');expect(accepted).toBe(true);});
 for(const [name,body,expected] of [
  ['complete ingredients',fixture(),'likely-halal'],
  ['prohibited ingredient',fixture({ingredients_text:'milk, pork gelatin'}),'not-halal'],

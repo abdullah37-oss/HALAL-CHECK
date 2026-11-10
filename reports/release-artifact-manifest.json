@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-10T19:36:43.200Z",
+  "createdAt": "2026-11-10T19:44:29.950Z",
   "buildRuntime": "v26.13.0",
   "files": [
     {
@@ -214,8 +214,8 @@
     },
     {
       "path": "src/utils/productRepository.js",
-      "bytes": 17335,
-      "sha256": "cd878596d0a8803268328307e079dd9e78ef5c4cc2985e96c97199dbd053756b"
+      "bytes": 17386,
+      "sha256": "3db88328f8c6a02cdb76ad45900b6f52581f302513eff9010180f59e5de60c4d"
     },
     {
       "path": "styles.css",

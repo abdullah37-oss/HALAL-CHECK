@@ -177,7 +177,9 @@ export async function fetchProduct(barcode: string, options: FetchOptions = {}):
         const timer = setTimeout(() => controller.abort(), options.timeoutMs ?? 6000);
         let retry = false;
         try {
-            const response = await fetcher(url, { signal: controller.signal, credentials: 'omit', redirect: 'error', headers: options.transport === 'upstream' ? { 'Accept': 'application/json', 'User-Agent': OFF_USER_AGENT } : { 'Accept': 'application/json' } });
+            // Same-origin platform access stays on our host. The server never
+            // forwards those cookies or any Authorization header to OFF.
+            const response = await fetcher(url, { signal: controller.signal, credentials: options.transport === 'upstream' ? 'omit' : 'same-origin', redirect: 'error', headers: options.transport === 'upstream' ? { 'Accept': 'application/json', 'User-Agent': OFF_USER_AGENT } : { 'Accept': 'application/json' } });
             if (response.status === 429)
                 return { status: 'rate-limited', retryAt: retryTime(response.headers?.get('retry-after') || null, now()) };
             if (response.status === 404)
