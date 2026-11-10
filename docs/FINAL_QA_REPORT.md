@@ -4,13 +4,13 @@
 
 - Strict TypeScript browser and service-worker checks: PASS.
 - Biome correctness/security lint: PASS (18 owned TypeScript files).
-- Unit/integration: 400 passed, 0 failed, 0 skipped.
+- Unit/integration: 401 passed, 0 failed, 0 skipped.
 - Desktop/mobile Chromium: 146 passed, 0 failed, 0 skipped.
-- Total QA: 546 passed, 0 failed, 0 skipped.
+- Total QA: 547 passed, 0 failed, 0 skipped.
 - Production build: PASS. Compiled JS and same-origin lazy WASM/OCR assets.
 - npm audit: 0 vulnerabilities across all installed dependencies.
 - Deno Edge type check: PASS with frozen updated lockfile metadata; no Edge source deployed or modified.
-- Accessibility: all12 tested light/dark public and private viewport states pass WCAG2/2.1 A/AA axe rules without rule exclusions. Incomplete checks remain in JSON reports for manual review; this is not accessibility certification.
+- Accessibility: all 12 tested light/dark public and private viewport states pass WCAG2/2.1 A/AA axe rules without rule exclusions. Incomplete checks remain in JSON reports for manual review; this is not accessibility certification.
 
 ## Genuine processing versus simulations
 
@@ -20,11 +20,11 @@ Admin authorization, real pinned Auth SDK behavior, recovery session validation,
 
 ## Security and privacy
 
-Read-only production inventory confirms1active administrator; RLS enabled on analytics_events and admin_users; anonymous reporting and anonymous/authenticated direct ingestion denied; service-role ingestion allowed. This release changes no Supabase schema, grants, membership, Auth or sender configuration. Images stay local, upload MIME/signature/dimension/size limits are enforced, inputs are escaped, and optional analytics remains consent-gated with empty metadata. Existing CSP is preserved with wasm-unsafe-eval only for WebAssembly and same-origin workers; general JavaScript eval is not enabled. Admin responses remain no-store and are excluded from service-worker caches.
+Read-only production inventory confirms 1 active administrator; RLS enabled on analytics_events and admin_users; anonymous reporting and anonymous/authenticated direct ingestion denied; service-role ingestion allowed. This release changes no Supabase schema, grants, membership, Auth or sender configuration. Images stay local, upload MIME/signature/dimension/size limits are enforced, inputs are escaped, and optional analytics remains consent-gated with empty metadata. Existing CSP is preserved with wasm-unsafe-eval only for WebAssembly and same-origin workers; general JavaScript eval is not enabled. Admin responses remain no-store and are excluded from service-worker caches.
 
 ## Performance
 
-See reports/performance-build.json for measured artifact sizes. Initial HTML-referenced JS/CSS is about520KB uncompressed and90KB gzip-equivalent; these are build measurements, not measured mobile transfer latency. Barcode WASM is about947KB and is lazy-loaded. OCR language packs are approximately1.0-3.0MB each plus the selected local worker/core, loaded only on request. OCR runs in a worker and closes bitmaps/terminates workers on completion or cancellation. Physical mobile memory, camera startup/focus, thermal behavior and slow-network latency are not measured.
+See reports/performance-build.json for measured artifact sizes. Initial HTML-referenced JS/CSS is about 520 KB uncompressed and 90 KB gzip-equivalent; these are build measurements, not measured mobile transfer latency. Barcode WASM is about 947 KB and is lazy-loaded. OCR language packs are approximately 1.0-3.0 MB each plus the selected local worker/core, loaded only on request. OCR runs in a worker and closes bitmaps/terminates workers on completion or cancellation. Physical mobile memory, camera startup/focus, thermal behavior and slow-network latency are not measured.
 
 ## Release gate
 

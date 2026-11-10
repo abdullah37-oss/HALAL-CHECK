@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-10T16:59:35.580Z",
+  "baseline": "d5265ec31f40bb4c26060898a29f99e438755d22",
+  "checks": [
+    {
+      "file": "index.html",
+      "status": 200,
+      "baselineMatch": true,
+      "lineEndingNormalizedMatch": true,
+      "bytesOriginal": 10576,
+      "bytesLive": 10576
+    },
+    {
+      "file": "admin/index.html",
+      "status": 200,
+      "baselineMatch": true,
+      "lineEndingNormalizedMatch": true,
+      "bytesOriginal": 2635,
+      "bytesLive": 2635
+    },
+    {
+      "file": "admin/admin.js",
+      "status": 200,
+      "baselineMatch": true,
+      "lineEndingNormalizedMatch": true,
+      "bytesOriginal": 10098,
+      "bytesLive": 10098
+    },
+    {
+      "file": "admin/reset-password/index.html",
+      "status": 200,
+      "baselineMatch": false,
+      "lineEndingNormalizedMatch": true,
+      "bytesOriginal": 1256,
+      "bytesLive": 1257
+    },
+    {
+      "file": "admin/reset-password/reset-password.js",
+      "status": 200,
+      "baselineMatch": false,
+      "lineEndingNormalizedMatch": true,
+      "bytesOriginal": 4326,
+      "bytesLive": 4421
+    }
+  ],
+  "productionUnchanged": true
+}

@@ -23,8 +23,8 @@
     },
     {
       "file": "src/i18n/index.js",
-      "bytes": 449912,
-      "gzipBytes": 69489
+      "bytes": 458593,
+      "gzipBytes": 72194
     },
     {
       "file": "src/data/universalHalalPolicy.js",
@@ -53,12 +53,12 @@
     },
     {
       "file": "app.js",
-      "bytes": 28395,
-      "gzipBytes": 7630
+      "bytes": 28390,
+      "gzipBytes": 7626
     }
   ],
-  "totalShellBytes": 547846,
-  "totalShellGzipBytes": 97124,
+  "totalShellBytes": 556522,
+  "totalShellGzipBytes": 99825,
   "lazy": [
     {
       "file": "assets/barcode-decoder.js",

@@ -4,7 +4,7 @@ A framework-free TypeScript website and installable PWA for evidence-based food 
 
 ## Development
 
-Use Node.js24.x and the committed npm lockfile.
+Use Node.js 24.x and the committed npm lockfile.
 
 ```sh
 npm ci
@@ -38,6 +38,6 @@ See [Architecture](docs/PROJECT_ARCHITECTURE.md), [TypeScript migration](docs/TY
 
 Only allowlisted assets and compiled JavaScript enter dist/. Local WASM/OCR workers/models are lazy-loaded; API secrets, .env files, SQL, test fixtures, source maps and reports are excluded. Browser configuration contains public URLs and a publishable key only. No service-role credentials belong in frontend code. Admin reporting retains existing Supabase Auth, protected Edge verification and database authorization. Recovery uses the reviewed implicit flow, verifies a recovery session with Auth, and saves through updateUser. Owner password entry remains private.
 
-Development takes place on halalcheck-2.0. Push without force, publish a preview in the existing Vercel project, then request explicit owner approval before production. Supabase schema, RLS, Auth settings, admin membership and authentication emails require separate explicit approval; no2.0 development task authorizes those changes. Never create a replacement project.
+Development takes place on halalcheck-2.0. Push without force, publish a preview in the existing Vercel project, then request explicit owner approval before production. Supabase schema, RLS, Auth settings, admin membership and authentication emails require separate explicit approval; no 2.0 development task authorizes those changes. Never create a replacement project.
 
 Physical Android camera/focus and real packaging/OCR accuracy need the manual acceptance checklist in Scanner/OCR. Automated contrast tests are not legal or accessibility certification. Auth/email delivery and owner dashboard sign-in are not claimed until performed privately by the owner.

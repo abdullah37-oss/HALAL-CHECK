@@ -360,7 +360,7 @@ $('#language-select').addEventListener('change', (event) => {
   renderGuide($('#guide-search-input').value);
   renderHistory();
   $$('#result-view [data-classification]').forEach((element) => { element.textContent = window.universalHalalPolicy.label(element.dataset.classification || 'needs-checking', state.language); });
-  showToast('Language changed. The universal halal policy is unchanged.');
+  showToast('Language changed. The ingredient policy is unchanged.');
 });
 window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();

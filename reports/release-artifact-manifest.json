@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-10T16:56:27.052Z",
+  "createdAt": "2026-11-10T17:03:53.243Z",
   "buildRuntime": "v26.13.0",
   "files": [
     {
@@ -44,8 +44,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 28395,
-      "sha256": "2aa20eceb3d1b4b8e21a185d94adc5338c2aa7c8c396fffca2c22a53e680840a"
+      "bytes": 28390,
+      "sha256": "4d616abe669a334d6bd4b60bddff4663a77136aa82c2e7f95ad4880489d39f02"
     },
     {
       "path": "assets/barcode-decoder.js",
@@ -199,8 +199,8 @@
     },
     {
       "path": "src/i18n/index.js",
-      "bytes": 449912,
-      "sha256": "abd533f901fcefbeaa4c1b5f34988ab8cf69a710b2bb9f4dc94a7246c0df3106"
+      "bytes": 458593,
+      "sha256": "5e87d9c49594f7cc583a79f1a7a6b259a91d81ba37f68e5a49173ac2bf17ea38"
     },
     {
       "path": "src/models/productModel.js",
