@@ -45,6 +45,8 @@ Browser tests use deterministic product fixtures and synthetic Auth sessions. Th
 
 The first preview exposed a real hosting defect that local esbuild bundles did not reproduce: ES-module output was loaded as CommonJS by the function runtime (`Cannot use import statement outside a module`). `api/tsconfig.json` gives the server entry its own Node/CommonJS compilation boundary while leaving browser compilation unchanged. A regression now compiles and loads the actual entry inside a CommonJS package. `Node16` here specifies TypeScript module-resolution rules, not a downgrade of the deployed Node 24 runtime. A replacement preview must pass live endpoint checks before acceptance.
 
+Hosted dynamic routes also bind `barcode` into the request query. The proxy accepts one validated binding, requiring an exact match when the public numeric path is present. For the fixed internal function-template path it validates that single bound code. It rejects duplicate/conflicting bindings and every arbitrary URL parameter. Regressions cover public and encoded/unencoded function-template request forms. This platform adapter preserves the same barcode identity checks, upstream host restriction and request budgets.
+
 Production recommendation: **NO-GO until owner accepts preview results, remaining device/translation limitations and rate-limit capacity, and explicitly approves an exact release commit**. Preview deployment and verification do not authorize production promotion. Keep the existing production release available for rollback; do not run unrelated Supabase deployment instructions from older documents.
 
 Official references reviewed:

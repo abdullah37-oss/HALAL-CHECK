@@ -18,7 +18,12 @@ export function createProductHandler({ fetcher = fetch, now = Date.now, sleep = 
         const url = new URL(request.url), match = url.pathname.match(/^\/api\/products\/(\d{8}|\d{12,14})\/?$/);
         if (request.method !== 'GET')
             return send(405, { error: 'method-not-allowed' }, { Allow: 'GET' });
-        if (!match || !isRetailBarcode(match[1]) || [...url.searchParams.keys()].some(k => k !== 'lang') || url.searchParams.getAll('lang').length > 1)
+        // Vercel's dynamic routing also binds the path segment as a query value.
+        // Accept that binding only when it exactly matches the requested path.
+        const bindings = url.searchParams.getAll('barcode');
+        const functionPath = ['/api/products/[barcode]', '/api/products/%5Bbarcode%5D'].includes(url.pathname);
+        const barcode = match?.[1] || (functionPath && bindings.length === 1 ? bindings[0] : '');
+        if (!isRetailBarcode(barcode) || [...url.searchParams.keys()].some(k => k !== 'lang' && k !== 'barcode') || url.searchParams.getAll('lang').length > 1 || bindings.length > 1 || bindings.length === 1 && bindings[0] !== barcode)
             return send(400, { error: 'invalid-request' });
         const origin = request.headers.get('origin');
         if (request.headers.get('sec-fetch-site') === 'cross-site' || origin && origin !== url.origin)
@@ -30,7 +35,7 @@ export function createProductHandler({ fetcher = fetch, now = Date.now, sleep = 
         if (ingressTimes.length >= 60)
             return send(429, { error: 'rate-limited' }, { 'Retry-After': '60' });
         ingressTimes.push(now());
-        const barcode = match[1], key = barcodeIdentity(barcode) + ':' + language;
+        const key = barcodeIdentity(barcode) + ':' + language;
         for (const [k, v] of cache)
             if (v.expires <= now())
                 cache.delete(k);
