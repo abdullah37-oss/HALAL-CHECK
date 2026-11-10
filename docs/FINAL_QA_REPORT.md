@@ -24,7 +24,7 @@ Read-only production inventory confirms 1 active administrator; RLS enabled on a
 
 ## Performance
 
-See reports/performance-build.json for measured artifact sizes. Initial HTML-referenced JS/CSS is about 520 KB uncompressed and 90 KB gzip-equivalent; these are build measurements, not measured mobile transfer latency. Barcode WASM is about 947 KB and is lazy-loaded. OCR language packs are approximately 1.0-3.0 MB each plus the selected local worker/core, loaded only on request. OCR runs in a worker and closes bitmaps/terminates workers on completion or cancellation. Physical mobile memory, camera startup/focus, thermal behavior and slow-network latency are not measured.
+See reports/performance-build.json for measured artifact sizes. Initial HTML-referenced JS/CSS is 556,522 bytes uncompressed and 99,825 bytes gzip-equivalent; these are build measurements, not measured mobile transfer latency. Barcode WASM is about 947 KB and is lazy-loaded. OCR language packs are approximately 1.0-3.0 MB each plus the selected local worker/core, loaded only on request. OCR runs in a worker and closes bitmaps/terminates workers on completion or cancellation. Physical mobile memory, camera startup/focus, thermal behavior and slow-network latency are not measured.
 
 ## Release gate
 
