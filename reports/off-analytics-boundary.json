@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-11-10T19:21:10.207Z",
+  "checks": [
+    {
+      "origin": "https://halal-check-sigma.vercel.app",
+      "status": 401,
+      "unauthenticatedAccessDenied": true,
+      "allowedOrigin": "*"
+    },
+    {
+      "origin": "https://halal-check-68lt2r8sg-abdullah-b0a5.vercel.app",
+      "status": 401,
+      "unauthenticatedAccessDenied": true,
+      "allowedOrigin": "*"
+    }
+  ],
+  "authMutations": 0,
+  "settingsChanges": 0,
+  "passed": true,
+  "ownerLogin": "Not attempted; no authenticated request was sent. Existing origin settings are unchanged.",
+  "preflights": [
+    {
+      "origin": "https://halal-check-sigma.vercel.app",
+      "status": 200,
+      "allowedOrigin": "https://halal-check-sigma.vercel.app",
+      "previewAccessAllowed": true
+    },
+    {
+      "origin": "https://halal-check-68lt2r8sg-abdullah-b0a5.vercel.app",
+      "status": 403,
+      "allowedOrigin": "https://halal-check-sigma.vercel.app",
+      "previewAccessAllowed": false
+    }
+  ]
+}

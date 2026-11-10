@@ -43,6 +43,8 @@ Run `npm run qa:100`, `npm run typecheck`, `npm run lint`, `npm run build`, then
 
 Browser tests use deterministic product fixtures and synthetic Auth sessions. They do not claim actual owner authentication, physical Android scanning, photographed-label OCR, native-speaker translation approval, real installed-PWA update success, or low-end-device performance. Preview analytics remain limited by existing production-only CORS; do not change CORS to make acceptance look successful. Owner verifies private login/real statistics on the authorized production origin separately.
 
+The first preview exposed a real hosting defect that local esbuild bundles did not reproduce: ES-module output was loaded as CommonJS by the function runtime (`Cannot use import statement outside a module`). `api/tsconfig.json` gives the server entry its own Node/CommonJS compilation boundary while leaving browser compilation unchanged. A regression now compiles and loads the actual entry inside a CommonJS package. `Node16` here specifies TypeScript module-resolution rules, not a downgrade of the deployed Node 24 runtime. A replacement preview must pass live endpoint checks before acceptance.
+
 Production recommendation: **NO-GO until owner accepts preview results, remaining device/translation limitations and rate-limit capacity, and explicitly approves an exact release commit**. Preview deployment and verification do not authorize production promotion. Keep the existing production release available for rollback; do not run unrelated Supabase deployment instructions from older documents.
 
 Official references reviewed:

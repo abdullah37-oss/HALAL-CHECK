@@ -12,7 +12,7 @@ for(const [route,file] of [['/','index.html'],['/admin/','admin/index.html'],['/
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const checks=[];let next=0;
 async function request(route,method='GET'){
- if(!/^\/[a-zA-Z0-9/_.?=%:-]+$/.test(route)||!['GET','POST'].includes(method))throw Error('Unexpected probe');
+ if(!/^\/[a-zA-Z0-9/_.?=%:-]*$/.test(route)||!['GET','POST'].includes(method))throw Error('Unexpected probe');
  const result=await new Promise(resolve=>execFile('npx.cmd',['--yes','vercel','curl',route,'--deployment',site,'--','--silent','--show-error','--include','--request',method],{shell:true,encoding:'buffer',maxBuffer:24*1024*1024},(error,stdout)=>resolve({error,stdout})));
  const split=result.stdout.indexOf(Buffer.from('\r\n\r\n'));
  if(result.error||split<0)throw Error('Preview request failed');
