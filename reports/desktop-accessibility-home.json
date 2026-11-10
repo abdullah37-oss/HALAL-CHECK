@@ -1,0 +1,10 @@
+{
+  "page": "home",
+  "viewport": "desktop",
+  "rulesPassed": 24,
+  "incompleteChecks": [
+    "aria-prohibited-attr",
+    "color-contrast"
+  ],
+  "violations": []
+}

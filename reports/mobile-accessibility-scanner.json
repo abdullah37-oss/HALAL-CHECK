@@ -1,0 +1,12 @@
+{
+  "page": "scanner",
+  "viewport": "mobile",
+  "rulesPassed": 24,
+  "incompleteChecks": [
+    "aria-prohibited-attr",
+    "color-contrast",
+    "label-content-name-mismatch",
+    "video-caption"
+  ],
+  "violations": []
+}

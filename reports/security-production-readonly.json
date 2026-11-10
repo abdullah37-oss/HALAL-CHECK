@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-11-10T16:53:34.586Z",
+  "projectRef": "anvswymarultvsbszjte",
+  "productionWrites": 0,
+  "inventory": {
+    "activeAdminCount": 1,
+    "anonymousIngestionAllowed": false,
+    "anonymousReportingAllowed": false,
+    "appliedMigrations": [
+      "20261031235000",
+      "20261104000000",
+      "20261109000000"
+    ],
+    "authenticatedIngestionAllowed": false,
+    "pgCronInstalled": true,
+    "rlsEnabled": {
+      "admin_users": true,
+      "analytics_events": true
+    },
+    "serviceRoleIngestionAllowed": true
+  }
+}

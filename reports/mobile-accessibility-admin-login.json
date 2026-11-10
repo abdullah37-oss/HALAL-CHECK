@@ -1,0 +1,9 @@
+{
+  "page": "admin-login",
+  "viewport": "mobile",
+  "rulesPassed": 24,
+  "incompleteChecks": [
+    "color-contrast"
+  ],
+  "violations": []
+}
