@@ -27,3 +27,7 @@ Admin routes use existing no-store headers and are excluded from PWA caching. Br
 The reviewed implicit recovery flow is preserved. Both admin entry and password-reset pages use the same pinned Supabase SDK. The dedicated reset form requires an incoming recovery callback, successful SDK initialization, an unexpired session and server-side user verification. An older stored login cannot unlock an invalid callback. Password changes use the official `updateUser({password})` method and clear the form before local sign-out. A previously consumed, expired or malformed email-link error redirect fails closed. Production membership, authentication configuration, database grants and RLS remain unchanged.
 
 Translations use the central persisted language selection on sign-in, dashboard and reset pages. Human review of terminology and religious explanations remains advisable; a translated interface is not proof of legal compliance.
+
+## Preview origin limitation
+
+Read-only OPTIONS checks confirm the existing protected admin API returns 200 for the production origin and 403 for the 2.0 preview origin. No CORS configuration was changed. Therefore hosted live-data owner dashboard testing on the preview remains blocked; deterministic chart/Auth tests use explicitly synthetic intercepted fixtures. See PREVIEW_RELEASE.md for the separate approval boundary.

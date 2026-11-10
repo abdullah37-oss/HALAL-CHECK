@@ -41,3 +41,5 @@ Only allowlisted assets and compiled JavaScript enter dist/. Local WASM/OCR work
 Development takes place on halalcheck-2.0. Push without force, publish a preview in the existing Vercel project, then request explicit owner approval before production. Supabase schema, RLS, Auth settings, admin membership and authentication emails require separate explicit approval; no 2.0 development task authorizes those changes. Never create a replacement project.
 
 Physical Android camera/focus and real packaging/OCR accuracy need the manual acceptance checklist in Scanner/OCR. Automated contrast tests are not legal or accessibility certification. Auth/email delivery and owner dashboard sign-in are not claimed until performed privately by the owner.
+
+Current protected review deployment and live-data limitations: [Preview release](docs/PREVIEW_RELEASE.md).

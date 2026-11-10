@@ -29,3 +29,7 @@ See reports/performance-build.json for measured artifact sizes. Initial HTML-ref
 ## Release gate
 
 Ready for protected preview review after successful hash/header checks. Production remains unchanged. Production status: NO-GO until owner review/approval, native-speaker review of machine-assisted translations and physical Android/manual acceptance checks are completed or explicitly accepted as limitations. No production deployment, authentication email or account change is authorized by this preview release.
+
+## Verified preview
+
+The final preview is https://halal-check-72vbb8uc3-abdullah-b0a5.vercel.app. Vercel reports READY, and 48 deployed asset/route/header checks passed; see PREVIEW_RELEASE.md and reports/preview-verification.json. The production-only admin CORS policy rejects the preview origin with 403, so live owner analytics on preview remains blocked pending separate origin approval. No origin policy was changed or bypassed.
