@@ -13,7 +13,7 @@ async function audit(page, name, info) {
 }
 
 test.beforeEach(async({page})=>{
-  await page.route('https://world.openfoodfacts.org/**',route=>route.fulfill({status:404,body:'{}'}));
+  await page.route('**/api/products/*',route=>route.fulfill({status:404,body:'{}'}));
   await page.route('https://*.supabase.co/**',route=>route.fulfill({status:400,body:'{}'}));
 });
 

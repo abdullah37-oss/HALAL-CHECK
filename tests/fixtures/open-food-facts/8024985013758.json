@@ -1,0 +1,31 @@
+{
+  "code": "8024985013758",
+  "errors": [],
+  "product": {
+    "brands": "Bio+, Natura Nuova",
+    "code": "8024985013758",
+    "completeness": 0.475,
+    "data_quality_errors_tags": [
+      "en:nutrition-data-per-serving-missing-serving-size"
+    ],
+    "data_quality_warnings_tags": [
+      "en:environmental-score-origins-of-ingredients-origins-are-100-percent-unknown",
+      "en:environmental-score-packaging-packaging-data-missing",
+      "en:environmental-score-production-system-no-label",
+      "en:environmental-score-threatened-species-ingredients-missing"
+    ],
+    "image_front_small_url": "https://images.openfoodfacts.org/images/products/802/498/501/3758/front_en.4.200.jpg",
+    "image_front_url": "https://images.openfoodfacts.org/images/products/802/498/501/3758/front_en.4.400.jpg",
+    "lang": "en",
+    "last_modified_t": 1783092393,
+    "lc": "en",
+    "product_name": "Mela, fragola e mirtillo frullati biologici"
+  },
+  "result": {
+    "id": "product_found",
+    "lc_name": "Product found",
+    "name": "Product found"
+  },
+  "status": "success",
+  "warnings": []
+}

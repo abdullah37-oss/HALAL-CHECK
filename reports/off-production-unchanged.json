@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-11-10T19:15:33.811Z",
+  "productionWrites": 0,
+  "baselineCommit": "5108d9e89d826a6a77d7749c0365d345d5c5dd1a",
+  "checks": [
+    {
+      "file": "app.js",
+      "status": 200,
+      "matchesVerifiedProductionBaseline": true
+    },
+    {
+      "file": "sw.js",
+      "status": 200,
+      "matchesVerifiedProductionBaseline": true,
+      "cacheVersion": "halalcheck-v6"
+    }
+  ],
+  "passed": true
+}

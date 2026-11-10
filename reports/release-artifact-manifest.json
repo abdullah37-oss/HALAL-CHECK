@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-10T17:03:53.243Z",
+  "createdAt": "2026-11-10T19:16:54.506Z",
   "buildRuntime": "v26.13.0",
   "files": [
     {
@@ -44,8 +44,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 28390,
-      "sha256": "4d616abe669a334d6bd4b60bddff4663a77136aa82c2e7f95ad4880489d39f02"
+      "bytes": 30657,
+      "sha256": "8ec56720496c3ddc4e525af2548f461b46a91d22a0b971ccfb1f6cd61bc385f0"
     },
     {
       "path": "assets/barcode-decoder.js",
@@ -169,8 +169,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 13457,
-      "sha256": "65b8d67e24e5b1f7613258b7bbac9b7efffb38d807be50bdf2bd00e92eba31b4"
+      "bytes": 14245,
+      "sha256": "24ad1676cf8649ce438b84066e852e4b85990a80c8cde98cd002b1a64c000d0e"
     },
     {
       "path": "manifest.webmanifest",
@@ -199,13 +199,13 @@
     },
     {
       "path": "src/i18n/index.js",
-      "bytes": 458593,
-      "sha256": "5e87d9c49594f7cc583a79f1a7a6b259a91d81ba37f68e5a49173ac2bf17ea38"
+      "bytes": 486166,
+      "sha256": "30ff18ccfb61359a54b569123810b3fe762b7aa34ee7c4e6a64f6e3f30018622"
     },
     {
       "path": "src/models/productModel.js",
-      "bytes": 2101,
-      "sha256": "73baf02f5f179389d1bf678ab8f909da2a657aeaf046c58a14b53b88556f80c5"
+      "bytes": 2502,
+      "sha256": "6183d9829d0b53e2d34226b38e0fb6b6150649faa6c2af4839754ba35522a00b"
     },
     {
       "path": "src/utils/halalAnalyzer.js",
@@ -214,18 +214,18 @@
     },
     {
       "path": "src/utils/productRepository.js",
-      "bytes": 6290,
-      "sha256": "c3d79659fea415fd2cf0c8b435e38c78357a9b09cdae2e03ab8175ad948acb1f"
+      "bytes": 17335,
+      "sha256": "cd878596d0a8803268328307e079dd9e78ef5c4cc2985e96c97199dbd053756b"
     },
     {
       "path": "styles.css",
-      "bytes": 20553,
-      "sha256": "e35302f5fce21d86f8a2e7a23208c4064268861ae6c8b5df1653935544a668e4"
+      "bytes": 22606,
+      "sha256": "23b4f4c5ae746d3c17e629a8ce2e95bb2e112c5f6ed6b84a337f429eb860bd08"
     },
     {
       "path": "sw.js",
       "bytes": 1698,
-      "sha256": "24734434d0911e33106eb6570c00e7d92b7ac9bcc82ad28c5d118f7f3a0bb22d"
+      "sha256": "28ae4c7d74b8941a8d0b719a59eed52898f11f12036196ce8dee9482b4fff90d"
     }
   ]
 }

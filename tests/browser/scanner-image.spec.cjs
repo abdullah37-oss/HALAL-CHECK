@@ -6,7 +6,7 @@ test.use({ serviceWorkers: 'block' });
 const fixtures = [ ['ean13','5901234123457'], ['ean8','80771548'], ['upca','0036000291452'], ['upce','0012345000065'] ];
 
 test.beforeEach(async ({page}) => {
-  await page.route('https://world.openfoodfacts.org/**', route => route.fulfill({status:404,body:'{}'}));
+  await page.route('**/api/products/*', require('./product-fixtures.cjs').productRoute);
   await page.route('**/functions/v1/analytics-event', route => route.fulfill({status:200,body:'{}'}));
 });
 
@@ -39,7 +39,7 @@ test('barcode upload rejects MIME spoofing and oversized input safely', async ({
 
 test('live native decoder submits one lookup and releases video tracks', async ({page}) => {
   let lookups = 0;
-  await page.route('https://world.openfoodfacts.org/**', route => { lookups++; return route.fulfill({status:404,body:'{}'}); });
+  await page.route('**/api/products/*', route => { lookups++; return route.fulfill({status:404,body:'{}'}); });
   await page.addInitScript(() => {
     HTMLMediaElement.prototype.play = async function () {};
     Object.defineProperty(HTMLMediaElement.prototype,'readyState',{get:()=>4});
@@ -61,7 +61,7 @@ test('live native decoder submits one lookup and releases video tracks', async (
 test('leaving during remote product lookup cannot reopen stale result', async ({page}) => {
   let release;
   const gate = new Promise(resolve => { release=resolve; });
-  await page.route('https://world.openfoodfacts.org/**', async route => { await gate; return route.fulfill({status:404,body:'{}'}); });
+  await page.route('**/api/products/*', async route => { await gate; return route.fulfill({status:404,body:'{}'}); });
   await page.goto('/');
   await page.locator('[data-action="manual-entry"]').first().click();
   await page.locator('#barcode-input').fill('5901234123457');
@@ -122,7 +122,7 @@ test('live WASM fallback decodes actual barcode pixels from a simulated video st
 
 test('native UPC-E is expanded before the single product lookup', async ({page}) => {
   let code;
-  await page.route('https://world.openfoodfacts.org/**', route => { code=new URL(route.request().url()).pathname.split('/').pop(); return route.fulfill({status:404,body:'{}'}); });
+  await page.route('**/api/products/*', route => { code=new URL(route.request().url()).pathname.split('/').pop(); return route.fulfill({status:404,body:'{}'}); });
   await page.addInitScript(() => {
     HTMLMediaElement.prototype.play=async function(){};
     Object.defineProperty(HTMLMediaElement.prototype,'readyState',{get:()=>4});

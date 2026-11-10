@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-11-10T18:46:45.068Z",
+  "endpoint": "https://world.openfoodfacts.org/api/v3.6/product/8024985013758.json?fields=code,product_name,brands,lang,lc,ingredients_text,ingredients,ingredients_tags,data_quality_errors_tags,data_quality_warnings_tags,completeness,last_modified_t,image_front_small_url,image_front_url,labels_tags,ingredients_text_en,ingredients_text_it,ingredients_text_ar,ingredients_text_ur,ingredients_text_hi,ingredients_text_bn,ingredients_text_fr,ingredients_text_de,ingredients_text_es,ingredients_text_tr,ingredients_text_ms,ingredients_text_id",
+  "httpStatus": 200,
+  "code": "8024985013758",
+  "name": "Mela, fragola e mirtillo frullati biologici",
+  "brand": "Bio+, Natura Nuova",
+  "defaultIngredientText": null,
+  "languageIngredientFields": {},
+  "structuredIngredientCount": 0,
+  "ingredientTagCount": 0,
+  "qualityWarnings": [
+    "en:environmental-score-origins-of-ingredients-origins-are-100-percent-unknown",
+    "en:environmental-score-packaging-packaging-data-missing",
+    "en:environmental-score-production-system-no-label",
+    "en:environmental-score-threatened-species-ingredients-missing"
+  ],
+  "imageAvailable": true,
+  "status": "success"
+}

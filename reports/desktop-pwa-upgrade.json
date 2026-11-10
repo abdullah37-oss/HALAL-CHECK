@@ -1,7 +1,7 @@
 {
-  "baselineSource": "Captured production static files",
-  "from": "halalcheck-v5",
-  "to": "halalcheck-v6",
+  "baselineSource": "Pinned production Git baseline",
+  "from": "halalcheck-v6",
+  "to": "halalcheck-v7",
   "manifestIdentityPreserved": true,
   "localStoragePreserved": true,
   "offlineNewShell": true,
