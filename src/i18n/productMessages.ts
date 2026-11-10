@@ -2,6 +2,13 @@
 export const productMessages: Record<string, Record<string,string>> = {};
 const languages = ['en','it','ar','ur','hi','bn','fr','de','es','tr','ms','id'];
 const rows = [
+ ['HALAL','HALAL','حلال','حلال','हलाल','হালাল','HALAL','HALAL','HALAL','HELAL','HALAL','HALAL'],
+ ['HARAM','HARAM','حرام','حرام','हराम','হারাম','HARAM','HARAM','HARAM','HARAM','HARAM','HARAM'],
+ ['NEEDS CHECKING','DA VERIFICARE','يحتاج إلى تحقق','جانچ ضروری ہے','जाँच ज़रूरी है','যাচাই প্রয়োজন','À VÉRIFIER','PRÜFUNG NÖTIG','REQUIERE REVISIÓN','KONTROL GEREKİYOR','PERLU DISEMAK','PERLU DIPERIKSA'],
+ ['Ingredients are unavailable.','Gli ingredienti non sono disponibili.','المكونات غير متاحة.','اجزاء دستیاب نہیں ہیں۔','सामग्री उपलब्ध नहीं है।','উপাদান পাওয়া যাচ্ছে না।','Les ingrédients sont indisponibles.','Die Zutaten sind nicht verfügbar.','Los ingredientes no están disponibles.','İçindekiler mevcut değil.','Ramuan tidak tersedia.','Bahan tidak tersedia.'],
+ ['Halal certification: Verified','Certificazione halal: Verificata','شهادة الحلال: متحقق منها','حلال سرٹیفکیشن: تصدیق شدہ','हलाल प्रमाणन: सत्यापित','হালাল সনদ: যাচাইকৃত','Certification halal : Vérifiée','Halal-Zertifizierung: Verifiziert','Certificación halal: Verificada','Helal sertifikası: Doğrulandı','Pensijilan halal: Disahkan','Sertifikasi halal: Terverifikasi'],
+ ['Halal certification: Not verified','Certificazione halal: Non verificata','شهادة الحلال: غير متحقق منها','حلال سرٹیفکیشن: غیر تصدیق شدہ','हलाल प्रमाणन: सत्यापित नहीं','হালাল সনদ: যাচাই করা হয়নি','Certification halal : Non vérifiée','Halal-Zertifizierung: Nicht verifiziert','Certificación halal: No verificada','Helal sertifikası: Doğrulanmadı','Pensijilan halal: Belum disahkan','Sertifikasi halal: Belum terverifikasi'],
+ ['Share feedback','Invia un commento','شارك ملاحظاتك','اپنی رائے دیں','प्रतिक्रिया दें','মতামত দিন','Donner un avis','Feedback geben','Enviar comentarios','Görüş bildir','Kongsi maklum balas','Kirim masukan'],
  ['Product data:','Dati del prodotto:','بيانات المنتج:','مصنوعے کا ڈیٹا:','उत्पाद डेटा:','পণ্যের তথ্য:','Données produit :','Produktdaten:','Datos del producto:','Ürün verileri:','Data produk:','Data produk:'],
  ['Individual contents:','Singoli contenuti:','المحتويات الفردية:','انفرادی مواد:','अलग-अलग सामग्री:','স্বতন্ত্র বিষয়বস্তু:','Contenus individuels :','Einzelne Inhalte:','Contenidos individuales:','Tekil içerikler:','Kandungan individu:','Konten individual:'],
  ['Product photos:','Foto del prodotto:','صور المنتج:','مصنوعے کی تصاویر:','उत्पाद की तस्वीरें:','পণ্যের ছবি:','Photos produit :','Produktfotos:','Fotos del producto:','Ürün fotoğrafları:','Foto produk:','Foto produk:'],

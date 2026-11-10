@@ -95,29 +95,43 @@ async function showResult(barcode: string, source = 'camera', ingredientOverride
   lastResult={product,analysis,status:lookup.status,barcode,source,stale,retryAt:'retryAt' in lookup?lookup.retryAt:undefined};
   renderResult(lastResult);route('result');
 }
-function renderResult(view:ResultView) {
-  const {product,analysis}=view;
-  const classification=analysis?.classification||'needs-checking';
-  const status=window.universalHalalPolicy.label(classification,state.language);
-  let explanation = classification==='not-halal'?'A prohibited ingredient was identified.':classification==='likely-halal'?'Ingredients support a Halal assessment.':'Some ingredients need checking.';
-  if(!product)explanation=view.status==='not-found'?'Try an ingredient label or enter ingredients.':view.status==='rate-limited'?'Too many requests. Please wait before trying again.':'Product lookup unavailable. Try again later.';
-  else if(!product.ingredients.length)explanation='Ingredients unavailable.';
-  else if(product.ingredientEvidence?.state==='conflicting')explanation='Ingredient information conflicts.';
-  else if(product.ingredientEvidence?.state==='partial')explanation='The ingredient list may be incomplete.';
-  else if(analysis?.recognitionUncertain)explanation='Image recognition is uncertain. Confirm or correct the complete ingredient list before relying on this assessment.';
-  if(view.stale)explanation='Saved product data. Check current packaging.';
-  const name=product?.productName ? (view.source==='ocr'||product.ingredientDataSource==='user_corrected'?translate(product.productName):product.productName) : translate(view.status==='not-found'?'Product not found.':product?'Product information':'Product lookup unavailable. Try again later.');
-  const findings=analysis?.findings.map(f=>'<li><strong data-no-translate>'+escapeHtml(f.ingredient)+'</strong><span>'+escapeHtml(translate(f.record?.explanation||f.explanation||'Unknown ingredient'))+'</span></li>').join('')||'';
-  const image=safeProductImage(product?.imageUrl);
-  $('#result-view').innerHTML='<div class="simple-result"><div class="result-photo">'+(image?'<img id="product-photo" src="'+escapeHtml(image)+'" alt="'+escapeHtml(name)+'" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="240" height="240">':'')+'<span id="product-photo-fallback" '+(image?'hidden':'')+'>'+escapeHtml(translate('Product image unavailable'))+'</span></div><div class="result-content"><h1 data-no-translate>'+escapeHtml(name)+'</h1>'+(product?.brand?'<p class="result-brand" data-no-translate>'+escapeHtml(product.brand)+'</p>':'')+'<section class="assessment-card" data-classification="'+escapeHtml(classification)+'"><strong>'+escapeHtml(status)+'</strong><p>'+escapeHtml(translate(explanation))+'</p></section>'+(product?.certification==='verified'?'<small class="certification">'+escapeHtml(translate('Certified halal'))+'</small>':product?.sourceLabels?.includes('en:halal')?'<small class="certification">'+escapeHtml(translate('Certification not verified'))+'</small>':'')+'<div class="button-row"><button type="button" class="button button-primary" data-action="scan-another">'+escapeHtml(translate('Scan another product'))+'</button>'+(!product||!product.ingredients.length||classification==='needs-checking'||classification==='not-enough-information'?'<button type="button" class="button button-secondary" data-action="label-fallback">'+escapeHtml(translate('Scan ingredient label'))+'</button><button type="button" class="button button-secondary" data-action="manual-fallback">'+escapeHtml(translate('Enter ingredients'))+'</button>':'')+(!product?'<button type="button" class="button button-secondary" data-action="retry-product">'+escapeHtml(translate('Retry'))+'</button>':'')+'</div>'+((findings||product)?'<details class="why-result"><summary>'+escapeHtml(translate('Why?'))+'</summary><p>'+escapeHtml(translate(analysis?.explanation||'Ingredients unavailable.'))+'</p>'+(product?.ingredientEvidence?.language?'<small>'+escapeHtml(translate('Ingredient label language'))+': '+escapeHtml(product.ingredientEvidence.language)+'</small>':'')+'<ul class="finding-list">'+findings+'</ul><p>'+escapeHtml(translate('Ingredient assessment is not certification. Check current packaging.'))+'</p></details>':'')+(product?.ingredientDataSource==='Open Food Facts'?'<p class="source-credit"><a href="https://world.openfoodfacts.org/product/'+escapeHtml(product.returnedBarcode)+'" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open Food Facts</a> &middot; <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL</a>'+(image?' &middot; <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA</a>':'')+'</p>':'')+'</div></div>';
-  $('#result-view').querySelector<HTMLImageElement>('#product-photo')?.addEventListener('error',event=>{(event.currentTarget as HTMLImageElement).hidden=true;$('#product-photo-fallback').hidden=false;},{once:true});
-  $('#result-view').querySelector('[data-action="scan-another"]')?.addEventListener('click',()=>{ $('#ingredients-input').value='';route('scanner'); });
-  $('#result-view').querySelector('[data-action="label-fallback"]')?.addEventListener('click',()=>{route('scanner');$('#label-image').focus();$('#label-image').scrollIntoView({block:'center'});});
-  $('#result-view').querySelector('[data-action="manual-fallback"]')?.addEventListener('click',()=>{route('scanner');$('#ingredients-input').value='';$('#ingredients-input').focus();});
-  const retry=$('#result-view').querySelector<HTMLButtonElement>('[data-action="retry-product"]');
-  if(retry){retry.disabled=!!view.retryAt&&view.retryAt>Date.now();if(retry.disabled)setTimeout(()=>{if(retry.isConnected)retry.disabled=false;},Math.min(2147483647,view.retryAt!-Date.now()));retry.addEventListener('click',()=>{retry.disabled=true;void showResult(view.barcode,view.source);});}
+function renderResult(view: ResultView) {
+  const {product, analysis} = view;
+  // Full evidence stays in lastResult for the debugger, never in analytics.
+  const classification = analysis?.classification || 'needs-checking';
+  const statusKey = classification === 'likely-halal' ? 'HALAL' : classification === 'not-halal' ? 'HARAM' : 'NEEDS CHECKING';
+  let explanation = classification === 'not-halal' ? 'A prohibited ingredient was identified.' : classification === 'likely-halal' ? 'Ingredients support a Halal assessment.' : 'Some ingredients need checking.';
+  if (!product) explanation = view.status === 'not-found' ? 'Try an ingredient label or enter ingredients.' : view.status === 'rate-limited' ? 'Too many requests. Please wait before trying again.' : 'Product lookup unavailable. Try again later.';
+  else if (!product.ingredients.length) explanation = 'Ingredients are unavailable.';
+  else if (analysis?.recognitionUncertain) explanation = 'Some ingredients need checking.';
+  else if (classification !== 'not-halal' && product.ingredientEvidence?.state === 'conflicting') explanation = 'Ingredient information conflicts.';
+  else if (classification !== 'not-halal' && product.ingredientEvidence?.state === 'partial') explanation = 'The ingredient list may be incomplete.';
+  if (view.stale && product?.ingredients.length) explanation = 'Saved product data. Check current packaging.';
+  const name = product?.productName ? (view.source === 'ocr' || product.ingredientDataSource === 'user_corrected' ? translate(product.productName) : product.productName) : translate(view.status === 'not-found' ? 'Product not found.' : product ? 'Product information' : 'Product lookup unavailable. Try again later.');
+  const image = safeProductImage(product?.imageUrl);
+  // Use the existing trusted certification flag; OFF claims never set this flag.
+  const certification = product?.certification === 'verified' ? 'Halal certification: Verified' : 'Halal certification: Not verified';
+  const sourceCredit = product?.ingredientDataSource === 'Open Food Facts' ? '<p class="source-credit"><a href="https://world.openfoodfacts.org/product/' + escapeHtml(product.returnedBarcode) + '" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open Food Facts</a> &middot; <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL</a>' + (image ? ' &middot; <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA</a>' : '') + '</p>' : '';
+  $('#result-view').innerHTML = '<article class="simple-result">' +
+    '<header class="result-heading"><div><h1 data-no-translate dir="auto">' + escapeHtml(name) + '</h1>' + (product?.brand ? '<p class="result-brand" data-no-translate dir="auto">' + escapeHtml(product.brand) + '</p>' : '') + '</div>' + (image ? '<img id="product-photo" class="result-thumbnail" src="' + escapeHtml(image) + '" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="64" height="64">' : '') + '</header>' +
+    '<section class="assessment-card" data-classification="' + escapeHtml(classification) + '"><strong>' + escapeHtml(translate(statusKey)) + '</strong><p>' + escapeHtml(translate(explanation)) + '</p></section>' +
+    '<p class="certification">' + escapeHtml(translate(certification)) + '</p>' +
+    '<div class="button-row result-primary-action"><button type="button" class="button button-primary" data-action="scan-another">' + escapeHtml(translate('Scan another product')) + '</button></div>' +
+    (!product || !product.ingredients.length || classification === 'needs-checking' || classification === 'not-enough-information' ? '<div class="button-row result-fallback-actions"><button type="button" class="button button-secondary" data-action="label-fallback">' + escapeHtml(translate('Scan ingredient label')) + '</button><button type="button" class="button button-secondary" data-action="manual-fallback">' + escapeHtml(translate('Enter ingredients')) + '</button>' + (!product ? '<button type="button" class="button button-secondary" data-action="retry-product">' + escapeHtml(translate('Retry')) + '</button>' : '') + '</div>' : '') +
+    '<details class="why-result"><summary>' + escapeHtml(translate('Why?')) + '</summary><p>' + escapeHtml(translate('Ingredient assessment is not certification. Check current packaging.')) + '</p>' + sourceCredit + '</details></article>';
+  $('#result-view').querySelector<HTMLImageElement>('#product-photo')?.addEventListener('error', event => { (event.currentTarget as HTMLImageElement).remove(); }, {once: true});
+  $('#result-view').querySelector('[data-action="scan-another"]')?.addEventListener('click', () => { $('#ingredients-input').value = ''; route('scanner'); });
+  $('#result-view').querySelector('[data-action="label-fallback"]')?.addEventListener('click', () => { route('scanner'); $('#label-image').focus(); $('#label-image').scrollIntoView({block: 'center'}); });
+  $('#result-view').querySelector('[data-action="manual-fallback"]')?.addEventListener('click', () => { route('scanner'); $('#ingredients-input').value = ''; $('#ingredients-input').focus(); });
+  const retry = $('#result-view').querySelector<HTMLButtonElement>('[data-action="retry-product"]');
+  if (retry) {
+    retry.disabled = !!view.retryAt && view.retryAt > Date.now();
+    if (retry.disabled) setTimeout(() => { if (retry.isConnected) retry.disabled = false; }, Math.min(2147483647, view.retryAt! - Date.now()));
+    retry.addEventListener('click', () => { retry.disabled = true; void showResult(view.barcode, view.source); });
+  }
   window.halalI18n.apply(state.language);
 }
+
 
 function renderGuide(query = '') {
   const term = window.halalAnalyzer.normalize(query);

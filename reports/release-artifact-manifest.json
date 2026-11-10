@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-10T19:44:29.950Z",
+  "createdAt": "2026-11-10T20:05:03.020Z",
   "buildRuntime": "v26.13.0",
   "files": [
     {
@@ -44,8 +44,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 30657,
-      "sha256": "8ec56720496c3ddc4e525af2548f461b46a91d22a0b971ccfb1f6cd61bc385f0"
+      "bytes": 29991,
+      "sha256": "59b043dd547c817a2cadfc02b939c380cfdd3d9fe0ee73cd540f46699b61d25e"
     },
     {
       "path": "assets/barcode-decoder.js",
@@ -169,8 +169,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 14245,
-      "sha256": "24ad1676cf8649ce438b84066e852e4b85990a80c8cde98cd002b1a64c000d0e"
+      "bytes": 14445,
+      "sha256": "3358715b9a8f9f2a86379040002a9d85143481dda5f54416bd748d1d5a0e37ec"
     },
     {
       "path": "manifest.webmanifest",
@@ -199,8 +199,8 @@
     },
     {
       "path": "src/i18n/index.js",
-      "bytes": 486166,
-      "sha256": "30ff18ccfb61359a54b569123810b3fe762b7aa34ee7c4e6a64f6e3f30018622"
+      "bytes": 489993,
+      "sha256": "5d817cd2b67dae31a1c2b1a91b276f79b8cf2379c829b59e08b442492ace32ff"
     },
     {
       "path": "src/models/productModel.js",
@@ -219,13 +219,13 @@
     },
     {
       "path": "styles.css",
-      "bytes": 22606,
-      "sha256": "23b4f4c5ae746d3c17e629a8ce2e95bb2e112c5f6ed6b84a337f429eb860bd08"
+      "bytes": 22800,
+      "sha256": "99e6d1c9b8001b5df01e7b33aeb880bf27605f709ce6812bee9e6336b591839b"
     },
     {
       "path": "sw.js",
       "bytes": 1698,
-      "sha256": "28ae4c7d74b8941a8d0b719a59eed52898f11f12036196ce8dee9482b4fff90d"
+      "sha256": "2ac623303e659e511b7e05070c0c60a7e361337ccdce94ed0aec8c4a9cf287e0"
     }
   ]
 }
