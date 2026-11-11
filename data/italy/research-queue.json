@@ -1,0 +1,35 @@
+{
+  "input": "halalcheck_italy_1000_product_research_queue.csv",
+  "sha256": "5655eb916dc79af659f584e93b2352a5a55999cb0e4b2f5d9206a4f608127c8a",
+  "researchTargets": 1000,
+  "rowsWithAnyProductData": 0,
+  "verifiedProductsImported": 0,
+  "supermarkets": {
+    "INs Mercato": 167,
+    "Todis": 167,
+    "Eurospin": 167,
+    "Lidl Italia": 167,
+    "MD": 166,
+    "Conad": 166
+  },
+  "categories": {
+    "Soft drinks and zero-sugar beverages": 72,
+    "Juices, energy drinks and flavored beverages": 36,
+    "Gummies, marshmallows, jellies and candies": 48,
+    "Biscuits, wafers, cakes and chocolates": 48,
+    "Chips, crackers and savory snacks": 30,
+    "Frozen meals, pizzas and meat substitutes": 30,
+    "Yogurts, puddings, ice cream and cheese": 24,
+    "Instant noodles, soups and sauces": 12,
+    "Yogurt, flavored milk and dairy drinks": 100,
+    "Cheese, cream and dairy desserts": 65,
+    "Frozen pizza and ready meals": 95,
+    "Frozen snacks, vegetables and desserts": 75,
+    "Fruit juices, nectars and smoothies": 85,
+    "Jellies, gummy candies and marshmallows": 90,
+    "Biscuits, cakes and pastries": 95,
+    "Chocolates, toffees and sweet snacks": 55,
+    "Ice cream and frozen treats": 40
+  },
+  "note": "Allocation slots only. No CSV status can promote a catalogue record; exact-barcode evidence gates are separate."
+}

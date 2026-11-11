@@ -1,0 +1,26 @@
+{
+  "environment": "Local Windows Node v26.13.0; 98 real candidate rows; synthetic concurrent instances, not production latency or Android CWV",
+  "rows": 98,
+  "coldOpenMs": 0.7022000000000013,
+  "indexed": {
+    "samples": 10000,
+    "p95Ms": 0.21590000000000487,
+    "budgetMs": 250
+  },
+  "browserCache": {
+    "samples": 2000,
+    "p95Ms": 1.0208000000000084,
+    "budgetMs": 150
+  },
+  "endpoint": {
+    "samples": 1000,
+    "concurrencyPerInstance": 40,
+    "p95Ms": 7.475499999999556,
+    "maximumResponseBytes": 851
+  },
+  "startupDeltaBytes": 3197,
+  "initialCatalogueDownloads": 0,
+  "physicalAndroidTest": false,
+  "coreWebVitalsMeasured": false,
+  "passed": true
+}

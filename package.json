@@ -15,6 +15,9 @@
   },
   "private": true,
   "scripts": {
+    "catalogue:discover": "node scripts/catalogue-discover.cjs",
+    "catalogue:maintain": "node scripts/catalogue-build.cjs --incremental",
+    "catalogue:ocr": "node scripts/catalogue-ocr.cjs",
     "test": "node --test tests/qa/*.test.cjs",
     "qa:100": "node scripts/qa.cjs",
     "test:browser": "playwright test",

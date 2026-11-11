@@ -1,13 +1,16 @@
 import { fetchProduct, PRODUCT_TTL, SUPPORTED_LANGUAGES, type LookupResult } from '../services/openFoodFacts';
 import { isRetailBarcode, barcodeIdentity } from '../lib/barcode';
+import { createCatalogueLookup } from './catalogue';
+import type { Product } from '../models/productModel';
 interface Entry {
     result: LookupResult;
     expires: number;
 }
-export function createProductHandler({ fetcher = fetch, now = Date.now, sleep = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms)) }: {
+export function createProductHandler({ fetcher = fetch, now = Date.now, sleep = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms)), catalogueLookup = createCatalogueLookup() }: {
     fetcher?: typeof fetch;
     now?: () => number;
     sleep?: (ms: number) => Promise<void>;
+    catalogueLookup?: (barcode: string) => Product | null;
 } = {}) {
     const cache = new Map<string, Entry>(), pending = new Map<string, Promise<LookupResult>>();
     let upstreamTimes: number[] = [], ingressTimes: number[] = [], blockedUntil = 0;
@@ -35,6 +38,12 @@ export function createProductHandler({ fetcher = fetch, now = Date.now, sleep = 
         if (ingressTimes.length >= 60)
             return send(429, { error: 'rate-limited' }, { 'Retry-After': '60' });
         ingressTimes.push(now());
+        // Read-only, indexed catalogue lookup precedes upstream caches and cooldowns.
+        // Unreviewed or stale labels are withheld by the catalogue adapter.
+        try {
+            const local = catalogueLookup(barcode);
+            if (local) return send(200, { schema: 'halalcheck.off.v1', product: local }, { 'Cache-Control': 'public, max-age=0, s-maxage=300' });
+        } catch { return send(503, { error: 'service-unavailable' }, { 'Retry-After': '60' }); }
         const key = barcodeIdentity(barcode) + ':' + language;
         for (const [k, v] of cache)
             if (v.expires <= now())

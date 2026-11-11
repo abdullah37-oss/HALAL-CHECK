@@ -1,4 +1,4 @@
-const CACHE = 'halalcheck-v9';
+const CACHE = 'halalcheck-v10';
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './config.js', './analytics.js', './manifest.webmanifest', './offline.html', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './src/i18n/index.js', './src/data/ingredientDatabase.js', './src/data/universalHalalPolicy.js', './src/utils/halalAnalyzer.js', './src/models/productModel.js', './src/data/productCatalog.js', './src/utils/productRepository.js'];
 worker.addEventListener('install', (event) => event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(APP_SHELL)).then(() => worker.skipWaiting())));
@@ -9,7 +9,7 @@ worker.addEventListener('activate', (event) => event.waitUntil(Promise.all([
 worker.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
-  if (url.origin !== worker.location.origin || url.pathname.startsWith('/admin') || url.pathname.startsWith('/api/')) return;
+  if (url.origin !== worker.location.origin || url.pathname.startsWith('/admin') || url.pathname.startsWith('/api/') || url.pathname.startsWith('/catalogue/')) return;
   event.respondWith(fetch(event.request).then((response) => {
     if (response.ok && response.type !== 'opaque') {
       const copy = response.clone();

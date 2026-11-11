@@ -27,3 +27,4 @@ debug.log
 .cache/
 
 dist-server/
+data/italy/*.sqlite*

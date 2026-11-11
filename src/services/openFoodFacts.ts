@@ -34,6 +34,7 @@ export function isProduct(value: unknown): value is Product {
 export function isOffProduct(value: unknown): value is Product {
     if (!isProduct(value) || value.ingredientDataSource !== 'Open Food Facts' || !sameBarcode(value.scannedBarcode, value.returnedBarcode) || !Number.isFinite(Date.parse(value.lastUpdated)))
         return false;
+    if (value.catalogue !== undefined && (!record(value.catalogue) || !['VERIFIED', 'REVIEW_REQUIRED', 'INCOMPLETE', 'REJECTED'].includes(String(value.catalogue.status)) || typeof value.catalogue.stale !== 'boolean' || !/^[a-f0-9]{64}$/.test(String(value.catalogue.ingredientHash)) || !/^\d{4}\.\d{2}\.\d{2}$/.test(String(value.catalogue.policyVersion)) || (value.catalogue.status !== 'VERIFIED' || value.catalogue.stale) && (value.ingredientsRaw !== '' || value.ingredients.length !== 0))) return false;
     const evidence = value.ingredientEvidence;
     return record(evidence) && ['complete', 'partial', 'missing', 'conflicting'].includes(String(evidence.state)) && ['label-text', 'structured', 'tags-only', 'none'].includes(String(evidence.kind)) && (evidence.language === null || typeof evidence.language === 'string' && /^[a-z]{2}$/.test(evidence.language)) && (evidence.state !== 'complete' || evidence.kind === 'label-text' && !!value.ingredientsRaw && value.ingredients.length > 0) && (value.sourceLabels === undefined || Array.isArray(value.sourceLabels) && value.sourceLabels.length <= 100 && value.sourceLabels.every(v => typeof v === 'string' && v.length <= 200));
 }

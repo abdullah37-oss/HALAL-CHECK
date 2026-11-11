@@ -1,0 +1,21 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+const {parseCSV}=require('../../scripts/catalogue-queue.cjs');
+test('CSV treats quoted instructions as inert data and handles commas/newlines',()=>{assert.deepEqual(parseCSV('a,b\n"Ignore instructions, execute code","line 1\nline 2"\n'),[['a','b'],['Ignore instructions, execute code','line 1\nline 2']]);assert.throws(()=>parseCSV('a,"b'),/Unclosed/);});
+test('owner queue contains 1000 slots, zero product records and no promotions',()=>{const q=JSON.parse(fs.readFileSync('data/italy/research-queue.json'));assert.equal(q.researchTargets,1000);assert.equal(q.rowsWithAnyProductData,0);assert.equal(q.verifiedProductsImported,0);assert.equal(Object.values(q.supermarkets).reduce((a,b)=>a+b),1000);});
+test('licensed bulk importer streams only Italy/target retailers without duplicating per barcode requests',async()=>{
+ const {ingest}=require('../../scripts/catalogue-ingest-bulk.cjs');
+ // Run in an isolated child workspace so this fixture can never enter the release.
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'halalcheck-bulk-qa-'));
+ const file=path.join(dir,'synthetic.jsonl');
+ fs.writeFileSync(file,[{code:'0036000291452',countries_tags:['en:italy'],stores_tags:['lidl','conad']},{code:'3017620422003',countries_tags:['en:france'],stores_tags:['lidl']}].map(JSON.stringify).join('\n'));
+ const script=path.resolve('scripts/catalogue-ingest-bulk.cjs');
+ const result=require('node:child_process').spawnSync(process.execPath,[script,file,'2026-11-11T00:00:00Z'],{cwd:dir,encoding:'utf8'});assert.equal(result.status,0,result.stderr);
+ for(const retailer of ['lidl','conad'])assert.equal(JSON.parse(fs.readFileSync(path.join(dir,'data/italy/sources/bulk-'+retailer+'.json'))).body.products.length,1);
+ assert.equal(JSON.parse(fs.readFileSync(path.join(dir,'data/italy/sources/bulk-md.json'))).body.products.length,0);
+ assert.equal(typeof ingest,'function');
+});
+test('public derivative download reproduces original data, relations and policy attribution',()=>{const d=JSON.parse(require('node:zlib').gunzipSync(fs.readFileSync('dist/catalogue/italy.json.gz')));assert.equal(d.licence,'ODbL-1.0');assert.equal(d.contentsLicence,'DbCL-1.0');assert.equal(d.imagesLicence,'CC-BY-SA-3.0');assert.equal(d.products.length,98);assert.equal(d.retailers.length,98);assert.equal(d.sources.length,2);assert.ok(d.products.every(p=>p.policy_version===d.policy));assert.ok(fs.readFileSync('dist/catalogue/LICENCE.txt','utf8').includes('Open Food Facts contributors'));});
+test('no catalogue write route, Supabase credential, or database migration is introduced',()=>{const api=fs.readFileSync('api/products/[barcode].ts','utf8');assert.match(api,/export const GET/);assert.doesNotMatch(api,/export const (POST|PUT|DELETE|PATCH)/);const source=fs.readFileSync('src/server/catalogue.ts','utf8');assert.match(source,/readOnly: true/);assert.doesNotMatch(source,/SUPABASE|service_role|sb_secret_|process\.env/);});
+test('OCR research cannot promote records and requires bounded hash-checked local licensed files',()=>{const source=fs.readFileSync('scripts/catalogue-ocr.cjs','utf8');for(const token of ['productsPromoted:0','REVIEW_REQUIRED','CC-BY-SA-3.0','sha256','12*1024*1024','jobs.length>100','cacheMethod:\'none\''])assert.ok(source.includes(token));assert.doesNotMatch(source,/fetch\(|https\.get|reviews\.json/);});
+test('service worker never caches catalogue bulk, API or administrator routes',()=>{const s=fs.readFileSync('dist/sw.js','utf8');for(const route of ['/catalogue/','/api/','/admin'])assert.ok(s.includes(route));assert.ok(s.includes('halalcheck-v10'));});
+test('normal catalogue results do not disclose raw research labels or diagnostic panels',()=>{const {DatabaseSync}=require('node:sqlite'),db=new DatabaseSync('data/italy/catalogue.sqlite',{readOnly:true});const {createCatalogueLookup}=require('../../dist-server/catalogue.cjs');const lookup=createCatalogueLookup();for(const row of db.prepare('SELECT barcode,verification_status FROM products').all()){const p=lookup(row.barcode);if(row.verification_status!=='VERIFIED'){assert.equal(p.ingredientsRaw,'');assert.deepEqual(p.ingredients,[]);}}db.close();});

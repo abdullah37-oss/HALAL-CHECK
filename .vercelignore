@@ -11,3 +11,4 @@ supabase/.branches/
 HALALCHECK*.md
 
 dist-server/
+data/italy/*.sqlite*

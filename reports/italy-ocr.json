@@ -1,0 +1,18 @@
+{
+  "offline": true,
+  "productsPromoted": 0,
+  "results": [
+    {
+      "barcode": "0036000291452",
+      "synthetic": true,
+      "sourceUrl": "https://images.openfoodfacts.org/images/products/003/600/029/1452/2.jpg",
+      "imageSha256": "66c620b85a6fa6dcfb66f01bb14fd08778431dcde9b97bdf056ad112ca2a4db6",
+      "confidence": 95,
+      "extractedOriginal": "Ingredienti: latte, zucchero, sale.\n",
+      "completeTextMatch": true,
+      "qualityGate": "CORROBORATION_CANDIDATE",
+      "verificationStatus": "REVIEW_REQUIRED",
+      "note": "OCR cannot establish exact packaging identity or full-label coverage by itself."
+    }
+  ]
+}

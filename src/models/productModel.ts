@@ -29,6 +29,7 @@ export interface Product {
   sourceUrl?: string;
   sourceLabels?: string[];
   upstreamModifiedAt?: number;
+  catalogue?: { status: 'VERIFIED' | 'REVIEW_REQUIRED' | 'INCOMPLETE' | 'REJECTED'; stale: boolean; ingredientHash: string; policyVersion: string };
 }
 export interface ProductInput {
   scannedBarcode?: string;

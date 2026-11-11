@@ -1,0 +1,88 @@
+{
+  "retailer": "ins",
+  "url": "https://world.openfoodfacts.org/api/v2/search?countries_tags=en%3Aitaly&stores_tags=ins&page_size=100&page=1&fields=code%2Cproduct_name%2Cproduct_name_it%2Cbrands%2Ccategories_tags%2Ccountries_tags%2Cstores_tags%2Cstores%2Cquantity%2Clang%2Cingredients_text%2Cingredients_text_it%2Cingredients_text_en%2Cingredients%2Cingredients_tags%2Cdata_quality_errors_tags%2Cdata_quality_warnings_tags%2Cimage_front_url%2Cimage_ingredients_url%2Clast_modified_t%2Crev%2Cobsolete%2Cowner%2Cstates_tags",
+  "status": 200,
+  "retrievedAt": "2026-11-11T01:03:03.592Z",
+  "retryAfter": null,
+  "licence": "ODbL-1.0 / DbCL-1.0; images CC-BY-SA-3.0",
+  "sha256": "53d3d4495e0dcd9369d21f4de5ae50531670f3a79fde433a7f1bc1ad8e3ab818",
+  "body": {
+    "count": 1,
+    "page": 1,
+    "page_count": 1,
+    "page_size": 100,
+    "products": [
+      {
+        "brands": "Agugiaro&Figna",
+        "categories_tags": [
+          "en:plant-based-foods-and-beverages",
+          "en:plant-based-foods",
+          "en:cereals-and-potatoes",
+          "en:cereals-and-their-products",
+          "en:flours",
+          "en:cereal-flours",
+          "en:wheat-flours"
+        ],
+        "code": "8028630011144",
+        "countries_tags": [
+          "en:italy"
+        ],
+        "data_quality_errors_tags": [],
+        "data_quality_warnings_tags": [
+          "en:ingredients-unknown-score-above-0",
+          "en:ingredients-100-percent-unknown",
+          "en:environmental-score-packaging-packaging-data-missing",
+          "en:environmental-score-production-system-no-label"
+        ],
+        "image_front_url": "https://images.openfoodfacts.org/images/products/802/863/001/1144/front_it.3.400.jpg",
+        "ingredients": [
+          {
+            "id": "it:farina-di-grano-tenero-tipo-oo",
+            "is_in_taxonomy": 0,
+            "percent_estimate": 100,
+            "percent_max": 100,
+            "percent_min": 100,
+            "text": "Farina di GRANO tenero tipo \"oo\""
+          }
+        ],
+        "ingredients_tags": [
+          "it:farina-di-grano-tenero-tipo-oo"
+        ],
+        "ingredients_text": "Farina di GRANO tenero tipo &quot;oo&quot;",
+        "ingredients_text_it": "Farina di GRANO tenero tipo &quot;oo&quot;",
+        "lang": "it",
+        "last_modified_t": 1774887488,
+        "product_name": "Farina per pizza napoletana",
+        "product_name_it": "Farina per pizza napoletana",
+        "quantity": "1 kg",
+        "rev": 19,
+        "states_tags": [
+          "en:to-be-completed",
+          "en:nutrition-facts-completed",
+          "en:ingredients-completed",
+          "en:expiration-date-to-be-completed",
+          "en:packaging-code-to-be-completed",
+          "en:characteristics-to-be-completed",
+          "en:origins-completed",
+          "en:categories-completed",
+          "en:brands-completed",
+          "en:packaging-to-be-completed",
+          "en:quantity-completed",
+          "en:product-name-completed",
+          "en:photos-validated",
+          "en:packaging-photo-selected",
+          "en:nutrition-photo-selected",
+          "en:ingredients-photo-selected",
+          "en:front-photo-selected",
+          "en:photos-uploaded"
+        ],
+        "stores": "ins",
+        "stores_tags": [
+          "ins"
+        ]
+      }
+    ],
+    "skip": 0
+  },
+  "responseSha256": "53d3d4495e0dcd9369d21f4de5ae50531670f3a79fde433a7f1bc1ad8e3ab818"
+}

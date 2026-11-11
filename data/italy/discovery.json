@@ -1,0 +1,52 @@
+{
+  "recordedAt": "2026-11-11T01:03:10.098Z",
+  "method": "Six bounded retailer search batches, up to 100 records each; no per-product reads.",
+  "events": [
+    {
+      "retailer": "conad",
+      "url": "https://world.openfoodfacts.org/api/v2/search?countries_tags=en%3Aitaly&stores_tags=conad&page_size=100&page=1&fields=code%2Cproduct_name%2Cproduct_name_it%2Cbrands%2Ccategories_tags%2Ccountries_tags%2Cstores_tags%2Cstores%2Cquantity%2Clang%2Cingredients_text%2Cingredients_text_it%2Cingredients_text_en%2Cingredients%2Cingredients_tags%2Cdata_quality_errors_tags%2Cdata_quality_warnings_tags%2Cimage_front_url%2Cimage_ingredients_url%2Clast_modified_t%2Crev%2Cobsolete%2Cowner%2Cstates_tags",
+      "status": 503,
+      "retrievedAt": "2026-11-11T01:02:54.131Z",
+      "retryAfter": null
+    },
+    {
+      "retailer": "lidl",
+      "url": "https://world.openfoodfacts.org/api/v2/search?countries_tags=en%3Aitaly&stores_tags=lidl&page_size=100&page=1&fields=code%2Cproduct_name%2Cproduct_name_it%2Cbrands%2Ccategories_tags%2Ccountries_tags%2Cstores_tags%2Cstores%2Cquantity%2Clang%2Cingredients_text%2Cingredients_text_it%2Cingredients_text_en%2Cingredients%2Cingredients_tags%2Cdata_quality_errors_tags%2Cdata_quality_warnings_tags%2Cimage_front_url%2Cimage_ingredients_url%2Clast_modified_t%2Crev%2Cobsolete%2Cowner%2Cstates_tags",
+      "status": 200,
+      "retrievedAt": "2026-11-11T01:02:56.209Z",
+      "retryAfter": null,
+      "records": 100,
+      "totalMatching": 519
+    },
+    {
+      "retailer": "eurospin",
+      "url": "https://world.openfoodfacts.org/api/v2/search?countries_tags=en%3Aitaly&stores_tags=eurospin&page_size=100&page=1&fields=code%2Cproduct_name%2Cproduct_name_it%2Cbrands%2Ccategories_tags%2Ccountries_tags%2Cstores_tags%2Cstores%2Cquantity%2Clang%2Cingredients_text%2Cingredients_text_it%2Cingredients_text_en%2Cingredients%2Cingredients_tags%2Cdata_quality_errors_tags%2Cdata_quality_warnings_tags%2Cimage_front_url%2Cimage_ingredients_url%2Clast_modified_t%2Crev%2Cobsolete%2Cowner%2Cstates_tags",
+      "status": 503,
+      "retrievedAt": "2026-11-11T01:03:03.207Z",
+      "retryAfter": null
+    },
+    {
+      "retailer": "md",
+      "url": "https://world.openfoodfacts.org/api/v2/search?countries_tags=en%3Aitaly&stores_tags=md&page_size=100&page=1&fields=code%2Cproduct_name%2Cproduct_name_it%2Cbrands%2Ccategories_tags%2Ccountries_tags%2Cstores_tags%2Cstores%2Cquantity%2Clang%2Cingredients_text%2Cingredients_text_it%2Cingredients_text_en%2Cingredients%2Cingredients_tags%2Cdata_quality_errors_tags%2Cdata_quality_warnings_tags%2Cimage_front_url%2Cimage_ingredients_url%2Clast_modified_t%2Crev%2Cobsolete%2Cowner%2Cstates_tags",
+      "status": 503,
+      "retrievedAt": "2026-11-11T01:03:03.316Z",
+      "retryAfter": null
+    },
+    {
+      "retailer": "todis",
+      "url": "https://world.openfoodfacts.org/api/v2/search?countries_tags=en%3Aitaly&stores_tags=todis&page_size=100&page=1&fields=code%2Cproduct_name%2Cproduct_name_it%2Cbrands%2Ccategories_tags%2Ccountries_tags%2Cstores_tags%2Cstores%2Cquantity%2Clang%2Cingredients_text%2Cingredients_text_it%2Cingredients_text_en%2Cingredients%2Cingredients_tags%2Cdata_quality_errors_tags%2Cdata_quality_warnings_tags%2Cimage_front_url%2Cimage_ingredients_url%2Clast_modified_t%2Crev%2Cobsolete%2Cowner%2Cstates_tags",
+      "status": 503,
+      "retrievedAt": "2026-11-11T01:03:03.414Z",
+      "retryAfter": null
+    },
+    {
+      "retailer": "ins",
+      "url": "https://world.openfoodfacts.org/api/v2/search?countries_tags=en%3Aitaly&stores_tags=ins&page_size=100&page=1&fields=code%2Cproduct_name%2Cproduct_name_it%2Cbrands%2Ccategories_tags%2Ccountries_tags%2Cstores_tags%2Cstores%2Cquantity%2Clang%2Cingredients_text%2Cingredients_text_it%2Cingredients_text_en%2Cingredients%2Cingredients_tags%2Cdata_quality_errors_tags%2Cdata_quality_warnings_tags%2Cimage_front_url%2Cimage_ingredients_url%2Clast_modified_t%2Crev%2Cobsolete%2Cowner%2Cstates_tags",
+      "status": 200,
+      "retrievedAt": "2026-11-11T01:03:03.592Z",
+      "retryAfter": null,
+      "records": 1,
+      "totalMatching": 1
+    }
+  ]
+}

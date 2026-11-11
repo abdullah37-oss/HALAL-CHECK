@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-10T23:36:05.568Z",
+  "createdAt": "2026-11-11T01:34:23.937Z",
   "buildRuntime": "v26.13.0",
   "files": [
     {
@@ -44,8 +44,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 38175,
-      "sha256": "2488c31ed95fe98be2ec8fd6b1091a03254e74c5e4f02f302c2a0e93bbbd20d2"
+      "bytes": 38710,
+      "sha256": "4d771abd5ee3a25c49931fd622c5d183d0fa40b8675b358722f017816c2fcf61"
     },
     {
       "path": "assets/barcode-decoder.js",
@@ -148,6 +148,16 @@
       "sha256": "5003fb4b88c4fbd1fd518a2fd8c8ad365c519e183a08c03a322dddfea3cea84e"
     },
     {
+      "path": "catalogue/LICENCE.txt",
+      "bytes": 1370,
+      "sha256": "68a84496d7fd879abc09fbff0df3b56c0985171732c363b5cda2e186b9f96e87"
+    },
+    {
+      "path": "catalogue/italy.json.gz",
+      "bytes": 42629,
+      "sha256": "21cea688e744970ec3abb745c899b00145eaf00cfe7ee3bdf84741e7f06b261f"
+    },
+    {
       "path": "config.js",
       "bytes": 202,
       "sha256": "6e470e10679d7e2e7aaf4d487431325d6a9c7e5f5fd289bfc3cfbacd23333160"
@@ -199,8 +209,8 @@
     },
     {
       "path": "src/i18n/index.js",
-      "bytes": 503213,
-      "sha256": "2bde3ee27d44a85d282815ef34ad2b6164e643f1c6982da172145ad15d7a5868"
+      "bytes": 505269,
+      "sha256": "aa7eeab37bf4191b008f500d03a7db5477dc659eee5ba8a17e0914f27b66b938"
     },
     {
       "path": "src/models/productModel.js",
@@ -214,8 +224,8 @@
     },
     {
       "path": "src/utils/productRepository.js",
-      "bytes": 17386,
-      "sha256": "53bef6c8535e99154d1126394c43e081e92e09364a38f43ba3a6db2d0670c6e2"
+      "bytes": 17992,
+      "sha256": "69774078e5e4b70ce07cc0276d459b6c20863444283090786a7d6b19e9db49cb"
     },
     {
       "path": "styles.css",
@@ -224,8 +234,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 1698,
-      "sha256": "1af865cff0077a09a2c9cb8fd1cfbec1df46459fe516b386eab295f8d3e35e19"
+      "bytes": 1741,
+      "sha256": "a51c058c88ee57cfdec903b0920701de2df33e7b17abd8776851dc2a7be19c03"
     }
   ]
 }
