@@ -189,7 +189,7 @@ Run `npm run qa:100`, `npm run typecheck`, `npm run lint`, `npm run build`,
 Build timestamps in the licensed download are pinned to recorded source/review
 evidence for reproducible asset hashes; runtime expiry uses the real clock.
 
-Final local QA: **831 passed, zero failed/skipped** (609 unit/integration and
+Final local QA: **832 passed, zero failed/skipped** (610 unit/integration and
 222 desktop/mobile browser executions). Strict TypeScript, lint and release
 build passed; application dependency audit found zero vulnerabilities. The
 licensed download adds two explicit static assets (47 total). On the recorded
@@ -198,6 +198,11 @@ local environment, indexed lookup p95 was 0.216 ms (10,000 samples), cache p95
 instances, concurrency 40 each). Maximum response was 851 bytes; initial script
 growth was 3,197 bytes. No full catalogue download occurs at startup. This is a
 98-row dataset benchmark, not proof of a 1,000-row production workload or CWV.
+Live hash checking exposed Windows/Linux gzip OS-header differences despite
+identical uncompressed catalogue data. The release normalizes that header to
+the standard unknown-OS value and regression-tests it, preserving exact hosted
+asset hashes. The synthetic preview barcode fixture also uses an explicit white
+background; a transparent background is unsuitable for its canvas decoder.
 
 ## Licensing and privacy
 

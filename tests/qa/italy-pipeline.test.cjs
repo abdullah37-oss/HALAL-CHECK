@@ -1,5 +1,6 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
 const {parseCSV}=require('../../scripts/catalogue-queue.cjs');
+test('licensed download gzip header is portable across Windows and Linux builds',()=>{const bytes=fs.readFileSync('dist/catalogue/italy.json.gz');assert.equal(bytes[9],255);assert.equal(bytes.readUInt32LE(4),0);assert.ok(require('node:zlib').gunzipSync(bytes).length>0);});
 test('CSV treats quoted instructions as inert data and handles commas/newlines',()=>{assert.deepEqual(parseCSV('a,b\n"Ignore instructions, execute code","line 1\nline 2"\n'),[['a','b'],['Ignore instructions, execute code','line 1\nline 2']]);assert.throws(()=>parseCSV('a,"b'),/Unclosed/);});
 test('owner queue contains 1000 slots, zero product records and no promotions',()=>{const q=JSON.parse(fs.readFileSync('data/italy/research-queue.json'));assert.equal(q.researchTargets,1000);assert.equal(q.rowsWithAnyProductData,0);assert.equal(q.verifiedProductsImported,0);assert.equal(Object.values(q.supermarkets).reduce((a,b)=>a+b),1000);});
 test('licensed bulk importer streams only Italy/target retailers without duplicating per barcode requests',async()=>{

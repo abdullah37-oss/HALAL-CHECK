@@ -25,7 +25,11 @@ function build({incremental=false}={}){
   fs.renameSync(temp,target);
   fs.mkdirSync('dist/catalogue',{recursive:true});
   const download={schema:1,licence:'ODbL-1.0',contentsLicence:'DbCL-1.0',imagesLicence:'CC-BY-SA-3.0',attribution:'Open Food Facts contributors',policy:engine.policy,products,sources,retailers,runs};
-  fs.writeFileSync('dist/catalogue/italy.json.gz',zlib.gzipSync(JSON.stringify(download)));
+  const compressed=zlib.gzipSync(JSON.stringify(download));
+  // Gzip's OS header otherwise differs between Windows research and Linux hosting.
+  // 255 is the standard "unknown OS" value; payload/CRC remain unchanged.
+  compressed[9]=255;
+  fs.writeFileSync('dist/catalogue/italy.json.gz',compressed);
   fs.copyFileSync('data/italy/LICENCE.md','dist/catalogue/LICENCE.txt');
   fs.mkdirSync('reports',{recursive:true});
   const quality={identifiableNameAndBrand:products.filter(p=>p.product_name&&p.brand).length,retainedOriginalIngredientTexts:products.filter(p=>p.ingredients_original).length,invalidOrOutOfScopeRecords:batches.flatMap(b=>b.body.products.filter(p=>!products.some(v=>v.barcode===p.code)).map(p=>({barcode:String(p.code),reason:'Invalid retail barcode or out of scope'}))),categories:Object.fromEntries([...new Set(products.map(p=>p.category))].map(c=>[c,products.filter(p=>p.category===c).length]))};

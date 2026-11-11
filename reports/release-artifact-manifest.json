@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-11T01:34:23.937Z",
+  "createdAt": "2026-11-11T01:42:16.342Z",
   "buildRuntime": "v26.13.0",
   "files": [
     {
@@ -155,7 +155,7 @@
     {
       "path": "catalogue/italy.json.gz",
       "bytes": 42629,
-      "sha256": "21cea688e744970ec3abb745c899b00145eaf00cfe7ee3bdf84741e7f06b261f"
+      "sha256": "a113a9da0c9c62a1d00a4c78631a2aa2f416340142180c04b1205fa84f2d5b02"
     },
     {
       "path": "config.js",

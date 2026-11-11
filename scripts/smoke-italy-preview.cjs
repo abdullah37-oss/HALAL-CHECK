@@ -12,6 +12,8 @@ async function upload(page,kind,file){
  await expect(page.locator('#picture-choice')).toBeVisible();await page.locator(`[data-picture-kind="${kind}"]`).click();
 }
 (async()=>{
+ fs.mkdirSync('.release-private',{recursive:true});
+ fs.writeFileSync('.release-private/italy-barcode.png',await require('bwip-js').toBuffer({bcid:'ean13',text:'4056489068211',scale:3,height:20,includetext:true,backgroundcolor:'FFFFFF',paddingwidth:12,paddingheight:8}));
  const raw=await new Promise((resolve,reject)=>execFile('npx.cmd',['--yes','vercel','curl','/','--deployment',site,'--','--silent','--include','--header','"x-vercel-set-bypass-cookie: true"'],{shell:true,encoding:'utf8',maxBuffer:2*1024*1024},(error,stdout)=>error?reject(Error('Preview access failed')):resolve(stdout)));
  const cookies=[...raw.matchAll(/^set-cookie:\s*([^=;]+)=([^;\r\n]*).*$/gim)].map(m=>({name:m[1],value:m[2],url:site}));
  const browser=await chromium.launch();
