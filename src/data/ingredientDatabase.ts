@@ -64,7 +64,7 @@ const extraAliases: Record<string, string[]> = {
   'Milk': ['latte pastorizzato', 'latte parzialmente scremato', 'latte scremato pastorizzato', 'latte parzialmente scremato uht'],
   'Cream': ['panna uht'],
   'Rice': ['riso medio nero integrale parboiled'],
-  'Milk cultures': ['fermenti lattici vivi'],
+  'Milk cultures': ['fermenti lattici vivi', 'live lactic ferments', 'lactic ferments'],
   'Wheat flour': ['farina di frumento', 'farina di grano tenero', 'farina di grano tenero tipo 0', 'farina di grano tenero tipo 00', 'semola di grano duro'],
   'Whey': ['lattosio', 'latte in polvere', 'proteine del latte'],
   'Vegetable oil': ['olio di semi di girasole', 'olio di colza', 'olio di palma', 'palmfett', 'colza', 'olio extravergine di oliva', 'olio extravergine di oliva dop'],

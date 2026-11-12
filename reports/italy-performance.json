@@ -1,24 +1,26 @@
 {
   "environment": "Local Windows Node v24.22.3; 98 real candidate rows; synthetic concurrent instances, not production latency or Android CWV",
   "rows": 98,
-  "coldOpenMs": 1.1444999999999972,
+  "coldOpenMs": 1.2811999999999983,
   "indexed": {
     "samples": 10000,
-    "p95Ms": 0.11620000000004893,
+    "p95Ms": 0.17419999999999902,
     "budgetMs": 250
   },
   "browserCache": {
     "samples": 2000,
-    "p95Ms": 0.886299999999892,
+    "cacheHits": 2000,
+    "p95Ms": 2.4420000000000073,
     "budgetMs": 150
   },
   "endpoint": {
+    "mode": "Synthetic unavailable upstream/cooldown, withheld local fallback; no live network",
     "samples": 1000,
     "concurrencyPerInstance": 40,
-    "p95Ms": 6.936400000000049,
-    "maximumResponseBytes": 851
+    "p95Ms": 8.368800000000192,
+    "maximumResponseBytes": 835
   },
-  "startupDeltaBytes": 6145,
+  "startupDeltaBytes": 6246,
   "initialCatalogueDownloads": 0,
   "physicalAndroidTest": false,
   "coreWebVitalsMeasured": false,

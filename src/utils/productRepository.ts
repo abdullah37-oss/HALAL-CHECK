@@ -7,7 +7,7 @@ export const productRepository = (() => {
     let blockedUntil = 0;
     const readCache = (legacy = false): Record<string, Product> => { try {
         const raw: unknown = JSON.parse(localStorage.getItem(cacheKey) || '{}');
-        if (!record(raw) || raw.version !== 1 || !record(raw.products) || !legacy && raw.catalogueGeneration !== 'italy-v1')
+        if (!record(raw) || raw.version !== 1 || !record(raw.products) || !legacy && raw.catalogueGeneration !== 'italy-off-v2')
             return {};
         return Object.fromEntries(Object.entries(raw.products).filter((entry): entry is [
             string,
@@ -18,9 +18,9 @@ export const productRepository = (() => {
         return {};
     } };
     const keyFor = (barcode: string, language: string) => barcodeIdentity(barcode) + ':' + language;
-    const save = (product: Product, language = 'en') => { if (!isOffProduct(product))
+    const save = (product: Product, language = 'en') => { if (!isOffProduct(product) || product.catalogue && (product.catalogue.status !== 'VERIFIED' || product.catalogue.stale))
         return; const products = readCache(); products[keyFor(product.scannedBarcode, language)] = product; const ordered = Object.entries(products).sort(([, a], [, b]) => Date.parse(b.lastUpdated) - Date.parse(a.lastUpdated)).slice(0, 100); try {
-        localStorage.setItem(cacheKey, JSON.stringify({ version: 1, catalogueGeneration: 'italy-v1', products: Object.fromEntries(ordered) }));
+        localStorage.setItem(cacheKey, JSON.stringify({ version: 1, catalogueGeneration: 'italy-off-v2', products: Object.fromEntries(ordered) }));
     }
     catch { /* The optional product cache may be unavailable or full. */ } };
     const validateReturnedProduct = (scannedBarcode: string, returnedProduct: unknown): LookupResult => isProduct(returnedProduct) && sameBarcode(scannedBarcode, returnedProduct.returnedBarcode) ? { status: 'verified', product: { ...returnedProduct, scannedBarcode } } : { status: 'identity-mismatch', scannedBarcode, returnedBarcode: record(returnedProduct) ? returnedProduct.returnedBarcode : undefined };

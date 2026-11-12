@@ -1,5 +1,5 @@
 import { fetchProduct, PRODUCT_TTL, SUPPORTED_LANGUAGES, type LookupResult } from '../services/openFoodFacts';
-import { isRetailBarcode, barcodeIdentity } from '../lib/barcode';
+import { isRetailBarcode, barcodeIdentity, sameBarcode } from '../lib/barcode';
 import { createCatalogueLookup } from './catalogue';
 import type { Product } from '../models/productModel';
 interface Entry {
@@ -38,11 +38,14 @@ export function createProductHandler({ fetcher = fetch, now = Date.now, sleep = 
         if (ingressTimes.length >= 60)
             return send(429, { error: 'rate-limited' }, { 'Retry-After': '60' });
         ingressTimes.push(now());
-        // Read-only, indexed catalogue lookup precedes upstream caches and cooldowns.
-        // Unreviewed or stale labels are withheld by the catalogue adapter.
+        // Reviewed, current packaging stays authoritative. Research records may
+        // fall back to a fresh OFF lookup, but are never themselves promoted.
+        let local: Product | null = null;
+        const fallback = () => send(200, { schema: 'halalcheck.off.v1', product: local });
         try {
-            const local = catalogueLookup(barcode);
-            if (local) return send(200, { schema: 'halalcheck.off.v1', product: local }, { 'Cache-Control': 'public, max-age=0, s-maxage=300' });
+            local = catalogueLookup(barcode);
+            if (local && (!sameBarcode(barcode, local.returnedBarcode) || !sameBarcode(barcode, local.scannedBarcode))) return send(503, { error: 'catalogue-identity-mismatch' });
+            if (local?.catalogue?.status === 'REJECTED' || local?.catalogue?.status === 'VERIFIED' && !local.catalogue.stale) return fallback();
         } catch { return send(503, { error: 'service-unavailable' }, { 'Retry-After': '60' }); }
         const key = barcodeIdentity(barcode) + ':' + language;
         for (const [k, v] of cache)
@@ -54,11 +57,11 @@ export function createProductHandler({ fetcher = fetch, now = Date.now, sleep = 
             result = stored.result;
         else {
             if (blockedUntil > now())
-                return send(429, { error: 'rate-limited' }, { 'Retry-After': String(Math.max(1, Math.ceil((blockedUntil - now()) / 1000))) });
+                return local ? fallback() : send(429, { error: 'rate-limited' }, { 'Retry-After': String(Math.max(1, Math.ceil((blockedUntil - now()) / 1000))) });
             let work = pending.get(key);
             if (!work) {
                 if (pending.size >= 8)
-                    return send(503, { error: 'service-unavailable' }, { 'Retry-After': '10' });
+                    return local ? fallback() : send(503, { error: 'service-unavailable' }, { 'Retry-After': '10' });
                 work = fetchProduct(barcode, { fetcher, language, transport: 'upstream', now, sleep, canRequest: budget });
                 pending.set(key, work);
             }
@@ -77,7 +80,10 @@ export function createProductHandler({ fetcher = fetch, now = Date.now, sleep = 
             }
         }
         if (result.status === 'verified')
-            return send(200, { schema: 'halalcheck.off.v1', product: { ...result.product, scannedBarcode: barcode } }, { 'Cache-Control': 'public, max-age=0, s-maxage=3600' });
+            return send(200, { schema: 'halalcheck.off.v1', product: { ...result.product, scannedBarcode: barcode, certification: 'not-verified' } }, { 'Cache-Control': 'public, max-age=0, s-maxage=3600' });
+        // Integrity failures stay explicit. Availability failures can return
+        // only the catalogue adapter's withheld/uncertain evidence.
+        if (local && !['identity-mismatch', 'malformed-data'].includes(result.status)) return fallback();
         if (result.status === 'not-found')
             return send(404, { status: 'not-found' }, { 'Cache-Control': 'public, max-age=0, s-maxage=60' });
         const status = result.status === 'rate-limited' ? 429 : result.status === 'timeout' ? 504 : result.status === 'service-unavailable' || result.status === 'offline' ? 503 : 502;

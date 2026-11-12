@@ -5,6 +5,7 @@ const cases=[
  ['nested unknown source','latte (gelatina), zucchero','needs-checking'],
  ['HTML entity semicolon','farina di grano tenero tipo &quot;00&quot;, acqua, sale','likely-halal'],
  ['Italian processing descriptors','latte pastorizzato, fermenti lattici vivi','likely-halal'],
+ ['English culture synonym','pasteurized skimmed milk, live lactic ferments','likely-halal'],
  ['Italian category prefix','addensante: gomma di guar, acqua','likely-halal'],
  ['unknown cannot hide behind category','addensante: mystery, latte','needs-checking'],
  ['E number punctuation','E-412, E 500, acqua','likely-halal'],

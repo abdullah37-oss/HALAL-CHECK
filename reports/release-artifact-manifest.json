@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-12T14:12:22.080Z",
+  "createdAt": "2026-11-12T14:40:56.379Z",
   "buildRuntime": "v24.22.3",
   "files": [
     {
@@ -194,8 +194,8 @@
     },
     {
       "path": "src/data/ingredientDatabase.js",
-      "bytes": 13661,
-      "sha256": "9115dc00c931cb9d000e96093d1031e16e05dc5022fa3e8245645124ba989af1"
+      "bytes": 13704,
+      "sha256": "0a12f52a516a14a0f3d8d771d2da05ad03662822386b44c6b25818444988544d"
     },
     {
       "path": "src/data/productCatalog.js",
@@ -224,8 +224,8 @@
     },
     {
       "path": "src/utils/productRepository.js",
-      "bytes": 18355,
-      "sha256": "700c913f0055163fc8860c922a4aac8c5d31b8efb564d28df7277d5a576394b7"
+      "bytes": 18456,
+      "sha256": "1b8a6cbb922929b45b35af8bff1c87e0c3f702965120a7a0eb323fe4de0f13be"
     },
     {
       "path": "styles.css",

@@ -18,10 +18,10 @@
   "rules": {
     "total": 50,
     "uniqueIds": 50,
-    "aliasEntries": 278,
-    "uniqueNormalizedAliases": 278,
+    "aliasEntries": 280,
+    "uniqueNormalizedAliases": 280,
     "translationEntries": 600,
-    "uniqueNormalizedAliasAndTranslationStrings": 531,
+    "uniqueNormalizedAliasAndTranslationStrings": 533,
     "uiLanguages": [
       "en",
       "it",
@@ -302,7 +302,7 @@
   ],
   "performance": {
     "samples": 98,
-    "p95Ms": 3.501700000000028
+    "p95Ms": 7.201000000000022
   },
   "products": [
     {

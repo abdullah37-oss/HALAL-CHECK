@@ -1,0 +1,709 @@
+{
+  "scope": "Offline replay of existing licensed 98-product snapshots through actual endpoint + OFF mapper + analyzer; not 98 fresh live requests",
+  "sampleSize": 98,
+  "before": {
+    "HALAL": 0,
+    "HARAM": 0,
+    "NEEDS_CHECKING": 98
+  },
+  "after": {
+    "HALAL": 10,
+    "HARAM": 2,
+    "NEEDS_CHECKING": 86
+  },
+  "percentages": {
+    "HALAL": 10.204081632653061,
+    "HARAM": 2.0408163265306123,
+    "NEEDS_CHECKING": 87.75510204081633
+  },
+  "productionAnalyticsWrites": 0,
+  "networkRequests": 0,
+  "rows": [
+    {
+      "barcode": "8028630011144",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489068211",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "80369691",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489936237",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20047238",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20815394",
+      "status": "NEEDS_CHECKING",
+      "evidence": "partial",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "5449000000453",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20810405",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489114963",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489068204",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20824662",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489406679",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489633068",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20457105",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20267605",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489440918",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489219477",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4008400191423",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20161330",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489181125",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489541813",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489441304",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "8001860810008",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "5053990167807",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489189091",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489207092",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489420255",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489028109",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489224525",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "8025579111638",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20050429",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "8001100069708",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489796701",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20177089",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489892175",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489546849",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489861829",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489419563",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20422264",
+      "status": "HARAM",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20053345",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20009816",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20849290",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489043003",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20691851",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489722144",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20047504",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489097280",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489099031",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "5449000000439",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20498610",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489286998",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "3274080005003",
+      "status": "NEEDS_CHECKING",
+      "evidence": "partial",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20362843",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489042730",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20615079",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20684808",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20052089",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489099246",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489496274",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489160595",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489043195",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "8008660100032",
+      "status": "NEEDS_CHECKING",
+      "evidence": "partial",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489420767",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489632603",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489419556",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20088279",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20623135",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489041887",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489228868",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489720843",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4335619244962",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489419808",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20305123",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "7614500010617",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20162702",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489041962",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489419792",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20058012",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489419761",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489042273",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20622756",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489220558",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489346869",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489419839",
+      "status": "HALAL",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20139124",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20217938",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "20969578",
+      "status": "HARAM",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489631910",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489010357",
+      "status": "NEEDS_CHECKING",
+      "evidence": "complete",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489314905",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489228776",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489099383",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489042150",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489042037",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489043225",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489163008",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489348115",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    },
+    {
+      "barcode": "4056489099024",
+      "status": "NEEDS_CHECKING",
+      "evidence": "missing",
+      "retainedCatalogueGate": false,
+      "upstreamFixtureCalls": 1
+    }
+  ]
+}

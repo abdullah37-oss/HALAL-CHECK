@@ -1,5 +1,10 @@
 # Ingredient uncertainty audit — 12 November 2026
 
+**Update:** the owner approved fresh validated OFF fallback after this audit.
+See [the current fallback release](CATALOGUE_OFF_FALLBACK_RELEASE.md) for actual
+endpoint-pipeline results. The original rule/label audit below remains useful;
+its pending-policy statements describe the first preview.
+
 This release improves ingredient screening. It does not establish product
 certification or remove the separate catalogue packaging-review requirement.
 Production deployment and merging are outside this change.

@@ -1,5 +1,9 @@
 # Ingredient evidence release — 12 November 2026
 
+**Historical first preview.** The subsequently approved fresh OFF fallback is
+documented in [the current fallback release](CATALOGUE_OFF_FALLBACK_RELEASE.md).
+Its pipeline results and final QA supersede the pending-policy limitation below.
+
 **GO for the verified feature preview. NO-GO for claiming a completed catalogue
 rollout or deploying production without approval.**
 

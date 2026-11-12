@@ -46,7 +46,7 @@ for(const row of rows)test('real imported exact barcode, provenance, evidence an
  assert.equal(new Set(rows.map(r=>r.identity)).size,rows.length);
  const a=engine.analyze(p.ingredientsRaw,row.verification_status==='VERIFIED');assert.ok(['likely-halal','not-halal','needs-checking','not-enough-information'].includes(a.classification));
  if(row.verification_status!=='VERIFIED'){assert.equal(p.ingredientsRaw,'');assert.equal(p.ingredients.length,0);assert.equal(a.classification,'not-enough-information');}
- const handler=createProductHandler({catalogueLookup:lookup,fetcher:async()=>{throw Error('Upstream must not be used for known records')}});
+ const handler=createProductHandler({catalogueLookup:lookup,fetcher:async()=>new Response('{}',{status:503,headers:{'Retry-After':'60'}})});
  const response=await handler(new Request('https://qa.test/api/products/'+row.barcode));assert.equal(response.status,200);assert.equal((await response.json()).product.returnedBarcode,row.barcode);
  assert.equal(p.certification,'not-verified');assert.equal(load().window.productRepository.validateReturnedProduct(row.barcode,p).status,'verified');
 });

@@ -1,6 +1,8 @@
 const http=require('node:http');const fs=require('node:fs');const path=require('node:path');
 const releaseHeaders=JSON.parse(fs.readFileSync('vercel.json','utf8')).headers;
-const productHandler=require('../dist-server/product-handler.cjs').createProductHandler();
+// The local QA server never contacts OFF. Endpoint/upstream integration is
+// tested using explicit injected fixtures; deployed API uses the real fetcher.
+const productHandler=require('../dist-server/product-handler.cjs').createProductHandler({fetcher:async()=>new Response('{}',{status:503,headers:{'Retry-After':'60'}})});
 const root=path.resolve(process.env.SERVE_DIR||'dist');const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webmanifest':'application/manifest+json','.wasm':'application/wasm','.gz':'application/gzip'};
 http.createServer(async(req,res)=>{if(req.url.startsWith('/api/products/')){try{const request=new Request('http://127.0.0.1:4173'+req.url,{method:req.method,headers:req.headers});const result=await productHandler(request);res.writeHead(result.status,Object.fromEntries(result.headers));res.end(Buffer.from(await result.arrayBuffer()));}catch{res.writeHead(500).end();}return;}if(req.url==='/__qa_shutdown'&&req.method==='POST'&&req.headers['x-qa-stop']==='yes'){res.end('stopping');setTimeout(()=>process.exit(0),50);return;}let file;try {file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));}catch {res.writeHead(400).end();return;}
  if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');
