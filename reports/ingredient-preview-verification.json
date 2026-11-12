@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-12T14:15:03.727Z",
+  "site": "https://halal-check-cgaziknwa-abdullah-b0a5.vercel.app",
+  "sourceCommit": "f9cc1abe3960a970ecfe6fe5b2c5a06c032b3a2c",
+  "checks": [
+    {
+      "name": "deployed analyzer reproduces all real sample labels",
+      "passed": true,
+      "sampleSize": 98
+    },
+    {
+      "name": "real sampled yogurt label resolves through UI",
+      "passed": true
+    },
+    {
+      "name": "specific gelatin uncertainty and useful action",
+      "passed": true
+    },
+    {
+      "name": "Italian guidance renders without changing ingredient identity",
+      "passed": true
+    },
+    {
+      "name": "vinegar cannot conceal separate wine",
+      "passed": true
+    },
+    {
+      "name": "mobile layout and runtime",
+      "passed": true
+    },
+    {
+      "name": "zero analytics and Auth requests",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "analyticsAttempts": 0,
+  "authAttempts": 0,
+  "ownerLoginVerified": false,
+  "productionMutationPerformed": false
+}
