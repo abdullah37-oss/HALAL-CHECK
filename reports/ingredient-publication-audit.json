@@ -1,10 +1,12 @@
 {
-  "checkedAt": "2026-11-12T14:14:24.694Z",
-  "scope": "Only newly outgoing history; already-published history is unchanged",
-  "commits": [],
-  "filesChecked": 0,
+  "checkedAt": "2026-11-12T14:41:44.578Z",
+  "scope": "Recorded result of the actual pre-push full-tree audit",
+  "command": "node scripts/audit-public-push.cjs --ref=refs/heads/feature/ingredient-evidence-20261112 --check-only",
+  "commits": [
+    "8e3eca85bb704cb6a4cddf1fb23966e40661132e"
+  ],
+  "filesChecked": 227,
   "findings": [],
-  "syntheticFixtures": [],
   "decision": "PASS",
   "privateFilesInOutgoingHistory": false,
   "productionDeploymentAuthorized": false

@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-12T14:15:03.727Z",
-  "site": "https://halal-check-cgaziknwa-abdullah-b0a5.vercel.app",
-  "sourceCommit": "f9cc1abe3960a970ecfe6fe5b2c5a06c032b3a2c",
+  "checkedAt": "2026-11-12T14:42:41.495Z",
+  "site": "https://halal-check-dijs1ugkr-abdullah-b0a5.vercel.app",
+  "sourceCommit": "8e3eca85bb704cb6a4cddf1fb23966e40661132e",
   "checks": [
     {
       "name": "deployed analyzer reproduces all real sample labels",
@@ -23,6 +23,14 @@
     {
       "name": "vinegar cannot conceal separate wine",
       "passed": true
+    },
+    {
+      "name": "genuine deployed barcode retrieves fresh validated OFF evidence",
+      "passed": true,
+      "barcode": "4056489099246",
+      "evidenceState": "complete",
+      "classification": "likely-halal",
+      "certification": "not-verified"
     },
     {
       "name": "mobile layout and runtime",

@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-12T14:16:06.818Z",
-  "site": "https://halal-check-cgaziknwa-abdullah-b0a5.vercel.app",
-  "deploymentId": "dpl_Hi33BJBjDtgAbA6YDSKfRVtzRDbW",
-  "sourceCommit": "f9cc1abe3960a970ecfe6fe5b2c5a06c032b3a2c",
+  "checkedAt": "2026-11-12T14:45:13.842Z",
+  "site": "https://halal-check-dijs1ugkr-abdullah-b0a5.vercel.app",
+  "deploymentId": "dpl_FoQfLVSBSuveiduT5Ec86vei4mqe",
+  "sourceCommit": "8e3eca85bb704cb6a4cddf1fb23966e40661132e",
   "checks": [
     {
       "route": "/",

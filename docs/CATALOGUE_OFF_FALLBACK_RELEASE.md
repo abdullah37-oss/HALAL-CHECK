@@ -95,3 +95,24 @@ Startup-byte delta remains below the existing 15 KB budget; no catalogue bulk
 download was added to startup. Physical Android and real network performance
 remain unmeasured. All 47 deployment assets were hashed and the preview upload
 audit found no private/test-artifact files.
+
+## Independently verified live preview
+
+- [New preview](https://halal-check-dijs1ugkr-abdullah-b0a5.vercel.app)
+- Tested application source: `8e3eca85bb704cb6a4cddf1fb23966e40661132e`
+- Deployment: `dpl_FoQfLVSBSuveiduT5Ec86vei4mqe`, preview target.
+- Deployment is Ready. All 54 independent asset-hash, security/cache-header and
+  endpoint checks passed with zero failures.
+- All 98 retained sample labels reproduce the local analyzer results on the
+  deployed frontend. These in-memory label checks are separate from live OFF.
+- One genuine same-origin barcode lookup (`4056489099246`) returned **fresh
+  OFF evidence**, state `complete`, assessment **HALAL**, certification
+  **not verified**, through the deployed API and real mobile result UI.
+- Exact gelatin uncertainty, Italian source guidance and separate prohibited
+  wine behavior also passed. The preview browser recorded zero analytics and
+  zero Auth requests; owner login was not tested.
+
+The live lookup proves the fresh fallback is reachable, not that every product
+will have complete current data. The 98-product pipeline percentages remain
+offline snapshot-replay evidence. **GO for preview review. Production deployment
+remains unapproved and was not performed.**

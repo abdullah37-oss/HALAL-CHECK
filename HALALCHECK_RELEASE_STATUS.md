@@ -61,3 +61,12 @@ Evidence: `reports/publication-verification.json`, `reports/github-publish-audit
 The owner reports that the invitation has not arrived. Read-only Auth state confirms invited=true, confirmation_sent=true, email_confirmed=false and has_signed_in=false. This establishes an accepted send request, not recipient delivery. No second invitation, recovery message or SMTP change has been performed. The actual mail-delivery cause remains UNVERIFIED; see [Supabase's delivery troubleshooting](https://supabase.com/kb/troubleshooting/not-receiving-auth-emails-from-the-supabase-project-OFSNzw) for Auth/provider logs and mailbox spam/quarantine checks.
 
 **Operational decision remains NO-GO** until the owner can complete secure setup and the live dashboard retrieves real authorized aggregates. Public publication and its privacy checks are complete; recipient delivery and owner login are separate unresolved checks.
+
+
+## Ingredient fallback preview — 12 November 2026
+
+The owner approved the staged migration baseline and fresh validated OFF fallback. The feature branch is feature/ingredient-evidence-20261112; tested application source is 8e3eca85bb704cb6a4cddf1fb23966e40661132e. Full Node 24 QA passed 1,058 executions (806 unit, 252 desktop/mobile browser), with zero failures/skips.
+
+The actual endpoint snapshot replay now yields 10 HALAL, 2 HARAM and 86 NEEDS CHECKING out of 98 (previously all 98 unresolved). A genuine live preview lookup of 4056489099246 independently returned complete fresh OFF ingredients and HALAL, with certification unverified. No production analytics or Auth requests were sent by preview verification.
+
+GO for preview review: https://halal-check-dijs1ugkr-abdullah-b0a5.vercel.app . No production deployment, merge, Supabase change or account change was performed. This ingredient task does not establish live owner login or production analytics verification. See docs/CATALOGUE_OFF_FALLBACK_RELEASE.md and reports/catalogue-fallback-benchmark.json.
