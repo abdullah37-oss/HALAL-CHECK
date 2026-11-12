@@ -3,7 +3,8 @@ const fs=require('node:fs'),{execFile}=require('node:child_process'),{chromium,e
 const site=process.argv[2],sourceCommit=process.argv[3];
 if(!/^https:\/\/halal-check-[a-z0-9]+-[a-z0-9-]+\.vercel\.app$/.test(site||'')||! /^[0-9a-f]{40}$/.test(sourceCommit||''))throw Error('Immutable preview and source SHA required');
 (async()=>{
- const raw=await new Promise((resolve,reject)=>execFile('npx.cmd',['--yes','vercel','curl','/assistant/','--deployment',site,'--','--silent','--include','--header','"x-vercel-set-bypass-cookie: true"'],{shell:true,encoding:'utf8',maxBuffer:2*1024*1024},(error,stdout)=>error?reject(Error('Preview access failed')):resolve(stdout)));
+ const cli=process.env.HALALCHECK_VERCEL_CLI;
+ const raw=await new Promise((resolve,reject)=>execFile(cli?process.execPath:'npx.cmd',[...(cli?[cli]:['--yes','vercel']),'curl','/assistant/','--deployment',site,'--','--silent','--include','--header',cli?'x-vercel-set-bypass-cookie: true':'"x-vercel-set-bypass-cookie: true"'],{shell:!cli,encoding:'utf8',maxBuffer:2*1024*1024},(error,stdout)=>error?reject(Error('Preview access failed')):resolve(stdout)));
  const cookies=[...raw.matchAll(/^set-cookie:\s*([^=;]+)=([^;\r\n]*).*$/gim)].map(m=>({name:m[1],value:m[2],url:site}));
  const browser=await chromium.launch(),checks=[],errors=[];let analyticsAttempts=0,authAttempts=0,paidRequests=0;
  try{
@@ -15,7 +16,7 @@ if(!/^https:\/\/halal-check-[a-z0-9]+-[a-z0-9-]+\.vercel\.app$/.test(site||'')||
   async function ask(text,mode='ask'){await page.locator('#assistant-mode').selectOption(mode);await page.locator('#assistant-input').fill(text);await page.locator('#assistant-send').click();}
   await ask('milk, sugar','ingredients');await expect(page.locator('[data-assistant-result]').last()).toHaveText('HALAL');checks.push({name:'deployed local ingredient assessment',passed:true});
   await ask('milk, gelatin','ingredients');await expect(page.locator('[data-assistant-result]').last()).toHaveText('NEEDS CHECKING');await ask('why');await expect(page.locator('.assistant-message').last()).toContainText('gelatin');checks.push({name:'source uncertainty and contextual follow-up',passed:true});
-  await page.locator('#assistant-clear').click();await ask('E471');await expect(page.locator('.assistant-message').last()).toContainText('E471');await expect(page.locator('[data-assistant-result]')).toHaveCount(0);checks.push({name:'ingredient explanation is not a product verdict',passed:true});
+  await page.locator('#assistant-clear').click();await ask('E471');await expect(page.locator('.assistant-message').last()).toContainText('Mono- and diglycerides');await expect(page.locator('[data-assistant-result]')).toHaveCount(0);checks.push({name:'ingredient explanation is not a product verdict',passed:true});
   await page.locator('#assistant-clear').click();await page.locator('#assistant-online').check();
   const search=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/product-search');await ask('Nutella','name');const response=await search,body=await response.json();
   const available=response.status()===200&&body.remoteStatus==='available'&&body.products?.length>0;
@@ -44,4 +45,5 @@ if(!/^https:\/\/halal-check-[a-z0-9]+-[a-z0-9-]+\.vercel\.app$/.test(site||'')||
   fs.writeFileSync('reports/smart-assistant-preview-verification.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));if(!report.passed)process.exitCode=1;
  }finally{await browser.close();}
 })().catch(error=>{console.error(error.message);process.exitCode=1;});
+
 

@@ -12,6 +12,8 @@ function $(selector: string): HTMLElement {
 }
 let client: SupabaseClient | null = null;
 let activeToken: string | null = null;
+let rejectedToken: string | null = null;
+let rejectedMessage = '';
 let revision = 0;
 let controller: AbortController | null = null;
 let inFlightKey: string | null = null;
@@ -167,6 +169,10 @@ $('#activity-group').addEventListener('change', () => { if (latestStats && autho
 async function loadStats(session: Session | null, force = false) {
   const token = session?.access_token;
   if (!token) return showSignedOut($('#auth-error').textContent);
+  // A queued SDK SIGNED_IN callback or the pending form response can arrive
+  // after reporting rejected this same token. Keep it signed out and do not
+  // clear the error or repeat reporting. A deliberate new sign-in resets it.
+  if (token === rejectedToken) return showSignedOut(rejectedMessage);
   if (passwordSetup) {
     activeToken = token;
     $('#auth-panel').hidden = true;
@@ -196,7 +202,9 @@ async function loadStats(session: Session | null, force = false) {
     const response = await fetch(`${config?.ready ? config.value.statsEndpoint : ''}?days=${encodeURIComponent($('#range').value)}`, { headers: { Authorization: `Bearer ${token}` }, signal: requestController.signal, cache: 'no-store' });
     if (version !== revision) return;
     if (response.status === 401 || response.status === 403) {
-      showSignedOut(response.status === 401 ? 'Your session has expired. Sign in again.' : 'This account is not authorized to view the owner dashboard.');
+      rejectedToken = token;
+      rejectedMessage = response.status === 401 ? 'Your session has expired. Sign in again.' : 'This account is not authorized to view the owner dashboard.';
+      showSignedOut(rejectedMessage);
       try { await client?.auth.signOut({ scope: 'local' }); } catch { /* Private UI is already cleared. */ }
       return;
     }
@@ -223,6 +231,8 @@ async function loadStats(session: Session | null, force = false) {
 $('#auth-form').addEventListener('submit', async (event) => {
   event.preventDefault();
   if (!client || $('#auth-submit').disabled) return;
+  rejectedToken = null;
+  rejectedMessage = '';
   $('#auth-submit').disabled = true;
   setText('#auth-error', '');
   setText('#auth-status', 'Signing in...');

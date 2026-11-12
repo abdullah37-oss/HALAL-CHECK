@@ -1,4 +1,4 @@
-const {test,expect}=require('@playwright/test');
+﻿const {test,expect}=require('@playwright/test');
 const {AxeBuilder}=require('@axe-core/playwright');
 test.use({serviceWorkers:'block'});
 const code='0036000291452';
@@ -28,7 +28,7 @@ for(const [ingredients,key,color] of [['milk, sugar','HALAL','rgb(255, 255, 255)
  await page.locator('#language-select').selectOption('en');
  if(!ingredients)await expect(page.locator('.ingredient-summary p')).toHaveText('Ingredients are unavailable.');
  const violations=(await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze()).violations;
- expect(violations.map(v=>v.id)).toEqual([]);
+ expect(violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))).toEqual([]);
 });
 test('Why stays short and excludes ingredients, identities and developer diagnostics',async({page})=>{
  await lookup(page,product('milk, sugar, salt'));
@@ -61,7 +61,8 @@ test('primary scan action remains reachable without mobile navigation overlap',a
 });
 test('dark result keeps one readable card and discreet feedback is outside results',async({page})=>{
  await lookup(page,product('milk, gelatin'));await page.evaluate(()=>document.documentElement.setAttribute('data-theme','dark'));
- const violations=(await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze()).violations;expect(violations.map(v=>v.id)).toEqual([]);
+ const violations=(await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze()).violations;expect(violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))).toEqual([]);
  await expect(page.locator('#result-view a[href*="/issues"]')).toHaveCount(0);
  await page.locator('.app-tools [data-route="about"]').click();await expect(page.locator('#about-view a[href="https://github.com/abdullah37-oss/HALAL-CHECK/issues"]')).toHaveText('Share feedback');
 });
+
