@@ -17,7 +17,9 @@ for(const commit of commits){
   if(/\.md$/.test(file)&&/workspace `[^`]+`/.test(text))findings.push({commit,file,kind:'unnecessary hosting account annotation'});
   if(containsMachinePath(text))findings.push({commit,file,kind:'absolute machine/profile path'});
   if(privateIdentities.some(value=>text.toLowerCase().includes(value.toLowerCase())))findings.push({commit,file,kind:'private owner identifier'});
-  let scan=text;if(['tests/qa/admin-config.test.cjs','scripts/audit-public-push.cjs'].includes(file)&&scan.includes('sb_secret_syntheticinvalidkey0000000000')){scan=scan.replaceAll('sb_secret_syntheticinvalidkey0000000000','');syntheticFixtures.push({commit,file,kind:file.startsWith('tests/')?'Explicit invalid test fixture, not a credential':'Scanner reference to the same known invalid test fixture'});}
+  // Exact invalid fixture only: the upload auditor also names it when scanning
+  // source uploads. Keep the literal visible and report every allowlisted use.
+  let scan=text;if(['tests/qa/admin-config.test.cjs','scripts/audit-public-push.cjs','scripts/audit-smart-assistant-upload.cjs'].includes(file)&&scan.includes('sb_secret_syntheticinvalidkey0000000000')){scan=scan.replaceAll('sb_secret_syntheticinvalidkey0000000000','');syntheticFixtures.push({commit,file,kind:file.startsWith('tests/')?'Explicit invalid test fixture, not a credential':'Scanner reference to the same known invalid test fixture'});}
   if(/sb_secret_[A-Za-z0-9_-]{20,}|-----BEGIN (?:RSA |EC )?PRIVATE KEY-----/.test(scan))findings.push({commit,file,kind:'secret-shaped credential'});
   for(const match of scan.matchAll(/eyJ[A-Za-z0-9_-]+\.([A-Za-z0-9_-]+)\.[A-Za-z0-9_-]+/g)){try{if(JSON.parse(Buffer.from(match[1],'base64url')).role==='service_role')findings.push({commit,file,kind:'service-role JWT'});}catch{}}
  }

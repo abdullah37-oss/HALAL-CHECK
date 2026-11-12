@@ -1,5 +1,6 @@
 ﻿const fs = require('node:fs');
 const { test, expect } = require('@playwright/test');
+test.beforeEach(async({page})=>page.addInitScript(require('./camera-fixtures.cjs').installCanvasStreamFallback));
 // Keep decoder network-fault injection independent of service-worker interception.
 // Offline caching and service-worker lifecycle are covered in app.spec.cjs.
 test.use({ serviceWorkers: 'block' });

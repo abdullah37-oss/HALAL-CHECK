@@ -1,4 +1,5 @@
 import {premiumMessages} from './premiumMessages';
+import {assistantNavigation} from './assistantNavigation';
 import {catalogueMessages} from './catalogueMessages';
 import {productMessages} from './productMessages';
 // Central interface phrase catalog. Native-speaker review remains a release gate.
@@ -3625,3 +3626,4 @@ halalI18n.register(productMessages);
 
 halalI18n.register(premiumMessages);
 halalI18n.register(catalogueMessages);
+halalI18n.register(assistantNavigation);

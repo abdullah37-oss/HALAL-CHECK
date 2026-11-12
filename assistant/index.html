@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ <meta name="theme-color" content="#087A55"><meta name="description" content="HalalCheck Smart Assistant: free, private, rule-based food and ingredient help.">
+ <title>Smart Assistant | HalalCheck</title>
+ <link rel="icon" href="/icons/icon.svg"><link rel="manifest" href="/manifest.webmanifest">
+ <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/assistant/assistant.css">
+</head>
+<body class="assistant-page">
+ <header class="assistant-top">
+  <a class="brand" href="/" aria-label="HalalCheck home"><span class="brand-mark" aria-hidden="true">✓</span><strong>HalalCheck</strong></a>
+  <div class="assistant-tools"><label for="assistant-language">Language<select id="assistant-language"><option value="en">English</option><option value="it">Italiano</option><option value="ar">العربية</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="es">Español</option><option value="tr">Türkçe</option><option value="ms">Melayu</option><option value="id">Indonesia</option></select></label><button id="assistant-theme" class="button button-secondary" type="button">Dark mode</button></div>
+ </header>
+ <main class="assistant-layout">
+  <section class="assistant-intro"><p class="eyebrow">HALALCHECK</p><h1>Smart Assistant</h1><p class="assistant-tagline">Your food questions, clearly answered.</p><span class="assistant-disclosure">Rule-based, not a language model</span></section>
+  <aside class="assistant-privacy card">
+   <p>Photos and ingredient text stay on your device.</p>
+   <label class="assistant-check"><input type="checkbox" id="assistant-online"><span>Allow free online product lookups</span></label>
+   <p class="assistant-note">Only barcode or product-name queries go to Open Food Facts.</p>
+   <a class="text-link" href="https://world.openfoodfacts.org" target="_blank" rel="noopener noreferrer">Open Food Facts</a> · <a class="text-link" href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL</a>
+  </aside>
+  <section class="assistant-conversation card" aria-label="Smart Assistant">
+   <div class="assistant-conversation-top"><span class="assistant-identity"><span aria-hidden="true">✦</span><strong>Smart Assistant</strong></span><button type="button" id="assistant-clear" class="text-link">Clear conversation</button></div>
+   <div id="assistant-chat" class="assistant-chat" role="log" aria-live="polite" aria-relevant="additions" aria-label="Smart Assistant"></div>
+   <div id="assistant-status" class="assistant-status" role="status" aria-live="polite"></div>
+   <div id="assistant-review" class="assistant-review" hidden>
+    <label for="assistant-review-text">Review recognized text</label><textarea id="assistant-review-text" maxlength="10000" rows="5" dir="auto"></textarea>
+    <label class="assistant-check"><input type="checkbox" id="assistant-complete"><span>I checked every word against the full label.</span></label>
+    <button type="button" id="assistant-confirm" class="button button-primary" disabled>Confirm label</button>
+   </div>
+   <div class="assistant-suggestions" id="assistant-suggestions" aria-label="Quick actions"></div>
+   <form id="assistant-form" class="assistant-composer">
+    <label for="assistant-mode">Input type<select id="assistant-mode"><option value="ask">Ask</option><option value="name">Product name</option><option value="barcode">Barcode</option><option value="ingredients">Ingredients</option></select></label>
+    <label class="assistant-input-label" for="assistant-input">Ask or enter ingredients<textarea id="assistant-input" rows="2" maxlength="4000" required dir="auto"></textarea></label>
+    <div class="assistant-send-row"><button type="submit" id="assistant-send" class="button button-primary">Send</button><button type="button" id="assistant-cancel" class="button button-secondary" hidden>Cancel</button></div>
+   </form>
+   <details class="assistant-photo-tools"><summary>Read ingredient photo</summary>
+    <div class="assistant-photo-options"><label for="assistant-photo-kind">Photo type<select id="assistant-photo-kind"><option value="label">Ingredient label</option><option value="barcode">Barcode photo</option><option value="front">Product front</option></select></label>
+     <label for="assistant-ocr-language">Recognition language<select id="assistant-ocr-language"><option value="eng">English</option><option value="ita">Italiano</option><option value="ara">العربية</option><option value="urd">اردو</option></select></label>
+     <label for="assistant-photo" class="assistant-file-label">Upload Picture<input type="file" id="assistant-photo" accept="image/jpeg,image/png,image/webp" capture="environment"></label>
+    </div><p class="assistant-note">Photos and ingredient text stay on your device.</p>
+   </details>
+  </section>
+ </main>
+ <nav class="assistant-bottom-nav" aria-label="Primary navigation"><a href="/">Home</a><a href="/assistant/" aria-current="page">Smart Assistant</a></nav>
+ <script src="/src/data/ingredientDatabase.js" defer></script><script src="/src/data/universalHalalPolicy.js" defer></script><script src="/src/utils/halalAnalyzer.js" defer></script><script src="/src/models/productModel.js" defer></script><script src="/src/data/productCatalog.js" defer></script><script src="/src/utils/productRepository.js" defer></script><script src="/src/i18n/index.js" defer></script><script src="/assets/smart-assistant.js" defer></script>
+</body>
+</html>

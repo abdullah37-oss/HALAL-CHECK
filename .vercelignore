@@ -18,6 +18,7 @@ tests/
 .env
 .env.*
 .git/
+.git
 supabase/.temp/
 supabase/.branches/
 HALALCHECK*.md

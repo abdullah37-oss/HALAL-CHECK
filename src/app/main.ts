@@ -1,3 +1,4 @@
+import {safeLocalStorage,safeSessionStorage} from '../lib/storage';
 import {productImages, ingredientSummary} from '../utils/productPresentation';
 import {validateImageFile} from '../features/image-recognition/image';
 type Analysis = ReturnType<typeof window.halalAnalyzer.analyze>;
@@ -8,11 +9,11 @@ interface AppState {stream: MediaStream | null; facingMode: string; detector: De
 interface Controls { '#homepage-picture': HTMLInputElement; '#picture-choice': HTMLDialogElement; '#camera-preview': HTMLVideoElement; '#barcode-input': HTMLInputElement; '#ingredients-input': HTMLTextAreaElement; '#ocr-text': HTMLTextAreaElement; '#ocr-complete': HTMLInputElement; '#ocr-language': HTMLSelectElement; '#language-select': HTMLSelectElement; '#guide-search-input': HTMLInputElement; '#barcode-image': HTMLInputElement; '#label-image': HTMLInputElement; '#start-camera': HTMLButtonElement; '#switch-camera': HTMLButtonElement; '#flash-toggle': HTMLButtonElement; '#confirm-ocr': HTMLButtonElement; '#barcode-form button[type=submit]': HTMLButtonElement }
 const escapeHtml = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' } as Record<string, string>)[char]);
 let legacyHistory: HistoryItem[] = [];
-try { const saved = JSON.parse(localStorage.getItem('halalcheck-history') || '[]'); if (Array.isArray(saved)) legacyHistory = saved.filter((item) => item && typeof item === 'object'); } catch { /* Ignore corrupted local history. */ }
+try { const saved = JSON.parse(safeLocalStorage.getItem('halalcheck-history') || '[]'); if (Array.isArray(saved)) legacyHistory = saved.filter((item) => item && typeof item === 'object'); } catch { /* Ignore corrupted local history. */ }
 const migratedLegacyHistory = legacyHistory.filter((item) => item.modelVersion !== 2);
-if (migratedLegacyHistory.length) localStorage.setItem('halalcheck-history-legacy-v1', JSON.stringify(migratedLegacyHistory));
-const state: AppState = { stream: null, facingMode: 'environment', detector: null, detecting: false, language: localStorage.getItem('halalcheck-language') || 'en', history: legacyHistory.filter((item) => item.modelVersion === 2) };
-if (migratedLegacyHistory.length) localStorage.setItem('halalcheck-history', JSON.stringify(state.history));
+if (migratedLegacyHistory.length) safeLocalStorage.setItem('halalcheck-history-legacy-v1', JSON.stringify(migratedLegacyHistory));
+const state: AppState = { stream: null, facingMode: 'environment', detector: null, detecting: false, language: safeLocalStorage.getItem('halalcheck-language') || 'en', history: legacyHistory.filter((item) => item.modelVersion === 2) };
+if (migratedLegacyHistory.length) safeLocalStorage.setItem('halalcheck-history', JSON.stringify(state.history));
 if (!window.halalI18n.supported.includes(state.language)) state.language = 'en';
 let installPrompt: BeforeInstallPromptEvent | null = null;
 let lookupSequence = 0;
@@ -30,9 +31,9 @@ function $<K extends keyof Controls>(selector: K): Controls[K];
 function $(selector: string): HTMLElement;
 function $(selector: string): HTMLElement {const element = document.querySelector<HTMLElement>(selector); if (!element) throw Error('Required control is missing'); return element;}
 const $$ = (selector: string) => [...document.querySelectorAll<HTMLElement>(selector)];
-if (!localStorage.getItem(window.halalAnalytics.consentKey)) $('#privacy-notice').hidden = false;
-$('#accept-analytics').addEventListener('click', () => { localStorage.setItem(window.halalAnalytics.consentKey, 'granted'); $('#privacy-notice').hidden = true; window.halalAnalytics.track('page_opened'); });
-$('#decline-analytics').addEventListener('click', () => { sessionStorage.removeItem('halalcheck-analytics-session'); localStorage.setItem(window.halalAnalytics.consentKey, 'denied'); $('#privacy-notice').hidden = true; });
+if (!safeLocalStorage.getItem(window.halalAnalytics.consentKey)) $('#privacy-notice').hidden = false;
+$('#accept-analytics').addEventListener('click', () => { safeLocalStorage.setItem(window.halalAnalytics.consentKey, 'granted'); $('#privacy-notice').hidden = true; window.halalAnalytics.track('page_opened'); });
+$('#decline-analytics').addEventListener('click', () => { safeSessionStorage.removeItem('halalcheck-analytics-session'); safeLocalStorage.setItem(window.halalAnalytics.consentKey, 'denied'); $('#privacy-notice').hidden = true; });
 
 function showToast(message: string) {
   const toast = $('#toast');
@@ -44,7 +45,7 @@ function showToast(message: string) {
 function saveHistory(item: HistoryItem) {
   item.modelVersion = 2;
   state.history = [item, ...state.history.filter((entry) => entry.barcode !== item.barcode)].slice(0, 20);
-  localStorage.setItem('halalcheck-history', JSON.stringify(state.history));
+  safeLocalStorage.setItem('halalcheck-history', JSON.stringify(state.history));
   renderHistory();
 }
 
@@ -135,6 +136,7 @@ function renderResult(view: ResultView) {
       image.remove(); $('#product-photo-message').textContent = translate('Photo unavailable'); $('#product-photo-placeholder').hidden = false; $('#product-photo-credit').hidden = true;
     });
   }
+  const assistantLink=document.createElement('a');assistantLink.className='button button-secondary';assistantLink.textContent=translate('Smart Assistant');assistantLink.href=product&&window.productModel.isValidBarcode(product.returnedBarcode)?'/assistant/#barcode='+encodeURIComponent(product.returnedBarcode):'/assistant/';$('#result-view').querySelector('.result-primary-action')?.append(assistantLink);
   $('#result-view').querySelector('[data-action="scan-another"]')?.addEventListener('click', () => { $('#ingredients-input').value = ''; route('scanner'); });
   $('#result-view').querySelector('[data-action="label-fallback"]')?.addEventListener('click', () => { route('scanner'); $('#label-image').focus(); $('#label-image').scrollIntoView({block: 'center'}); });
   $('#result-view').querySelector('[data-action="manual-fallback"]')?.addEventListener('click', () => { route('scanner'); $('#ingredients-input').value = ''; $('#ingredients-input').focus(); });
@@ -395,8 +397,8 @@ $('#confirm-ocr').addEventListener('click', () => {
   void showResult('manual-entry', 'ocr', text, { ocrConfidence: ocrEvidence.confidence / 100, ocrConfirmed: true, evidenceComplete: $('#ocr-complete').checked });
 });
 $('#barcode-form').addEventListener('submit', (event) => { event.preventDefault(); window.halalAnalytics.track('manual_lookup'); const barcode = $('#barcode-input').value.trim(); const ingredients = $('#ingredients-input').value.trim(); if (!window.productModel.isValidBarcode(barcode) && !ingredients) { showToast('Enter a barcode or ingredient list'); return; } showResult(barcode || 'manual-entry', 'manual'); });
-$('#clear-history').addEventListener('click', () => { state.history = []; localStorage.removeItem('halalcheck-history'); renderHistory(); showToast('Scan history cleared'); });
-function toggleTheme() { const dark = document.documentElement.dataset.theme !== 'dark'; document.documentElement.dataset.theme = dark ? 'dark' : 'light'; localStorage.setItem('halalcheck-theme', document.documentElement.dataset.theme); }
+$('#clear-history').addEventListener('click', () => { state.history = []; safeLocalStorage.removeItem('halalcheck-history'); renderHistory(); showToast('Scan history cleared'); });
+function toggleTheme() { const dark = document.documentElement.dataset.theme !== 'dark'; document.documentElement.dataset.theme = dark ? 'dark' : 'light'; safeLocalStorage.setItem('halalcheck-theme', document.documentElement.dataset.theme); }
 $('#theme-toggle').addEventListener('click', toggleTheme);
 $('#mobile-theme-toggle').addEventListener('click', toggleTheme);
 $('#guide-search-input').addEventListener('input', (event) => renderGuide((event.currentTarget as HTMLInputElement).value));
@@ -404,7 +406,7 @@ $('#language-select').value = state.language;
 $('#language-select').addEventListener('change', (event) => {
   state.language = (event.currentTarget as HTMLSelectElement).value;
   window.halalAnalytics.track('language_changed');
-  localStorage.setItem('halalcheck-language', state.language);
+  safeLocalStorage.setItem('halalcheck-language', state.language);
   window.halalI18n.apply(state.language);
   renderGuide($('#guide-search-input').value);
   renderHistory();
@@ -424,7 +426,7 @@ $('#install-app').addEventListener('click', async () => {
   $('#install-app').hidden = true;
 });
 window.addEventListener('appinstalled', () => { installPrompt = null; $('#install-app').hidden = true; window.halalAnalytics.track('pwa_installed'); showToast('HalalCheck installed'); });
-document.documentElement.dataset.theme = localStorage.getItem('halalcheck-theme') || 'light';
+document.documentElement.dataset.theme = safeLocalStorage.getItem('halalcheck-theme') || 'light';
 window.halalI18n.apply(state.language);
 renderHistory();
 renderGuide();
@@ -441,4 +443,5 @@ window.addEventListener('pagehide', () => { stopCamera(); ocrController?.abort()
 
 $('#privacy-settings').addEventListener('click', () => { $('#privacy-notice').hidden = false; });
 
+const initialView=location.hash.slice(1);if(['home','scanner','history','about','guide'].includes(initialView))route(initialView);
 export {};

@@ -68,8 +68,8 @@ export const halalAnalyzer = (() => {
     });
     const prohibited = findings.some((finding) => finding.classification === policy.classifications.NOT_HALAL);
     const uncertain = findings.some((finding) => finding.classification === policy.classifications.NEEDS_CHECKING);
-    const uncertainRecognition = options.ocrConfirmed === false || (typeof options.ocrConfidence === 'number' && options.ocrConfidence < 0.75)
-      || values.some((item) => typeof item === 'object' && item.source === 'ocr' && (!Number.isFinite(item.confidence) || typeof item.confidence !== 'number' || item.confidence < 0.75));
+    const uncertainRecognition = options.ocrConfirmed === false || (options.ocrConfidence !== undefined && (!Number.isFinite(options.ocrConfidence) || typeof options.ocrConfidence !== 'number' || options.ocrConfidence < 0.75 || options.ocrConfidence > 1))
+      || values.some((item) => typeof item === 'object' && item.source === 'ocr' && (!Number.isFinite(item.confidence) || typeof item.confidence !== 'number' || item.confidence < 0.75 || item.confidence > 1));
     const joined = values.map(item => typeof item === 'string' ? item : item.originalText).join(',');
     const stack: string[] = [];
     let broken = false;

@@ -135,7 +135,7 @@ export interface FetchOptions {
 }
 class InvalidData extends Error {
 }
-async function boundedJson(response: Response): Promise<unknown> {
+export async function boundedJson(response: Response): Promise<unknown> {
     if (!response.body?.getReader)
         return response.json();
     const reader = response.body.getReader();

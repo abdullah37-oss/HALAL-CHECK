@@ -1,7 +1,14 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "functions": { "api/products/*.ts": { "includeFiles": "data/italy/catalogue.sqlite" } },
+  "functions": {
+    "api/products/*.ts": {
+      "includeFiles": "data/italy/catalogue.sqlite"
+    },
+    "api/product-search.ts": {
+      "includeFiles": "data/italy/catalogue.sqlite"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",

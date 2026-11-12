@@ -8,7 +8,7 @@ if(!/^https:\/\/halal-check-[a-z0-9]+-[a-z0-9-]+\.vercel\.app$/.test(site||'')||
 const manifest=JSON.parse(fs.readFileSync('reports/release-artifact-manifest.json'));
 const security=JSON.parse(fs.readFileSync('vercel.json')).headers[0].headers.filter(h=>h.key!=='Cache-Control');
 const tasks=manifest.files.map(f=>({route:'/'+f.path,file:f.path,sha256:f.sha256}));
-for(const [route,file] of [['/','index.html'],['/admin/','admin/index.html'],['/admin/reset-password/','admin/reset-password/index.html']])tasks.push({route,file,sha256:manifest.files.find(f=>f.path===file).sha256});
+for(const [route,file] of [['/','index.html'],['/assistant/','assistant/index.html'],['/admin/','admin/index.html'],['/admin/reset-password/','admin/reset-password/index.html']])tasks.push({route,file,sha256:manifest.files.find(f=>f.path===file).sha256});
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const checks=[];let next=0;
 async function request(route,method='GET'){
