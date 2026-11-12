@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-10T17:46:39.962Z",
+  "projectName": "halal-check",
+  "projectId": "prj_XLLFJCgOujfLWpMyMGez8EdCOgJq",
+  "organizationId": "team_DajqyjOlCyHCIVHeHZawFlLW",
+  "currentProductionDeployment": {
+    "id": "dpl_E7N6ZF7pMWTgF27VUQDT13XmAeAP",
+    "url": "halal-check-wevqcwfh6-abdullah-b0a5.vercel.app",
+    "target": "production",
+    "readyState": "READY",
+    "aliases": [
+      "halal-check-sigma.vercel.app",
+      "halal-check-abdullah-b0a5.vercel.app"
+    ]
+  },
+  "candidateProductionOrigin": "https://halal-check-sigma.vercel.app",
+  "productionDeploymentExecuted": false
+}

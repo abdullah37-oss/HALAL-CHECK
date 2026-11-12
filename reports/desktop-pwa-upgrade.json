@@ -1,0 +1,11 @@
+{
+  "baselineSource": "Pinned production Git baseline",
+  "from": "halalcheck-v6",
+  "to": "halalcheck-v10",
+  "manifestIdentityPreserved": true,
+  "localStoragePreserved": true,
+  "offlineNewShell": true,
+  "adminCacheExcluded": true,
+  "physicalInstalledAndroidTest": false,
+  "productionWrites": 0
+}

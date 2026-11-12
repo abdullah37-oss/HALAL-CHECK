@@ -1,0 +1,138 @@
+{
+  "date": "2026-11-12",
+  "baseline": {
+    "HALAL": 2,
+    "HARAM": 4,
+    "NEEDS_CHECKING": 92
+  },
+  "candidate": {
+    "HALAL": 11,
+    "HARAM": 2,
+    "NEEDS_CHECKING": 85
+  },
+  "baselinePercentages": {
+    "HALAL": 2.0408163265306123,
+    "HARAM": 4.081632653061225,
+    "NEEDS_CHECKING": 93.87755102040816
+  },
+  "candidatePercentages": {
+    "HALAL": 11.224489795918368,
+    "HARAM": 2.0408163265306123,
+    "NEEDS_CHECKING": 86.73469387755102
+  },
+  "transitions": [
+    {
+      "barcode": "20047504",
+      "name": "Burger vegetali ai funghi",
+      "hasIngredients": true,
+      "classification": "needs-checking",
+      "before": "not-halal"
+    },
+    {
+      "barcode": "20052089",
+      "name": "Olio di oliva D.O.P. Terra di Bari",
+      "hasIngredients": true,
+      "classification": "likely-halal",
+      "before": "needs-checking"
+    },
+    {
+      "barcode": "20161330",
+      "name": "Pomodori secchi sott'olio",
+      "hasIngredients": true,
+      "classification": "needs-checking",
+      "before": "not-halal"
+    },
+    {
+      "barcode": "4056489099246",
+      "name": "Yogurt bianco magro 0,1% grassi",
+      "hasIngredients": true,
+      "classification": "likely-halal",
+      "before": "needs-checking"
+    },
+    {
+      "barcode": "4056489286998",
+      "name": "Riso venere integrale",
+      "hasIngredients": true,
+      "classification": "likely-halal",
+      "before": "needs-checking"
+    },
+    {
+      "barcode": "4056489419808",
+      "name": "Farro",
+      "hasIngredients": true,
+      "classification": "likely-halal",
+      "before": "needs-checking"
+    },
+    {
+      "barcode": "4056489419839",
+      "name": "Latte parzialmente scremato",
+      "hasIngredients": true,
+      "classification": "likely-halal",
+      "before": "needs-checking"
+    },
+    {
+      "barcode": "4056489420255",
+      "name": "Burrata senza lattosio",
+      "hasIngredients": true,
+      "classification": "likely-halal",
+      "before": "needs-checking"
+    },
+    {
+      "barcode": "4056489541813",
+      "name": "Tahini",
+      "hasIngredients": true,
+      "classification": "likely-halal",
+      "before": "needs-checking"
+    },
+    {
+      "barcode": "4056489633068",
+      "name": "Bio bevanda avena",
+      "hasIngredients": true,
+      "classification": "likely-halal",
+      "before": "needs-checking"
+    },
+    {
+      "barcode": "8025579111638",
+      "name": "Stick One",
+      "hasIngredients": true,
+      "classification": "likely-halal",
+      "before": "needs-checking"
+    }
+  ],
+  "performance": {
+    "baselineLabelP95Ms": 13.73320000000001,
+    "candidateLabelP95Ms": 3.501700000000028,
+    "samplesPerRun": 98,
+    "caveat": "Local single-process microbenchmark; not mobile CWV or real network latency",
+    "engineAssets": [
+      {
+        "file": "data/ingredientDatabase",
+        "baselineBytes": 9785,
+        "candidateBytes": 13661,
+        "deltaBytes": 3876,
+        "candidateSha256": "9115dc00c931cb9d000e96093d1031e16e05dc5022fa3e8245645124ba989af1"
+      },
+      {
+        "file": "data/universalHalalPolicy",
+        "baselineBytes": 20549,
+        "candidateBytes": 20518,
+        "deltaBytes": -31,
+        "candidateSha256": "ce5e8ee4c5bf7a6bfbe45dc0ef8730da56b1917d6bc956c3cd82cfb86adff291"
+      },
+      {
+        "file": "utils/halalAnalyzer",
+        "baselineBytes": 6875,
+        "candidateBytes": 8332,
+        "deltaBytes": 1457,
+        "candidateSha256": "ebd10005f799ef48e1000f840e936788a1f07e03450065f3f885d069e2d23d72"
+      }
+    ],
+    "engineAssetDeltaBytes": 5302
+  },
+  "cataloguePublicCountsUnchanged": {
+    "HALAL": 0,
+    "HARAM": 0,
+    "NEEDS_CHECKING": 98
+  },
+  "remaining": "Catalogue packaging gate, representative ground truth and reviewed product declaration/certification registry remain unresolved"
+}

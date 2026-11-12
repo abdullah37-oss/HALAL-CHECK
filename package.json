@@ -1,19 +1,41 @@
 {
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@biomejs/biome": "^2.6.6",
     "@electric-sql/pglite": "^0.5.15",
     "@playwright/test": "^1.65.0",
     "@supabase/supabase-js": "2.119.0",
-    "supabase": "^3.0.0"
+    "@types/node": "^26.6.6",
+    "@types/pngjs": "^6.0.5",
+    "bwip-js": "^4.11.4",
+    "esbuild": "^0.28.2",
+    "pngjs": "^7.0.0",
+    "supabase": "^3.0.0",
+    "typescript": "^6.0.3"
   },
   "private": true,
   "scripts": {
+    "catalogue:discover": "node scripts/catalogue-discover.cjs",
+    "catalogue:maintain": "node scripts/catalogue-build.cjs --incremental",
+    "catalogue:ocr": "node scripts/catalogue-ocr.cjs",
     "test": "node --test tests/qa/*.test.cjs",
     "qa:100": "node scripts/qa.cjs",
     "test:browser": "playwright test",
     "build": "node scripts/build.cjs",
-    "serve": "node scripts/serve.cjs"
+    "serve": "node scripts/serve.cjs",
+    "pretest": "npm run build",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.worker.json && tsc -p api/tsconfig.json",
+    "lint": "biome lint src admin api"
   },
   "engines": {
     "node": "24.x"
+  },
+  "dependencies": {
+    "@tesseract.js-data/ara": "^1.0.0",
+    "@tesseract.js-data/eng": "^1.0.0",
+    "@tesseract.js-data/ita": "^1.0.0",
+    "@tesseract.js-data/urd": "^1.0.0",
+    "tesseract.js": "^7.0.0",
+    "zxing-wasm": "^3.1.6"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-10T17:07:54.403Z",
+  "checks": [
+    {
+      "origin": "https://halal-check-sigma.vercel.app",
+      "status": 200,
+      "allowedOrigin": "https://halal-check-sigma.vercel.app"
+    },
+    {
+      "origin": "https://halal-check-72vbb8uc3-abdullah-b0a5.vercel.app",
+      "status": 403,
+      "allowedOrigin": "https://halal-check-sigma.vercel.app"
+    }
+  ],
+  "authRequests": 0,
+  "productionWrites": 0,
+  "conclusion": "Existing admin CORS allows the production origin and rejects the preview origin. No configuration changed."
+}

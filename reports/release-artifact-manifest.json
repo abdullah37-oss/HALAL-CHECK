@@ -1,56 +1,166 @@
 {
-  "createdAt": "2026-11-10T13:41:23.527Z",
-  "buildRuntime": "v26.13.0",
+  "createdAt": "2026-11-12T14:12:22.080Z",
+  "buildRuntime": "v24.22.3",
   "files": [
     {
       "path": "admin/admin.css",
-      "bytes": 1091,
-      "sha256": "0ae6ad4e7d898f0d75902630b090ed9d2933cda4861614a86e14a9568fad36d7"
+      "bytes": 12301,
+      "sha256": "c6f4b927fd47cfe6b2d639253eb7031a9efd9968cbdf94cf1c064f271fc4c3d6"
     },
     {
       "path": "admin/admin.js",
-      "bytes": 10098,
-      "sha256": "3b2a91d02d2253333f345a5943f59caaa44141f1858277755464c957888a1fc1"
+      "bytes": 20823,
+      "sha256": "bbfbcf39617ff59b0b4f3b10572dab53e7333878ca1b5947aaaa3016daa2d821"
     },
     {
       "path": "admin/config.js",
-      "bytes": 354,
-      "sha256": "25c2d1aeebceaca06ebdd41e4a394271c77f948639fd7155c81c895d191e64e1"
+      "bytes": 358,
+      "sha256": "e1a826ed16e6f44dea3433696f1aa5275dddfb299400b292b67ccf76f3a90999"
     },
     {
       "path": "admin/index.html",
-      "bytes": 2635,
-      "sha256": "6634b9e6d58c8e1aeffeb8d0142f260ad653091e5ce81f70d0be17c11ea57bc0"
+      "bytes": 7537,
+      "sha256": "9925fb1a55a3615491783502a9980441765ddd2cbfb1ba1f8731938b7aafcb14"
     },
     {
       "path": "admin/reset-password/index.html",
-      "bytes": 1257,
-      "sha256": "7311a421c28bb365a2ed42132f3f30257d1ff058763fa4a14d54e27cf14d0174"
+      "bytes": 2506,
+      "sha256": "98c20d41122bb2de24280e5dd8abb4697ceb0eae25bb4e459c464159e2149729"
     },
     {
       "path": "admin/reset-password/reset-password.js",
-      "bytes": 4421,
-      "sha256": "fd6039f2a0bfd851c4de18e19d47d9b35c251a6ef6f845ac154b95ab9b68e488"
+      "bytes": 6449,
+      "sha256": "5ada124721d9079dcb71a280dcc71bf0da9bd271b2377ffb6a10821ec5597a98"
     },
     {
       "path": "admin/runtime-config.js",
-      "bytes": 1295,
-      "sha256": "b4cd9ccfe0511ce227fb292e8a773e62b312bdbcdd090a2520eef19af2a2dc97"
+      "bytes": 1628,
+      "sha256": "d677f7f079f956a206025f5498f26bcecc545c42763288bf61e363400c6b684c"
     },
     {
       "path": "analytics.js",
-      "bytes": 2094,
-      "sha256": "3fc363a444d0db8c03b16ba9b0330ac8daae92f241d653dc2a980b45c77eaa9b"
+      "bytes": 2261,
+      "sha256": "b06229b4107bf21af466516851565907b97313ac28d47622ecea7b4dd0b2eedf"
     },
     {
       "path": "app.js",
-      "bytes": 16670,
-      "sha256": "95f91733772cf575f07b8dcc33f999c0b773cc60dda8a5d402a07935f4d9e142"
+      "bytes": 39074,
+      "sha256": "b67d970c17d7b782b0bd43105beeb2aee8782572a15be11d1bd31e536ac2b26e"
+    },
+    {
+      "path": "assets/barcode-decoder.js",
+      "bytes": 38707,
+      "sha256": "40e8685e583aa40f92c3da8d60c32f0cf6c5056508e88f4fb968ecde933d7f8d"
+    },
+    {
+      "path": "assets/ingredient-ocr.js",
+      "bytes": 20564,
+      "sha256": "a25157f738f8dd6708893066d7975568b89ecf4967209bc4c3705db4641a37c9"
+    },
+    {
+      "path": "assets/licenses/tesseract.js-core.txt",
+      "bytes": 11358,
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "assets/licenses/tesseract.js.txt",
+      "bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    },
+    {
+      "path": "assets/licenses/zxing-wasm.txt",
+      "bytes": 1068,
+      "sha256": "fb506e4ade12d7a9efa67c9d76a9a28c8e15d347ca49a69e48e29b40b34ad2ab"
+    },
+    {
+      "path": "assets/ocr/core/tesseract-core-lstm.js",
+      "bytes": 89261,
+      "sha256": "6510efc4e8b45c5465df30679b9911ffe0071cd2ee982fa064e6f5136ef2de85"
+    },
+    {
+      "path": "assets/ocr/core/tesseract-core-lstm.wasm",
+      "bytes": 2855361,
+      "sha256": "66b17df6e20c5329a17ffa9c202a47eaa3e32500b253d4c7f38e7f2bc01457c3"
+    },
+    {
+      "path": "assets/ocr/core/tesseract-core-lstm.wasm.js",
+      "bytes": 3896484,
+      "sha256": "eef5f8b2f8e20e150680b20adaec4a60babafee3adbe8a94583c81fee46e8680"
+    },
+    {
+      "path": "assets/ocr/core/tesseract-core-relaxedsimd-lstm.js",
+      "bytes": 89360,
+      "sha256": "a37ac78b707e8d5d3d2e532cc3c4e69b04d127ea44a608f1e7de17640402aa5c"
+    },
+    {
+      "path": "assets/ocr/core/tesseract-core-relaxedsimd-lstm.wasm",
+      "bytes": 2862266,
+      "sha256": "7985c92d4c64e7267d24cadffe1b2a1da6bf8aa55fdcaf953fe94fe122a24545"
+    },
+    {
+      "path": "assets/ocr/core/tesseract-core-relaxedsimd-lstm.wasm.js",
+      "bytes": 3905767,
+      "sha256": "861a536cf9ef8e63cb644d57bab39c388f37f7d6b6f60024b741c5f6b39a59b3"
+    },
+    {
+      "path": "assets/ocr/core/tesseract-core-simd-lstm.js",
+      "bytes": 89271,
+      "sha256": "e48e2f02ddae3716c8dd24bf41cd290d4efa96892d689cdc4013c2545d63f469"
+    },
+    {
+      "path": "assets/ocr/core/tesseract-core-simd-lstm.wasm",
+      "bytes": 2857601,
+      "sha256": "34e8d50cac216427d86bf397d610fdd9f49492539bbcdfbfccc4eda20c810bea"
+    },
+    {
+      "path": "assets/ocr/core/tesseract-core-simd-lstm.wasm.js",
+      "bytes": 3899472,
+      "sha256": "c58b46a4c796c0b8afccf77591d5b875b6896b45d402bbce8caa6f5362447b38"
+    },
+    {
+      "path": "assets/ocr/lang/ara.traineddata.gz",
+      "bytes": 1661906,
+      "sha256": "f4746c44b02342dd5b3d4f0198000f47d7c49f1a229e63e0f436c0592dcd9639"
+    },
+    {
+      "path": "assets/ocr/lang/eng.traineddata.gz",
+      "bytes": 2952873,
+      "sha256": "45b4cb346724ac1774f1c36f42f182b887bcdb28ebe63e6fff90ac41f3fcff91"
+    },
+    {
+      "path": "assets/ocr/lang/ita.traineddata.gz",
+      "bytes": 1660998,
+      "sha256": "f702fcfad297ce028ede3626d1467b67939f23ff23595f9badd54681cf25a4d3"
+    },
+    {
+      "path": "assets/ocr/lang/urd.traineddata.gz",
+      "bytes": 1023740,
+      "sha256": "9e1860440339543c935fca7cee2ce5ac742b1d1249c4ba5982385ce19d23096f"
+    },
+    {
+      "path": "assets/ocr/worker.min.js",
+      "bytes": 111307,
+      "sha256": "576b7df7e3393e137e51849357c9adb53fe7ac1bb69bfa06cf3d61520f182c6d"
+    },
+    {
+      "path": "assets/zxing_reader.wasm",
+      "bytes": 946860,
+      "sha256": "5003fb4b88c4fbd1fd518a2fd8c8ad365c519e183a08c03a322dddfea3cea84e"
+    },
+    {
+      "path": "catalogue/LICENCE.txt",
+      "bytes": 1394,
+      "sha256": "8f075607d2246398b7ba09a68080fa71f7cd3908102022f3735ef5ba8e926945"
+    },
+    {
+      "path": "catalogue/italy.json.gz",
+      "bytes": 42125,
+      "sha256": "c6eebde56f27345db11e8425402332d2b1d3535aa2d76b8e41e20e794c9a9285"
     },
     {
       "path": "config.js",
-      "bytes": 202,
-      "sha256": "6e470e10679d7e2e7aaf4d487431325d6a9c7e5f5fd289bfc3cfbacd23333160"
+      "bytes": 204,
+      "sha256": "76fa1a59feb85ed5859ddbfcc387531d4bb24c65da69ad85184c638bc92f123b"
     },
     {
       "path": "icons/icon-192.png",
@@ -69,13 +179,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 10576,
-      "sha256": "4c2f5ee39f78b3aa3e185f8a44bf0af64dc09ccefadf4f67addc1116c4e07494"
+      "bytes": 15994,
+      "sha256": "819fb222067ddc82ebe4e1788f71c181ee7eacee22fedf51841fb80fc8121dfb"
     },
     {
       "path": "manifest.webmanifest",
-      "bytes": 709,
-      "sha256": "6148f150e125cc3e0a0dcccdd301562f9d4a6da86faac6d160cf200b96ed2e8b"
+      "bytes": 740,
+      "sha256": "0e422d6075ec46944b51b21c3e8c51da21b6c1978ac1ab44c726a3f523c5bc01"
     },
     {
       "path": "offline.html",
@@ -84,48 +194,48 @@
     },
     {
       "path": "src/data/ingredientDatabase.js",
-      "bytes": 9573,
-      "sha256": "1bad8783de88c9a7dbedd673d7ee180845aae2e114ed79fcbca402dc663dd7fc"
+      "bytes": 13661,
+      "sha256": "9115dc00c931cb9d000e96093d1031e16e05dc5022fa3e8245645124ba989af1"
     },
     {
       "path": "src/data/productCatalog.js",
-      "bytes": 895,
-      "sha256": "730c3fb3c57db5f107bb1051bbdad79ad49b480269089dc32d134f0c07da93ca"
+      "bytes": 1016,
+      "sha256": "e773b503255b2d057cb7585c4feda42331249b5b06ebf2b72f6db1f40e333bcf"
     },
     {
       "path": "src/data/universalHalalPolicy.js",
-      "bytes": 5894,
-      "sha256": "3d544b9c493a8a80304671dbd0f6c073b474219e94a67263529a7ab8a53017b5"
+      "bytes": 20518,
+      "sha256": "ce5e8ee4c5bf7a6bfbe45dc0ef8730da56b1917d6bc956c3cd82cfb86adff291"
     },
     {
       "path": "src/i18n/index.js",
-      "bytes": 14853,
-      "sha256": "0a8651338151525ac7aba8329cc6e8f21caa024102df1e4f226904ad9129ed04"
+      "bytes": 507486,
+      "sha256": "d0a75e966359b5d43131441ec7a9b7a1dc818330f84f4346c943ccdacbc6173e"
     },
     {
       "path": "src/models/productModel.js",
-      "bytes": 1740,
-      "sha256": "32373cc57e65fb96551b9deb772f77f645073b6347657a4fb10e45dc987ba8dd"
+      "bytes": 2506,
+      "sha256": "60e14e9b3bb9c298253bf2c1d7a34d68cb6ffe010e3b027591f5d92632da7d61"
     },
     {
       "path": "src/utils/halalAnalyzer.js",
-      "bytes": 4642,
-      "sha256": "326bb4cbcf73ea27b0a944002028a5672b609329f9290963704eb2307ce9b87b"
+      "bytes": 8332,
+      "sha256": "ebd10005f799ef48e1000f840e936788a1f07e03450065f3f885d069e2d23d72"
     },
     {
       "path": "src/utils/productRepository.js",
-      "bytes": 4781,
-      "sha256": "085e94462be4898be8b1420b6c3b2fd1f11e54cf15a8735aab81e1c1068ba946"
+      "bytes": 18355,
+      "sha256": "700c913f0055163fc8860c922a4aac8c5d31b8efb564d28df7277d5a576394b7"
     },
     {
       "path": "styles.css",
-      "bytes": 14804,
-      "sha256": "3817fc9efe4dae413079c63d357db1b47d6ec82f77734567dd1737db58a7d34f"
+      "bytes": 25959,
+      "sha256": "7dac737925354a8cb16f5f107630d804ffe08a10383a2cab291b62de42c1f953"
     },
     {
       "path": "sw.js",
-      "bytes": 1553,
-      "sha256": "21b74c4e7ca543185317d03681d6f0b9d43700686c22315f4593242dd576887a"
+      "bytes": 1741,
+      "sha256": "a51c058c88ee57cfdec903b0920701de2df33e7b17abd8776851dc2a7be19c03"
     }
   ]
 }

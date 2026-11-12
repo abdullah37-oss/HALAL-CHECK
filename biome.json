@@ -1,0 +1,25 @@
+{
+	"files": {
+		"includes": ["src/**/*.ts", "admin/**/*.ts", "api/**/*.ts"]
+	},
+	"formatter": {
+		"enabled": false
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"preset": "none",
+			"suspicious": {
+				"noExplicitAny": "error",
+				"noDebugger": "error",
+				"noDuplicateObjectKeys": "error"
+			},
+			"correctness": {
+				"noUnreachable": "error",
+				"noConstantCondition": "error",
+				"noInvalidUseBeforeDeclaration": "error",
+				"noUnsafeFinally": "error"
+			}
+		}
+	}
+}

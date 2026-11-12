@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-11-10T17:45:04.313Z",
+  "productionOrigin": "https://halal-check-sigma.vercel.app",
+  "endpoint": "https://anvswymarultvsbszjte.supabase.co/functions/v1/admin-stats",
+  "checks": [
+    {
+      "check": "Public configuration unchanged: admin/config.js",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "check": "Public configuration unchanged: config.js",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "check": "Production CORS accepts authorization preflight",
+      "status": 200,
+      "allowedOrigin": "https://halal-check-sigma.vercel.app",
+      "passed": true
+    },
+    {
+      "check": "Live statistics remain protected without a user session",
+      "status": 401,
+      "allowedOrigin": "*",
+      "passed": true,
+      "statisticsReturned": false,
+      "note": "Supabase gateway rejects missing user authorization before the Edge handler; its error response uses gateway CORS headers."
+    },
+    {
+      "check": "Premium dashboard and protected endpoint integration included in production artifact",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "currentOwnerLoginAndRealStatistics": "Confirmed by owner in current request; no password or token requested",
+  "candidateAuthorizedStatistics": "Requires private owner verification after approved deployment",
+  "productionWrites": 0,
+  "authEmailsSent": 0
+}

@@ -4,7 +4,8 @@ const privatePlan=fs.existsSync('.release-private/OWNER_SETUP_PLAN.md')?fs.readF
 const privateEmail=privatePlan.match(/^Email: (.+)\.$/m)?.[1];
 const privateOutcome=fs.existsSync('.release-private/owner-invitation-outcome.json')?JSON.parse(fs.readFileSync('.release-private/owner-invitation-outcome.json','utf8')):{};
 const privateIdentities=[privateEmail,privateOutcome.accountId].filter(Boolean);
-const commits=git(['rev-list','HEAD','--not','--remotes=Halal-check']).trim().split(/\r?\n/).filter(Boolean);
+const auditRef=process.argv.find(value=>value.startsWith('--ref='))?.slice(6)||'HEAD';
+const commits=git(['rev-list',auditRef,'--not','--remotes=Halal-check']).trim().split(/\r?\n/).filter(Boolean);
 const findings=[],syntheticFixtures=[];let filesChecked=0;
 for(const commit of commits){
  const identity=git(['show','-s','--format=%an%n%ae%n%cn%n%ce',commit]).trim().split(/\r?\n/);

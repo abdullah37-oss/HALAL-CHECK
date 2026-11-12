@@ -1,4 +1,16 @@
 node_modules/
+test-results/
+playwright-report/
+*.tsbuildinfo
+.cache/
+debug.log
+.release-private-*
+test-results/
+playwright-report/
+*.tsbuildinfo
+.cache/
+debug.log
+.release-private-*
 dist/
 reports/
 tests/
@@ -9,3 +21,6 @@ tests/
 supabase/.temp/
 supabase/.branches/
 HALALCHECK*.md
+
+dist-server/
+data/italy/*.sqlite*

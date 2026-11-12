@@ -1,0 +1,6 @@
+{
+    "passed":  true,
+    "productionBranch":  "main",
+    "featureBranch":  "feature/ingredient-evidence-20261112",
+    "expectedProductionBranch":  "main"
+}

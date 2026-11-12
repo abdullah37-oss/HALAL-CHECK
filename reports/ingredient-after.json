@@ -1,0 +1,908 @@
+{
+  "scope": "Convenience sample of existing OFF Italy retailer snapshots; multilingual EU labels; not representative of supermarkets. Community labels not independently verified. No certification inferred. Missing lists retained in denominator.",
+  "licence": "ODbL-1.0 / DbCL-1.0; Open Food Facts contributors",
+  "sources": [
+    {
+      "file": "ins.json",
+      "url": "https://world.openfoodfacts.org/api/v2/search?countries_tags=en%3Aitaly&stores_tags=ins&page_size=100&page=1&fields=code%2Cproduct_name%2Cproduct_name_it%2Cbrands%2Ccategories_tags%2Ccountries_tags%2Cstores_tags%2Cstores%2Cquantity%2Clang%2Cingredients_text%2Cingredients_text_it%2Cingredients_text_en%2Cingredients%2Cingredients_tags%2Cdata_quality_errors_tags%2Cdata_quality_warnings_tags%2Cimage_front_url%2Cimage_ingredients_url%2Clast_modified_t%2Crev%2Cobsolete%2Cowner%2Cstates_tags",
+      "retrievedAt": "2026-11-11T01:03:03.592Z",
+      "sha256": "03533188a61ad5067eec2b3f3b4370ac4a560fe7468742e927a768d8ec4ea38d"
+    },
+    {
+      "file": "lidl.json",
+      "url": "https://world.openfoodfacts.org/api/v2/search?countries_tags=en%3Aitaly&stores_tags=lidl&page_size=100&page=1&fields=code%2Cproduct_name%2Cproduct_name_it%2Cbrands%2Ccategories_tags%2Ccountries_tags%2Cstores_tags%2Cstores%2Cquantity%2Clang%2Cingredients_text%2Cingredients_text_it%2Cingredients_text_en%2Cingredients%2Cingredients_tags%2Cdata_quality_errors_tags%2Cdata_quality_warnings_tags%2Cimage_front_url%2Cimage_ingredients_url%2Clast_modified_t%2Crev%2Cobsolete%2Cowner%2Cstates_tags",
+      "retrievedAt": "2026-11-11T01:02:56.209Z",
+      "sha256": "f1ee3a14d21c3efbf861ca697413e4f3c24a55522b1cdfe5e7ad6dc4afede54e"
+    }
+  ],
+  "rules": {
+    "total": 50,
+    "uniqueIds": 50,
+    "aliasEntries": 278,
+    "uniqueNormalizedAliases": 278,
+    "translationEntries": 600,
+    "uniqueNormalizedAliasAndTranslationStrings": 531,
+    "uiLanguages": [
+      "en",
+      "it",
+      "ar",
+      "ur",
+      "hi",
+      "bn",
+      "fr",
+      "de",
+      "es",
+      "tr",
+      "ms",
+      "id"
+    ],
+    "permissible": 42,
+    "prohibited": 3,
+    "sourceDependent": 5,
+    "identicalEnglishTranslationSlots": 222
+  },
+  "sampleSize": 98,
+  "withIngredientData": 73,
+  "counts": {
+    "needs-checking": 60,
+    "likely-halal": 11,
+    "not-enough-information": 25,
+    "not-halal": 2
+  },
+  "percentages": {
+    "needs-checking": 61.224489795918366,
+    "likely-halal": 11.224489795918368,
+    "not-enough-information": 25.510204081632654,
+    "not-halal": 2.0408163265306123
+  },
+  "top30Causes": [
+    [
+      "source: Flavouring",
+      30
+    ],
+    [
+      "missing ingredient list",
+      25
+    ],
+    [
+      "source: Other source-dependent additive",
+      3
+    ],
+    [
+      "unrecognized/residual: emulsionante: lecitine (soia)",
+      2
+    ],
+    [
+      "unrecognized/residual: gelificante: pectine",
+      2
+    ],
+    [
+      "source: Mono- and diglycerides",
+      2
+    ],
+    [
+      "unrecognized/residual: cultivos microbianos [contienen _leche_])",
+      2
+    ],
+    [
+      "unrecognized/residual: emulgente: lecitinas",
+      2
+    ],
+    [
+      "unrecognized/residual: soja",
+      2
+    ],
+    [
+      "unrecognized/residual: sciroppo di glucosio-fruttosio",
+      2
+    ],
+    [
+      "unrecognized/residual: colorante e 150d",
+      2
+    ],
+    [
+      "unrecognized/residual: acidificante acido fosforico",
+      2
+    ],
+    [
+      "unrecognized/residual: piseli",
+      1
+    ],
+    [
+      "unrecognized/residual: consumare entro 2 giorni dall'apertura",
+      1
+    ],
+    [
+      "unrecognized/residual: peso netto: 400 g peso snocciolato: 280",
+      1
+    ],
+    [
+      "unrecognized/residual: 25% noci di acagiù",
+      1
+    ],
+    [
+      "unrecognized/residual: 25% mandorle pelate. può contenere tracce di altra frutta a guscio (noci di pecan",
+      1
+    ],
+    [
+      "unrecognized/residual: noci del brasile",
+      1
+    ],
+    [
+      "unrecognized/residual: pistacchi",
+      1
+    ],
+    [
+      "unrecognized/residual: noci macadamia) e arachidi.",
+      1
+    ],
+    [
+      "unrecognized/residual: 35% funghi in proporzione variabile [funghi shiitake (lentinus edodes)",
+      1
+    ],
+    [
+      "unrecognized/residual: funghi geloni (pleurotus ostreatus)",
+      1
+    ],
+    [
+      "unrecognized/residual: funghi famigliola gialla (pholiota mutabilis)]",
+      1
+    ],
+    [
+      "unrecognized/residual: 24% farina di soia ristrutturata e reidratata",
+      1
+    ],
+    [
+      "unrecognized/residual: 5% funghi porcini (boletus edulis e relativo gruppo)",
+      1
+    ],
+    [
+      "unrecognized/residual: glutine di frumento",
+      1
+    ],
+    [
+      "unrecognized/residual: amido di tapioca",
+      1
+    ],
+    [
+      "unrecognized/residual: fibra vegetale (pisello)",
+      1
+    ],
+    [
+      "unrecognized/residual: amido di pisello",
+      1
+    ],
+    [
+      "unrecognized/residual: preparato per brodo vegetale [sale",
+      1
+    ]
+  ],
+  "unknownDistinctStrings": 310,
+  "top30Unknown": [
+    [
+      "emulgente: lecitinas",
+      2
+    ],
+    [
+      "soja",
+      2
+    ],
+    [
+      "sciroppo di glucosio-fruttosio",
+      2
+    ],
+    [
+      "colorante e 150d",
+      2
+    ],
+    [
+      "piseli",
+      1
+    ],
+    [
+      "consumare entro 2 giorni dall'apertura",
+      1
+    ],
+    [
+      "peso netto: 400 g peso snocciolato: 280",
+      1
+    ],
+    [
+      "pistacchi",
+      1
+    ],
+    [
+      "35% funghi in proporzione variabile [funghi shiitake (lentinus edodes)",
+      1
+    ],
+    [
+      "funghi geloni (pleurotus ostreatus)",
+      1
+    ],
+    [
+      "funghi famigliola gialla (pholiota mutabilis)]",
+      1
+    ],
+    [
+      "5% funghi porcini (boletus edulis e relativo gruppo)",
+      1
+    ],
+    [
+      "glutine di frumento",
+      1
+    ],
+    [
+      "fibra vegetale (pisello)",
+      1
+    ],
+    [
+      "ortaggi disidratati in proporzione variabile (cipolla",
+      1
+    ],
+    [
+      "sedano",
+      1
+    ],
+    [
+      "carota",
+      1
+    ],
+    [
+      "prezzemolo)",
+      1
+    ],
+    [
+      "piante aromatiche",
+      1
+    ],
+    [
+      "pesche",
+      1
+    ],
+    [
+      "ananas",
+      1
+    ],
+    [
+      "banane)",
+      1
+    ],
+    [
+      "1.1% cereali in proporzione variabile (fiocchi d'avena",
+      1
+    ],
+    [
+      "fiocchi d'orzo)",
+      1
+    ],
+    [
+      "fosfato di calcio",
+      1
+    ],
+    [
+      "stabilizzante: gomma di xanthan",
+      1
+    ],
+    [
+      "vitamine: vitamina b2",
+      1
+    ],
+    [
+      "vitamina b12",
+      1
+    ],
+    [
+      "vitamina d2",
+      1
+    ],
+    [
+      "bifidobacterium lactis.",
+      1
+    ]
+  ],
+  "performance": {
+    "samples": 98,
+    "p95Ms": 3.501700000000028
+  },
+  "products": [
+    {
+      "barcode": "20009816",
+      "name": "Piselli finissimi Freshona",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20047238",
+      "name": "Mix di frutta a guscio",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20047504",
+      "name": "Burger vegetali ai funghi",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20050429",
+      "name": "Soyo frutta e cereali",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20052089",
+      "name": "Olio di oliva D.O.P. Terra di Bari",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "20053345",
+      "name": "Bio organic latte intero",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "20058012",
+      "name": "Penne Rigate",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20088279",
+      "name": "",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20139124",
+      "name": "Blätterteig lidl",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20161330",
+      "name": "Pomodori secchi sott'olio",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20162702",
+      "name": "Truffles",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20177089",
+      "name": "Ocean Sea Smoked Salmon",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20217938",
+      "name": "",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "20267605",
+      "name": "Anacardi",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20305123",
+      "name": "Filetti di acciughe in olio di oliva",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20362843",
+      "name": "gouda",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20422264",
+      "name": "Tarallucci",
+      "hasIngredients": true,
+      "classification": "not-halal"
+    },
+    {
+      "barcode": "20457105",
+      "name": "Choco Nussa",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20498610",
+      "name": "Yogurt Magro",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20615079",
+      "name": "Haselnuss Sterne",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20622756",
+      "name": "",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "20623135",
+      "name": "Panzerotti di pollo con speck e provola",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20684808",
+      "name": "Vaschetta gelato 4 gusti",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20691851",
+      "name": "Té AL Limone",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20810405",
+      "name": "Hummus piccante",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20815394",
+      "name": "Mix di frutta secca",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20824662",
+      "name": "Acqua minerale naturale",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20849290",
+      "name": "Magnesio",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "20969578",
+      "name": "torta sbrisolona",
+      "hasIngredients": true,
+      "classification": "not-halal"
+    },
+    {
+      "barcode": "3274080005003",
+      "name": "Cristaline",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "4008400191423",
+      "name": "Kinder Fetta al Latte x 10pz",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489010357",
+      "name": "Minestrone di verdure",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489028109",
+      "name": "Shot de gingembre bio",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489041887",
+      "name": "Macinato di Scottona",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489041962",
+      "name": "Mini hamburgher di bovino adulto scottona",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489042037",
+      "name": "Lonza di maiale",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489042150",
+      "name": "salame nostrano",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489042273",
+      "name": "Mare e monti",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489042730",
+      "name": "Petto di tacchino al forno a fette",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489043003",
+      "name": "Crostata con confettura di albicocca",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489043195",
+      "name": "Terra uova",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489043225",
+      "name": "10 Uova medie di galline allevate a terra ITALIANE",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489068204",
+      "name": "Tofu Basil",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489068211",
+      "name": "tofu affumicato",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489097280",
+      "name": "Gnocchi di patate",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489099024",
+      "name": "Yogurt Fior di Latte con cereali e biscotti al cioccolato",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489099031",
+      "name": "Yogurt alla vaniglia con preparazione di lamponi",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489099246",
+      "name": "Yogurt bianco magro 0,1% grassi",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "4056489099383",
+      "name": "Bifida probiotico avena e noci",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489114963",
+      "name": "Formaggio spalmabile High protein Milbona Lidl",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489160595",
+      "name": "Soyo frutta e cereali",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489163008",
+      "name": "Polpettine",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489181125",
+      "name": "Tonno all'olio d'oliva",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489189091",
+      "name": "Marmellata di fragole",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489207092",
+      "name": "Protein Bar Chocolate-Brownie Geschmack",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489219477",
+      "name": "Vegan vegetale patties",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489220558",
+      "name": "Negromaro Salento igp",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489224525",
+      "name": "",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489228776",
+      "name": "Riso carnaroli",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489228868",
+      "name": "Mozzarella di bufala campana DOP",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489286998",
+      "name": "Riso venere integrale",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "4056489314905",
+      "name": "active",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489346869",
+      "name": "Latteria vanglia yogurt intero",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489348115",
+      "name": "Mezze maniche rigate",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489406679",
+      "name": "Boisson lactée saveur chocolat",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489419556",
+      "name": "Mezze maniche",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489419563",
+      "name": "Fusilli",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489419761",
+      "name": "Cereali e quinoa",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489419792",
+      "name": "5 cereali e riso rosso",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489419808",
+      "name": "Farro",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "4056489419839",
+      "name": "Latte parzialmente scremato",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "4056489420255",
+      "name": "Burrata senza lattosio",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "4056489420767",
+      "name": "Farina di grano tenero 100% italiano tipo 2 macinata a pietra",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489440918",
+      "name": "Confettura extra Frutti di Bosco",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489441304",
+      "name": "Vegan Pesto alla Calabrese",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489496274",
+      "name": "Affettato vegano VEMONDO",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489541813",
+      "name": "Tahini",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "4056489546849",
+      "name": "Backpulver",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489631910",
+      "name": "Spaghetti di soia",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489632603",
+      "name": "Gyoza",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489633068",
+      "name": "Bio bevanda avena",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "4056489720843",
+      "name": "Torroncini morbidi alle mandorle",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489722144",
+      "name": "Stracchino senza lattosio",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489796701",
+      "name": "Farina Manitoba di grano tenero tipi &quot;0&quot;",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489861829",
+      "name": "Vegan Sandwich spread classic",
+      "hasIngredients": false,
+      "classification": "not-enough-information"
+    },
+    {
+      "barcode": "4056489892175",
+      "name": "Power mix",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4056489936237",
+      "name": "muesli croccante cioccolato nocciole e cocco",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "4335619244962",
+      "name": "Crema bicolore con pistacchio, nocciole e cacao",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "5053990167807",
+      "name": "Pringles Original",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "5449000000439",
+      "name": "Coca Cola Original Taste 1.5L",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "5449000000453",
+      "name": "Coca Cola",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "7614500010617",
+      "name": "Dark Chocolate with Honey and Almond Nougat",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "8001100069708",
+      "name": "saracene balocco",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "8001860810008",
+      "name": "Rice Original",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "8008660100032",
+      "name": "Marmellata",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "8025579111638",
+      "name": "Stick One",
+      "hasIngredients": true,
+      "classification": "likely-halal"
+    },
+    {
+      "barcode": "8028630011144",
+      "name": "Farina per pizza napoletana",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    },
+    {
+      "barcode": "80369691",
+      "name": "VistaSnella Naturale",
+      "hasIngredients": true,
+      "classification": "needs-checking"
+    }
+  ],
+  "translationCaveat": "Translation entries include English fallback slots; UI language count is not independently verified ingredient language coverage.",
+  "publicCounts": {
+    "HALAL": 11,
+    "HARAM": 2,
+    "NEEDS_CHECKING": 85
+  },
+  "publicPercentages": {
+    "HALAL": 11.224489795918368,
+    "HARAM": 2.0408163265306123,
+    "NEEDS_CHECKING": 86.73469387755102
+  }
+}

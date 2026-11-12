@@ -1,0 +1,92 @@
+{
+  "note": "Artifact sizes, not measured mobile transfer or device latency. OCR and WASM are not requested by the initial HTML.",
+  "shell": [
+    {
+      "file": "styles.css",
+      "bytes": 20553,
+      "gzipBytes": 5492
+    },
+    {
+      "file": "src/data/ingredientDatabase.js",
+      "bytes": 9754,
+      "gzipBytes": 2463
+    },
+    {
+      "file": "config.js",
+      "bytes": 202,
+      "gzipBytes": 190
+    },
+    {
+      "file": "analytics.js",
+      "bytes": 2261,
+      "gzipBytes": 1012
+    },
+    {
+      "file": "src/i18n/index.js",
+      "bytes": 458593,
+      "gzipBytes": 72194
+    },
+    {
+      "file": "src/data/universalHalalPolicy.js",
+      "bytes": 20518,
+      "gzipBytes": 5542
+    },
+    {
+      "file": "src/utils/halalAnalyzer.js",
+      "bytes": 6844,
+      "gzipBytes": 2054
+    },
+    {
+      "file": "src/models/productModel.js",
+      "bytes": 2101,
+      "gzipBytes": 847
+    },
+    {
+      "file": "src/data/productCatalog.js",
+      "bytes": 1016,
+      "gzipBytes": 475
+    },
+    {
+      "file": "src/utils/productRepository.js",
+      "bytes": 6290,
+      "gzipBytes": 1930
+    },
+    {
+      "file": "app.js",
+      "bytes": 28390,
+      "gzipBytes": 7626
+    }
+  ],
+  "totalShellBytes": 556522,
+  "totalShellGzipBytes": 99825,
+  "lazy": [
+    {
+      "file": "assets/barcode-decoder.js",
+      "bytes": 38686
+    },
+    {
+      "file": "assets/zxing_reader.wasm",
+      "bytes": 946860
+    },
+    {
+      "file": "assets/ingredient-ocr.js",
+      "bytes": 20543
+    },
+    {
+      "file": "assets/ocr/lang/eng.traineddata.gz",
+      "bytes": 2952873
+    },
+    {
+      "file": "assets/ocr/lang/ita.traineddata.gz",
+      "bytes": 1660998
+    },
+    {
+      "file": "assets/ocr/lang/ara.traineddata.gz",
+      "bytes": 1661906
+    },
+    {
+      "file": "assets/ocr/lang/urd.traineddata.gz",
+      "bytes": 1023740
+    }
+  ]
+}

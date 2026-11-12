@@ -1,0 +1,5 @@
+// Read-only static GETs. Never executes analytics or authentication requests.
+const fs=require('node:fs'),crypto=require('node:crypto');
+(async()=>{const hashes={};for(const path of ['/','/sw.js','/admin/']){const response=await fetch('https://halal-check-sigma.vercel.app'+path,{signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error('Production preservation probe failed');hashes[path]=crypto.createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex');}
+ const file='reports/ingredient-production-preservation.json';let baseline;if(fs.existsSync(file))baseline=JSON.parse(fs.readFileSync(file)).baseline;const report={checkedAt:new Date().toISOString(),baseline:baseline||hashes,current:hashes,unchanged:!baseline||JSON.stringify(baseline)===JSON.stringify(hashes),productionMutationPerformed:false};fs.writeFileSync(file,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));if(!report.unchanged)process.exitCode=1;
+})().catch(e=>{console.error(e.message);process.exitCode=1;});

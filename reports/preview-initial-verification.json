@@ -1,0 +1,437 @@
+{
+  "checkedAt": "2026-11-10T17:01:45.058Z",
+  "site": "https://halal-check-b4meuvgii-abdullah-b0a5.vercel.app",
+  "deploymentId": "dpl_4pVy4o4dPqyVdBycmD6V3Zis7F82",
+  "sourceCommit": "310977a260edee77373a8f62c31fb98cb758c88d",
+  "checks": [
+    {
+      "file": "admin/admin.css",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "admin/admin.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "admin/config.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "admin/index.html",
+      "status": 200,
+      "exactMatch": false,
+      "toolbarOnly": true,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "admin/reset-password/index.html",
+      "status": 200,
+      "exactMatch": false,
+      "toolbarOnly": true,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "admin/reset-password/reset-password.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "admin/runtime-config.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "analytics.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "app.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/barcode-decoder.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ingredient-ocr.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/licenses/tesseract.js-core.txt",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/licenses/tesseract.js.txt",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/licenses/zxing-wasm.txt",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-lstm.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-lstm.wasm",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-lstm.wasm.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-relaxedsimd-lstm.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-relaxedsimd-lstm.wasm",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-relaxedsimd-lstm.wasm.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-simd-lstm.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-simd-lstm.wasm",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/core/tesseract-core-simd-lstm.wasm.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/lang/ara.traineddata.gz",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/lang/eng.traineddata.gz",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/lang/ita.traineddata.gz",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/lang/urd.traineddata.gz",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/ocr/worker.min.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "assets/zxing_reader.wasm",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "config.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "icons/icon-192.png",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "icons/icon-512.png",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "icons/icon.svg",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "index.html",
+      "status": 200,
+      "exactMatch": false,
+      "toolbarOnly": true,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "manifest.webmanifest",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "offline.html",
+      "status": 200,
+      "exactMatch": false,
+      "toolbarOnly": true,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "src/data/ingredientDatabase.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "src/data/productCatalog.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "src/data/universalHalalPolicy.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "src/i18n/index.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "src/models/productModel.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "src/utils/halalAnalyzer.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "src/utils/productRepository.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "styles.css",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "file": "sw.js",
+      "status": 200,
+      "exactMatch": true,
+      "toolbarOnly": false,
+      "securityHeaders": true,
+      "noStore": true,
+      "passed": true
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "reviewedHtml": true,
+      "adminNoStore": true,
+      "passed": true
+    },
+    {
+      "route": "/admin/",
+      "status": 200,
+      "reviewedHtml": true,
+      "adminNoStore": true,
+      "passed": true
+    },
+    {
+      "route": "/admin/reset-password/",
+      "status": 200,
+      "reviewedHtml": true,
+      "adminNoStore": true,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "authRequests": 0,
+  "productionWrites": 0
+}

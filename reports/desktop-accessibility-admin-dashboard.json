@@ -1,0 +1,9 @@
+{
+  "page": "admin-dashboard",
+  "viewport": "desktop",
+  "rulesPassed": 28,
+  "incompleteChecks": [
+    "color-contrast"
+  ],
+  "violations": []
+}
